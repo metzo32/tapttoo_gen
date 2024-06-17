@@ -14,7 +14,7 @@ export default function Description({ alignRight, title, text }: DescriptionProp
           <s.StyledH4 className='SemiTitle'>
             {title}
           </s.StyledH4>
-          <s.StyledP>
+          <s.StyledP className='section-p'>
             {text}
           </s.StyledP>
       </s.ColumnWrapper>

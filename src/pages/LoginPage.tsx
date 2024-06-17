@@ -31,14 +31,14 @@ export default function LoginPage() {
     }
   }, [])
 
-
+  const handleNavigation = (path: string) => {
+    navigate(path)
+  }
 
   const handleRememberMeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     console.log('Checkbox status:', event.target.checked); 
     setRememberMe(event.target.checked);
   };
-
-
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // 폼 제출시 페이지 새로고침 방지 (불필요한 리로드 방지)
@@ -92,7 +92,7 @@ export default function LoginPage() {
           </s.SubmitButton>
         </s.FormWrapper>
         <s.ButtonBox>
-          <s.Button>Sign up</s.Button>
+        <s.Button onClick={() => handleNavigation('/register')}>Sign up</s.Button>
           <s.Button>Forgot password?</s.Button>
         </s.ButtonBox>
       <Outlet />

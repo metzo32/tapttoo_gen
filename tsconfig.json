@@ -18,7 +18,15 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+
+    "types": [
+      "node",
+      "react",
+      "react-dom",
+      "@types/react-slick", // 여기에 추가
+    ]
+
   },
   "include": [
     "src"
