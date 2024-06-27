@@ -49,17 +49,18 @@ const Article: React.FC = () => {
   }, [articles, fetchNamesFlag]);
 
   return (
-    <s.ArticleWrapper>
-      <h1>Article</h1>
-      <s.ArticleMidWrapper>
-        {fetchNamesFlag && <FetchName onNamesFetch={handleNamesFetch} />}
-        {articles.map((article) => (
-          <s.ArticleDiv key={article.id} className='article-cards'>
-            {article.name ? article.name : `Loading name...`}
-          </s.ArticleDiv>
-        ))}
-      </s.ArticleMidWrapper>
-    </s.ArticleWrapper>
+    <></>
+    // <s.ArticleWrapper>
+    //   <h1>Article</h1>
+    //   <s.ArticleMidWrapper>
+    //     {fetchNamesFlag && <FetchName onNamesFetch={handleNamesFetch} />}
+    //     {articles.map((article) => (
+    //       <s.ArticleDiv key={article.id} className='article-cards'>
+    //         {article.name ? article.name : `Loading name...`}
+    //       </s.ArticleDiv>
+    //     ))}
+    //   </s.ArticleMidWrapper>
+    // </s.ArticleWrapper>
   );
 }
 

@@ -1,15 +1,7 @@
-import { createContext } from 'react';
+import { createContext } from "react";
 
-interface AuthContextType {
-  isLoggedIn: boolean;
-  login: () => void;
-  logout: () => void;
-}
-
-const AuthContext = createContext<AuthContextType>({
-  isLoggedIn: false,
-  login: () => {},
-  logout: () => {},
+export const AuthContext = createContext({
+  currentlyLoggedIn: false,
+  setCurrentlyLoggedIn: (value: boolean) => {}
 });
 
-export default AuthContext;

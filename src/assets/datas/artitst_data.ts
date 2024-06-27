@@ -1,24 +1,23 @@
-
-
-export interface ArtistData {
+export interface ArtistDataProps {
   id: number;
   nickname: string;
   email: string;
   city: string;
   street_address: string;
   randomImage: string;
+  url?: string;
 }
 
 const getRandomInt = (max: number) => Math.floor(Math.random() * max) + 1;
 
-const artistdata: ArtistData[] = [
+const ArtistData: ArtistDataProps[] = [
   {
     id: 1,
     nickname: "Randie",
     email: "rkleynen0@wsj.com",
     city: "Rongmei",
     street_address: "480 Talisman Court",
-    randomImage: `https://picsum.photos/600/600?random=${getRandomInt(1000)}`,
+    randomImage: `https://picsum.photos/600/600?random=${getRandomInt(1000)}`,  
   },
   {
     id: 2,
@@ -120,7 +119,7 @@ const artistdata: ArtistData[] = [
     id: 14,
     nickname: "Denny",
     email: "dpicotd@slashdot.org",
-    city: "Peremyshl’",
+    city: "Peremyshl",
     street_address: "559 Saint Paul Way",
     randomImage: `https://picsum.photos/600/600?random=${getRandomInt(1000)}`,
   },
@@ -814,4 +813,9 @@ const artistdata: ArtistData[] = [
   },
 ];
 
-export default artistdata;
+ArtistData.forEach(artist => {
+  artist.url = `/${artist.nickname}`;
+});
+
+
+export default ArtistData;

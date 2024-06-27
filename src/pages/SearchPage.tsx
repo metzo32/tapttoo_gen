@@ -9,14 +9,14 @@ export default function SearchPage() {
 
   return (
     <>
-    <s.InputWrapper className='search-wrapper'>
+    <s.Div className='search-wrapper'>
       <s.Input 
         type="text"
         id="search"
         // onChange={handleSearch}
       />
-    </s.InputWrapper>
-    <s.InputWrapper>
+    </s.Div>
+    <s.Div>
       <s.Input
         type='checkbox'
         id='hashtag'
@@ -37,11 +37,11 @@ export default function SearchPage() {
         type='checkbox'
         id='hashtag'
       />
-    </s.InputWrapper>
+    </s.Div>
 
-    <s.SubmitButton type='submit'>
+    <s.Button type='submit'>
             SUBMIT
-          </s.SubmitButton>
+          </s.Button>
     </>
   )
 }

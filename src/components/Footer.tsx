@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import s from "../stores/styling";
 
@@ -10,13 +9,13 @@ export default function Footer() {
   };
 
   return (
-    <s.Footer className="column margintop">
-      <s.Footer className="row">
-        <s.BrandWrapper>
+    <s.Footer className="wrapper">
+      <s.Footer className="container">
+         <s.Footer className="brand-wrapper">
           <s.BrandLogo />
           <s.BrandText>Tapttoo</s.BrandText>
-        </s.BrandWrapper>
-        <s.ButtonWrapper>
+        </s.Footer>
+        <s.Footer className="button-wrapper">
           <s.Button onClick={() => handleNavigation("/")}>Home</s.Button>
           <s.Button onClick={() => handleNavigation("/aboutus")}>
             About us
@@ -27,7 +26,7 @@ export default function Footer() {
           <s.Button onClick={() => handleNavigation("/Contact")}>
             Contact
           </s.Button>
-        </s.ButtonWrapper>
+        </s.Footer>
         <s.Footer className="footer-box">
           <a
             href="https://www.facebook.com"

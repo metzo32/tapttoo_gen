@@ -1,30 +1,41 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 import { Route, Link as RouterLink } from "react-router-dom";
-
-import { GoHome } from "react-icons/go"; //홈
+import {
+  Green,
+  HoverGreen,
+  Orange,
+  Grey,
+  LightGrey,
+  HoverGrey,
+  Light,
+  White,
+  Black,
+} from "../stores/colors";
+import { RiHomeLine } from "react-icons/ri"; //홈
 import { GrSearch } from "react-icons/gr"; //검색
-import { MdMenu } from "react-icons/md"; //햄버거
+import { RxHamburgerMenu } from "react-icons/rx"; //햄버거
+import { IoEyeOutline } from "react-icons/io5";
 
-import { ReactComponent as Profile } from "../assets/icons/profile.svg";
+import { GoPerson } from "react-icons/go";
 import { RiMailLine } from "react-icons/ri"; //메일
 import { RiInstagramLine } from "react-icons/ri"; //인스타그램
 import { BiLogoFacebook } from "react-icons/bi"; //페이스북
 import { AiOutlineTikTok } from "react-icons/ai"; //틱톡
 import { FaYoutube } from "react-icons/fa6"; //유튜브
 
+import { FiArrowDownRight } from "react-icons/fi"; //대각선 화살표
+import { MdOutlineArrowUpward } from "react-icons/md"; // 위 화살표
+
 import { ReactComponent as Logo } from "../assets/icons/v.svg";
 import { ReactComponent as Tapttoo } from "../assets/icons/Tapttoo.svg";
 import { ReactComponent as HeartLine } from "../assets/icons/heart_outlined.svg";
 import { ReactComponent as HeartFull } from "../assets/icons/heart_full.svg";
 
-// 배경색 #eeedeb; 초록 #40A93E; 회색 #6e6560; 호버: #272423; 주황 #F66900;
-// 버튼 초록: #40A93E;
-
 const Div = styled.div`
   background-color: transparent;
 
   &.App {
-    background-color: #eeedeb;
+    background-color: ${White};
     position: relative;
     height: auto;
   }
@@ -64,7 +75,7 @@ const Div = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #6e6560;
+    background-color: ${Grey};
     color: white;
     font-size: 1.5em;
     border-radius: 50%;
@@ -138,23 +149,23 @@ const Span = styled.span`
   &.pizza {
     display: inline-block;
   }
-  
+
   &.FadeIn {
-     animation: ${animateIn} 0.3s ease-in-out forwards;
-}
+    animation: ${animateIn} 0.3s ease-in-out forwards;
+  }
 
   &.FadeOut {
-     animation: ${animateOut} 0.2s ease-in-out forwards;
-}
+    animation: ${animateOut} 0.2s ease-in-out forwards;
+  }
 `;
 
 const Atag = styled.a`
   font-size: 1.1em;
-  color: #6e6560;
+  color: ${Grey};
   text-transform: uppercase;
   text-decoration: none;
   text-align: left;
-    
+
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -162,30 +173,140 @@ const Atag = styled.a`
   margin-top: 8px;
 
   :hover {
-    color: #000;
+    color: ${Black};
   }
 
   &.light {
-    color: #a8a29c;
-     text-transform: lowercase;
+    color: ${LightGrey};
+    text-transform: lowercase;
 
     :hover {
-      color: #6e6560;
+      color: ${Grey};
+    }
+  }
+
+  &.artist-contact-right {
+    white-space: nowrap;
+    font-size: 1em;
+    margin-right: 8px;
+    text-transform: none;
+    cursor: pointer;
+
+    &:hover {
+      color: ${Black};
     }
   }
 `;
 
-const HeaderWrapper = styled.div`
+const HeaderDiv = styled.div`
+  &.wrapper {
+    width: 100%;
+    height: 50px;
+    background: ${White};
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    top: 0px;
+    z-index: 5;
+  }
+
+  &.button-wrapper {
+    width: auto;
+    height: 100%;
+    display: flex;
+    padding-top: 3px;
+    justify-content: space-between;
+    align-items: center;
+  }
+`;
+
+const AboutDiv = styled.div`
   width: 100%;
-  height: 100%;
-  background: #eeedeb;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  position: sticky;
-  top: 0px;
-  z-index: 5;
+  overflow: hidden;
+
+  &.wrapper {
+    width: 100%;
+    height: auto;
+    position: relative;
+    flex-direction: column;
+    display: flex;
+
+    margin: 0 auto;
+  }
+
+  &.title-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+  }
+
+  &.description {
+    width: 50%;
+    display: flex;
+    justify-content: flex-start;
+
+    &.alignLeft {
+      justify-content: flex-start;
+    }
+
+    &.alignRight {
+      justify-content: flex-end;
+    }
+  }
+
+  &.column {
+    width: 57.8%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+
+  &.mid-title-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    z-index: 0;
+    padding-left: 5px;
+  }
+
+  &.service-wrapper {
+    width: 29.48%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+  }
+
+  &.bottom-title-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 60px;
+    margin-bottom: 200px;
+  }
+
+  &.column-display {
+    flex-direction: column;
+    margin-left: 5px;
+  }
+
+  &.button-box {
+    width: 200px;
+    margin-bottom: 20px;
+  }
+
+  &.box {
+    flex-direction: column;
+  }
 `;
 
 const SectionContainer = styled.div`
@@ -251,18 +372,27 @@ const BrandTitleWrapper = styled.div`
     margin-bottom: 200px;
   }
 `;
-const StyledH1 = styled.h1`
-  font-family: "DM Serif Display", serif;
-  color: #40a93e;
-  font-size: 18em;
-  letter-spacing: -0.05em;
-  font-weight: 400;
-  line-height: 110px;
-  margin: 0px;
-  margin-bottom: 160px;
 
+const StyledH1 = styled.h1`
+  color: ${Green};
+  font-size: 16em;
+  letter-spacing: -0.085em;
+  font-weight: 400;
+  line-height: 140px;
+  margin: 0px;
   transform: scaleX(1);
   transform-origin: center;
+
+  &.login-title {
+    font-size: 8em;
+    white-space: nowrap;
+    margin: 0 auto;
+    margin-bottom: 100px;
+  }
+
+  &.brand-title {
+    line-height: 240px;
+  }
 
   &.career-title {
     line-height: 200px;
@@ -270,45 +400,56 @@ const StyledH1 = styled.h1`
   }
 
   &.career-detail-title {
-    font-family: "Roboto", sans-serif;
     font-size: 9em;
-    letter-spacing: -0.05em;
-    font-weight: 400;
-    line-height: 150px;
     text-align: left;
+    text-transform: uppercase;
+
+    &.mid {
+      font-size: 6em;
+      line-height: 90px;
+    }
   }
 
   &.new-artists-title {
-    font-family: "Roboto", sans-serif;
     font-size: 9em;
-    letter-spacing: -0.05em;
-    font-weight: 400;
-    line-height: 150px;
     text-align: left;
   }
 
   &.contact-title {
     width: 900px;
-    font-family: "Roboto";
     font-size: 9em;
-    font-weight: 400;
     text-align: right;
-    color: #6e6560;
-    letter-spacing: -0.05em;
+    color: ${Grey};
     margin: 40px 0px 20px 0px;
+  }
+
+  &.article-name {
+    box-sizing: content-box;
+    color: ${White};
+    opacity: 0.5;
+    font-size: 10em;
+    text-align: center;
+    line-height: 110px;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  &.artist-page-title {
+    text-align: left;
+    color: ${Grey};
+    font-size: 10em;
+    letter-spacing: -0.08em;
+    margin-left: 10px;
   }
 `;
 
 const StyledH2 = styled.h2`
   &.gradient-title {
     overflow: visible;
-    font-family: "DM Serif Display", serif;
-    font-size: 4em;
+    font-size: 4.5em;
     letter-spacing: -0.05em;
-    font-weight: 400;
-    line-height: 65px;
-    padding: 0;
-    margin: 0 auto;
+    font-weight: 300;
+    line-height: 80px;
     margin-top: 120px;
     margin-bottom: 200px;
 
@@ -346,8 +487,7 @@ const StyledH2 = styled.h2`
     height: 100px;
     cursor: pointer;
 
-    font-family: "Roboto", sans-serif;
-    color: black;
+    color: ${Grey};
     font-size: 5em;
     letter-spacing: -0.05em;
     font-weight: 400;
@@ -369,28 +509,44 @@ const StyledH2 = styled.h2`
   &.contact-card-title {
     width: 100%;
     font-size: 3em;
+    letter-spacing: -0.05em;
+    text-align: left;
+  }
+
+  &.artist-page-semititle {
+    width: 65%;
+    font-size: 1.8em;
+    font-weight: 500;
+    color: ${Grey};
+    line-height: 35px;
     text-align: left;
   }
 `;
 
 const StyledH3 = styled.h3`
-  display: flex;
-  font-family: "DM Serif Display", serif;
-  color: #40a93e;
+  color: ${Green};
   font-size: 3.3em;
   letter-spacing: -0.05em;
   font-weight: 400;
   white-space: nowrap;
   padding: 0;
   margin: 0;
+  display: flex;
   transform: scaleX(1);
   transform-origin: center;
+
+  &.mid-category {
+    width: 100px;
+    color: ${Grey};
+    font-size: 1.5em;
+    font-weight: 500;
+    line-height: 30px;
+  }
 `;
 
 const StyledH4 = styled.h4`
   width: 90%;
-  font-family: "DM Serif Display", serif;
-  color: #40a93e;
+  color: ${Green};
   font-size: 3.3em;
   letter-spacing: -0.05em;
   line-height: 55px;
@@ -404,37 +560,52 @@ const StyledH4 = styled.h4`
     font-size: 4em;
     line-height: 65px;
   }
-`;
-const StyledTitleP = styled.p`
-  width: 70%;
-  color: #6e6560;
-  font-size: 1.5em;
-  line-height: 40px;
-  text-align: center;
 
-  &.coloredP {
-    color: #40a93e;
-    font-weight: bold;
-    margin-top: 100px;
-    margin-bottom: 30px;
+  &.artist-detail-header {
+    color: ${Grey};
+    font-size: 1.7em;
+    font-weight: 600;
+    line-height: 30px;
   }
 `;
 
 const StyledP = styled.p`
   width: 100%;
-  color: #6e6560;
+  color: ${Grey};
   font-size: 1.3em;
+  font-weight: 300;
   text-align: left;
+  line-height: 30px;
+
+  &.about-first-title {
+    font-size: 1.5em;
+    text-align: center;
+    line-height: 40px;
+
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+
+  &.about-last-title {
+    font-size: 1.5em;
+    color: ${Green};
+    text-align: center;
+    margin: 40px 0 40px 0;
+  }
 
   &.section-p {
     line-height: 30px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin: 20px 0 20px 5px;
   }
 
   &.article-text {
     text-align: right;
-    font-size: 1.2em;
+    font-size: 2em;
+    font-weight: 200;
+    color: ${White};
+    opacity: 0.4;
+    position: absolute;
+    bottom: 0;
   }
 
   &.career-info {
@@ -452,9 +623,10 @@ const StyledP = styled.p`
   }
 
   &.card-title {
-    font-weight: bold;
+    font-weight: 500;
     font-size: 2em;
     margin-top: 30px;
+    letter-spacing: -0.5px;
   }
 
   &.card-semititle {
@@ -465,7 +637,6 @@ const StyledP = styled.p`
   }
 
   &.card-text {
-    margin-top: 250px;
     line-height: 25px;
   }
 
@@ -481,6 +652,23 @@ const StyledP = styled.p`
   &.footer-copyright {
     font-size: 1.2em;
     width: auto;
+  }
+
+  &.artist-contact-left {
+    white-space: nowrap;
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-left: 5px;
+    margin-top: 5px;
+  }
+
+  &.artist-interview {
+    font-size: 1em;
+  }
+
+  &.number {
+    font-size: 1em;
+    font-weight: 500;
   }
 `;
 
@@ -529,7 +717,7 @@ const Mask = styled.div`
 
 const MaskText = styled.p`
   font-family: "DM Serif Display", serif;
-  color: #40a93e;
+  color: ${Green};
   font-size: 48em;
   letter-spacing: -0.05em;
   font-weight: 400;
@@ -545,38 +733,7 @@ const MaskText = styled.p`
   transform: translate(-50%, -50%);
 
   &.masked {
-    color: #eeedeb;
-  }
-`;
-
-const BrandMidTitleWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  position: relative;
-  z-index: 0;
-`;
-
-const ServiceWrapper = styled.div`
-  width: 29.48%;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  z-index: 1;
-`;
-
-const ServiceDescriptionWrapper = styled.div`
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-`;
-
-const SectionWrapper = styled.div`
-  display: flex;
-  justify-content: flex-start;
-
-  &.alignRight {
-    justify-content: flex-end;
+    color: ${White};
   }
 `;
 
@@ -734,36 +891,64 @@ const CareerDetail = styled.div`
     height: auto;
   }
 
+  &.item-box {
+    width: calc(100% - 40px);
+    height: 90px;
+    display: flex;
+    transition: transform 0.3s ease;
+  }
+
   &.accordion-wrapper {
     width: calc(100% - 40px);
     height: auto;
     padding: 30px 20px 15px 20px;
     display: flex;
     flex-direction: column;
+
+    &:hover .accordion-number {
+      transition: transform 0.3s ease;
+      transform: translateY(-5px);
+      color: ${Green};
+    }
+
+    &:hover .accordion-title2 {
+      transition: transform 0.3s ease;
+      transform: translateY(-5px);
+
+      background: -webkit-linear-gradient(
+        170deg,
+        rgba(46, 116, 47, 1) 40%,
+        rgba(141, 194, 139, 1) 60%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      background: linear-gradient(
+        170deg,
+        rgba(46, 116, 47, 1) 40%,
+        rgba(141, 194, 139, 1) 60%
+      );
+      background-clip: text;
+      color: transparent;
+    }
   }
 
   &.accordion-item {
     width: calc(100% - 40px);
     height: auto;
-    margin: 0 20px 0 20px;
+    margin: 0 20px 0 0;
     position: relative;
   }
 
   &.accordion-border {
-    width: 99%;
+    width: 98%;
     height: 20px;
     position: absolute;
-    left: 9px;
-    border: 4px solid #6e6560;
+    left: 13px;
+    border: 4px solid ${Grey};
     border-bottom: none;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-  }
-
-  &.item-box {
-    width: calc(100% - 40px);
-    height: 90px;
-    display: flex;
   }
 
   &.cardbox {
@@ -772,7 +957,6 @@ const CareerDetail = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    // border: 1px solid green;
     margin: 0 auto;
     margin-top: 0px;
     opacity: 0;
@@ -786,7 +970,6 @@ const CareerDetail = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    // border: 1px solid green;
     margin: 0 auto;
 
     overflow: visible;
@@ -795,21 +978,26 @@ const CareerDetail = styled.div`
 
   &.card-item-container {
     width: 500px;
+
     height: 500px;
     position: relative;
     top: 180px;
-    // border: 1px solid pink;
+  }
+
+  &.card-title-box {
+  }
+
+  &.card-text-box {
   }
 
   &.card-item,
   &.card-item-next {
-    width: 100%;
-    height: 500px;
+    width: 460px;
+    height: 460px;
     border-radius: 10px;
     box-sizing: border-box;
     background-color: rgba(238, 237, 235, 0.8);
-    // background-color: #eeedeb;
-    border: 1px solid #6e6560;
+    border: 1px solid ${Grey};
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -827,11 +1015,12 @@ const CareerDetail = styled.div`
   &.card-item-next {
     z-index: 1;
     opacity: 0;
+    box-shadow: 10px 10px 20px rgba(110, 101, 90, 0.7);
   }
 
   .cardImage {
-    width: 100%;
-    height: 500px;
+    width: 460px;
+    height: 460px;
     border-radius: 10px;
     position: absolute;
     box-sizing: border-box;
@@ -860,7 +1049,13 @@ const CareerDetail = styled.div`
     z-index: 3;
     transform: translateX(-25px) translateY(-100px) rotate(-5deg);
   }
+
+  .mid-title-container {
+    height: 200px;
+    margin-top: 200px;
+  }
 `;
+
 const Username = styled.div`
   font-size: 2em;
 `;
@@ -887,15 +1082,39 @@ const StyledUl = styled.ul`
         width: 200px;
         height: 100%;
     }
+
+    &.article-ul {
+      display: flex;
+      padding: 0;
+      margin; 0;
+      position: relative;
+    }
 `;
 const StyledLi = styled.li`
-  color: #40a93e;
+  color: ${Green};
   font-size: 1em;
   margin-bottom: 5px;
 
   &.name-li {
-    color: black;
+    color: ${Black};
   }
+
+  &.square-test {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: calc(100%);
+    height: calc(100vh - 50px - 2px);
+    margin: 0;
+    display: flex;
+  }
+`;
+
+const ArticleCard = styled.div`
+  position: relative;
+  width: calc(100% - 2px);
+  height: calc(100vh - 50px - 2px);
+  border: 1px solid blue;
 `;
 
 const Image = styled.img`
@@ -918,6 +1137,11 @@ const Image = styled.img`
     opacity: 0.6;
   }
 
+  &.article-fetched-img {
+    overflow: hidden;
+    margin: 0;
+  }
+
   &.card-image {
     object-fit: cover;
     overflow: hidden;
@@ -936,6 +1160,12 @@ const Image = styled.img`
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  &.artist-page-main {
+    width: 100%;
+    object-fit: cover;
+    overflow: hidden;
   }
 `;
 
@@ -957,21 +1187,6 @@ const Home = styled.div`
   }
 `;
 
-const ArticleWrapper = styled.div`
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-`;
-
-const ArticleMidWrapper = styled.div`
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-`;
-
 const ArticleGrid = styled.div`
   width: 100%;
   height: auto;
@@ -983,82 +1198,198 @@ const ArticleGrid = styled.div`
 `;
 
 const ArticleDiv = styled.div`
-  width: 50%;
-  height: 80vh;
+  width: 100%;
+  height: auto;
   display: flex;
-  flex-direction: column;
+
+  &.wrapper {
+    flex-direction: column;
+  }
+
+  &.mid-wrapper {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 
   &.article-cards {
+    width: 50%;
+    aspect-ratio: 1 / 1;
+    margin: 0;
     position: relative;
     z-index: 1;
     overflow: hidden;
-  }
+    cursor: pointer;
 
-  &.article-hover-box {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: 1;
-  }
+    &:hover .article-grid-image {
+      filter: brightness(0.6);
+    }
 
-  &.article-test {
-    position: relative;
-    z-index: 1;
-    color: red;
-    top: 0;
-    left: 0;
+    &:hover .article-name {
+      font-size: 15em;
+      opacity: 1;
+      transition: 0.3s ease;
+    }
+
+    &:hover .article-text {
+      font-size: 1.3em;
+      opacity: 1;
+      transition: 0.3s ease;
+    }
   }
 
   &.article-grid-image {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      135deg,
-      rgba(217, 217, 217, 1) 0%,
-      rgba(102, 102, 102, 1) 100%
-    );
-    object-fit: cover;
-    overflow: hidden;
     position: absolute;
     z-index: 1;
+    object-fit: cover;
+    overflow: hidden;
   }
 
   &.article-text-container {
-    width: 80%;
-    height: auto;
-    position: absolute;
-    bottom: -15px;
-    right: 0;
-    z-index: 1;
+    width: 100%;
+    height: 20%;
+    margin: 0;
     box-sizing: content-box;
 
+    position: absolute;
+    bottom: 3%;
+    right: 1%;
+    z-index: 2;
+
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+`;
+
+const ArtistDiv = styled.div`
+  &.wrapper {
+    width: 100%;
+    margin-bottom: 100px;
+    border: 1px solid blue;
+  }
+
+  &.h2-container {
+    width: calc(100% - 20px);
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 10px 0 10px;
+  }
+
+  &.atags-container {
+    width: 30%;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
     align-items: flex-end;
   }
 
-  &.article-name {
-    width: auto;
-    height: auto;
-    color: #000;
-    font-family: "DM Serif Display", serif;
-    font-size: 10em;
-    text-align: center;
-    letter-spacing: -0.05em;
-    font-weight: 400;
-    line-height: 110px;
-    margin: 0px;
-    margin-bottom: 160px;
-    white-space: nowrap;
-    transform: scaleX(1);
-    transform-origin: center;
-    position: absolute;
-    bottom: -100px;
-    right: 7px;
-    z-index: 1;
+  &.atags-box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
 
-    &:hover {
-      color: white;
+  &.img-wrapper {
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+    margin-top: 50px;
+  }
+
+  &.title-wrapper {
+    display: flex;
+  }
+
+  &.title-container-left {
+    width: 100%;
+    height: 400px;
+  }
+
+  &.title-container-right {
+    width: 30%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0;
+  }
+
+  &.button-box {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  &.mid-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: calc(100% - 80px);
+    min-height: 680px;
+    height: auto;
+    padding: 40px;
+  }
+
+  &.mid-line {
+    width: 2px;
+    background-color: ${Grey};
+    margin: 0 40px 0 0;
+  }
+
+  &.mid-left {
+    width: 30%;
+    height: 100%;
+    min-height: 680px;
+  }
+
+  &.mid-right {
+    width: calc(70% - 40px);
+    height: 100%;
+    min-height: 680px;
+  }
+
+  &.mid-container {
+    height: auto;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+  }
+  &.mid-container:last-of-type {
+    margin: 0;
+  }
+
+  &.h4-box {
+    height: auto;
+    margin: 10px 0 10px 0;
+  }
+
+  &.center-box {
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &.p-box-line {
+    width: 100%;
+    border-bottom: 1px solid ${Grey};
+
+    &.last {
+      border: none;
     }
+  }
+
+  &.p-box {
+    width: 100%;
+    height: auto;
+    min-height: 130px;
+    margin-bottom: 50px;
+  }
+
+  &.bottom-wrapper {
+    width: 100%;
+    height: 500px;
   }
 `;
 
@@ -1103,22 +1434,33 @@ const WishIconContainer = styled.div`
   z-index: 2;
 `;
 
+const ClickAnimation = keyframes`
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+`;
+
 const WishIconLine = styled(HeartLine)`
   width: 100%;
   height: 100%;
-  fill: #6e6560;
+  fill: ${White};
+  opacity: 0.6;
 `;
 
 const WishIconHover = styled(HeartFull)`
   width: 100%;
   height: 100%;
-  fill: #6e6560;
+  fill: ${White};
 `;
 
 const WishIconClicked = styled(HeartFull)`
   width: 100%;
   height: 100%;
-  fill: #40a93e;
+  fill: ${Orange};
+  animation: ${ClickAnimation} 0.3s ease-in-out;
 `;
 
 const SideBar = styled.div`
@@ -1163,7 +1505,7 @@ const SideBar = styled.div`
 `;
 
 const NavBar = styled.nav`
-  background-color: #eeedeb;
+  background-color: ${White};
   font-size: 1em;
   height: 100%;
 
@@ -1199,7 +1541,7 @@ const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #000;
+  background-color: ${Black};
   z-index: 3;
   opacity: 0.3;
   transition: opacity 0.3s ease;
@@ -1215,13 +1557,13 @@ const TapttooIcon = styled(Tapttoo)`
 const StyledLink = styled(RouterLink)`
   &.menu-texts {
     text-decoration: none;
-    color: #6e6560;
+    color: ${Grey};
     margin-left: 20px;
     padding: 10px 20px;
     white-space: nowrap;
 
     &:hover {
-      color: #272423;
+      color: ${HoverGrey};
     }
   }
 
@@ -1255,21 +1597,21 @@ const MainImage = styled.img`
 `;
 
 const Footer = styled.div`
-  &.column {
+  &.wrapper {
     width: 100%;
-    height: 80px;
-    background-color: #eeedeb;
-    margin-top: 50px;
+    height: 70px;
+    background-color: ${White};
+    margin-top: 10px;
+    padding-top: 5px;
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
 
-    position: absolute;
-    bottom: 0;
-    z-index: 4;
+    opacity: 0.8;
   }
 
-  &.row {
-    height: 35px;
+  &.container {
+    height: 40%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -1287,39 +1629,40 @@ const Footer = styled.div`
     width: 205px;
   }
 
+  &.brand-wrapper {
+    color: ${Grey};
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 60px;
+  }
+
+  &.button-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
   &.copyright {
-    color: #6e6560;
+    color: ${Grey};
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     font-size: 11px;
     white-space: nowrap;
-    margin-top: 10px;
   }
-
-  &.margintop {
-    margin-top: 50px;
-  }
-`;
-
-const BrandWrapper = styled.div`
-  color: #6e6560;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-right: 60px;
 `;
 
 const BrandLogo = styled(Logo)`
   width: 1.5em;
   height: 1.5em;
-  fill: #6e6560;
+  fill: ${Grey};
 `;
 
 const BrandText = styled.div`
   font-size: 24px;
   font-weight: 600;
+  letter-spacing: -0.3px;
   margin-left: 5px;
 `;
 
@@ -1422,8 +1765,6 @@ const hr = styled.hr`
   margin: 0 2% 0 2%;
 
   &.footer {
-    width: calc(100% - 450px);
-    margin: 0;
   }
 
   &.double {
@@ -1443,6 +1784,11 @@ const hr = styled.hr`
     width: calc(100% - 10px);
     margin: 0px 0px 10px 0px;
   }
+
+  &.artist-page {
+    width: 99%;
+    margin: 0;
+  }
 `;
 
 const PolicyWrapper = styled.div`
@@ -1452,52 +1798,53 @@ const PolicyWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const ButtonWrapper = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const ButtonBox = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 15px;
-`;
-
-const FormWrapper = styled.form`
+const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 50px;
+
+  &.login {
+  }
 `;
 
-const LoginPageWrapper = styled.div`
-  width: 30%;
-  height: 60vh;
-  margin-bottom: 200px;
-  transform: translateY(20%);
-`;
+const LoginDiv = styled.div`
+  &.wrapper {
+    width: 100%;
+    height: 792px;
+  }
 
-const InputWrapper = styled.div`
-  width: 300px;
-  position: relative;
-  display: flex;
-  border-bottom: 2px solid #6e6560;
-  margin: 25px 0;
-`;
+  &.container {
+    width: 400px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-const CheckboxWrapper = styled.div`
-  color: #6e6560;
-  width: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  margin: 15px 0;
-`;
+  &.input-box {
+    width: 300px;
+    position: relative;
+    display: flex;
+    border-bottom: 2px solid ${Grey};
+    margin: 25px 0;
+  }
 
-const RememberLabel = styled.label`
-  font-size: 0.8em;
+  &.checkbox-box {
+    color: ${Grey};
+    width: auto;
+    height: 40px;
+    display: flex;
+    align-items: center;
+  }
+
+  &.button-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+  }
 `;
 
 const Input = styled.input`
@@ -1512,49 +1859,40 @@ const Input = styled.input`
 `;
 
 const Label = styled.label`
-  position: absolute;
-  top: 20%;
-  left: 5px;
-  transform: translateY(-50%);
-  pointer-events: none;
-  transition: 0.3s ease;
+  &.login-info {
+    position: absolute;
+    top: 20%;
+    left: 5px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: 0.3s ease;
 
-  ${Input}:focus + &,
-    ${Input}:valid + & {
+    ${Input}:focus + &,
+    &.active {
     top: -25px;
     transform: translateY(0%);
-    color: #6e6560;
+    color: ${Grey};
+
+    &.valid {
+     color: ${Green}
+    }
+
+     &.invalid {
+      color: ${Orange}};
+    }
   }
-`;
+}
 
-const SubmitButton = styled.button`
-  width: 50%;
-  font-size: 0.8em;
-  background-color: transparent;
-  border: 2px solid #40a93e;
-  border-radius: 50px;
-  color: #40a93e;
-  padding: 10px 20px;
-  text-align: center;
-  margin: 20px 2px;
-  cursor: pointer;
-
-  &.Round {
-    border: 2px solid #40a93e;
-    border-radius: 100px;
-    margin-top: 20px;
-  }
-
-  &:hover {
-    color: #276e27;
-    border-color: #276e27;
+  &.remember {
+    font-size: 0.8em;
+    margin-top: 3px;
   }
 `;
 
 const Button = styled.button`
   background-color: rgba(0, 0, 0, 0);
   height: 40px;
-  color: #6e6560;
+  color: ${Grey};
   border: none;
   padding: 10px 20px;
   text-align: center;
@@ -1563,20 +1901,39 @@ const Button = styled.button`
   cursor: pointer;
   border-radius: 5px;
 
+  &.left {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
   &.Round {
-    color: #40a93e;
-    border: 2px solid #40a93e;
+    color: ${Green};
+    border: 2px solid ${Green};
     border-radius: 100px;
-    padding: 8px 20px 12px 20px;
+    padding: 8px 20px 8px 20px;
 
     &:hover {
-      color: #276e27;
-      border-color: #276e27;
+      color: ${White};
+      background-color: ${HoverGreen};
+      border-color: ${HoverGreen};
+      transition: 0.3s ease;
     }
   }
 
   &:hover {
-    color: #272423;
+    color: ${HoverGrey};
+  }
+
+  &.header-button-item {
+    padding: 0;
+    width: 55px;
+    height: 100%;
+    margin-right: 20px;
+
+    &:last-child {
+      margin: 0;
+    }
   }
 
   &.carousel-btn-left {
@@ -1593,6 +1950,29 @@ const Button = styled.button`
 
     top: 40%;
     right: 0;
+  }
+
+  &.scroll-top-btn {
+    width: 60px;
+    height: 60px;
+    color: ${Green};
+    padding: 0;
+    background-color: rgba(238, 237, 235, 0.6);
+    border: 3px solid ${Green};
+    border-radius: 50%;
+    display: flex;
+    position: sticky;
+    align-items: center;
+    justify-content: center;
+    bottom: 10%;
+    left: 92%;
+    z-index: 5;
+
+    &:hover {
+      color: ${White};
+      background-color: rgba(238, 237, 235, 0.9);
+      transition: 0.3s ease;
+    }
   }
 `;
 
@@ -1667,54 +2047,59 @@ const GridImage = styled.img`
   }
 `;
 
-//icons
-// const GreenIcon = `
-
-//   width: 1.5em;
-//   height: 1.5em;
-//   fill: #6e6560;
-//   border-radius: 100px;
-//   border: 2px solid #40a93e;
-//   padding: 5px 18px;
-
-//   &:hover {
-//     fill: #272423;
-//     // border: 2px solid #276e27;
-// }
 const StyledIcon = `
-
   width: 1.4em;
   height: 1.4em;
-  fill: #6e6560;
+  fill: ${Grey};
+  color: ${Grey};
 
   &.outlined {
     border-radius: 100px;
-    border: 1px solid #6e6560;
+    border: 1px solid ${Grey};
     padding: 5px;
     
         &:hover {
-        fill: #272423;
-        border: 1px solid #272423;
+        fill: ${HoverGrey};
+        border: 1px solid ${HoverGrey};
     }
   }
+`;
 
-  &.header {
-      width: 2em;
-  height: 2em;
-  }
+const StyledHeaderIcon = `
+    width: 2em;
+    height: 2em;
+    fill: ${Grey};
+    color: ${Grey};
 
+    &:hover {
+        fill: ${HoverGrey};
+        color: ${HoverGrey};
+    }
 `;
 
 //Header Icons
-const HomeIcon = styled(GoHome)`
-  ${StyledIcon}
+const HomeIcon = styled(RiHomeLine)`
+  ${StyledHeaderIcon}
 `;
-const HamburgerIcon = styled(MdMenu)`
-  ${StyledIcon}
+
+const HamburgerIcon = styled(RxHamburgerMenu)`
+  ${StyledHeaderIcon}
+`;
+
+const EyeIcon = styled(IoEyeOutline)`
+  ${StyledHeaderIcon}
 `;
 
 const SearchIcon = styled(GrSearch)`
-  ${StyledIcon}
+  ${StyledHeaderIcon}
+  width: 1.8em;
+  height: 1.8em;
+`;
+
+const ProfileIcon = styled(GoPerson)`
+  ${StyledHeaderIcon}
+  width: 2.2em;
+  height: 2.2em;
 `;
 
 //Footer Icons
@@ -1730,15 +2115,23 @@ const InstagramIcon = styled(RiInstagramLine)`
   ${StyledIcon}
 
   &.light {
-    fill: #a8a29c;
+    fill: ${LightGrey};
   }
+`;
+
+const ArrowIcon = styled(FiArrowDownRight)`
+  ${StyledIcon}
+  fill: none;
+  margin: 2px 40px 0 0;
+  width: 1.7em;
+  height: 1.7em;
 `;
 
 const MailIcon = styled(RiMailLine)`
   ${StyledIcon}
 
   &.light {
-    fill: #a8a29c;
+    fill: ${LightGrey};
   }
 `;
 
@@ -1746,93 +2139,93 @@ const YoutubeIcon = styled(FaYoutube)`
   ${StyledIcon}
 `;
 
+const TopArrowIcon = styled(MdOutlineArrowUpward)`
+  ${StyledIcon}
+  fill: ${Green};
+  width: 2.5em;
+  height: 2.5em;
+`;
+
 const s = {
-  Div,
-  Span,
-  Atag,
-  HeaderWrapper,
-  SectionContainer,
-  SectionFrame,
-  LongImgWrapper,
-  BrandTitleWrapper,
-  ServiceWrapper,
-  Mask,
-  MaskText,
-  BrandMidTitleWrapper,
-  ServiceDescriptionWrapper,
-  SectionWrapper,
+  ArticleCard,
+  Accordion,
+  ArticleDiv,
+  ArticleGrid,
+  ArtistDiv,
   ArtistReg,
-  ProfileWrapper,
-  ProfileSideBarWrapper,
-  RowWrapper,
-  ColumnWrapper,
+  AboutDiv,
+  Atag,
+  BrandLogo,
+  BrandText,
+  BrandTitleWrapper,
+  Button,
+  CareerDetail,
   CareerDiv,
   CareerItem,
   CareerP,
-  Accordion,
-  CareerDetail,
-  Username,
+  Carousel,
+  ColumnWrapper,
+  Contact,
+  Div,
+  Footer,
+  Form,
+  GridImage,
+  HeaderDiv,
+  Home,
+  HomeImage,
+  hr,
+  Image,
+  Input,
+  Label,
+  LoginDiv,
+  LongImgWrapper,
+  MainImage,
+  Map,
+  Mask,
+  MaskText,
+  NavBar,
+  Overlay,
+  PageWrapper,
+  PolicyWrapper,
+  ProfileGrid,
+  ProfileSideBarWrapper,
+  ProfileWrapper,
+  RowWrapper,
+  SectionContainer,
+  SectionFrame,
+  SideBar,
+  SidebarLi,
+  Span,
+  StyledGrid,
   StyledH1,
   StyledH2,
   StyledH3,
   StyledH4,
-  StyledTitleP,
+  StyledLi,
+  StyledLink,
   StyledP,
   StyledUl,
-  StyledLi,
   TapttooIcon,
-  Image,
-  Home,
-  HomeImage,
-  ArticleWrapper,
-  ArticleMidWrapper,
-  ArticleGrid,
-  ArticleDiv,
-  Carousel,
-  Map,
+  Username,
   WishIconContainer,
-  SideBar,
-  NavBar,
-  Overlay,
-  SidebarLi,
-  StyledLink,
-  MainImage,
-  Footer,
-  BrandWrapper,
-  BrandText,
-  hr,
-  PageWrapper,
-  Contact,
-  PolicyWrapper,
-  ButtonWrapper,
-  ButtonBox,
-  FormWrapper,
-  LoginPageWrapper,
-  InputWrapper,
-  CheckboxWrapper,
-  RememberLabel,
-  Input,
-  Label,
-  SubmitButton,
-  Button,
-  StyledGrid,
-  ProfileGrid,
-  GridImage,
-  BrandLogo,
 
   HomeIcon,
   HamburgerIcon,
+  EyeIcon,
   SearchIcon,
-
+  ProfileIcon,
   FaceBookIcon,
   TiktokIcon,
   InstagramIcon,
+  ArrowIcon,
   MailIcon,
   YoutubeIcon,
   WishIconLine,
   WishIconHover,
   WishIconClicked,
   StyledIcon,
+  StyledHeaderIcon,
+  TopArrowIcon,
 };
 
 export default s;

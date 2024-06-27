@@ -1,7 +1,11 @@
+/*Work Sans*/
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+/*나눔스퀘어*/
+@import url('https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css" rel="stylesheet');
 /* Noto Sans KR */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
 /* Roboto */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 /* DM Serif Display */
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
 /* Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
@@ -64,7 +68,28 @@ table {
   align-items: center;
   margin: 0 auto;
   text-align: center;
-  font-family: 'Roboto', 'Noto Sans KR', sans-serif;
+  font-family: "Work Sans", sans-serif;
   user-select: none;
 }
 
+/* 영어에 Work Sans 적용 */
+.App:lang(en) {
+    font-family: "Work Sans", sans-serif;
+  }
+  
+  /* 한글에 NanumSquare 적용 */
+  .App:lang(ko) {
+    font-family: 'NanumSquare';
+  }
+
+  /* For all elements */
+* {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  }
+  
+  /* For webkit browsers like Chrome, Safari, and Edge */
+  *::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+  

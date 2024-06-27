@@ -7,7 +7,7 @@ import image from "../assets/images/artistregister-background.jpg";
 export default function ScrollTest() {
   const { ref: pizzaRef, inView: enterView } = useInView({
     threshold: 0.7,
-    rootMargin: "50% 0px -30% 0px", // 들어올 때 70% 보여야 함
+    rootMargin: "30% 0px -30% 0px", // 들어올 때 70% 보여야 함
   });
 
   const { ref: exitRef, inView: exitView } = useInView({

@@ -14,8 +14,10 @@ const WishList: React.FC = () => {
     setHovered(false)
   }
 
-  const handleMouseClick = () => {
+  const handleMouseClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    event.stopPropagation();
     setClicked(!clicked)
+    console.log('클릭')
   }
 
   const renderIcon = () => {
