@@ -1812,15 +1812,17 @@ const LoginDiv = styled.div`
   &.wrapper {
     width: 100%;
     height: 792px;
+    border: 1px solid red;
+    display: flex;
   }
 
   &.container {
     width: 400px;
     height: 100%;
-    margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid blue;
   }
 
   &.input-box {
