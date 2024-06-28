@@ -97,9 +97,8 @@ const LoginPage = () => {
   return (
     <>
       <s.LoginDiv className="wrapper">
-        <s.LoginDiv className="container">
-          {/* <s.StyledH1 className="login-title">Tapttoo</s.StyledH1> */}
-          <s.Form className="login" onSubmit={handleSignIn}>
+        <s.Form className="login" onSubmit={handleSignIn}>
+          <s.LoginDiv className="container">
             <s.LoginDiv className="input-box">
               <s.Input
                 name="email"
@@ -110,7 +109,7 @@ const LoginPage = () => {
                 onBlur={handleBlur}
                 required
               />
-              <s.Label className={`login-info ${signInEmail ? 'active' : ''}`}>
+              <s.Label className={`login-info ${signInEmail ? "active" : ""}`}>
                 Email
               </s.Label>
             </s.LoginDiv>
@@ -125,7 +124,7 @@ const LoginPage = () => {
                 onBlur={handleBlur}
                 required
               />
-              <s.Label className={`login-info ${signInPw ? 'active' : ''}`}>
+              <s.Label className={`login-info ${signInPw ? "active" : ""}`}>
                 Password
               </s.Label>
             </s.LoginDiv>
@@ -144,8 +143,8 @@ const LoginPage = () => {
             <s.Button onClick={() => handleNavigation("/register")}>
               가입하기
             </s.Button>
-          </s.Form>
-        </s.LoginDiv>
+          </s.LoginDiv>
+        </s.Form>
       </s.LoginDiv>
     </>
   );

@@ -146,10 +146,6 @@ const Span = styled.span`
   font-size: 1em;
   opacity: 0;
 
-  &.pizza {
-    display: inline-block;
-  }
-
   &.FadeIn {
     animation: ${animateIn} 0.3s ease-in-out forwards;
   }
@@ -1114,7 +1110,6 @@ const ArticleCard = styled.div`
   position: relative;
   width: calc(100% - 2px);
   height: calc(100vh - 50px - 2px);
-  border: 1px solid blue;
 `;
 
 const Image = styled.img`
@@ -1805,6 +1800,11 @@ const Form = styled.form`
   margin-top: 50px;
 
   &.login {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0;
   }
 `;
 
@@ -1817,12 +1817,15 @@ const LoginDiv = styled.div`
   }
 
   &.container {
-    width: 400px;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 300px;
+    height: calc(100% - 200px);
+    padding: 100px 50px;
+    margin: 0 auto;
     border: 1px solid blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
   }
 
   &.input-box {
@@ -1847,6 +1850,18 @@ const LoginDiv = styled.div`
     justify-content: center;
     margin-top: 15px;
   }
+
+  &.radio-container {
+  width: 80%;
+    display: flex;
+    position: relative;
+    cursor: pointer;
+    justify-content: space-between;
+    align-items: center;
+
+    input {
+    }
+  }
 `;
 
 const Input = styled.input`
@@ -1855,9 +1870,28 @@ const Input = styled.input`
   outline: none;
   font-size: 1em;
 
+  &.loginpage {
+    width: 100%;
+  }
+
   &.input-hide {
     display: none;
   }
+
+  &::placeholder {
+    color: transparent;
+  }
+  &:focus::placeholder {
+    color: ${LightGrey};
+  }
+`;
+
+const shaking = keyframes`
+ 0% { transform: translateX(0) }
+ 25% { transform: translateX(2px) }
+ 50% { transform: translateX(-2px) }
+ 75% { transform: translateX(2px) }
+ 100% { transform: translateX(0) }
 `;
 
 const Label = styled.label`
@@ -1871,19 +1905,20 @@ const Label = styled.label`
 
     ${Input}:focus + &,
     &.active {
-    top: -25px;
-    transform: translateY(0%);
-    color: ${Grey};
-
-    &.valid {
-     color: ${Green}
+      top: -25px;
+      transform: translateY(0%);
+      color: ${Grey};
     }
 
-     &.invalid {
-      color: ${Orange}};
+    &.active.valid {
+      color: ${Green};
+    }
+
+    &.active.invalid {
+      color: ${Orange};
+      animation: ${shaking} 0.2s infinite;
     }
   }
-}
 
   &.remember {
     font-size: 0.8em;
