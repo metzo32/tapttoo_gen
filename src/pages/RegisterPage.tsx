@@ -7,6 +7,9 @@ import { AuthContext } from "../context/AuthContext";
 import RegisterInputItems from "../components/RegisterInputItems";
 import RegisterTerms from "./RegisterTerms";
 import CalculateAge from "../components/CalculateAge";
+import GenderSelect from "../components/GenderSelect";
+import countrycode from "../assets/datas/country_code";
+import Modal from "../components/Modal";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -18,11 +21,12 @@ const LoginPage = () => {
   const [registerNickname, setRegisterNickname] = useState<string>("");
   const [registerFullname, setRegisterFullname] = useState<string>("");
   const [registerPhonenumber, setRegisterPhonenumber] = useState<string>("");
-  const [selectedGender, setSelectedGender] = useState<string>("");
+  const [countryCode, setCountryCode] = useState<string>("");
 
-  const nicknameRule = /^(([a-zA-Z]+[0-9]+|[0-9]+[a-zA-Z]+)[a-zA-Z0-9]*|([가-힣]+[0-9]+|[0-9]+[가-힣]+)[가-힣0-9]*)$/;
+  const nicknameRule =
+    /^(([a-zA-Z]+[0-9]*|[0-9]*[a-zA-Z]+)[a-zA-Z0-9]*|([가-힣]+[0-9]*|[0-9]*[가-힣]+)[가-힣0-9]*)$/;
   //3~15자의 영문자, 한글, 숫자(숫자는 반드시 문자와 조합할 것)
-  const fullnameRule = /^([a-zA-Z]{3,15}|[가-힣]{2,15})$/; 
+  const fullnameRule = /^([a-zA-Z]{3,15}|[가-힣]{2,15})$/;
   //2~15자의 영자, 3~15자의 한글, 알파벳과 한글 병기 금지, 띄어쓰기 허용
 
   const handleSignUp = (event: React.FormEvent) => {
@@ -39,12 +43,11 @@ const LoginPage = () => {
 
     createUserWithEmailAndPassword(auth, registerEmail, registerPw)
       .then((userCredential) => {
-        console.log(userCredential);
         // Signed in
         const user = userCredential.user;
       })
       .catch((error) => {
-        console.error("Error signing up:", error);
+        console.error("Failed to sign up:", error);
         const errorCode = error.code;
         const errorMessage = error.message;
       });
@@ -83,12 +86,14 @@ const LoginPage = () => {
 
   const handleNicknameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    setRegisterNickname(value);
+    const capitalizedNickName = value.charAt(0).toUpperCase() + value.slice(1);
+    setRegisterNickname(capitalizedNickName);
   };
 
   const handleFullnameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    setRegisterFullname(value);
+    const capitalizedName = value.charAt(0).toUpperCase() + value.slice(1);
+    setRegisterFullname(capitalizedName);
   };
 
   const handlePhonenumberChange = (
@@ -98,10 +103,8 @@ const LoginPage = () => {
     setRegisterPhonenumber(value);
   };
 
-  const handleGenderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const gender = event.target.value;
-    setSelectedGender(gender);
-    console.log(gender, "checked");
+  const handleCountryCode = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setCountryCode(event.target.value);
   };
 
   const validateForm = () => {
@@ -115,9 +118,30 @@ const LoginPage = () => {
     );
   };
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <s.LoginDiv className="wrapper">
+        <s.Button className="Round" onClick={handleOpenModal}>
+          모달띄우기
+        </s.Button>
+        <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+          <s.StyledP className="modal">
+            19세 미만 회원의 경우,
+            <br />
+            예약 및 시술이 제한될 수 있습니다.
+          </s.StyledP>
+        </Modal>
+
         <s.Form className="login" onSubmit={handleSignUp}>
           <s.LoginDiv className="container">
             <RegisterInputItems
@@ -167,7 +191,7 @@ const LoginPage = () => {
               onBlur={handleBlur}
               required={true}
               label={"이름"}
-              placeholder={" 자신의 주민등록상 이름"}
+              placeholder={"자신의 주민등록상 이름"}
             />
             <RegisterInputItems
               name={"nickname"}
@@ -179,74 +203,54 @@ const LoginPage = () => {
               onBlur={handleBlur}
               required={true}
               label={"닉네임"}
-              placeholder={" 한글 및 영문, 숫자 조합"}
+              placeholder={"한글 또는 영문, 숫자 조합"}
             />
 
             <CalculateAge />
 
-            <s.LoginDiv className="radio-container">
-              <s.LoginDiv className="radio-box">
-                <s.Input
-                  name="gender"
-                  type="radio"
-                  id="gender-male"
-                  value="male"
-                  checked={selectedGender === "male"}
-                  onChange={handleGenderChange}
-                  className="radio"
-                />
-                <s.Span className="checkmark"></s.Span>
-                <s.Label>Male</s.Label>
+            <GenderSelect />
+
+            <s.LoginDiv className={`number-box ${countryCode ? "valid" : ""}`}>
+              <s.LoginDiv className="countrycode-box">
+                <s.Select
+                  name={"countrycode"}
+                  id={"countrycode"}
+                  defaultValue={"countrycode"}
+                  onChange={handleCountryCode}
+                  required
+                >
+                  <s.Option value="">국가</s.Option>
+                  {countrycode.map((item) => (
+                    <s.Option
+                      key={`${item.country}-${item.code}`}
+                      value={item.code}
+                    >
+                      ({item.code}) {item.country}
+                    </s.Option>
+                  ))}
+                </s.Select>
               </s.LoginDiv>
 
-              <s.LoginDiv className="radio-box">
-                <s.Input
-                  name="gender"
-                  type="radio"
-                  id="gender-female"
-                  value="female"
-                  checked={selectedGender === "female"}
-                  onChange={handleGenderChange}
-                />
-                <s.Span className="checkmark"></s.Span>
-                <s.Label>Female</s.Label>
-              </s.LoginDiv>
-
-              <s.LoginDiv className="radio-box">
-                <s.Input
-                  name="gender"
-                  type="radio"
-                  id="gender-other"
-                  value="other"
-                  checked={selectedGender === "other"}
-                  onChange={handleGenderChange}
-                />
-                <s.Span className="checkmark"></s.Span>
-                <s.Label>Other</s.Label>
-              </s.LoginDiv>
+              <RegisterInputItems
+                name={"phonenumber"}
+                type={"tel"}
+                id={"phonenumber"}
+                value={registerPhonenumber}
+                minLength={8}
+                onChange={handlePhonenumberChange}
+                onBlur={handleBlur}
+                required={true}
+                label={"전화번호"}
+                placeholder={"'-' 없이 입력"}
+                extraClass={"phonenumber-box"}
+              />
             </s.LoginDiv>
 
-            <RegisterInputItems
-              name={"phonenumber"}
-              type={"tel"}
-              id={"phonenumber"}
-              value={registerPhonenumber}
-              minLength={8}
-              onChange={handlePhonenumberChange}
-              onBlur={handleBlur}
-              required={true}
-              label={"전화번호 외국인 어카지"}
-              placeholder={" '-' 없이 입력"}
-            />
-            <s.Button
-              type="submit"
-              className="Round"
-              onClick={() => handleNavigation("/profile")}
-            >
+            <s.Button type="submit" className="Round">
               가입하기
             </s.Button>
             <s.Button onClick={() => handleNavigation("/login")}>
-              로그인
+              이미 계정이 있으신가요?
             </s.Button>
           </s.LoginDiv>
           <s.LoginDiv className="container">

@@ -36,6 +36,7 @@ import ScrollTest from "./pages/ScrollTest";
 import ArtistData from "./assets/datas/artitst_data";
 import ArtistDetailPageComponent from "./components/ArtistDetailPageComponent";
 import ScrollToTopButton from "./components/ScrollToTopButton";
+import Modal from "./components/Modal";
 
 const App: React.FC = () => {
   const [currentlyLoggedIn, setCurrentlyLoggedIn] = useState(false);
@@ -43,8 +44,8 @@ const App: React.FC = () => {
 
   useEffect(() => {
     // 로컬 스토리지에서 사용자 정보를 확인하여 로그인 상태 설정
-    const savedLoggedIn = localStorage.getItem('currentlyLoggedIn');
-    if (savedLoggedIn === 'true') {
+    const savedLoggedIn = localStorage.getItem("currentlyLoggedIn");
+    if (savedLoggedIn === "true") {
       setCurrentlyLoggedIn(true);
     }
     setIsLoading(false); // 로딩 완료 시 상태 변경
@@ -52,14 +53,13 @@ const App: React.FC = () => {
 
   // 로그인 상태 변경 시 로컬 스토리지에 반영
   useEffect(() => {
-    localStorage.setItem('currentlyLoggedIn', currentlyLoggedIn.toString());
+    localStorage.setItem("currentlyLoggedIn", currentlyLoggedIn.toString());
   }, [currentlyLoggedIn]);
 
   // 초기 로딩 중이면 로딩 표시
   if (isLoading) {
     return <div>Loading...</div>;
   }
-
 
   return (
     <>

@@ -10,12 +10,14 @@ interface RegisterInputItemsProps {
      required : boolean;
      label: string;
      minLength?: number;
+     maxLength?: number;
      placeholder?: string;
+     extraClass?: string;
 }
 
-const RegisterInputItems: React.FC<RegisterInputItemsProps> = ({ name, type, id, value, onChange, onBlur, required, label, minLength, placeholder }) => {
+const RegisterInputItems: React.FC<RegisterInputItemsProps> = ({ name, type, id, value, onChange, onBlur, required, label, minLength, placeholder, extraClass }) => {
   return (
-    <s.LoginDiv className="input-box">
+    <s.LoginDiv className={`input-box ${extraClass ? extraClass : ''}`}>
       <s.Input
         name={name}
         type={type}

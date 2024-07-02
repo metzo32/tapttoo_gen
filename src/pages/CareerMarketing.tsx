@@ -1,15 +1,7 @@
-import { useContext } from 'react'
-import { AuthContext } from '../context/AuthContext'
+import React from 'react'
 
-const CareerMarketing = () => {
-
-  const data = useContext(AuthContext)
-  console.log('대박', data)
-
+export default function CareerMarketing() {
   return (
     <div>CareerMarketing</div>
   )
 }
-
-
-export default CareerMarketing

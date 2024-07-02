@@ -1,6 +1,7 @@
 export const Green = "#40A93E";
 export const HoverGreen = "#276E27";
 export const Orange = "#FC6B00";
+export const Yellow = "#FE9311"
 export const Grey = "#6E6560";
 export const LightGrey = "#A8A29C";
 export const HoverGrey = "#272423";

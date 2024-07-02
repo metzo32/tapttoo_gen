@@ -4,6 +4,7 @@ import {
   Green,
   HoverGreen,
   Orange,
+  Yellow,
   Grey,
   LightGrey,
   HoverGrey,
@@ -25,11 +26,78 @@ import { FaYoutube } from "react-icons/fa6"; //유튜브
 
 import { FiArrowDownRight } from "react-icons/fi"; //대각선 화살표
 import { MdOutlineArrowUpward } from "react-icons/md"; // 위 화살표
+import { TbExclamationMark } from "react-icons/tb"; //느낌표
+
+import checkboxBefore from "../assets/icons/checkbox-passive.svg";
+import checkboxAfter from "../assets/icons/checkbox-active.svg";
 
 import { ReactComponent as Logo } from "../assets/icons/v.svg";
 import { ReactComponent as Tapttoo } from "../assets/icons/Tapttoo.svg";
 import { ReactComponent as HeartLine } from "../assets/icons/heart_outlined.svg";
 import { ReactComponent as HeartFull } from "../assets/icons/heart_full.svg";
+
+const Engraved = styled.div`
+  background-color: #999;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: rgba(245, 245, 245, 0.5) 3px 3px 1px;
+`;
+
+const animateIn = keyframes`
+  from {
+    transform: translateY(150px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(150px);
+    opacity: 1;
+  }
+`;
+
+const animateOut = keyframes`
+  from {
+    transform: translateY(150px);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(150px);
+    opacity: 0;
+  }
+`;
+
+const shaking = keyframes`
+ 0% { transform: translateX(0) }
+ 25% { transform: translateX(2px) }
+ 50% { transform: translateX(-2px) }
+ 75% { transform: translateX(2px) }
+ 100% { transform: translateX(0) }
+`;
+
+const pulse00 = keyframes` 
+0% { transform: translate(-50%, -97%) scale(1.0) }
+10% { transform: translate(-50%, -97%) scale(1.1) }
+100% { transform: translate(-50%, -97%) scale(1) }
+`;
+
+const pulse01 = keyframes` 
+0% { transform: translate(-50%, -88%) scale(1.0) }
+20% { transform: translate(-50%, -88%) scale(1.1) }
+100% { transform: translate(-50%, -88%) scale(1) }
+`;
+
+const pulse02 = keyframes` 
+0% { transform: translate(-50%, -81%) scale(1) }
+30% { transform: translate(-50%, -81%) scale(1.1) }
+100% { transform: translate(-50%, -81%) scale(1) }
+`;
+
+const pulse03 = keyframes` 
+0% { transform: translate(-50%, -76%) scale(1) }
+40% { transform: translate(-50%, -76%) scale(1.1) }
+100% { transform: translate(-50%, -76%) scale(1) }
+`;
 
 const Div = styled.div`
   background-color: transparent;
@@ -119,28 +187,6 @@ const Div = styled.div`
   }
 `;
 
-const animateIn = keyframes`
-  from {
-    transform: translateY(150px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(150px);
-    opacity: 1;
-  }
-`;
-
-const animateOut = keyframes`
-  from {
-    transform: translateY(150px);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(150px);
-    opacity: 0;
-  }
-`;
-
 const Span = styled.span`
   display: inline-block;
   font-size: 1em;
@@ -169,7 +215,7 @@ const Atag = styled.a`
   margin-top: 8px;
 
   :hover {
-    color: ${Black};
+    color: ${HoverGrey};
   }
 
   &.light {
@@ -189,7 +235,7 @@ const Atag = styled.a`
     cursor: pointer;
 
     &:hover {
-      color: ${Black};
+      color: ${HoverGrey};
     }
   }
 `;
@@ -437,6 +483,12 @@ const StyledH1 = styled.h1`
     letter-spacing: -0.08em;
     margin-left: 10px;
   }
+
+  &.warning {
+    font-size: 2em;
+    font-weight: 400;
+    line-height: 2em;
+  }
 `;
 
 const StyledH2 = styled.h2`
@@ -665,6 +717,12 @@ const StyledP = styled.p`
   &.number {
     font-size: 1em;
     font-weight: 500;
+  }
+
+  &.modal {
+    font-size: 1em;
+    line-height: 22px;
+    text-align: center;
   }
 `;
 
@@ -1092,7 +1150,7 @@ const StyledLi = styled.li`
   margin-bottom: 5px;
 
   &.name-li {
-    color: ${Black};
+    color: ${HoverGrey};
   }
 
   &.square-test {
@@ -1161,6 +1219,151 @@ const Image = styled.img`
     width: 100%;
     object-fit: cover;
     overflow: hidden;
+  }
+`;
+
+const Modal = styled.div`
+  user-select: none;
+
+  &.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 10;
+  }
+
+  &.modal-wrapper {
+    width: 400px;
+    height: 400px;
+    background-color: ${Light};
+    border-radius: 10px;
+    margin: 0 auto;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+    position: fixed;
+  }
+
+  &.circle {
+    width: 90px;
+    height: 90px;
+    background-color: ${Yellow};
+    border-radius: 50%;
+    border: 3px solid ${Light};
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -254%);
+    z-index: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &.modal-container {
+    width: 300px;
+    height: 250px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+  }
+
+  &.checkbox-container {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &.text-box {
+  }
+`;
+
+const Echo = styled.div`
+  &.wrapper {
+    width: 200px;
+    height: 100px;
+    overflow: hidden;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -200%);
+  }
+
+    &.circle00 {
+    width: 98px;
+    height: 98px;
+    background-color: ${Yellow};
+    opacity: 0.5;
+    border-radius: 50%;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -97%);
+
+    animation: ${pulse00} 1s infinite;
+  }
+
+  &.circle01 {
+    width: 120px;
+    height: 120px;
+    background-color: ${Yellow};
+    opacity: 0.3;
+    border-radius: 50%;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -88%);
+
+    animation: ${pulse01} 1s infinite;
+  }
+
+  &.circle02 {
+    width: 140px;
+    height: 140px;
+    background-color: ${Yellow};
+    opacity: 0.2;
+    border-radius: 50%;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -81%);
+
+    animation: ${pulse02} 1s infinite;
+  }
+
+  &.circle03 {
+    width: 160px;
+    height: 160px;
+    background-color: ${Yellow};
+    opacity: 0.1;
+    border-radius: 50%;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -76%);
+
+    animation: ${pulse03} 1s infinite;
   }
 `;
 
@@ -1536,7 +1739,7 @@ const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: ${Black};
+  background-color: ${HoverGrey};
   z-index: 3;
   opacity: 0.3;
   transition: opacity 0.3s ease;
@@ -1812,7 +2015,6 @@ const LoginDiv = styled.div`
   &.wrapper {
     width: 100%;
     height: 792px;
-    border: 1px solid red;
     display: flex;
   }
 
@@ -1830,11 +2032,44 @@ const LoginDiv = styled.div`
 
   &.input-box {
     width: 300px;
+    height: 25px;
     position: relative;
     display: flex;
     border-bottom: 2px solid ${Grey};
     margin: 25px 0;
+    
+    &.phonenumber-box {
+      width: 200px;
+      position: relative;
+      display: flex;
+      border-bottom: 2px solid ${Grey};
+      margin: 25px 0px 25px 15px;
+    }
+
   }
+
+  &.number-box {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+     &.valid Select {
+      border: 2px solid ${Green};
+    }
+
+    &.invalid Select {
+      border: 2px solid ${Orange};
+      animation: ${shaking} 0.2s infinite;
+    }
+    }
+  }
+
+  &.countrycode-box {
+    width: 90px;
+    display: flex;
+  }
+
 
   &.checkbox-box {
     color: ${Grey};
@@ -1851,27 +2086,67 @@ const LoginDiv = styled.div`
     margin-top: 15px;
   }
 
-  &.radio-container {
-  width: 80%;
+  &.calandar-container {
+    width: 100%;
     display: flex;
-    position: relative;
-    cursor: pointer;
     justify-content: space-between;
     align-items: center;
 
-    input {
+    &.valid Select {
+      border: 2px solid ${Green};
+    }
+
+    &.invalid Select {
+      border: 2px solid ${Orange};
+      animation: ${shaking} 0.2s infinite;
     }
   }
+
+  &.calandar-item-box {
+  }
+
+  &.radio-container {
+    width: 80%;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+
+    Input, Label {
+    cursor: pointer;
+    }
+  }
+
+  &.radio-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
 `;
+
+const Select = styled.select`
+  width: 90px;
+  height: 30px;
+  color: ${Grey}
+  outline: 0;
+  border: 2px solid ${Grey};
+  padding: 4px;
+  border-radius: 8px;
+  cursor: pointer;
+`;
+
+const Option = styled.option``;
 
 const Input = styled.input`
   background: transparent;
   border: none;
   outline: none;
   font-size: 1em;
+  cursor: pointer;
 
   &.loginpage {
     width: 100%;
+    height: 30px;
   }
 
   &.input-hide {
@@ -1884,28 +2159,26 @@ const Input = styled.input`
   &:focus::placeholder {
     color: ${LightGrey};
   }
-`;
 
-const shaking = keyframes`
- 0% { transform: translateX(0) }
- 25% { transform: translateX(2px) }
- 50% { transform: translateX(-2px) }
- 75% { transform: translateX(2px) }
- 100% { transform: translateX(0) }
+  &.modal-check {
+    display: none;
+  }
 `;
 
 const Label = styled.label`
+  color: ${Grey};
+
   &.login-info {
     position: absolute;
-    top: 20%;
-    left: 5px;
-    transform: translateY(-50%);
+    top: 10px;
+    left: 0px;
+    transform: translateY(-30%);
     pointer-events: none;
     transition: 0.3s ease;
 
     ${Input}:focus + &,
     &.active {
-      top: -25px;
+      top: -20px;
       transform: translateY(0%);
       color: ${Grey};
     }
@@ -1923,6 +2196,27 @@ const Label = styled.label`
   &.remember {
     font-size: 0.8em;
     margin-top: 3px;
+  }
+
+  &.understand {
+    width: 98px;
+    font-size: 0.8em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:hover {
+      color: ${HoverGrey};
+
+      .checkbox-icon-checked {
+        color: ${HoverGreen};
+      }
+    }
+
+    .checkbox-icon-checked {
+      color: ${Green};
+    }
   }
 `;
 
@@ -2183,7 +2477,13 @@ const TopArrowIcon = styled(MdOutlineArrowUpward)`
   height: 2.5em;
 `;
 
+const WarnIcon = styled(TbExclamationMark)`
+  font-size: 100px;
+  color: ${White};
+`;
+
 const s = {
+  Engraved,
   ArticleCard,
   Accordion,
   ArticleDiv,
@@ -2208,10 +2508,14 @@ const s = {
   Form,
   GridImage,
   HeaderDiv,
+  Modal,
+  Echo,
   Home,
   HomeImage,
   hr,
   Image,
+  Select,
+  Option,
   Input,
   Label,
   LoginDiv,
@@ -2263,6 +2567,7 @@ const s = {
   StyledIcon,
   StyledHeaderIcon,
   TopArrowIcon,
+  WarnIcon,
 };
 
 export default s;
