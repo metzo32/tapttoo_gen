@@ -134,7 +134,13 @@ const LoginPage = () => {
         <s.Button className="Round" onClick={handleOpenModal}>
           모달띄우기
         </s.Button>
-        <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+        <Modal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          modalTitle={"잠깐!"}
+          showCheckbox={true}
+          checkboxText={"이해했습니다."}
+        >
           <s.StyledP className="modal">
             19세 미만 회원의 경우,
             <br />
@@ -177,7 +183,7 @@ const LoginPage = () => {
               onChange={(event) => setRegisterPwConfirm(event.target.value)}
               onBlur={handleBlur}
               required={true}
-              label={"비밀번호 확인 나중에 뜨게 하는게 좋을듯"}
+              label={"비밀번호 확인"}
             />
           </s.LoginDiv>
 

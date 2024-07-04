@@ -28,8 +28,8 @@ import { FiArrowDownRight } from "react-icons/fi"; //대각선 화살표
 import { MdOutlineArrowUpward } from "react-icons/md"; // 위 화살표
 import { TbExclamationMark } from "react-icons/tb"; //느낌표
 
-import checkboxBefore from "../assets/icons/checkbox-passive.svg";
-import checkboxAfter from "../assets/icons/checkbox-active.svg";
+import { ReactComponent as CheckboxBefore } from "../assets/icons/checkbox-passive.svg";
+import { ReactComponent as CheckboxAfter } from "../assets/icons/checkbox-active.svg";
 
 import { ReactComponent as Logo } from "../assets/icons/v.svg";
 import { ReactComponent as Tapttoo } from "../assets/icons/Tapttoo.svg";
@@ -66,6 +66,46 @@ const animateOut = keyframes`
     opacity: 0;
   }
 `;
+
+const FadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const FadeOut = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+`;
+
+const slideUp = keyframes`
+ from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+`
+
+const slideDown = keyframes`
+ from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+`
 
 const shaking = keyframes`
  0% { transform: translateX(0) }
@@ -1236,7 +1276,12 @@ const Modal = styled.div`
     justify-content: center;
     align-items: center;
     position: fixed;
+    animation: ${FadeIn} 0.1s ease-in-out forwards;
     z-index: 10;
+
+      &.closing {
+    animation: ${FadeOut} 0.8s forwards;
+    }
   }
 
   &.modal-wrapper {
@@ -1247,6 +1292,11 @@ const Modal = styled.div`
     margin: 0 auto;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
     position: fixed;
+    animation: ${slideUp} 0.2s ease-in-out;
+
+      &.closing {
+    animation: ${slideDown} 0.5s forwards;
+    }
   }
 
   &.circle {
@@ -1306,7 +1356,7 @@ const Echo = styled.div`
     transform: translate(-50%, -200%);
   }
 
-    &.circle00 {
+  &.circle00 {
     width: 98px;
     height: 98px;
     background-color: ${Yellow};
@@ -2106,7 +2156,7 @@ const LoginDiv = styled.div`
   }
 
   &.radio-container {
-    width: 80%;
+    width: 90%;
     display: flex;
     position: relative;
     justify-content: space-between;
@@ -2118,6 +2168,7 @@ const LoginDiv = styled.div`
   }
 
   &.radio-box {
+    width: auto;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -2163,10 +2214,15 @@ const Input = styled.input`
   &.modal-check {
     display: none;
   }
+
+  &.gender-radio {
+    display: none;
+  }
 `;
 
 const Label = styled.label`
   color: ${Grey};
+  letter-spacing: -0.1px;
 
   &.login-info {
     position: absolute;
@@ -2199,8 +2255,27 @@ const Label = styled.label`
   }
 
   &.understand {
-    width: 98px;
+    width: 100px;
     font-size: 0.8em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:hover {
+      color: ${HoverGrey};
+
+      .checkbox-icon-checked {
+        color: ${HoverGreen};
+      }
+    }
+
+    .checkbox-icon-checked {
+      color: ${Green};
+    }
+  }
+
+  &.gender-label {
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -2408,6 +2483,18 @@ const StyledHeaderIcon = `
     }
 `;
 
+const CheckboxBeforeIcon = styled(CheckboxBefore)`
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+`;
+
+const CheckboxAfterIcon = styled(CheckboxAfter)`
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+`;
+
 //Header Icons
 const HomeIcon = styled(RiHomeLine)`
   ${StyledHeaderIcon}
@@ -2549,6 +2636,9 @@ const s = {
   TapttooIcon,
   Username,
   WishIconContainer,
+
+  CheckboxBeforeIcon,
+  CheckboxAfterIcon,
 
   HomeIcon,
   HamburgerIcon,

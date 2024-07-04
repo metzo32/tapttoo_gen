@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import s from "../stores/styling";
-import CalculateYear from "./CalculateYear";
 import Modal from "./Modal";
 
 const CalculateAge = () => {

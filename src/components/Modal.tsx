@@ -1,44 +1,31 @@
-import { useState, ReactNode } from "react";
+import { useState, useEffect, ReactNode } from "react";
 import ReactDOM from "react-dom";
 import s from "../stores/styling";
-import { ReactComponent as CheckboxBefore } from "../assets/icons/checkbox-passive.svg";
-import { ReactComponent as CheckboxAfter } from "../assets/icons/checkbox-active.svg";
+import useModal from "../hooks/ModalHook";
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
+  modalTitle: string;
   children: ReactNode;
+  showCheckbox?: boolean;
+  checkboxText?: string;
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
-  const [understand, setUnderstand] = useState(false);
-  const [checked, setChecked] = useState(false);
+const Modal: React.FC<ModalProps> = ({ isOpen, onClose, modalTitle, children, showCheckbox, checkboxText }) => {
+  const { understand, closing, openModal, closeModal, toggleUnderstand } =
+    useModal();
 
   if (!isOpen) return null;
 
-  const handleUnderstandChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setUnderstand((prevUnderstand) => !prevUnderstand);
-  };
-
-  const handleModalClose = () => {
-    if (understand) {
-      onClose(); // Ensure the onClose callback is called when the modal is closed
-    }
-  };
-
-  const handleClick = () => {
-    setChecked((prev) => !prev);
-  };
 
   const portalElement = document.getElementById("portal");
   if (!portalElement) return null;
 
   return ReactDOM.createPortal(
     <>
-      <s.Modal className="modal-overlay">
-        <s.Modal className="modal-wrapper">
+      <s.Modal className={`modal-overlay ${closing ? "closing" : ""}`}>
+        <s.Modal className={`modal-wrapper ${closing ? "closing" : ""}`}>
           <s.Modal className="circle">
             <s.WarnIcon />
           </s.Modal>
@@ -49,31 +36,28 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
             <s.Echo className="circle03" />
           </s.Echo>
           <s.Modal className="modal-container">
-            <s.StyledH1 className="warning">잠깐!</s.StyledH1>
+            <s.StyledH1 className="warning">{modalTitle}</s.StyledH1>
             <s.Modal className="text-box">{children}</s.Modal>
-            <s.Modal className="checkbox-container">
-              <s.Input
-                type="checkbox"
-                id="understand"
-                checked={understand}
-                onChange={handleUnderstandChange}
-                className="modal-check"
-              />
-              <s.Label
-                htmlFor="understand"
-                className="understand"
-                onClick={handleClick}
-              >
-                {checked 
-                  ? (
-                  <CheckboxAfter className="checkbox-icon-checked" />
-                ) : (
-                  <CheckboxBefore className="checkbox-icon" />
-                )}
-                이해했습니다.
-              </s.Label>
-            </s.Modal>
-            <s.Button className="Round" onClick={handleModalClose}>
+            {showCheckbox && (
+              <s.Modal className="checkbox-container">
+                <s.Input
+                  type="checkbox"
+                  id="understand"
+                  checked={understand}
+                  onChange={toggleUnderstand}
+                  className="modal-check"
+                />
+                <s.Label htmlFor="understand" className="understand">
+                  {understand ? (
+                    <s.CheckboxAfterIcon className="checkbox-icon-checked" />
+                  ) : (
+                    <s.CheckboxBeforeIcon className="checkbox-icon" />
+                  )}
+                  {checkboxText}
+                </s.Label>
+              </s.Modal>
+            )}
+            <s.Button className="Round" onClick={onClose}>
               닫기
             </s.Button>
           </s.Modal>

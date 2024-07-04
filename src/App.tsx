@@ -37,6 +37,7 @@ import ArtistData from "./assets/datas/artitst_data";
 import ArtistDetailPageComponent from "./components/ArtistDetailPageComponent";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import Modal from "./components/Modal";
+import ModalPage from "./pages/ModalTest";
 
 const App: React.FC = () => {
   const [currentlyLoggedIn, setCurrentlyLoggedIn] = useState(false);
@@ -70,6 +71,7 @@ const App: React.FC = () => {
             <Header />
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/modal" element={<ModalPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/password" element={<ForgotPassword />} />
               <Route path="/aboutus" element={<AboutUs />} />
