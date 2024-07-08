@@ -12,8 +12,8 @@ import countrycode from "../assets/datas/country_code";
 import Modal from "../components/Modal";
 import useModal from "../hooks/ModalHook";
 
-import RegisterImage01 from '../assets/images/register_01.png';
-import RegisterImage02 from '../assets/images/register_02.png';
+import RegisterImage01 from "../assets/images/register_01.png";
+import RegisterImage02 from "../assets/images/register_02.png";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -27,6 +27,8 @@ const RegisterPage = () => {
   const [registerPhonenumber, setRegisterPhonenumber] = useState<string>("");
   const [countryCode, setCountryCode] = useState<string>("");
   const [isValidAge, setIsValidAge] = useState<boolean | null>(null);
+  const [step, setStep] = useState(1);
+  const [nextStep, setNextStep] = useState(false);
 
   const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
 
@@ -118,6 +120,25 @@ const RegisterPage = () => {
     setIsValidAge(!isValid);
   };
 
+  const handleNextStep = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    if (validateStepOne()) {
+      setStep(step + 1);
+    } else {
+      return;
+    }
+  };
+
+  const validateStepOne = () => {
+    return (
+      registerEmail.length > 0 &&
+      registerPw.length > 0 &&
+      registerPwConfirm.length > 0 &&
+      registerPw === registerPwConfirm &&
+      registerPw.length >= 8
+    );
+  };
+
   const validateForm = () => {
     return (
       registerEmail.length > 0 &&
@@ -132,6 +153,8 @@ const RegisterPage = () => {
   return (
     <>
       <s.LoginDiv className="wrapper">
+        <s.Image src={RegisterImage01} alt="" className="register-bg01" />
+        <s.Image src={RegisterImage02} alt="" className="register-bg02" />
         <Modal
           isOpen={isModalOpen}
           onClose={handleCloseModal}
@@ -147,128 +170,148 @@ const RegisterPage = () => {
         </Modal>
 
         <s.Form className="login" onSubmit={handleSignUp}>
-          <s.LoginDiv className="container">
-            <s.LoginDiv className="input-wrapper">
-              
-              <RegisterInputItems
-                name={"email"}
-                type={"email"}
-                id={"useremail"}
-                value={registerEmail}
-                minLength={6}
-                onChange={(event) => setRegisterEmail(event.target.value)}
-                onBlur={handleBlur}
-                required={true}
-                label={"이메일"}
-              />
+          {/* {step === 1 && (
+            <s.LoginDiv className="container step01">
+              <s.LoginDiv className="input-wrapper step01">
+                <RegisterInputItems
+                  name={"email"}
+                  type={"email"}
+                  id={"useremail"}
+                  value={registerEmail}
+                  minLength={6}
+                  onChange={(event) => setRegisterEmail(event.target.value)}
+                  onBlur={handleBlur}
+                  required={true}
+                  label={"이메일"}
+                />
 
-              <RegisterInputItems
-                name={"password"}
-                type={"password"}
-                id={"password"}
-                value={registerPw}
-                minLength={6}
-                onChange={(event) => setRegisterPw(event.target.value)}
-                onBlur={handleBlur}
-                required={true}
-                label={"비밀번호"}
-                placeholder={"8자 이상의 영문 또는 숫자"}
-              />
+                <RegisterInputItems
+                  name={"password"}
+                  type={"password"}
+                  id={"password"}
+                  value={registerPw}
+                  minLength={6}
+                  onChange={(event) => setRegisterPw(event.target.value)}
+                  onBlur={handleBlur}
+                  required={true}
+                  label={"비밀번호"}
+                  placeholder={"8자 이상의 영문 또는 숫자"}
+                />
 
-              <RegisterInputItems
-                name={"passwordConfirm"}
-                type={"password"}
-                id={"passwordConfirm"}
-                value={registerPwConfirm}
-                minLength={6}
-                onChange={(event) => setRegisterPwConfirm(event.target.value)}
-                onBlur={handleBlur}
-                required={true}
-                label={"비밀번호 확인"}
-              />
-            </s.LoginDiv>
-
-            <s.Button type="submit" className="Round">
-              다음
-            </s.Button>
-          </s.LoginDiv>
-
-          {/* <s.LoginDiv className="container">
-            <RegisterInputItems
-              name={"fullname"}
-              type={"text"}
-              id={"fullname"}
-              value={registerFullname}
-              onChange={handleFullnameChange}
-              onBlur={handleBlur}
-              required={true}
-              label={"이름"}
-              placeholder={"자신의 주민등록상 이름"}
-            />
-            <RegisterInputItems
-              name={"nickname"}
-              type={"text"}
-              id={"nickname"}
-              value={registerNickname}
-              minLength={2}
-              onChange={handleNicknameChange}
-              onBlur={handleBlur}
-              required={true}
-              label={"닉네임"}
-              placeholder={"한글 또는 영문, 숫자 조합"}
-            />
-
-            <CalculateAge
-              isAdult={handleAgeValidation}
-              handleOpenModal={handleOpenModal}
-            />
-
-            <GenderSelect />
-
-            <s.LoginDiv className={`number-box ${countryCode ? "valid" : ""}`}>
-              <s.LoginDiv className="countrycode-box">
-                <s.Select
-                  name={"countrycode"}
-                  id={"countrycode"}
-                  defaultValue={"countrycode"}
-                  onChange={handleCountryCode}
-                  required
-                >
-                  <s.Option value="">국가</s.Option>
-                  {countrycode.map((item) => (
-                    <s.Option
-                      key={`${item.country}-${item.code}`}
-                      value={item.code}
-                    >
-                      ({item.code}) {item.country}
-                    </s.Option>
-                  ))}
-                </s.Select>
+                <RegisterInputItems
+                  name={"passwordConfirm"}
+                  type={"password"}
+                  id={"passwordConfirm"}
+                  value={registerPwConfirm}
+                  minLength={6}
+                  onChange={(event) => setRegisterPwConfirm(event.target.value)}
+                  onBlur={handleBlur}
+                  required={true}
+                  label={"비밀번호 확인"}
+                />
               </s.LoginDiv>
 
-              <RegisterInputItems
-                name={"phonenumber"}
-                type={"tel"}
-                id={"phonenumber"}
-                value={registerPhonenumber}
-                minLength={8}
-                onChange={handlePhonenumberChange}
-                onBlur={handleBlur}
-                required={true}
-                label={"전화번호"}
-                placeholder={"'-' 없이 입력"}
-                extraClass={"phonenumber-box"}
-              />
-            </s.LoginDiv>
+              <s.LoginDiv className="button-wrapper">
+                <s.Button
+                  type="submit"
+                  className="Round"
+                  onClick={handleNextStep}
+                  value="next"
+                >
+                  다음
+                </s.Button>
 
-            <s.Button type="submit" className="Round">
-              가입하기
-            </s.Button>
-            <s.Button onClick={() => handleNavigation("/login")}>
-              이미 계정이 있으신가요?
-            </s.Button>
-          </s.LoginDiv>
-          <s.LoginDiv className="container">
+                <s.Button onClick={() => handleNavigation("/login")}>
+                  이미 계정이 있으신가요?
+                </s.Button>
+              </s.LoginDiv>
+            </s.LoginDiv>
+          )} */}
+
+          {step === 1 && (
+            <s.LoginDiv className="container step02">
+              <s.LoginDiv className="input-wrapper step02">
+                <RegisterInputItems
+                  name={"fullname"}
+                  type={"text"}
+                  id={"fullname"}
+                  value={registerFullname}
+                  onChange={handleFullnameChange}
+                  onBlur={handleBlur}
+                  required={true}
+                  label={"이름"}
+                  placeholder={"자신의 주민등록상 이름"}
+                />
+                <RegisterInputItems
+                  name={"nickname"}
+                  type={"text"}
+                  id={"nickname"}
+                  value={registerNickname}
+                  minLength={2}
+                  onChange={handleNicknameChange}
+                  onBlur={handleBlur}
+                  required={true}
+                  label={"닉네임"}
+                  placeholder={"한글 또는 영문, 숫자 조합"}
+                />
+                <s.LoginDiv className="item-box">
+                  <CalculateAge
+                    isAdult={handleAgeValidation}
+                    handleOpenModal={handleOpenModal}
+                  />
+
+                  <GenderSelect />
+
+                  <s.LoginDiv
+                    className={`number-box ${countryCode ? "valid" : ""}`}
+                  >
+                    <s.LoginDiv className="countrycode-box">
+                      <s.Select
+                        name={"countrycode"}
+                        id={"countrycode"}
+                        defaultValue={"countrycode"}
+                        onChange={handleCountryCode}
+                        required
+                      >
+                        <s.Option value="">국가</s.Option>
+                        {countrycode.map((item) => (
+                          <s.Option
+                            key={`${item.country}-${item.code}`}
+                            value={item.code}
+                          >
+                            ({item.code}) {item.country}
+                          </s.Option>
+                        ))}
+                      </s.Select>
+                    </s.LoginDiv>
+
+                    <RegisterInputItems
+                      name={"phonenumber"}
+                      type={"tel"}
+                      id={"phonenumber"}
+                      value={registerPhonenumber}
+                      minLength={8}
+                      onChange={handlePhonenumberChange}
+                      onBlur={handleBlur}
+                      required={true}
+                      label={"전화번호"}
+                      placeholder={"'-' 없이 입력"}
+                      extraClass={"phonenumber-box"}
+                    />
+                  </s.LoginDiv>
+                </s.LoginDiv>
+              </s.LoginDiv>
+              <s.LoginDiv className="button-wrapper">
+                <s.Button type="submit" className="Round" value="submit">
+                  가입하기
+                </s.Button>
+                <s.Button onClick={() => handleNavigation("/login")}>
+                  이미 계정이 있으신가요?
+                </s.Button>
+              </s.LoginDiv>
+            </s.LoginDiv>
+          )}
+          {/* <s.LoginDiv className="container">
             <RegisterTerms />
           </s.LoginDiv> */}
         </s.Form>

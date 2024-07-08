@@ -27,7 +27,7 @@ export default function Footer() {
             Contact
           </s.Button>
         </s.Footer>
-        <s.Footer className="footer-box">
+        <s.Footer className="footer-icon-box">
           <a
             href="https://www.facebook.com"
             target="_blank"
@@ -60,13 +60,13 @@ export default function Footer() {
       </s.Footer>
 
       <s.Footer className="copyright">
-        <s.Footer className="footer-box long">
+        <s.Footer className="footer-box-left">
           <s.StyledP className="footer-copyright">
             {"\u00A9"} 2024 Tabttoo All Rights Reserved
           </s.StyledP>
         </s.Footer>
         <s.hr className="footer" />
-        <s.Footer className="footer-box">
+        <s.Footer className="footer-box-right">
           <s.StyledP className="footer-copyright">Terms of Use</s.StyledP>
           <s.StyledP className="footer-copyright">Privacy Policy</s.StyledP>
         </s.Footer>

@@ -284,7 +284,7 @@ const HeaderDiv = styled.div`
   &.wrapper {
     width: 100%;
     height: 50px;
-    background: ${White};
+    background: rgba(255, 255, 255, 0.5);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -738,7 +738,7 @@ const StyledP = styled.p`
   }
 
   &.footer-copyright {
-    font-size: 1.2em;
+    font-size: 1.1em;
     width: auto;
   }
 
@@ -1212,7 +1212,23 @@ const ArticleCard = styled.div`
 
 const Image = styled.img`
   width: 100%;
-  margin-bottom: 300px;
+  // margin-bottom: 300px;
+
+  &.register-bg01 {
+    width: 800px;
+    height: 100vh;
+    object-fit: cover;
+    position: absolute;
+    transform: translate(180%, -50px);
+  }
+
+  &.register-bg02 {
+    width: 800px;
+    height: 100vh;
+    object-fit: cover;
+    position: absolute;
+    transform: translate(-31%, -50px);
+  }
 
   &.BrandMidImage {
     height: auto;
@@ -1853,6 +1869,7 @@ const Footer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    transform: translateY(2px);
 
     opacity: 0.8;
   }
@@ -1865,15 +1882,25 @@ const Footer = styled.div`
     align-items: center;
   }
 
-  &.footer-box {
-    width: 170px;
+  &.footer-icon-box {
+    width: 165px;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
-  &.long {
-    width: 205px;
+  &.footer-box-left {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &.footer-box-right {
+    width: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   &.brand-wrapper {
@@ -1886,6 +1913,7 @@ const Footer = styled.div`
 
   &.button-wrapper {
     display: flex;
+    flex-direction: row;
     align-items: center;
   }
 
@@ -2012,6 +2040,7 @@ const hr = styled.hr`
   margin: 0 2% 0 2%;
 
   &.footer {
+    width: calc(100% - 400px);
   }
 
   &.double {
@@ -2069,8 +2098,8 @@ const LoginDiv = styled.div`
 
   &.container {
     width: 300px;
-    height: calc(700px - 300px);
-    padding: 150px 50px;
+    height: 700px;
+    padding: 20px 50px;
     margin: 0 auto;
     border-radius: 20px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
@@ -2082,14 +2111,36 @@ const LoginDiv = styled.div`
       transform: scale(1.02);
       transition: 0.4s ease;
     }
+
+    &.step01 {
+      height: 540px;
+      border: 1px solid yellow;
+      padding: 80px 50px;
+    }
+
+    &.step02 {
+      height: 620px;
+      border: 1px solid yellow;
+      padding: 30px 50px 50px 50px;
+  }
   }
 
   &.input-wrapper {
-    height: 280px;
+    height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    margin-top: 50px;
+    padding-top: 20px;
+
+    &.step01 {
+      height: 260px;
+    }
+
+    &.step02 {
+      height: 365px;
+    }
   }
 
   &.input-box {
@@ -2098,7 +2149,6 @@ const LoginDiv = styled.div`
     position: relative;
     display: flex;
     border-bottom: 2px solid ${Grey};
-    margin: 25px 0;
     
     &.phonenumber-box {
       width: 200px;
@@ -2111,6 +2161,7 @@ const LoginDiv = styled.div`
 
   &.number-box {
     width: 100%;
+    height: 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -2131,12 +2182,20 @@ const LoginDiv = styled.div`
     display: flex;
   }
 
+  &.item-box {
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
 
   &.checkbox-box {
     color: ${Grey};
     width: auto;
     height: 40px;
     display: flex;
+    justify-content: center;
     align-items: center;
   }
 
@@ -2146,9 +2205,18 @@ const LoginDiv = styled.div`
     justify-content: center;
     margin-top: 15px;
   }
+  
+  &.button-wrapper {
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+  }
 
   &.calandar-container {
     width: 100%;
+    height: 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -2476,6 +2544,8 @@ const StyledIcon = `
   color: ${Grey};
 
   &.outlined {
+    width: 1.2em;
+    height: 1.2em;
     border-radius: 100px;
     border: 1px solid ${Grey};
     padding: 5px;

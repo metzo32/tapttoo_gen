@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import s from "../stores/styling";
 import SideBar from "./SideBar";
 import { AuthContext } from "../context/AuthContext";
+import DarkModeButton from "./DarkModeButton";
 
 
 export default function Header() {
@@ -56,7 +57,7 @@ export default function Header() {
 
       </s.HeaderDiv>
       <s.HeaderDiv className="button-wrapper">
-        {/* <s.Button className="header-button-item">다크</s.Button> */}
+        <DarkModeButton />
         <s.Button
           onClick={() => handleProfileNavigation()}
           className="header-button-item"
