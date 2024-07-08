@@ -1,34 +1,20 @@
-import { useState } from "react";
-import { UseModalProps } from "../types/ModalProps";
+import { useState } from 'react';
 
+const useModal = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
 
-const useModal = ({ isOpen, onClose }: UseModalProps) => {
-  const [understand, setUnderstand] = useState(false);
-  const [animationClosing, setAnimationClosing] = useState(false);
-
-  const handleUnderstandChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setUnderstand((prevUnderstand) => !prevUnderstand);
+  const handleOpenModal = () => {
+    setModalOpen(true);
   };
 
-  const handleModalClose = () => {
-    if (understand) {
-      setAnimationClosing(true);
-      setTimeout(() => {
-        setAnimationClosing(false);
-        onClose(); 
-      }, 800);
-    }
+  const handleCloseModal = () => {
+    setModalOpen(false);
   };
 
   return {
-    isOpen,
-    onClose,
-    understand,
-    animationClosing,
-    handleUnderstandChange,
-    handleModalClose,
+    isModalOpen,
+    handleOpenModal,
+    handleCloseModal
   };
 };
 

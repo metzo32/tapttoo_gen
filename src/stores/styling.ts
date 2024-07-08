@@ -94,7 +94,7 @@ const slideUp = keyframes`
         opacity: 1;
         transform: translateY(0);
     }
-`
+`;
 
 const slideDown = keyframes`
  from {
@@ -105,7 +105,7 @@ const slideDown = keyframes`
         opacity: 0;
         transform: translateY(30px);
     }
-`
+`;
 
 const shaking = keyframes`
  0% { transform: translateX(0) }
@@ -1279,8 +1279,8 @@ const Modal = styled.div`
     animation: ${FadeIn} 0.1s ease-in-out forwards;
     z-index: 10;
 
-      &.closing {
-    animation: ${FadeOut} 0.8s forwards;
+    &.closing {
+      animation: ${FadeOut} 0.8s forwards;
     }
   }
 
@@ -1294,8 +1294,8 @@ const Modal = styled.div`
     position: fixed;
     animation: ${slideUp} 0.2s ease-in-out;
 
-      &.closing {
-    animation: ${slideDown} 0.5s forwards;
+    &.closing {
+      animation: ${slideDown} 0.5s forwards;
     }
   }
 
@@ -1513,7 +1513,6 @@ const ArtistDiv = styled.div`
   &.wrapper {
     width: 100%;
     margin-bottom: 100px;
-    border: 1px solid blue;
   }
 
   &.h2-container {
@@ -2070,10 +2069,23 @@ const LoginDiv = styled.div`
 
   &.container {
     width: 300px;
-    height: calc(100% - 200px);
-    padding: 100px 50px;
+    height: calc(700px - 300px);
+    padding: 150px 50px;
     margin: 0 auto;
-    border: 1px solid blue;
+    border-radius: 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &:hover {
+      transform: scale(1.02);
+      transition: 0.4s ease;
+    }
+  }
+
+  &.input-wrapper {
+    height: 280px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -2095,7 +2107,6 @@ const LoginDiv = styled.div`
       border-bottom: 2px solid ${Grey};
       margin: 25px 0px 25px 15px;
     }
-
   }
 
   &.number-box {
@@ -2247,6 +2258,11 @@ const Label = styled.label`
       color: ${Orange};
       animation: ${shaking} 0.2s infinite;
     }
+  }
+
+  &.invalid {
+    color: ${Orange};
+    animation: ${shaking} 0.2s infinite;
   }
 
   &.remember {

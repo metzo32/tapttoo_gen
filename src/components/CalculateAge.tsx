@@ -2,7 +2,12 @@ import { useState, useEffect } from "react";
 import s from "../stores/styling";
 import Modal from "./Modal";
 
-const CalculateAge = ({ }) => {
+interface CalculateAgeProps {
+  isAdult: (isValid: boolean | null) => void;
+  handleOpenModal : () => void;
+}
+
+const CalculateAge: React.FC<CalculateAgeProps> = ({ isAdult, handleOpenModal }) => {
   const [year, setYear] = useState(""); // 원래는 빈 문자열을 쓰다가 null로 바꾸었다. 그렇지 않으면 초기값이 현재 연도의 1월 1일인데, 이미 valid 상태로 선택됨
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
@@ -40,6 +45,7 @@ const CalculateAge = ({ }) => {
     const validateDate = () => {
       if (!year || !month || !day) {  // 입력 값이 모두 들어왔는지
         setIsValid(null); // 검사할 수 없을 때는 null
+        isAdult(null);
         return;
       }
 
@@ -50,6 +56,7 @@ const CalculateAge = ({ }) => {
       const daysInMonth = new Date(yearInt, monthInt, 0).getDate(); // 실제로 유효한 날짜인지 검사 (30, 31일, 28일 및 윤년)
       if (dayInt > daysInMonth) {
         setIsValid(false);
+        isAdult(null);
         return;
       }
       
@@ -66,11 +73,13 @@ const CalculateAge = ({ }) => {
 
       if (age < 19) {
         setIsValid(false)
-        //모달 보여주기
+        isAdult(false);
+        handleOpenModal()
         return
       }
 
       setIsValid(true);
+      isAdult(true);
     };
 
     validateDate();
@@ -79,7 +88,7 @@ const CalculateAge = ({ }) => {
 
   return (
     <s.LoginDiv
-      className={`calandar-container ${isValid === null ? '' : isValid ? "valid" : "invalid"}`}
+      className={`calandar-container ${isValid === null ? '' : "valid"}`}
     >
       <s.LoginDiv className="calandar-item-box">
         <s.Select

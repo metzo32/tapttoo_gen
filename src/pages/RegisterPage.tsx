@@ -10,8 +10,12 @@ import CalculateAge from "../components/CalculateAge";
 import GenderSelect from "../components/GenderSelect";
 import countrycode from "../assets/datas/country_code";
 import Modal from "../components/Modal";
+import useModal from "../hooks/ModalHook";
 
-const LoginPage = () => {
+import RegisterImage01 from '../assets/images/register_01.png';
+import RegisterImage02 from '../assets/images/register_02.png';
+
+const RegisterPage = () => {
   const navigate = useNavigate();
 
   const [registerEmail, setRegisterEmail] = useState<string>("");
@@ -22,7 +26,9 @@ const LoginPage = () => {
   const [registerFullname, setRegisterFullname] = useState<string>("");
   const [registerPhonenumber, setRegisterPhonenumber] = useState<string>("");
   const [countryCode, setCountryCode] = useState<string>("");
-  const [isUnderAge, setIsUnderAge] = useState(false);
+  const [isValidAge, setIsValidAge] = useState<boolean | null>(null);
+
+  const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
 
   const nicknameRule =
     /^(([a-zA-Z]+[0-9]*|[0-9]*[a-zA-Z]+)[a-zA-Z0-9]*|([가-힣]+[0-9]*|[0-9]*[가-힣]+)[가-힣0-9]*)$/;
@@ -108,6 +114,10 @@ const LoginPage = () => {
     setCountryCode(event.target.value);
   };
 
+  const handleAgeValidation = (isValid: boolean | null) => {
+    setIsValidAge(!isValid);
+  };
+
   const validateForm = () => {
     return (
       registerEmail.length > 0 &&
@@ -119,22 +129,9 @@ const LoginPage = () => {
     );
   };
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
   return (
     <>
       <s.LoginDiv className="wrapper">
-        <s.Button className="Round" onClick={handleOpenModal}>
-          모달띄우기
-        </s.Button>
         <Modal
           isOpen={isModalOpen}
           onClose={handleCloseModal}
@@ -151,44 +148,52 @@ const LoginPage = () => {
 
         <s.Form className="login" onSubmit={handleSignUp}>
           <s.LoginDiv className="container">
-            <RegisterInputItems
-              name={"email"}
-              type={"email"}
-              id={"useremail"}
-              value={registerEmail}
-              minLength={6}
-              onChange={(event) => setRegisterEmail(event.target.value)}
-              onBlur={handleBlur}
-              required={true}
-              label={"이메일"}
-            />
+            <s.LoginDiv className="input-wrapper">
+              
+              <RegisterInputItems
+                name={"email"}
+                type={"email"}
+                id={"useremail"}
+                value={registerEmail}
+                minLength={6}
+                onChange={(event) => setRegisterEmail(event.target.value)}
+                onBlur={handleBlur}
+                required={true}
+                label={"이메일"}
+              />
 
-            <RegisterInputItems
-              name={"password"}
-              type={"password"}
-              id={"password"}
-              value={registerPw}
-              minLength={6}
-              onChange={(event) => setRegisterPw(event.target.value)}
-              onBlur={handleBlur}
-              required={true}
-              label={"비밀번호"}
-            />
+              <RegisterInputItems
+                name={"password"}
+                type={"password"}
+                id={"password"}
+                value={registerPw}
+                minLength={6}
+                onChange={(event) => setRegisterPw(event.target.value)}
+                onBlur={handleBlur}
+                required={true}
+                label={"비밀번호"}
+                placeholder={"8자 이상의 영문 또는 숫자"}
+              />
 
-            <RegisterInputItems
-              name={"passwordConfirm"}
-              type={"password"}
-              id={"passwordConfirm"}
-              value={registerPwConfirm}
-              minLength={6}
-              onChange={(event) => setRegisterPwConfirm(event.target.value)}
-              onBlur={handleBlur}
-              required={true}
-              label={"비밀번호 확인"}
-            />
+              <RegisterInputItems
+                name={"passwordConfirm"}
+                type={"password"}
+                id={"passwordConfirm"}
+                value={registerPwConfirm}
+                minLength={6}
+                onChange={(event) => setRegisterPwConfirm(event.target.value)}
+                onBlur={handleBlur}
+                required={true}
+                label={"비밀번호 확인"}
+              />
+            </s.LoginDiv>
+
+            <s.Button type="submit" className="Round">
+              다음
+            </s.Button>
           </s.LoginDiv>
 
-          <s.LoginDiv className="container">
+          {/* <s.LoginDiv className="container">
             <RegisterInputItems
               name={"fullname"}
               type={"text"}
@@ -213,7 +218,10 @@ const LoginPage = () => {
               placeholder={"한글 또는 영문, 숫자 조합"}
             />
 
-            <CalculateAge />
+            <CalculateAge
+              isAdult={handleAgeValidation}
+              handleOpenModal={handleOpenModal}
+            />
 
             <GenderSelect />
 
@@ -262,11 +270,11 @@ const LoginPage = () => {
           </s.LoginDiv>
           <s.LoginDiv className="container">
             <RegisterTerms />
-          </s.LoginDiv>
+          </s.LoginDiv> */}
         </s.Form>
       </s.LoginDiv>
     </>
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
