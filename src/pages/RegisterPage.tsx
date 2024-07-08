@@ -22,6 +22,7 @@ const LoginPage = () => {
   const [registerFullname, setRegisterFullname] = useState<string>("");
   const [registerPhonenumber, setRegisterPhonenumber] = useState<string>("");
   const [countryCode, setCountryCode] = useState<string>("");
+  const [isUnderAge, setIsUnderAge] = useState(false);
 
   const nicknameRule =
     /^(([a-zA-Z]+[0-9]*|[0-9]*[a-zA-Z]+)[a-zA-Z0-9]*|([가-힣]+[0-9]*|[0-9]*[가-힣]+)[가-힣0-9]*)$/;

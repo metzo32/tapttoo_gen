@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import s from "../stores/styling";
 import Modal from "./Modal";
 
-const CalculateAge = () => {
+const CalculateAge = ({ }) => {
   const [year, setYear] = useState(""); // 원래는 빈 문자열을 쓰다가 null로 바꾸었다. 그렇지 않으면 초기값이 현재 연도의 1월 1일인데, 이미 valid 상태로 선택됨
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");

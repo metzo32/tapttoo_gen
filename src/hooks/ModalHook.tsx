@@ -1,38 +1,34 @@
 import { useState } from "react";
+import { UseModalProps } from "../types/ModalProps";
 
-const useModal = () => {
-  const [isOpen, setIsOpen] = useState(false);
+
+const useModal = ({ isOpen, onClose }: UseModalProps) => {
   const [understand, setUnderstand] = useState(false);
-  const [closing, setClosing] = useState(false);
+  const [animationClosing, setAnimationClosing] = useState(false);
 
-  //   if (!isOpen) return null; 조건부 호출은 커스텀 훅에서 사용할 수 없음
+  const handleUnderstandChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setUnderstand((prevUnderstand) => !prevUnderstand);
+  };
 
-  const openModal = () => setIsOpen(true);
-
-  const toggleUnderstand = () => {
-      console.log(understand)
-    setUnderstand((prev) => !prev);
+  const handleModalClose = () => {
+    if (understand) {
+      setAnimationClosing(true);
+      setTimeout(() => {
+        setAnimationClosing(false);
+        onClose(); 
+      }, 800);
     }
-
-  const closeModal = () => {
-    if (!understand) {
-      return;
-    }
-    setClosing(true);
-
-    setTimeout(() => {
-      setClosing(false);
-      setIsOpen(false);
-    }, 800);
   };
 
   return {
     isOpen,
+    onClose,
     understand,
-    closing,
-    openModal,
-    closeModal,
-    toggleUnderstand,
+    animationClosing,
+    handleUnderstandChange,
+    handleModalClose,
   };
 };
 
