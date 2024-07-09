@@ -2143,6 +2143,10 @@ const LoginDiv = styled.div`
     margin-top: 50px;
     padding-top: 20px;
 
+    &.login-page {
+       border: 1px solid red;
+    }
+
     &.step01 {
       height: 260px;
     }
