@@ -26,6 +26,7 @@ import { FaYoutube } from "react-icons/fa6"; //유튜브
 
 import { FiArrowDownRight } from "react-icons/fi"; //대각선 화살표
 import { MdOutlineArrowUpward } from "react-icons/md"; // 위 화살표
+
 import { TbExclamationMark } from "react-icons/tb"; //느낌표
 
 import { ReactComponent as CheckboxBefore } from "../assets/icons/checkbox-passive.svg";
@@ -297,6 +298,7 @@ const HeaderDiv = styled.div`
     width: auto;
     height: 100%;
     display: flex;
+    flex-direction: row;
     padding-top: 3px;
     justify-content: space-between;
     align-items: center;
@@ -1864,14 +1866,17 @@ const Footer = styled.div`
     width: 100%;
     height: 70px;
     background-color: ${White};
-    margin-top: 10px;
-    padding-top: 5px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    transform: translateY(2px);
 
     opacity: 0.8;
+
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+
   }
 
   &.container {
@@ -1913,6 +1918,7 @@ const Footer = styled.div`
 
   &.button-wrapper {
     display: flex;
+    height: 30px;
     flex-direction: row;
     align-items: center;
   }
@@ -2112,17 +2118,20 @@ const LoginDiv = styled.div`
       transition: 0.4s ease;
     }
 
+    &.login-page {
+      height: 460px;
+      padding: 120px 50px;
+    }
+
     &.step01 {
       height: 540px;
-      border: 1px solid yellow;
       padding: 80px 50px;
     }
 
     &.step02 {
       height: 620px;
-      border: 1px solid yellow;
       padding: 30px 50px 50px 50px;
-  }
+    }
   }
 
   &.input-wrapper {
@@ -2141,6 +2150,14 @@ const LoginDiv = styled.div`
     &.step02 {
       height: 365px;
     }
+
+    &.login-page-box {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
   }
 
   &.input-box {
@@ -2212,6 +2229,10 @@ const LoginDiv = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: stretch;
+
+    &.login {
+      height: 180px;
+    }
   }
 
   &.calandar-container {

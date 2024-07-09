@@ -4,7 +4,7 @@ import Modal from "./Modal";
 
 interface CalculateAgeProps {
   isAdult: (isValid: boolean | null) => void;
-  handleOpenModal : () => void;
+  handleOpenModal : () => void; //모달 열기. 모달을 열어야할 때 해당 함수 호출
 }
 
 const CalculateAge: React.FC<CalculateAgeProps> = ({ isAdult, handleOpenModal }) => {

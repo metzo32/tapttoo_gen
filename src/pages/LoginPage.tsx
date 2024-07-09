@@ -98,51 +98,58 @@ const LoginPage = () => {
     <>
       <s.LoginDiv className="wrapper">
         <s.Form className="login" onSubmit={handleSignIn}>
-          <s.LoginDiv className="container">
-            <s.LoginDiv className="input-box">
-              <s.Input
-                name="email"
-                type="email"
-                id="useremail"
-                value={signInEmail}
-                onChange={(event) => setSignInEmail(event.target.value)}
-                onBlur={handleBlur}
-                required
-              />
-              <s.Label className={`login-info ${signInEmail ? "active" : ""}`}>
-                Email
-              </s.Label>
+          <s.LoginDiv className="container login-page">
+            <s.LoginDiv className="input-wrapper login-page-box">
+              <s.LoginDiv className="input-box">
+                <s.Input
+                  name="email"
+                  type="email"
+                  id="useremail"
+                  value={signInEmail}
+                  onChange={(event) => setSignInEmail(event.target.value)}
+                  onBlur={handleBlur}
+                  required
+                />
+                <s.Label
+                  className={`login-info ${signInEmail ? "active" : ""}`}
+                >
+                  Email
+                </s.Label>
+              </s.LoginDiv>
+              <s.LoginDiv className="input-box">
+                <s.Input
+                  name="password"
+                  type="password"
+                  id="password"
+                  value={signInPw}
+                  minLength={6}
+                  onChange={(event) => setSignInPw(event.target.value)}
+                  onBlur={handleBlur}
+                  required
+                />
+                <s.Label className={`login-info ${signInPw ? "active" : ""}`}>
+                  Password
+                </s.Label>
+              </s.LoginDiv>
             </s.LoginDiv>
-            <s.LoginDiv className="input-box">
-              <s.Input
-                name="password"
-                type="password"
-                id="password"
-                value={signInPw}
-                minLength={6}
-                onChange={(event) => setSignInPw(event.target.value)}
-                onBlur={handleBlur}
-                required
-              />
-              <s.Label className={`login-info ${signInPw ? "active" : ""}`}>
-                Password
-              </s.Label>
+            <s.LoginDiv className="button-wrapper login">
+              <s.LoginDiv className="checkbox-box">
+                <s.Label className="remember">Remember me</s.Label>
+                <s.Input
+                  type="checkbox"
+                  checked={rememberMe}
+                  onChange={handleRememberMeChange}
+                  className="check"
+                />
+              </s.LoginDiv>
+
+              <s.Button type="submit" className="Round">
+                로그인
+              </s.Button>
+              <s.Button onClick={() => handleNavigation("/register")}>
+                가입하기
+              </s.Button>
             </s.LoginDiv>
-            <s.LoginDiv className="checkbox-box">
-              <s.Label className="remember">Remember me</s.Label>
-              <s.Input
-                type="checkbox"
-                checked={rememberMe}
-                onChange={handleRememberMeChange}
-                className="check"
-              />
-            </s.LoginDiv>
-            <s.Button type="submit" className="Round">
-              로그인
-            </s.Button>
-            <s.Button onClick={() => handleNavigation("/register")}>
-              가입하기
-            </s.Button>
           </s.LoginDiv>
         </s.Form>
       </s.LoginDiv>

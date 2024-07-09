@@ -125,6 +125,7 @@ const RegisterPage = () => {
     if (validateStepOne()) {
       setStep(step + 1);
     } else {
+      
       return;
     }
   };
@@ -170,7 +171,7 @@ const RegisterPage = () => {
         </Modal>
 
         <s.Form className="login" onSubmit={handleSignUp}>
-          {/* {step === 1 && (
+          {step === 1 && (
             <s.LoginDiv className="container step01">
               <s.LoginDiv className="input-wrapper step01">
                 <RegisterInputItems
@@ -182,7 +183,7 @@ const RegisterPage = () => {
                   onChange={(event) => setRegisterEmail(event.target.value)}
                   onBlur={handleBlur}
                   required={true}
-                  label={"이메일"}
+                  label={"Email"}
                 />
 
                 <RegisterInputItems
@@ -194,7 +195,7 @@ const RegisterPage = () => {
                   onChange={(event) => setRegisterPw(event.target.value)}
                   onBlur={handleBlur}
                   required={true}
-                  label={"비밀번호"}
+                  label={"Password"}
                   placeholder={"8자 이상의 영문 또는 숫자"}
                 />
 
@@ -207,7 +208,7 @@ const RegisterPage = () => {
                   onChange={(event) => setRegisterPwConfirm(event.target.value)}
                   onBlur={handleBlur}
                   required={true}
-                  label={"비밀번호 확인"}
+                  label={"Password Confirm"}
                 />
               </s.LoginDiv>
 
@@ -226,9 +227,9 @@ const RegisterPage = () => {
                 </s.Button>
               </s.LoginDiv>
             </s.LoginDiv>
-          )} */}
+          )}
 
-          {step === 1 && (
+          {step === 2 && (
             <s.LoginDiv className="container step02">
               <s.LoginDiv className="input-wrapper step02">
                 <RegisterInputItems
