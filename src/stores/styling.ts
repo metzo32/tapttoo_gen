@@ -625,6 +625,19 @@ const StyledH3 = styled.h3`
     font-weight: 500;
     line-height: 30px;
   }
+
+  &.carousel-title {
+    width: auto;
+    font-family: "Archivo Black", sans-serif;
+    font-weight: 600;
+    font-size: 3.5em;
+    color: ${White};
+    white-space: normal;
+    position: absolute;
+    top: 50%;
+    left: 60px;
+    transform: translate(0, -50%);
+  }
 `;
 
 const StyledH4 = styled.h4`
@@ -1463,7 +1476,7 @@ const Search = styled.div`
   &.large-container {
     width: 100%;
     height: auto;
-    min-height: 400px;
+    aspect-ratio: 4/1;
     border: 1px solid blue;
   }
 
@@ -1686,14 +1699,13 @@ const ArtistDiv = styled.div`
 `;
 
 const Carousel = styled.div`
-  background-color: ivory;
-  width: 100%;
-  height: 200px;
-
   &.carousel-wrapper {
     position: relative;
-    height: 400px;
+    width: 85%;
+    height: 100%;
+    aspect-ratio: 4/1;
     overflow: hidden;
+    margin: 0 auto;
   }
 
   &.carousel-box {
@@ -1707,6 +1719,10 @@ const Carousel = styled.div`
     background-size: contain;
     background-repeat: no-repeat;
     flex: none; // 이 속성을 넣어야 화면에 1개씩 보여진다.
+  }
+
+  &.data {
+    position: relative;
   }
 `;
 
@@ -2622,14 +2638,16 @@ const StyledHeaderIcon = `
 
 const LeftIcon = styled(IoIosArrowBack)`
   ${StyledIcon}
-  width: 2em;
-  height: 2em;
+  fill: white;
+  width: 3em;
+  height: 3em;
 `;
 
 const RightIcon = styled(IoIosArrowForward)`
   ${StyledIcon}
-  width: 2em;
-  height: 2em;
+  fill: white;
+  width: 3em;
+  height: 3em;
 `;
 
 const CheckboxBeforeIcon = styled(CheckboxBefore)`

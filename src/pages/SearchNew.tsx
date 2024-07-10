@@ -1,19 +1,20 @@
 import React from 'react'
 import s from '../stores/styling'
-import Carousel from '../components/Carousel'
-import new01 from '../assets/images/new01.jpg'
-import new02 from '../assets/images/new02.jpg'
-import new03 from '../assets/images/new03.jpg'
 import { CarouselItem } from '../types/CarouselType'
-import CustomCarousel from '../components/CustomCarousel'
+import { CustomCarousel, defaultRenderItem } from '../components/CustomCarousel'
+
+import { CarouselItemConverter } from '../stores/CarouselItemConverter'
+import searchMainImages from '../stores/CarouselData'
+
+
+const items = CarouselItemConverter(searchMainImages);
 
 export default function SearchNew() {
-
   return (
     <>
         <s.Search className='search-wrapper'>
             <s.Search className='large-container'>
-                <CustomCarousel/>
+                <CustomCarousel items={items} renderItem={defaultRenderItem} />
             </s.Search>
             <s.Search className='circles-container'>
                 프로필
