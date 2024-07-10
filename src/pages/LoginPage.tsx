@@ -44,6 +44,7 @@ const LoginPage = () => {
         console.error("Error signing in:", error);
         const errorCode = error.code;
         const errorMessage = error.message;
+        console.error(`로그인 실패: ${errorCode}, ${errorMessage}`);
         setCurrentlyLoggedIn(false);
         setIsLoggedIn(false);
       });
