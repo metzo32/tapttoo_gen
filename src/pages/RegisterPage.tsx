@@ -156,6 +156,7 @@ const RegisterPage = () => {
       <s.LoginDiv className="wrapper">
         <s.Image src={RegisterImage01} alt="" className="register-bg01" />
         <s.Image src={RegisterImage02} alt="" className="register-bg02" />
+        
         <Modal
           isOpen={isModalOpen}
           onClose={handleCloseModal}
