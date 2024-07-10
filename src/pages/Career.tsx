@@ -33,7 +33,7 @@ export default function Career() {
         </s.CareerDiv>
       </s.SectionFrame>
       <s.SectionFrame className='carousel-frame'>
-        <SimpleSlider />
+        {/* <SimpleSlider /> */}
       </s.SectionFrame>
       <s.SectionFrame className='career-img-wrapper'>
         <s.CareerItem onClick={() => handleCareerDetail('/careerbusiness')}>

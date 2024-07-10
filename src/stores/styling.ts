@@ -27,6 +27,9 @@ import { FaYoutube } from "react-icons/fa6"; //유튜브
 import { FiArrowDownRight } from "react-icons/fi"; //대각선 화살표
 import { MdOutlineArrowUpward } from "react-icons/md"; // 위 화살표
 
+import { IoIosArrowBack } from "react-icons/io"; // 왼쪽 꺽쇠
+import { IoIosArrowForward } from "react-icons/io"; // 오른쪽 꺽쇠
+
 import { TbExclamationMark } from "react-icons/tb"; //느낌표
 
 import { ReactComponent as CheckboxBefore } from "../assets/icons/checkbox-passive.svg";
@@ -203,16 +206,6 @@ const Div = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  &.search-new-wrapper {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-
-    margin-top: 100px;
   }
 
   &.new-img-box {
@@ -1453,6 +1446,40 @@ const Home = styled.div`
   }
 `;
 
+const Search = styled.div`
+  margin-bottom: 50px;
+
+  &.search-wrapper {
+    width: calc(100% - 40px);
+    height: auto;
+    border: 1px solid red;
+    padding: 0px 20px;
+
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  &.large-container {
+    width: 100%;
+    height: auto;
+    min-height: 400px;
+    border: 1px solid blue;
+  }
+
+  &.circles-container {
+    width: 100%;
+    height: 200px;
+    border: 1px solid yellow;
+  }
+
+  &.search-container {
+    width: 100%;
+    height: 100px;
+    border: 1px solid purple;
+  }
+`;
+
 const ArticleGrid = styled.div`
   width: 100%;
   height: auto;
@@ -1663,11 +1690,9 @@ const Carousel = styled.div`
   width: 100%;
   height: 200px;
 
-  &.carousel-container {
-    position: relative;
-  }
-
   &.carousel-wrapper {
+    position: relative;
+    height: 400px;
     overflow: hidden;
   }
 
@@ -1876,7 +1901,6 @@ const Footer = styled.div`
     bottom: 0;
     margin: 0;
     padding: 0;
-
   }
 
   &.container {
@@ -2455,16 +2479,18 @@ const Button = styled.button`
     position: absolute;
     z-index: 1;
 
-    top: 40%;
+    top: 0;
     left: 0;
+    transform: translateY(330px);
   }
 
   &.carousel-btn-right {
     position: absolute;
     z-index: 1;
 
-    top: 40%;
+    top: 0;
     right: 0;
+    transform: translateY(330px);
   }
 
   &.scroll-top-btn {
@@ -2594,6 +2620,18 @@ const StyledHeaderIcon = `
     }
 `;
 
+const LeftIcon = styled(IoIosArrowBack)`
+  ${StyledIcon}
+  width: 2em;
+  height: 2em;
+`;
+
+const RightIcon = styled(IoIosArrowForward)`
+  ${StyledIcon}
+  width: 2em;
+  height: 2em;
+`;
+
 const CheckboxBeforeIcon = styled(CheckboxBefore)`
   width: 15px;
   height: 15px;
@@ -2709,6 +2747,7 @@ const s = {
   Modal,
   Echo,
   Home,
+  Search,
   HomeImage,
   hr,
   Image,
@@ -2747,6 +2786,9 @@ const s = {
   TapttooIcon,
   Username,
   WishIconContainer,
+
+  LeftIcon,
+  RightIcon,
 
   CheckboxBeforeIcon,
   CheckboxAfterIcon,
