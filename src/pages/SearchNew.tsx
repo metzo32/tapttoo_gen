@@ -1,40 +1,56 @@
-import React from 'react'
-import s from '../stores/styling'
-import { CarouselItem } from '../types/CarouselType'
-import { CustomCarousel, defaultRenderItem } from '../components/CustomCarousel'
+import React from "react";
+import s from "../stores/styling";
+import { CarouselItem } from "../types/CarouselType";
+import {
+  CustomCarousel,
+  defaultRenderItem,
+} from "../components/CustomCarousel";
 
-import { CarouselItemConverter } from '../stores/CarouselItemConverter'
-import searchMainImages from '../stores/CarouselData'
+import { CarouselItemConverter } from "../stores/CarouselItemConverter";
+import searchMainImages from "../stores/CarouselData";
+import SearchProfiles from "../components/SearchProfiles";
 
+import search_img01 from "../assets/images/search_img01.jpg"
+import search_img02 from "../assets/images/search_img02.jpg"
 
 const items = CarouselItemConverter(searchMainImages);
 
 export default function SearchNew() {
   return (
     <>
-        <s.Search className='search-wrapper'>
-            <s.Search className='large-container'>
-                <CustomCarousel items={items} renderItem={defaultRenderItem} />
+      <s.Search className="search-wrapper">
+        <s.Search className="top-container">
+          <CustomCarousel items={items} renderItem={defaultRenderItem} />
+        </s.Search>
+        <s.Search className="circles-container">
+          <SearchProfiles />
+        </s.Search>
+        <s.Search className="search-container">서치바</s.Search>
+
+        <s.Search className="top-container">
+          <s.Search className="extra-margin">
+            <s.Search className="mid-conatiner left">
+              <s.Image src={search_img01} alt="image" className="search-square"/>
             </s.Search>
-            <s.Search className='circles-container'>
-                프로필
+            <s.Search className="mid-conatiner right">
+            <s.Image src={search_img02} alt="image" className="search-square"/>
+              <s.Search className="item-box">
+                <s.Search className="text-box">와</s.Search>
+                <s.Search className="text-box">우</s.Search>
+              </s.Search>
             </s.Search>
-            <s.Search className='search-container'>
-                서치바
-            </s.Search>
-            <s.Search className='large-container'>
-                2
-            </s.Search>
-            <s.Search className='large-container'>
-                3
-            </s.Search>
-            <s.Search className='large-container'>
-                4
-            </s.Search>
-            {/* <s.StyledH1 className='new-artists-title'>
+          </s.Search>
+        </s.Search>
+
+        <s.Search className="top-container">
+            <s.StyledH4>EVENTS</s.StyledH4>
+            <s.Line className="dark"/>
+        </s.Search>
+        <s.Search className="top-container">4</s.Search>
+        {/* <s.StyledH1 className='new-artists-title'>
                 Lastest Artists
             </s.StyledH1> */}
-            {/* <s.StyledH2 className='artist-name'>
+        {/* <s.StyledH2 className='artist-name'>
                 COCINAMADRE
             </s.StyledH2>
             <s.StyledP className='hashtag'>
@@ -45,8 +61,7 @@ export default function SearchNew() {
                 <s.Image src={new02} alt='photo' className='new-artist-img'/>
                 <s.Image src={new03} alt='photo' className='new-artist-img'/>
             </s.Search> */}
-        </s.Search>
+      </s.Search>
     </>
-  )
+  );
 }
-

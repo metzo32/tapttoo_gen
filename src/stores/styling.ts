@@ -235,6 +235,20 @@ const Span = styled.span`
   }
 `;
 
+const Line = styled.div`
+    width: calc(100% - 100px);
+    height: 2px;
+    background-color: ${White};
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+
+    &.dark {
+    background-color: ${Black};
+    }
+`
+
 const Atag = styled.a`
   font-size: 1.1em;
   color: ${Grey};
@@ -630,13 +644,13 @@ const StyledH3 = styled.h3`
     width: auto;
     font-family: "Archivo Black", sans-serif;
     font-weight: 600;
-    font-size: 3.5em;
+    font-size: 4em;
     color: ${White};
     white-space: normal;
     position: absolute;
     top: 50%;
     left: 60px;
-    transform: translate(0, -50%);
+    transform: translate(0, -30%);
   }
 `;
 
@@ -666,12 +680,12 @@ const StyledH4 = styled.h4`
 `;
 
 const StyledP = styled.p`
-  width: 100%;
   color: ${Grey};
   font-size: 1.3em;
   font-weight: 300;
   text-align: left;
   line-height: 30px;
+  padding: 0;
 
   &.about-first-title {
     font-size: 1.5em;
@@ -1284,6 +1298,19 @@ const Image = styled.img`
     object-fit: cover;
     overflow: hidden;
   }
+
+  &.search-circle-profile {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+  }
+
+  &.search-square {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    overflow: hidden;
+  }
 `;
 
 const Modal = styled.div`
@@ -1463,32 +1490,86 @@ const Search = styled.div`
   margin-bottom: 50px;
 
   &.search-wrapper {
-    width: calc(100% - 40px);
+    width: 100%;
     height: auto;
     border: 1px solid red;
-    padding: 0px 20px;
 
     display: flex;
     flex-direction: column;
     text-align: left;
   }
 
-  &.large-container {
+  &.top-container {
     width: 100%;
     height: auto;
     aspect-ratio: 4/1;
     border: 1px solid blue;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid pink;
   }
 
   &.circles-container {
     width: 100%;
     height: 200px;
     border: 1px solid yellow;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &.extra-margin {
+    width: calc(100% - 160px);
+    height: 1000px;
+    margin: 0px 80px;
+    border: 1px solid yellow;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &.mid-conatiner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid red;
+
+    &.left {
+      width: calc(60% - 28px);
+    }
+
+    &.right {
+      width: calc(40% - 28px);
+    }
   }
 
   &.search-container {
     width: 100%;
     height: 100px;
+  }
+
+  &.circle-profile-box {
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 0px 80px 0px 0px;
+  }
+
+  &.item-box {
+    display: flex;
+    height: auto;
+    flex-direction: row;
+    border: 1px solid green;
+  }
+
+  &.text-box {
+    width: 50%;
+    height: 100%;
     border: 1px solid purple;
   }
 `;
@@ -2497,7 +2578,7 @@ const Button = styled.button`
 
     top: 0;
     left: 0;
-    transform: translateY(330px);
+    transform: translateY(380px);
   }
 
   &.carousel-btn-right {
@@ -2506,7 +2587,7 @@ const Button = styled.button`
 
     top: 0;
     right: 0;
-    transform: translateY(330px);
+    transform: translateY(380px);
   }
 
   &.scroll-top-btn {
@@ -2745,6 +2826,7 @@ const s = {
   ArtistDiv,
   ArtistReg,
   AboutDiv,
+  Line,
   Atag,
   BrandLogo,
   BrandText,
