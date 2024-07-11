@@ -236,18 +236,24 @@ const Span = styled.span`
 `;
 
 const Line = styled.div`
-    width: calc(100% - 100px);
+  &.light {
+    width: 100%;
     height: 2px;
     background-color: ${White};
     position: absolute;
     top: 60%;
     left: 50%;
     transform: translate(-50%, 50%);
+  }
 
-    &.dark {
-    background-color: ${Black};
-    }
-`
+  &.dark {
+    width: 100%;
+    height: 2px;
+    background-color: ${Grey};
+    margin: 0;
+    display: block;
+  }
+`;
 
 const Atag = styled.a`
   font-size: 1.1em;
@@ -541,10 +547,11 @@ const StyledH1 = styled.h1`
 `;
 
 const StyledH2 = styled.h2`
+letter-spacing: -0.05em;
+
   &.gradient-title {
     overflow: visible;
     font-size: 4.5em;
-    letter-spacing: -0.05em;
     font-weight: 300;
     line-height: 80px;
     margin-top: 120px;
@@ -652,10 +659,18 @@ const StyledH3 = styled.h3`
     left: 60px;
     transform: translate(0, -30%);
   }
+
+  &.search-title {
+    font-family: "Archivo Black", sans-serif;
+    font-weight: 600;
+    font-size: 4em;
+    color: ${Grey};
+    margin: 50px 0px 150px 0px;
+  }
 `;
 
 const StyledH4 = styled.h4`
-  width: 90%;
+  width: auto;
   color: ${Green};
   font-size: 3.3em;
   letter-spacing: -0.05em;
@@ -677,6 +692,11 @@ const StyledH4 = styled.h4`
     font-weight: 600;
     line-height: 30px;
   }
+
+  &.event-title {
+    font-size: 1.2em;
+    color: ${Grey};
+  }
 `;
 
 const StyledP = styled.p`
@@ -685,6 +705,7 @@ const StyledP = styled.p`
   font-weight: 300;
   text-align: left;
   line-height: 30px;
+
   padding: 0;
 
   &.about-first-title {
@@ -785,6 +806,16 @@ const StyledP = styled.p`
     font-size: 1em;
     line-height: 22px;
     text-align: center;
+  }
+
+  &.event-name {
+    font-size: 2.6em;
+    font-weight: 500;
+    letter-spacing: -0.05em;
+  }
+
+  &.event-city {
+    font-size: 1em;
   }
 `;
 
@@ -1487,7 +1518,7 @@ const Home = styled.div`
 `;
 
 const Search = styled.div`
-  margin-bottom: 50px;
+  margin-bottom: 150px;
 
   &.search-wrapper {
     width: 100%;
@@ -1502,11 +1533,20 @@ const Search = styled.div`
   &.top-container {
     width: 100%;
     height: auto;
-    aspect-ratio: 4/1;
     border: 1px solid blue;
     display: flex;
     flex-direction: row;
+    position: relative;
     border: 1px solid pink;
+
+    &.main {
+      aspect-ratio: 4/1;
+    }
+
+    &.column {
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   &.circles-container {
@@ -1571,6 +1611,61 @@ const Search = styled.div`
     width: 50%;
     height: 100%;
     border: 1px solid purple;
+  }
+
+  &.line-box {
+    width: calc(100% - 100px);
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &.event-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+  }
+
+  &.event-container {
+    width: 95%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+  }
+
+  &.event-title-box {
+    width: 20%;
+    height: 100%;
+    margin: 0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &.event-image-box {
+    width: 30%;
+    height: 100%;
+    margin: 0;
+  }
+
+  &.event-text-box {
+    width: 50%;
+    height: 70px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
   }
 `;
 

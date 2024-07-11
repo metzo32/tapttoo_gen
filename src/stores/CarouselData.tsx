@@ -11,7 +11,7 @@ const searchMainImages = [
     <s.StyledH3 className="carousel-title">
       We can deliver <br/>new way to express yourself
     </s.StyledH3>
-    <s.Line/>
+    <s.Line className="light"/>
   </s.Carousel>,
 
   <s.Carousel className="data">
@@ -19,7 +19,7 @@ const searchMainImages = [
     <s.StyledH3 className="carousel-title">
       We can deliver new way to express yourself
     </s.StyledH3>
-    <s.Line/>
+    <s.Line className="light"/>
   </s.Carousel>,
 
   <s.Carousel className="data">
@@ -27,7 +27,7 @@ const searchMainImages = [
     <s.StyledH3 className="carousel-title">
       We can deliver new way to express yourself
     </s.StyledH3>
-    <s.Line/>
+    <s.Line className="light"/>
   </s.Carousel>,
 
   <s.Carousel className="data">
@@ -35,7 +35,7 @@ const searchMainImages = [
     <s.StyledH3 className="carousel-title">
       We can deliver new way to express yourself
     </s.StyledH3>
-    <s.Line/>
+    <s.Line className="light"/>
   </s.Carousel>,
 
   <s.Carousel className="data">
@@ -43,7 +43,7 @@ const searchMainImages = [
     <s.StyledH3 className="carousel-title">
       We can deliver new way to express yourself
     </s.StyledH3>
-    <s.Line/>
+    <s.Line className="light"/>
   </s.Carousel>,
 ];
 
