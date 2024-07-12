@@ -37,7 +37,6 @@ const Carousel: React.FC<CarouselProps> = ({ items, renderItem }) => {
   }
   
   const handleSwipe = (direction: 'left'|'right') => {
-    console.log('클릭')
     const newIndex = direction === 'left' ? currentIndex - 1 : currentIndex + 1
     handlerSlider(newIndex)
   }
@@ -48,7 +47,6 @@ const Carousel: React.FC<CarouselProps> = ({ items, renderItem }) => {
   }
 
   useEffect(() => { //슬라이드 인덱스가 업데이트 될때마다 애니메이션 비활성화
-    console.log('Slide ID:', slides[currentIndex].id)
 
     if (currentIndex === 1 && direction.current === 'left') {
       setTimeout(() => {
@@ -72,6 +70,15 @@ const Carousel: React.FC<CarouselProps> = ({ items, renderItem }) => {
       }, 600)
     }
   }, [currentIndex, slides.length]) //slides.length를 추가하여 아이템 갯수와 상관없이 구현 가능하도록
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      direction.current = 'right'
+      handleSwipe('right')
+    }, 3000)
+
+    return () => clearInterval(interval)
+  }, [currentIndex])  // currentIndex가 변경될 때마다 다시 설정
 
   const transition = offTransition ? '0s' : '0.5s';
 

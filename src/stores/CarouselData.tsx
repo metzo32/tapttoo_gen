@@ -9,7 +9,7 @@ const searchMainImages = [
   <s.Carousel className="data">
     <s.Image src={searchMainImage1} alt="image" />
     <s.StyledH3 className="carousel-title">
-      We can deliver <br/>new way to express yourself
+      We can deliver new way to express yourself
     </s.StyledH3>
     <s.Line className="light"/>
   </s.Carousel>,
@@ -17,7 +17,7 @@ const searchMainImages = [
   <s.Carousel className="data">
     <s.Image src={searchMainImage2} alt="image" />
     <s.StyledH3 className="carousel-title">
-      We can deliver new way to express yourself
+      You have to keep working on it Isn't that simple?
     </s.StyledH3>
     <s.Line className="light"/>
   </s.Carousel>,
@@ -25,7 +25,7 @@ const searchMainImages = [
   <s.Carousel className="data">
     <s.Image src={searchMainImage3} alt="image" />
     <s.StyledH3 className="carousel-title">
-      We can deliver new way to express yourself
+      And with clarity,<br/>you can gain conviction
     </s.StyledH3>
     <s.Line className="light"/>
   </s.Carousel>,
@@ -33,7 +33,7 @@ const searchMainImages = [
   <s.Carousel className="data">
     <s.Image src={searchMainImage4} alt="image" />
     <s.StyledH3 className="carousel-title">
-      We can deliver new way to express yourself
+      Might as well take a chance on doing what you love
     </s.StyledH3>
     <s.Line className="light"/>
   </s.Carousel>,
@@ -41,7 +41,7 @@ const searchMainImages = [
   <s.Carousel className="data">
     <s.Image src={searchMainImage5} alt="image" />
     <s.StyledH3 className="carousel-title">
-      We can deliver new way to express yourself
+      Ideas don't come out<br/>fully formed
     </s.StyledH3>
     <s.Line className="light"/>
   </s.Carousel>,

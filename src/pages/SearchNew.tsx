@@ -10,9 +10,12 @@ import { CarouselItemConverter } from "../stores/CarouselItemConverter";
 import searchMainImages from "../stores/CarouselData";
 import SearchProfiles from "../components/SearchProfiles";
 import SearchEventProfile from "../components/SearchEventProfile";
+import { CircularProgressbar } from "react-circular-progressbar";
+import InfiniteText from "../components/InfiniteText";
 
 import search_img01 from "../assets/images/search_img01.jpg";
 import search_img02 from "../assets/images/search_img02.jpg";
+import search_today01 from "../assets/images/search_today01.jpg";
 
 const items = CarouselItemConverter(searchMainImages);
 
@@ -51,22 +54,54 @@ export default function SearchNew() {
           </s.Search>
         </s.Search>
 
-        <s.Search className="top-container column">
-          <s.StyledH3 className="search-title">UPCOMING EVENTS</s.StyledH3>
-          <s.Search className="line-box">
-            <s.Line className="dark"/>
-
-
-            <SearchEventProfile/>
-
-
+        <s.Search className="top-container">
+          <s.Search className="extra-margin">
+            <s.Search className="today-container">
+              <s.StyledH3 className="search-title">
+                CHOICE OF THE DAY
+              </s.StyledH3>
+              <s.Search className="arrow">화살표</s.Search>
+              <s.StyledP className="event-text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Necessitatibus quae impedit deleniti repellat! Aspernatur
+                deleniti, mollitia officia obcaecati eaque ipsam provident,
+                dignissimos repellendus numquam magnam architecto maiores
+                laudantium quidem soluta.
+              </s.StyledP>
+            </s.Search>
+            <s.Search className="today-image-container">
+              <s.Image
+                className="search-square hover-event"
+                src={search_today01}
+                alt="image"
+              />
+            </s.Search>
           </s.Search>
         </s.Search>
-        <s.Search className="top-container">4</s.Search>
-        {/* <s.StyledH1 className='new-artists-title'>
+
+        {/* 
+        <CircularProgressbar/> */}
+
+        <s.Search className="top-container column">
+          <s.StyledH3 className="search-title margin">
+            UPCOMING EVENTS
+          </s.StyledH3>
+          <s.Search className="line-box">
+            <s.Line className="dark" />
+
+            <SearchEventProfile />
+          </s.Search>
+        </s.Search>
+        <s.Search className="top-container column">
+          <s.Line className="infinite"/>
+          <InfiniteText text="TAPTTOO EXCLUSIVE 2024" repeat={1000} />
+          <s.Line className="infinite"/>
+        </s.Search>
+      </s.Search>
+      {/* <s.StyledH1 className='new-artists-title'>
                 Lastest Artists
             </s.StyledH1> */}
-        {/* <s.StyledH2 className='artist-name'>
+      {/* <s.StyledH2 className='artist-name'>
                 COCINAMADRE
             </s.StyledH2>
             <s.StyledP className='hashtag'>
@@ -77,7 +112,7 @@ export default function SearchNew() {
                 <s.Image src={new02} alt='photo' className='new-artist-img'/>
                 <s.Image src={new03} alt='photo' className='new-artist-img'/>
             </s.Search> */}
-      </s.Search>
+      <s.Search className="top-container">4</s.Search>
     </>
   );
 }

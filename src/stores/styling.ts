@@ -49,6 +49,15 @@ const Engraved = styled.div`
   text-shadow: rgba(245, 245, 245, 0.5) 3px 3px 1px;
 `;
 
+const infiniteSlideLeft = keyframes`
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+`
+
 const animateIn = keyframes`
   from {
     transform: translateY(150px);
@@ -250,6 +259,14 @@ const Line = styled.div`
     width: 100%;
     height: 2px;
     background-color: ${Grey};
+    margin: 0;
+    display: block;
+  }
+    
+    &.infinite {
+    width: 100%;
+    height: 2px;
+    background-color: ${LightGrey};
     margin: 0;
     display: block;
   }
@@ -547,7 +564,7 @@ const StyledH1 = styled.h1`
 `;
 
 const StyledH2 = styled.h2`
-letter-spacing: -0.05em;
+  letter-spacing: -0.05em;
 
   &.gradient-title {
     overflow: visible;
@@ -648,16 +665,17 @@ const StyledH3 = styled.h3`
   }
 
   &.carousel-title {
-    width: auto;
+    width: 50%;
     font-family: "Archivo Black", sans-serif;
     font-weight: 600;
     font-size: 4em;
+    line-height: 70px;
     color: ${White};
     white-space: normal;
     position: absolute;
     top: 50%;
     left: 60px;
-    transform: translate(0, -30%);
+    transform: translate(0, -80%);
   }
 
   &.search-title {
@@ -665,7 +683,10 @@ const StyledH3 = styled.h3`
     font-weight: 600;
     font-size: 4em;
     color: ${Grey};
-    margin: 50px 0px 150px 0px;
+
+    &.margin {
+      margin: 50px 0px 150px 0px;
+    }
   }
 `;
 
@@ -695,6 +716,11 @@ const StyledH4 = styled.h4`
 
   &.event-title {
     font-size: 1.2em;
+    color: ${Grey};
+  }
+
+  &.today-title {
+    font-size: 2.5em;
     color: ${Grey};
   }
 `;
@@ -816,6 +842,20 @@ const StyledP = styled.p`
 
   &.event-city {
     font-size: 1em;
+  }
+
+  &.event-text {
+    font-size: 1.5em;
+  }
+
+  &.infinite-text {
+    font-family: "Tourney", sans-serif;
+    font-size: 4em;
+    font-weight: 200;
+    color: ${LightGrey};
+    white-space: nowrap;
+
+    animation: ${infiniteSlideLeft} 24000s linear infinite;
   }
 `;
 
@@ -1341,7 +1381,21 @@ const Image = styled.img`
     aspect-ratio: 1/1;
     object-fit: cover;
     overflow: hidden;
+
+    &.hover-event {
+      transition: filter 0.3s ease;
+
+      &:hover {
+        filter: brightness(0.5);
+      }
+    }
   }
+`;
+
+const InfiniteText = styled.div`
+  height: 100px;
+  display: flex;
+  align-items: center;
 `;
 
 const Modal = styled.div`
@@ -1518,12 +1572,12 @@ const Home = styled.div`
 `;
 
 const Search = styled.div`
-  margin-bottom: 150px;
+  margin: 0;
 
   &.search-wrapper {
     width: 100%;
     height: auto;
-    border: 1px solid red;
+    margin-top: 30px;
 
     display: flex;
     flex-direction: column;
@@ -1533,7 +1587,7 @@ const Search = styled.div`
   &.top-container {
     width: 100%;
     height: auto;
-    border: 1px solid blue;
+    margin-bottom: 150px;
     display: flex;
     flex-direction: row;
     position: relative;
@@ -1614,21 +1668,22 @@ const Search = styled.div`
   }
 
   &.line-box {
-    width: calc(100% - 100px);
+    width: calc(100% - 160px);
     height: auto;
+    margin: 0px 80px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center;
   }
 
   &.event-wrapper {
     width: 100%;
+    height: 160px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    margin: 0;
+    justify-content: center;
   }
 
   &.event-container {
@@ -1644,7 +1699,7 @@ const Search = styled.div`
   &.event-title-box {
     width: 20%;
     height: 100%;
-    margin: 0;
+    margin-left: 30px;
 
     display: flex;
     flex-direction: row;
@@ -1655,17 +1710,27 @@ const Search = styled.div`
   &.event-image-box {
     width: 30%;
     height: 100%;
-    margin: 0;
   }
 
   &.event-text-box {
     width: 50%;
     height: 70px;
-    margin: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
+  }
+
+  &.today-container {
+    width: 700px;
+  }
+
+  &.today-image-container {
+    aspect-ratio: 1/1;
+  }
+
+  &.arrow {
+    height: 70%;
   }
 `;
 
@@ -2939,6 +3004,7 @@ const s = {
   Form,
   GridImage,
   HeaderDiv,
+  InfiniteText,
   Modal,
   Echo,
   Home,
