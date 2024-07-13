@@ -11,6 +11,7 @@ import searchMainImages from "../stores/CarouselData";
 import SearchProfiles from "../components/SearchProfiles";
 import SearchEventProfile from "../components/SearchEventProfile";
 import { CircularProgressbar } from "react-circular-progressbar";
+import SearchCard from "../components/SearchCard";
 import InfiniteText from "../components/InfiniteText";
 
 import search_img01 from "../assets/images/search_img01.jpg";
@@ -26,33 +27,18 @@ export default function SearchNew() {
         <s.Search className="top-container main">
           <CustomCarousel items={items} renderItem={defaultRenderItem} />
         </s.Search>
+
         <s.Search className="circles-container">
           <SearchProfiles />
         </s.Search>
         <s.Search className="search-container">서치바</s.Search>
 
-        <s.Search className="top-container">
-          <s.Search className="extra-margin">
-            <s.Search className="mid-conatiner left">
-              <s.Image
-                src={search_img01}
-                alt="image"
-                className="search-square"
-              />
-            </s.Search>
-            <s.Search className="mid-conatiner right">
-              <s.Image
-                src={search_img02}
-                alt="image"
-                className="search-square"
-              />
-              <s.Search className="item-box">
-                <s.Search className="text-box">와</s.Search>
-                <s.Search className="text-box">우</s.Search>
-              </s.Search>
-            </s.Search>
-          </s.Search>
-        </s.Search>
+        <SearchCard
+          imageMain={search_img01}
+          imageSub={search_img02}
+          desMain="테스트"
+          desSub="테스트테스트"
+        />
 
         <s.Search className="top-container">
           <s.Search className="extra-margin">
@@ -60,6 +46,7 @@ export default function SearchNew() {
               <s.StyledH3 className="search-title">
                 CHOICE OF THE DAY
               </s.StyledH3>
+
               <s.Search className="arrow">화살표</s.Search>
               <s.StyledP className="event-text">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -79,8 +66,7 @@ export default function SearchNew() {
           </s.Search>
         </s.Search>
 
-        {/* 
-        <CircularProgressbar/> */}
+        {/* <CircularProgressbar/> */}
 
         <s.Search className="top-container column">
           <s.StyledH3 className="search-title margin">
@@ -93,9 +79,9 @@ export default function SearchNew() {
           </s.Search>
         </s.Search>
         <s.Search className="top-container column">
-          <s.Line className="infinite"/>
+          <s.Line className="infinite" />
           <InfiniteText text="TAPTTOO EXCLUSIVE 2024" repeat={1000} />
-          <s.Line className="infinite"/>
+          <s.Line className="infinite" />
         </s.Search>
       </s.Search>
       {/* <s.StyledH1 className='new-artists-title'>

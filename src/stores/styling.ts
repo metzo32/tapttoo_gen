@@ -56,7 +56,7 @@ const infiniteSlideLeft = keyframes`
   100% {
     transform: translateX(-100%);
   }
-`
+`;
 
 const animateIn = keyframes`
   from {
@@ -250,7 +250,7 @@ const Line = styled.div`
     height: 2px;
     background-color: ${White};
     position: absolute;
-    top: 60%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, 50%);
   }
@@ -262,8 +262,8 @@ const Line = styled.div`
     margin: 0;
     display: block;
   }
-    
-    &.infinite {
+
+  &.infinite {
     width: 100%;
     height: 2px;
     background-color: ${LightGrey};
@@ -675,7 +675,7 @@ const StyledH3 = styled.h3`
     position: absolute;
     top: 50%;
     left: 60px;
-    transform: translate(0, -80%);
+    transform: translate(0, -100%);
   }
 
   &.search-title {
@@ -1364,6 +1364,10 @@ const Image = styled.img`
     justify-content: center;
   }
 
+  &.test-carousel {
+    width: 100%;
+  }
+
   &.artist-page-main {
     width: 100%;
     object-fit: cover;
@@ -1578,6 +1582,7 @@ const Search = styled.div`
     width: 100%;
     height: auto;
     margin-top: 30px;
+    overflow: hidden;
 
     display: flex;
     flex-direction: column;
@@ -1594,6 +1599,8 @@ const Search = styled.div`
     border: 1px solid pink;
 
     &.main {
+      width: calc(100% - 160px);
+      margin: 0px 80px;
       aspect-ratio: 4/1;
     }
 
@@ -1942,7 +1949,6 @@ const ArtistDiv = styled.div`
 const Carousel = styled.div`
   &.carousel-wrapper {
     position: relative;
-    width: 85%;
     height: 100%;
     aspect-ratio: 4/1;
     overflow: hidden;
@@ -1963,7 +1969,9 @@ const Carousel = styled.div`
   }
 
   &.data {
+    width: 100%;
     position: relative;
+    border: 1px solid red;
   }
 `;
 
@@ -2738,7 +2746,7 @@ const Button = styled.button`
 
     top: 0;
     left: 0;
-    transform: translateY(380px);
+    transform: translateY(365px);
   }
 
   &.carousel-btn-right {
@@ -2747,7 +2755,7 @@ const Button = styled.button`
 
     top: 0;
     right: 0;
-    transform: translateY(380px);
+    transform: translateY(365px);
   }
 
   &.scroll-top-btn {

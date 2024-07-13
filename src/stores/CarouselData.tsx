@@ -7,7 +7,7 @@ import searchMainImage5 from "../assets/images/carousel_searchmain_05.png";
 
 const searchMainImages = [
   <s.Carousel className="data">
-    <s.Image src={searchMainImage1} alt="image" />
+    <s.Image src={searchMainImage1} alt="image"/>
     <s.StyledH3 className="carousel-title">
       We can deliver new way to express yourself
     </s.StyledH3>
