@@ -1394,6 +1394,10 @@ const Image = styled.img`
       }
     }
   }
+
+  &.search-wide {
+    width: 100%;
+  }
 `;
 
 const InfiniteText = styled.div`
@@ -1592,6 +1596,7 @@ const Search = styled.div`
   &.top-container {
     width: 100%;
     height: auto;
+    aspect-ratio : 4/1;
     margin-bottom: 150px;
     display: flex;
     flex-direction: row;
@@ -1622,8 +1627,8 @@ const Search = styled.div`
 
   &.extra-margin {
     width: calc(100% - 160px);
-    height: 1000px;
-    margin: 0px 80px;
+    height: 900px;
+    margin: 0px 80px 150px 80px;
     border: 1px solid yellow;
 
     display: flex;
@@ -1738,6 +1743,16 @@ const Search = styled.div`
 
   &.arrow {
     height: 70%;
+  }
+
+  &.review-container {
+    border: 1px solid blue;
+    width: 35%;
+  }
+
+  &.review-image-container{
+    height: 70%;
+    border: purple;
   }
 `;
 
@@ -2744,18 +2759,18 @@ const Button = styled.button`
     position: absolute;
     z-index: 1;
 
-    top: 0;
+    bottom: 0;
     left: 0;
-    transform: translateY(365px);
+    transform: translateY(-58%);
   }
 
   &.carousel-btn-right {
     position: absolute;
     z-index: 1;
 
-    top: 0;
+    bottom: 0;
     right: 0;
-    transform: translateY(365px);
+    transform: translateY(-58%);
   }
 
   &.scroll-top-btn {

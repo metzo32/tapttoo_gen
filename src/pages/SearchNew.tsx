@@ -10,7 +10,7 @@ import { CarouselItemConverter } from "../stores/CarouselItemConverter";
 import searchMainImages from "../stores/CarouselData";
 import SearchProfiles from "../components/SearchProfiles";
 import SearchEventProfile from "../components/SearchEventProfile";
-import { CircularProgressbar } from "react-circular-progressbar";
+import { CircularProgressbar } from 'react-circular-progressbar';
 import SearchCard from "../components/SearchCard";
 import InfiniteText from "../components/InfiniteText";
 
@@ -18,8 +18,10 @@ import search_img01 from "../assets/images/search_img01.jpg";
 import search_img02 from "../assets/images/search_img02.jpg";
 import search_today01 from "../assets/images/search_today01.jpg";
 
-const items = CarouselItemConverter(searchMainImages);
+const items = CarouselItemConverter(searchMainImages)
 
+
+const percentage = 66;
 export default function SearchNew() {
   return (
     <>
@@ -27,6 +29,9 @@ export default function SearchNew() {
         <s.Search className="top-container main">
           <CustomCarousel items={items} renderItem={defaultRenderItem} />
         </s.Search>
+
+        
+        <CircularProgressbar value={percentage} text={`${percentage}%`} />;
 
         <s.Search className="circles-container">
           <SearchProfiles />
@@ -98,6 +103,38 @@ export default function SearchNew() {
                 <s.Image src={new02} alt='photo' className='new-artist-img'/>
                 <s.Image src={new03} alt='photo' className='new-artist-img'/>
             </s.Search> */}
+
+
+      <s.Search className="top-container extra-margin">
+        <s.Image className="search-wide" src="" alt="image"/>
+      </s.Search>
+
+
+      <s.Search className="top-container extra-margin">
+        <s.Search>
+            <s.StyledH3 className="search-title">
+            Reviews
+            </s.StyledH3>
+        </s.Search>
+        <s.Search className="review-container">
+            <s.Search>
+                description
+            </s.Search>
+            <s.Search className="review-image-container">
+            <s.Image className="search-review" src="" alt="image"/>
+            </s.Search>
+        </s.Search>
+        <s.Search className="review-container">
+            <s.Search>
+                description
+            </s.Search>
+            <s.Search className="review-image-container">
+            <s.Image className="search-review" src="" alt="image"/>
+            </s.Search>
+        </s.Search>
+
+      </s.Search>
+      <s.Search className="top-container">4</s.Search>
       <s.Search className="top-container">4</s.Search>
     </>
   );
