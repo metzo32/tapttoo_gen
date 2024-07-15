@@ -5,6 +5,7 @@ import {
   CustomCarousel,
   defaultRenderItem,
 } from "../components/CustomCarousel";
+import { useNavigate } from "react-router-dom";
 
 import { CarouselItemConverter } from "../stores/CarouselItemConverter";
 import searchMainImages from "../stores/CarouselData";
@@ -20,10 +21,15 @@ import search_today01 from "../assets/images/search_today01.jpg";
 
 const items = CarouselItemConverter(searchMainImages)
 
-
-const percentage = 80;
-
 export default function SearchNew() {
+
+  const navigate = useNavigate();
+
+  const handleNavigation = (path: string) => {
+    navigate(path);
+  };
+
+
   return (
     <>
       <s.Search className="search-wrapper">
@@ -34,7 +40,9 @@ export default function SearchNew() {
         <s.Search className="circles-container">
           <SearchProfiles />
         </s.Search>
-        <s.Search className="search-container">서치바</s.Search>
+        <s.Search className="search-container center">
+          <s.Button className="Round" onClick={() => handleNavigation("/your_custom_tattoo")}>나만의 도안 만들어보기</s.Button>
+        </s.Search>
 
         <SearchCard
           imageMain={search_img01}

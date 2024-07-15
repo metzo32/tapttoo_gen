@@ -37,6 +37,7 @@ import ArtistData from "./assets/datas/artitst_data";
 import ArtistDetailPageComponent from "./components/ArtistDetailPageComponent";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import Modal from "./components/Modal";
+import GenerateImage from "./pages/GenerateImage";
 
 const App: React.FC = () => {
   const [currentlyLoggedIn, setCurrentlyLoggedIn] = useState(false);
@@ -97,6 +98,7 @@ const App: React.FC = () => {
               />
               <Route path="/careermarketing" element={<CareerMarketing />} />
               <Route path="/searchnew" element={<SearchNew />} />
+              <Route path="/your_custom_tattoo" element={<GenerateImage />} />
               <Route path="/scroll" element={<ScrollTest />} />
               {ArtistData.map((artist) => (
                 <Route

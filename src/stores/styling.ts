@@ -1654,6 +1654,12 @@ const Search = styled.div`
   &.search-container {
     width: 100%;
     height: 100px;
+
+    &.center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   &.circle-profile-box {
