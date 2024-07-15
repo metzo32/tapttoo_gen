@@ -10,7 +10,7 @@ import { CarouselItemConverter } from "../stores/CarouselItemConverter";
 import searchMainImages from "../stores/CarouselData";
 import SearchProfiles from "../components/SearchProfiles";
 import SearchEventProfile from "../components/SearchEventProfile";
-import { CircularProgressbar } from 'react-circular-progressbar';
+
 import SearchCard from "../components/SearchCard";
 import InfiniteText from "../components/InfiniteText";
 
@@ -21,7 +21,8 @@ import search_today01 from "../assets/images/search_today01.jpg";
 const items = CarouselItemConverter(searchMainImages)
 
 
-const percentage = 66;
+const percentage = 80;
+
 export default function SearchNew() {
   return (
     <>
@@ -29,9 +30,6 @@ export default function SearchNew() {
         <s.Search className="top-container main">
           <CustomCarousel items={items} renderItem={defaultRenderItem} />
         </s.Search>
-
-        
-        <CircularProgressbar value={percentage} text={`${percentage}%`} />;
 
         <s.Search className="circles-container">
           <SearchProfiles />

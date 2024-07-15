@@ -1596,7 +1596,7 @@ const Search = styled.div`
   &.top-container {
     width: 100%;
     height: auto;
-    aspect-ratio : 4/1;
+    aspect-ratio: 4/1;
     margin-bottom: 150px;
     display: flex;
     flex-direction: row;
@@ -1750,7 +1750,7 @@ const Search = styled.div`
     width: 35%;
   }
 
-  &.review-image-container{
+  &.review-image-container {
     height: 70%;
     border: purple;
   }
@@ -1987,6 +1987,14 @@ const Carousel = styled.div`
     width: 100%;
     position: relative;
     border: 1px solid red;
+  }
+
+  &.progress-box {
+    width: 90px;
+    position: absolute;
+    bottom: 120px;
+    right: 50px;
+    z-index: 1;
   }
 `;
 

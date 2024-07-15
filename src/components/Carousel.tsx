@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import s from '../stores/styling'
 import { CarouselItem, CarouselProps } from '../types/CarouselType'
-
+import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 const Carousel: React.FC<CarouselProps> = ({ items, renderItem }) => {
+
+  const percentage = 80;
 
   const [currentIndex, setCurrentIndex] = useState(2)
   const fakeData = 2;
@@ -82,8 +85,24 @@ const Carousel: React.FC<CarouselProps> = ({ items, renderItem }) => {
 
   const transition = offTransition ? '0s' : '0.5s';
 
+   // 전체 슬라이드 개수를 fakeData를 뺀 값으로 설정
+   const totalSlides = slides.length - 2 * fakeData;
+   // 현재 인덱스를 0부터 시작하는 값으로 보정
+   const correctedIndex = (currentIndex - fakeData + totalSlides) % totalSlides;
+   // 퍼센티지 계산
+   const progressValue = ((correctedIndex + 1) / totalSlides) * 100;
+ 
+
   return (
     <s.Carousel className='carousel-wrapper'>
+        <s.Carousel className="progress-box">
+          <CircularProgressbar value={progressValue} text={`${correctedIndex + 1}`} strokeWidth={3} styles={buildStyles({
+                pathColor: `rgba(255, 255, 255, 0.8)`,
+                textColor: '#fff',
+                trailColor: 'rgba(255, 255, 255, 0.3)',
+          })}/>
+        </s.Carousel>
+
       <s.Button 
         className='carousel-btn-left'
         disabled={disabled}
