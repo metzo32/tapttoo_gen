@@ -1,11 +1,11 @@
-import React, { useContext, useState } from "react";
+import { useState } from "react";
 import s from "../stores/styling";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase/firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { AuthContext } from "../context/AuthContext";
+// import { AuthContext } from "../context/AuthContext";
 import RegisterInputItems from "../components/RegisterInputItems";
-import RegisterTerms from "./RegisterTerms";
+// import RegisterTerms from "./RegisterTerms";
 import CalculateAge from "../components/CalculateAge";
 import GenderSelect from "../components/GenderSelect";
 import countrycode from "../assets/datas/country_code";
@@ -28,7 +28,7 @@ const RegisterPage = () => {
   const [countryCode, setCountryCode] = useState<string>("");
   const [isValidAge, setIsValidAge] = useState<boolean | null>(null);
   const [step, setStep] = useState(1);
-  const [nextStep, setNextStep] = useState(false);
+  // const [nextStep, setNextStep] = useState(false);
 
   const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
 
