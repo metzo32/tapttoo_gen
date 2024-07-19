@@ -1,11 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import s from "../stores/styling";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase/firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-// import { AuthContext } from "../context/AuthContext";
 import RegisterInputItems from "../components/RegisterInputItems";
-// import RegisterTerms from "./RegisterTerms";
 import CalculateAge from "../components/CalculateAge";
 import GenderSelect from "../components/GenderSelect";
 import countrycode from "../assets/datas/country_code";
@@ -21,67 +19,53 @@ const RegisterPage = () => {
   const [registerEmail, setRegisterEmail] = useState<string>("");
   const [registerPw, setRegisterPw] = useState<string>("");
   const [registerPwConfirm, setRegisterPwConfirm] = useState<string>("");
-  const [PwMatch, SetPwMatch] = useState(false);
   const [registerNickname, setRegisterNickname] = useState<string>("");
   const [registerFullname, setRegisterFullname] = useState<string>("");
   const [registerPhonenumber, setRegisterPhonenumber] = useState<string>("");
   const [countryCode, setCountryCode] = useState<string>("");
   const [isValidAge, setIsValidAge] = useState<boolean | null>(null);
   const [step, setStep] = useState(1);
-  // const [nextStep, setNextStep] = useState(false);
 
   const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
 
   const nicknameRule =
     /^(([a-zA-Z]+[0-9]*|[0-9]*[a-zA-Z]+)[a-zA-Z0-9]*|([가-힣]+[0-9]*|[0-9]*[가-힣]+)[가-힣0-9]*)$/;
-  //3~15자의 영문자, 한글, 숫자(숫자는 반드시 문자와 조합할 것)
   const fullnameRule = /^([a-zA-Z]{3,15}|[가-힣]{2,15})$/;
-  //2~15자의 영자, 3~15자의 한글, 알파벳과 한글 병기 금지, 띄어쓰기 허용
 
-  const handleSignUp = (event: React.FormEvent) => {
+  const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (registerPw !== registerPwConfirm) {
-      SetPwMatch(false);
+      alert("비밀번호가 일치하지 않습니다.");
       return;
     }
     if (!validateForm()) {
       alert("필수 입력사항을 모두 입력해주세요.");
-    } else {
-      handleNavigation("/profile");
+      return;
     }
-
-    createUserWithEmailAndPassword(auth, registerEmail, registerPw)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-      })
-      .catch((error) => {
-        console.error("Failed to sign up:", error);
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, registerEmail, registerPw);
+      console.log('User registered:', userCredential.user);
+      navigate("/profile");
+    } catch (error) {
+      console.error("Failed to sign up:", error);
+      alert(`회원가입 중 오류가 발생했습니다: ${(error as Error).message}`);
+    }
   };
 
   const handleNavigation = (path: string) => {
     navigate(path);
   };
 
-  //유효한 입력인지 확인
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     const target = event.target;
-    target.classList.remove("active"); //focus out시 클래스 제거
+    target.classList.remove("active");
+    if (!target.value) return;
 
-    if (!target.value) {
-      return; // 입력 필드가 비어 있으면 클래스 변화를 발생시키지 않음
-    }
-
-    const label = target.nextElementSibling as HTMLLabelElement | null; // 이벤트 타겟의 바로 다음 형제 요소
+    const label = target.nextElementSibling as HTMLLabelElement | null;
     if (label) {
-      //타입가드
       if (
         !target.checkValidity() ||
-        (target.name === "passwordConfirm" &&
-          registerPw !== registerPwConfirm) ||
+        (target.name === "passwordConfirm" && registerPw !== registerPwConfirm) ||
         (target.name === "nickname" && !nicknameRule.test(target.value)) ||
         (target.name === "fullname" && !fullnameRule.test(target.value))
       ) {
@@ -105,9 +89,7 @@ const RegisterPage = () => {
     setRegisterFullname(capitalizedName);
   };
 
-  const handlePhonenumberChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handlePhonenumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setRegisterPhonenumber(value);
   };
@@ -125,8 +107,7 @@ const RegisterPage = () => {
     if (validateStepOne()) {
       setStep(step + 1);
     } else {
-      
-      return;
+      alert("필수 입력 사항을 확인해주세요.");
     }
   };
 
@@ -142,12 +123,11 @@ const RegisterPage = () => {
 
   const validateForm = () => {
     return (
-      registerEmail.length > 0 &&
-      registerPw.length > 0 &&
-      registerPwConfirm.length > 0 &&
+      validateStepOne() &&
       registerFullname.length > 0 &&
       registerPhonenumber.length > 0 &&
-      registerNickname.length > 0
+      registerNickname.length > 0 &&
+      countryCode.length > 0
     );
   };
 
@@ -192,7 +172,7 @@ const RegisterPage = () => {
                   type={"password"}
                   id={"password"}
                   value={registerPw}
-                  minLength={6}
+                  minLength={8}
                   onChange={(event) => setRegisterPw(event.target.value)}
                   onBlur={handleBlur}
                   required={true}
@@ -205,7 +185,7 @@ const RegisterPage = () => {
                   type={"password"}
                   id={"passwordConfirm"}
                   value={registerPwConfirm}
-                  minLength={6}
+                  minLength={8}
                   onChange={(event) => setRegisterPwConfirm(event.target.value)}
                   onBlur={handleBlur}
                   required={true}
@@ -215,7 +195,7 @@ const RegisterPage = () => {
 
               <s.LoginDiv className="button-wrapper">
                 <s.Button
-                  type="submit"
+                  type="button"
                   className="Round"
                   onClick={handleNextStep}
                   value="next"
@@ -223,14 +203,14 @@ const RegisterPage = () => {
                   다음
                 </s.Button>
 
-                <s.Button onClick={() => handleNavigation("/login")}>
+                <s.Button type="button" onClick={() => handleNavigation("/login")}>
                   이미 계정이 있으신가요?
                 </s.Button>
               </s.LoginDiv>
             </s.LoginDiv>
           )}
 
-          {step === 2 && (
+          {step === 1 && (
             <s.LoginDiv className="container step02">
               <s.LoginDiv className="input-wrapper step02">
                 <RegisterInputItems
@@ -307,15 +287,12 @@ const RegisterPage = () => {
                 <s.Button type="submit" className="Round" value="submit">
                   가입하기
                 </s.Button>
-                <s.Button onClick={() => handleNavigation("/login")}>
+                <s.Button type="button" onClick={() => handleNavigation("/login")}>
                   이미 계정이 있으신가요?
                 </s.Button>
               </s.LoginDiv>
             </s.LoginDiv>
           )}
-          {/* <s.LoginDiv className="container">
-            <RegisterTerms />
-          </s.LoginDiv> */}
         </s.Form>
       </s.LoginDiv>
     </>

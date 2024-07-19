@@ -49,9 +49,9 @@ const CalculateAge: React.FC<CalculateAgeProps> = ({ isAdult, handleOpenModal })
         return;
       }
 
-      const monthInt = parseInt(month);
-      const dayInt = parseInt(day);
-      const yearInt = parseInt(year);
+      const monthInt = parseInt(month, 10);
+      const dayInt = parseInt(day, 10);
+      const yearInt = parseInt(year, 10);
 
       const daysInMonth = new Date(yearInt, monthInt, 0).getDate(); // 실제로 유효한 날짜인지 검사 (30, 31일, 28일 및 윤년)
       if (dayInt > daysInMonth) {
@@ -59,6 +59,7 @@ const CalculateAge: React.FC<CalculateAgeProps> = ({ isAdult, handleOpenModal })
         isAdult(null);
         return;
       }
+      
       
       // 19세 미만
       const today = new Date();
@@ -70,9 +71,9 @@ const CalculateAge: React.FC<CalculateAgeProps> = ({ isAdult, handleOpenModal })
       if ( monthAge < 0 || (monthAge === 0 && dayAge < 0)) {
         age--;
       }
-
+      
       if (age < 19) {
-        setIsValid(false)
+        setIsValid(true)
         isAdult(false);
         handleOpenModal()
         return
@@ -83,12 +84,25 @@ const CalculateAge: React.FC<CalculateAgeProps> = ({ isAdult, handleOpenModal })
     };
 
     validateDate();
+    console.log(isValid)
   }, [year, month, day]); //입력이 바뀔 때마다 유효성 검사
+
+  const classValid = () => {
+    if (isValid === null) {
+      return "";
+    }
+    else if (isValid === true) {
+      return "valid";
+    }
+    else {
+      return "invalid";
+    }
+  }
 
 
   return (
     <s.LoginDiv
-      className={`calandar-container ${isValid === null ? '' : "valid"}`}
+      className={`calandar-container ${classValid()}`}
     >
       <s.LoginDiv className="calandar-item-box">
         <s.Select

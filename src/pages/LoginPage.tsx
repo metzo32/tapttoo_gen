@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import s from "../stores/styling";
 import { useNavigate } from "react-router-dom";
-import { auth, app } from "../firebase/firebaseConfig";
+import { auth } from "../firebase/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { AuthContext } from "../context/AuthContext";
 
@@ -21,7 +21,7 @@ const LoginPage = () => {
     }
   }, [currentlyLoggedIn, navigate]);
 
-  const handleSignIn = (event: React.FormEvent) => {
+  const handleSignIn = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     signInWithEmailAndPassword(auth, signInEmail, signInPw)
@@ -39,7 +39,6 @@ const LoginPage = () => {
         setIsLoggedIn(true);
         navigate("/"); // 성공 시 홈으로 이동
       })
-
       .catch((error) => {
         console.error("Error signing in:", error);
         const errorCode = error.code;
@@ -146,7 +145,7 @@ const LoginPage = () => {
               <s.Button type="submit" className="Round">
                 로그인
               </s.Button>
-              <s.Button onClick={() => handleNavigation("/register")}>
+              <s.Button type="button" onClick={() => handleNavigation("/register")}>
                 가입하기
               </s.Button>
             </s.LoginDiv>
