@@ -1,117 +1,108 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore";
-import { auth, firestore } from "../firebase/firebaseConfig";
 import s from "../stores/styling";
 import LogoutButton from "../components/Logout";
-import ProfileSideBar from "../components/ProfileSideBar";
-import GridLike from "../components/GridLike";
+import artistImage01 from "../assets/images/artist_profile_01.jpg";
 
 export default function Profile() {
-  const [profileImage, setProfileImage] = useState<string | null>(null);
-  const [fileName, setFileName] = useState<string | null>("사진 추가");
-  const [loading, setLoading] = useState(true);
-  const [userData, setUserData] = useState<any>(null);
-  
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchUserData = async () => {
-      if (auth.currentUser) {
-        try {
-          const userDoc = await getDoc(doc(firestore, "users", auth.currentUser.uid));
-          if (userDoc.exists()) {
-            setUserData(userDoc.data());
-          }
-        } catch (error) {
-          console.error("Error fetching user data:", error);
-        } finally {
-          setLoading(false);
-        }
-      } else {
-        setLoading(false);
-        navigate("/login");
-      }
-    };
-
-    fetchUserData();
-  }, [navigate]);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      setFileName(file.name);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setProfileImage(reader.result as string);
-      };
-      reader.readAsDataURL(file);
-    } else {
-      setFileName("사진 추가");
-    }
-  };
-
   return (
-    <s.ProfileWrapper>
-      <ProfileSideBar />
-      <s.PageWrapper>
-        <s.ColumnWrapper className="profileinfo">
-          <s.Div className="profile-container">
-            <label
-              htmlFor="profile-image-input"
-              className="profile-image-circle"
-            >
-              {profileImage ? (
-                <s.Div
-                  className="profile-image"
-                  style={{ backgroundImage: `url(${profileImage})` }}
-                />
-              ) : (
-                <s.Div className="profile-placeholder">+</s.Div>
-              )}
-              {/* 플레이스홀더 내용 */}
-            </label>
-            <s.Input
-              id="profile-image-input"
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-              className="input-hide"
-            />
-          </s.Div>
-          <LogoutButton />
-        </s.ColumnWrapper>
-        <hr />
-        <s.ColumnWrapper className="profile">
-          <s.Username>{userData.email} 님</s.Username>
-          <s.Div>{userData.fullname}</s.Div>
-          <s.Div>{userData.nickname}</s.Div>
-          <s.Div>
-            {userData.countryCode} {userData.phonenumber}
-          </s.Div>
-          <s.Div>{userData.ageValid ? "Yes" : "No"}</s.Div>
-        </s.ColumnWrapper>
-        <s.ColumnWrapper>
-          <s.Div>나의 관심</s.Div>
-          <s.Div>나의 구독</s.Div>
-        </s.ColumnWrapper>
+    <>
+      <LogoutButton />
 
-        <hr />
-        <s.Div>최근 좋아요</s.Div>
-        <s.Div className="profile-grid-wrapper">
-          <GridLike />
-        </s.Div>
-        <hr />
-        <s.Div>최근 확인한</s.Div>
-        <hr />
-        <s.Div>추천 스타일</s.Div>
-        <hr />
-        <s.Div>오늘의 아티클</s.Div>
-      </s.PageWrapper>
-    </s.ProfileWrapper>
+      <s.Portfolio className="wrapper">
+        <s.Portfolio className="header-wrapper">
+          <s.StyledH1 className="artist-page-title">작가 이름</s.StyledH1>
+
+          <s.Portfolio className="header-container">
+            <s.Portfolio className="mid-box-left">
+              <s.StyledH2 className="artist-description">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod
+                dicta ut, fugit neque explicabo totam tenetur eum et odit ipsa
+                nulla repudiandae commodi voluptas quos molestiae nostrum autem
+                hic itaque?
+              </s.StyledH2>
+            </s.Portfolio>
+
+            <s.Portfolio className="mid-box-right">
+              <s.Portfolio className="header-profile">
+                <s.StyledP>경력</s.StyledP>
+                <s.StyledP>테스트</s.StyledP>
+              </s.Portfolio>
+              <s.Line className="horizontal dark" />
+              <s.Portfolio className="header-profile">
+                <s.StyledP>지역</s.StyledP>
+                <s.StyledP>내용</s.StyledP>
+              </s.Portfolio>
+              <s.Line className="horizontal dark" />
+              <s.Portfolio className="header-profile">
+                <s.StyledP>스타일</s.StyledP>
+                <s.StyledP>해시태그</s.StyledP>
+              </s.Portfolio>
+              <s.Line className="horizontal dark" />
+              <s.Portfolio className="header-profile">
+                <s.StyledP>리뷰</s.StyledP>
+                <s.StyledP>모아보기</s.StyledP>
+              </s.Portfolio>
+              <s.Line className="horizontal dark" />
+            </s.Portfolio>
+          </s.Portfolio>
+        </s.Portfolio>
+
+        <s.Image src={artistImage01} alt="image" className="artist-page-profile"/>
+
+        <s.Portfolio className="mid-wrapper">
+          <s.Portfolio className="header-container">
+            <s.Portfolio className="mid-box-left">
+              <s.StyledH2 className="artist-description">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod
+                dicta ut, fugit neque explicabo totam tenetur eum et odit ipsa
+                nulla repudiandae commodi voluptas quos molestiae nostrum autem
+                hic itaque?
+              </s.StyledH2>
+            </s.Portfolio>
+
+            <s.Line className="vertical dark" />
+
+            <s.Portfolio className="mid-box-right">연락처</s.Portfolio>
+          </s.Portfolio>
+        </s.Portfolio>
+        <s.Line className="horizontal dark" />
+
+        <s.Portfolio className="work-wrapper">
+          <s.Portfolio className="work-container-left">
+            <s.StyledH3 className="work-title">What I do</s.StyledH3>
+          </s.Portfolio>
+
+          <s.Line className="vertical dark margin-v" />
+
+          <s.Portfolio className="work-container-right">
+            <s.Portfolio className="work-box">
+              <s.Portfolio className="work-div">
+                <s.StyledH4 className="work">제목</s.StyledH4>
+                <s.StyledP className="work-description">Lorem, ipsum dolor sit amet consectetur quaerat minus aliquam vel nostru.</s.StyledP>
+              </s.Portfolio>
+              <s.Line className="vertical dark margin-v" />
+              <s.Portfolio className="work-div">
+                <s.StyledH4 className="work">제목</s.StyledH4>
+                <s.StyledP className="work-description">Lorem, ipsum dolor sit amet consectetur quaerat minus aliquam vel nostru.</s.StyledP>
+              </s.Portfolio>
+            </s.Portfolio>
+
+            <s.Line className="horizontal dark margin-h" />
+
+            <s.Portfolio className="work-box">
+              <s.Portfolio className="work-div">
+                <s.StyledH4 className="work">제목</s.StyledH4>
+                <s.StyledP className="work-description">Lorem, ipsum dolor sit amet consectetur quaerat minus aliquam vel nostru.</s.StyledP>
+              </s.Portfolio>
+              <s.Line className="vertical dark margin-v" />
+              <s.Portfolio className="work-div">
+                <s.StyledH4 className="work">제목</s.StyledH4>
+                <s.StyledP className="work-description">Lorem, ipsum dolor sit amet consectetur quaerat minus aliquam vel nostru.</s.StyledP>
+              </s.Portfolio>
+            </s.Portfolio>
+          </s.Portfolio>
+        </s.Portfolio>
+        <s.Portfolio className="mid-wrapper">테스트</s.Portfolio>
+      </s.Portfolio>
+    </>
   );
 }

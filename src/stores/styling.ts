@@ -255,20 +255,35 @@ const Line = styled.div`
     transform: translate(-50%, 50%);
   }
 
-  &.dark {
-    width: 100%;
-    height: 2px;
-    background-color: ${Grey};
-    margin: 0;
-    display: block;
-  }
-
   &.infinite {
     width: 100%;
     height: 2px;
     background-color: ${LightGrey};
     margin: 0;
     display: block;
+  }
+
+  &.horizontal {
+    width: 100%;
+    height: 2px;
+    display: block;
+  }
+
+  &.vertical {
+    width: 2px;
+    height: 100%;
+  }
+
+  &.dark {
+    background-color: ${Grey};
+  }
+
+  &.margin-h {
+     margin: 20px 0px;
+  }
+
+  &.margin-v {
+    margin: 0px 20px;
   }
 `;
 
@@ -642,6 +657,15 @@ const StyledH2 = styled.h2`
     line-height: 35px;
     text-align: left;
   }
+
+  &.artist-description {
+    width: 90%;
+    font-size: 1.8em;
+    font-weight: 500;
+    color: ${Grey};
+    line-height: 35px;
+    text-align: left;
+  }
 `;
 
 const StyledH3 = styled.h3`
@@ -688,6 +712,12 @@ const StyledH3 = styled.h3`
       margin: 50px 0px 150px 0px;
     }
   }
+
+  &.work-title {
+    color: ${Grey};
+    font-size: 1.5em;
+    font-weight: 500;
+  }
 `;
 
 const StyledH4 = styled.h4`
@@ -721,6 +751,11 @@ const StyledH4 = styled.h4`
 
   &.today-title {
     font-size: 2.5em;
+    color: ${Grey};
+  }
+
+  &.work {
+    font-size: 2em;
     color: ${Grey};
   }
 `;
@@ -857,6 +892,11 @@ const StyledP = styled.p`
 
     animation: ${infiniteSlideLeft} 24000s linear infinite;
   }
+
+  &.work-description {
+    font-size: 1em;
+    line-height: 22px;
+  }
 `;
 
 const Mask = styled.div`
@@ -949,46 +989,6 @@ const ArtistReg = styled.div`
     top: 0;
     left: 0;
     z-index: 1;
-  }
-`;
-
-const ProfileWrapper = styled.div`
-  width: 100%;
-  // height: calc(100vh - 130px);
-  height: auto;
-  display: flex;
-  flex-direction: row;
-`;
-
-const ProfileSideBarWrapper = styled.div`
-  display: flex;
-  width: 300px;
-  flex-direction: column;
-  align-items: flex-start;
-  z-index: 4;
-  margin-left: 20px;
-`;
-
-const RowWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  padding: 0 20px;
-  justify-content: space-between;
-`;
-const ColumnWrapper = styled.div`
-  width: 57.8%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  align-items: flex-start;
-
-  &.profileinfo {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
   }
 `;
 
@@ -1398,6 +1398,11 @@ const Image = styled.img`
   &.search-wide {
     width: 100%;
   }
+
+  &.artist-page-profile {
+    width: calc(100% + 40px);
+    margin-left: -20px;
+  }
 `;
 
 const InfiniteText = styled.div`
@@ -1640,7 +1645,6 @@ const Search = styled.div`
     height: 100%;
     display: flex;
     flex-direction: column;
-    border: 1px solid red;
 
     &.left {
       width: calc(60% - 28px);
@@ -1752,7 +1756,6 @@ const Search = styled.div`
   }
 
   &.review-container {
-    border: 1px solid blue;
     width: 35%;
   }
 
@@ -1967,6 +1970,89 @@ const ArtistDiv = styled.div`
   }
 `;
 
+const Portfolio = styled.div`
+  &.wrapper {
+    width: calc(100vw - 40px);
+    height: auto;
+    margin: 0 20px;
+  }
+
+  &.header-wrapper {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  &.header-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  &.mid-box-left {
+    width: calc(70% - 10px);
+  }
+
+  &.mid-box-right {
+    width: calc(30% - 10px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  &.header-profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  &.mid-wrapper {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    margin: 20px 0px;
+  }
+
+  &.work-wrapper {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: row;
+    margin: 20px 0px;
+  }
+
+  &.work-container-left {
+    width: 30%;
+  }
+
+  &.work-container-right {
+    width: 70%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &.work-box {
+    height: calc(50% - 11px);
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  &.work-div {
+    width: calc(50% - 11px);
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
 const Carousel = styled.div`
   &.carousel-wrapper {
     position: relative;
@@ -1992,7 +2078,6 @@ const Carousel = styled.div`
   &.data {
     width: 100%;
     position: relative;
-    border: 1px solid red;
   }
 
   &.progress-box {
@@ -2188,13 +2273,7 @@ const Footer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-
     opacity: 0.8;
-
-    position: absolute;
-    bottom: 0;
-    margin: 0;
-    padding: 0;
   }
 
   &.container {
@@ -3033,8 +3112,8 @@ const s = {
   CareerDiv,
   CareerItem,
   CareerP,
+  Portfolio,
   Carousel,
-  ColumnWrapper,
   Contact,
   Div,
   Footer,
@@ -3064,9 +3143,6 @@ const s = {
   PageWrapper,
   PolicyWrapper,
   ProfileGrid,
-  ProfileSideBarWrapper,
-  ProfileWrapper,
-  RowWrapper,
   SectionContainer,
   SectionFrame,
   SideBar,

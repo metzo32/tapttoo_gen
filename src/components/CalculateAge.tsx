@@ -84,7 +84,6 @@ const CalculateAge: React.FC<CalculateAgeProps> = ({ isAdult, handleOpenModal })
     };
 
     validateDate();
-    console.log(isValid)
   }, [year, month, day]); //입력이 바뀔 때마다 유효성 검사
 
   const classValid = () => {

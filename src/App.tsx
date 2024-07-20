@@ -24,7 +24,6 @@ import Contact from "./pages/Contact";
 import ArtistRegister from "./pages/ArtistRegister";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
-import ProfileSet from "./pages/ProfileSet";
 import RegisterTerms from "./pages/RegisterTerms";
 import RegisterPage from "./pages/RegisterPage";
 import CareerBusiness from "./pages/CareerBusiness";
@@ -89,7 +88,6 @@ const App: React.FC = () => {
               />
               <Route path="/registerterms" element={<RegisterTerms />} />
               <Route path="/register" element={<RegisterPage />} />
-              <Route path="/profileset" element={<ProfileSet />} />
               <Route path="/careerbusiness" element={<CareerBusiness />} />
               <Route path="/careerdesign" element={<CareerDesign />} />
               <Route
