@@ -279,7 +279,7 @@ const Line = styled.div`
   }
 
   &.margin-h {
-     margin: 20px 0px;
+    margin: 30px 0px;
   }
 
   &.margin-v {
@@ -313,10 +313,11 @@ const Atag = styled.a`
     }
   }
 
-  &.artist-contact-right {
+  &.artist-contact {
     white-space: nowrap;
     font-size: 1em;
-    margin-right: 8px;
+    color: ${Grey};
+    letter-spacing: -0.3px;
     text-transform: none;
     cursor: pointer;
 
@@ -568,7 +569,9 @@ const StyledH1 = styled.h1`
     color: ${Grey};
     font-size: 10em;
     letter-spacing: -0.08em;
-    margin-left: 10px;
+    margin: 0;
+    padding: 0;
+    display: block;
   }
 
   &.warning {
@@ -756,6 +759,7 @@ const StyledH4 = styled.h4`
 
   &.work {
     font-size: 2em;
+    line-height: 1;
     color: ${Grey};
   }
 `;
@@ -875,7 +879,7 @@ const StyledP = styled.p`
     letter-spacing: -0.05em;
   }
 
-  &.event-city {
+  &.small {
     font-size: 1em;
   }
 
@@ -896,6 +900,7 @@ const StyledP = styled.p`
   &.work-description {
     font-size: 1em;
     line-height: 22px;
+    margin-top: 10px;
   }
 `;
 
@@ -1988,6 +1993,7 @@ const Portfolio = styled.div`
 
   &.header-container {
     margin-top: 20px;
+    height: 200px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -2000,8 +2006,10 @@ const Portfolio = styled.div`
 
   &.mid-box-right {
     width: calc(30% - 10px);
+    height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
   }
 
   &.header-profile {
@@ -2019,28 +2027,39 @@ const Portfolio = styled.div`
     margin: 20px 0px;
   }
 
-  &.work-wrapper {
+  &.work-wrapper-line {
     width: 100%;
-    height: 300px;
+    height: 450px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: space-between;
     margin: 20px 0px;
   }
 
+  &.work-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
   &.work-container-left {
-    width: 30%;
+    width: calc(30% - 21px);
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
   &.work-container-right {
-    width: 70%;
-    height: 300px;
+    width: calc(70% - 21px);
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
 
   &.work-box {
-    height: calc(50% - 11px);
+    height: 100%;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -2048,6 +2067,11 @@ const Portfolio = styled.div`
 
   &.work-div {
     width: calc(50% - 11px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  &.img-wrapper {
     display: flex;
     flex-direction: column;
   }
@@ -2831,6 +2855,10 @@ const Button = styled.button`
       border-color: ${HoverGreen};
       transition: 0.3s ease;
     }
+
+    &.reserve {
+      margin-top: 10px;
+    }
   }
 
   &:hover {
@@ -3064,7 +3092,6 @@ const InstagramIcon = styled(RiInstagramLine)`
 const ArrowIcon = styled(FiArrowDownRight)`
   ${StyledIcon}
   fill: none;
-  margin: 2px 40px 0 0;
   width: 1.7em;
   height: 1.7em;
 `;

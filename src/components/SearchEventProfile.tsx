@@ -22,7 +22,7 @@ export default function SearchEventProfile() {
             </s.Search>
             <s.Search className="event-text-box">
               <s.StyledP className="event-name">{profile.nickname}</s.StyledP>
-              <s.StyledP className="event-city">
+              <s.StyledP className="small">
                 {profile.street_address}, {profile.city}
               </s.StyledP>
             </s.Search>

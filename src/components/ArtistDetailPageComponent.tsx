@@ -6,11 +6,8 @@ interface ArtistDetailPageProps {
   artist: ArtistDataProps;
 }
 
-const ArtistDetailPageComponent: React.FC<ArtistDetailPageProps> = ({
-  artist,
-}) => {
+const ArtistDetailPageComponent: React.FC<ArtistDetailPageProps> = ({artist}) => {
   const handleNavigation = () => {
-    console.log("야호");
   };
 
   const CopyToClipboard = (text: string) => {

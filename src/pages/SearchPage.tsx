@@ -3,9 +3,6 @@ import s from '../stores/styling'
 
 export default function SearchPage() {
   
-  // const handleSearch = (event) => {
-
-  // }
 
   return (
     <>

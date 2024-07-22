@@ -2,32 +2,22 @@ import React from 'react'
 
 export const SideBarData = [
     {
-        title: 'All',
+        title: 'Home',
         path: '/',
         className: 'sidebar-text'
     },
     {
-        title: 'New',
-        path: '/searchnew',
+        title: 'Search',
+        path: '/artist_profile',
         className: 'sidebar-text'
     },
     {
-        title: 'Popular',
+        title: 'Only for you',
         path: '/',
         className: 'sidebar-text'
     },
     {
         title: 'Likes',
-        path: '/',
-        className: 'sidebar-text'
-    },
-    {
-        title: 'Reservation',
-        path: '/',
-        className: 'sidebar-text'
-    },
-    {
-        title: 'News Letter',
         path: '/',
         className: 'sidebar-text'
     },

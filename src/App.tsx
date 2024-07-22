@@ -16,7 +16,6 @@ import Header from "./components/Header";
 import AboutUs from "./pages/AboutUs";
 import LoginPage from "./pages/LoginPage";
 import Home from "./pages/Home";
-import ForgotPassword from "./pages/ForgotPassword";
 import Article from "./pages/Article";
 import SearchPage from "./pages/SearchPage";
 import Career from "./pages/Career";
@@ -24,6 +23,7 @@ import Contact from "./pages/Contact";
 import ArtistRegister from "./pages/ArtistRegister";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
+import ArtistProfile from "./pages/ArtistProfile";
 import RegisterTerms from "./pages/RegisterTerms";
 import RegisterPage from "./pages/RegisterPage";
 import CareerBusiness from "./pages/CareerBusiness";
@@ -71,9 +71,9 @@ const App: React.FC = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<LoginPage />} />
-              <Route path="/password" element={<ForgotPassword />} />
               <Route path="/aboutus" element={<AboutUs />} />
               <Route path="/article" element={<Article />} />
+
               <Route path="/search" element={<SearchPage />} />
               <Route path="/career" element={<Career />} />
               <Route path="/contact" element={<Contact />} />
@@ -101,8 +101,8 @@ const App: React.FC = () => {
               {ArtistData.map((artist) => (
                 <Route
                   key={artist.id}
-                  path={`/${artist.nickname}`}
-                  element={<ArtistDetailPageComponent artist={artist} />}
+                  path={`/profile_artist_${artist.nickname}`}
+                  element={<ArtistProfile artist={artist} />}
                 />
               ))}
             </Routes>
