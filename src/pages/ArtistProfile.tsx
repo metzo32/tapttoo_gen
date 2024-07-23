@@ -1,6 +1,6 @@
 import s from "../stores/styling";
-import artistImage01 from "../assets/images/artist_profile_01.jpg";
 import { ArtistDataProps } from "../assets/datas/artitst_data";
+import ArtistSkillComponent from "../components/ArtistSkillComponent";
 
 interface ArtistDetailPageProps {
   artist: ArtistDataProps;
@@ -54,13 +54,6 @@ const ArtistProfile: React.FC<ArtistDetailPageProps> = ({ artist }) => {
               <s.Line className="horizontal dark" />
 
               <s.Portfolio className="header-profile">
-                <s.StyledP className="small">Style</s.StyledP>
-                <s.StyledP className="small">해시태그</s.StyledP>
-              </s.Portfolio>
-
-              <s.Line className="horizontal dark" />
-
-              <s.Portfolio className="header-profile">
                 <s.StyledP className="small">Region</s.StyledP>
                 <s.Atag
                   className="artist-contact"
@@ -87,14 +80,14 @@ const ArtistProfile: React.FC<ArtistDetailPageProps> = ({ artist }) => {
               <s.Line className="horizontal dark" />
 
               <s.Button className="Round reserve" onClick={() => handleNavigation()}>
-                예약 신청하기
+                작가에게 문의하기
               </s.Button>
             </s.Portfolio>
           </s.Portfolio>
         </s.Portfolio>
 
         <s.Image
-          src={artistImage01}
+          src={artist.randomImage}
           alt="image"
           className="artist-page-profile"
         />
@@ -126,54 +119,16 @@ const ArtistProfile: React.FC<ArtistDetailPageProps> = ({ artist }) => {
 
             <s.Line className="vertical dark margin-v" />
 
-            <s.Portfolio className="work-container-right">
-              <s.Portfolio className="work-box">
-                <s.Portfolio className="work-div">
-                  <s.StyledH4 className="work">제목</s.StyledH4>
-                  <s.StyledP className="work-description">
-                    Lorem, ipsum dolor sit amet consectetur quaerat minus
-                    aliquam vel nostru.
-                  </s.StyledP>
-                </s.Portfolio>
-                <s.Line className="vertical dark margin-v" />
-                <s.Portfolio className="work-div">
-                  <s.StyledH4 className="work">제목</s.StyledH4>
-                  <s.StyledP className="work-description">
-                    Lorem, ipsum dolor sit amet consectetur quaerat minus
-                    aliquam vel nostru.
-                  </s.StyledP>
-                </s.Portfolio>
-              </s.Portfolio>
-
-              <s.Line className="horizontal dark margin-h" />
-
-              <s.Portfolio className="work-box">
-                <s.Portfolio className="work-div">
-                  <s.StyledH4 className="work">제목</s.StyledH4>
-                  <s.StyledP className="work-description">
-                    Lorem, ipsum dolor sit amet consectetur quaerat minus
-                    aliquam vel nostru.
-                  </s.StyledP>
-                </s.Portfolio>
-                <s.Line className="vertical dark margin-v" />
-                <s.Portfolio className="work-div">
-                  <s.StyledH4 className="work">제목</s.StyledH4>
-                  <s.StyledP className="work-description">
-                    Lorem, ipsum dolor sit amet consectetur quaerat minus
-                    aliquam vel nostru.
-                  </s.StyledP>
-                </s.Portfolio>
-              </s.Portfolio>
-            </s.Portfolio>
+            <ArtistSkillComponent hash={artist.hash || []} />
+   
           </s.Portfolio>
           <s.Line className="horizontal dark margin-h" />
         </s.Portfolio>
         <s.Portfolio className="img-wrapper">
-            <s.Image className="artist-page-profile" src={artist.randomImage} alt="image"/>
-            <s.Image className="artist-page-profile" src={artist.randomImage01} alt="image"/>
-            <s.Image className="artist-page-profile" src={artist.randomImage02} alt="image"/>
-            <s.Image className="artist-page-profile" src={artist.randomImage03} alt="image"/>
-            <s.Image className="artist-page-profile" src={artist.randomImage04} alt="image"/>
+            <s.Image className="artist-page-portfolio" src={artist.randomImage01} alt="image"/>
+            <s.Image className="artist-page-portfolio" src={artist.randomImage02} alt="image"/>
+            <s.Image className="artist-page-portfolio" src={artist.randomImage03} alt="image"/>
+            <s.Image className="artist-page-portfolio" src={artist.randomImage04} alt="image"/>
         </s.Portfolio>
       </s.Portfolio>
     </>

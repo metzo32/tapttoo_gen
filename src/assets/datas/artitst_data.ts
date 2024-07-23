@@ -1,3 +1,5 @@
+
+
 export interface ArtistDataProps {
   id: number;
   nickname: string;
@@ -11,8 +13,37 @@ export interface ArtistDataProps {
   randomImage02: string;
   randomImage03: string;
   randomImage04: string;
+  hash?: string[];
   url?: string;
 }
+
+const skills = [
+  "Handpoke",
+  "Machine tattoo",
+  "Watercolor",
+  "Handpainting",
+  "Old School",
+  "Oriental",
+  "Geometric",
+  "Small",
+  "Cover-up",
+  "Color",
+  "Fine",
+];
+
+function getRandomSkills(): string[] {
+  let result: string[] = [];
+  while (result.length < 4) {
+    const randomSkills =
+      skills[Math.floor(Math.random() * skills.length)];
+    if (!result.includes(randomSkills)) {
+      result.push(randomSkills);
+    }
+  }
+  return result;
+}
+
+//데이터 최하단에 forEach로 할당
 
 const getRandomInt = (max: number) => Math.floor(Math.random() * max) + 1;
 
@@ -7472,5 +7503,9 @@ const artistdata: ArtistDataProps[] = [
     randomImage04: `https://picsum.photos/600/600?random=${getRandomInt(1000)}`,
   },
 ];
+
+artistdata.forEach((artist) => {
+  artist.hash = getRandomSkills();
+});
 
 export default artistdata;

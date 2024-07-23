@@ -40,9 +40,6 @@ export default function SearchNew() {
         <s.Search className="circles-container">
           <SearchProfiles />
         </s.Search>
-        <s.Search className="search-container center">
-          <s.Button className="Round" onClick={() => handleNavigation("/your_custom_tattoo")}>나만의 도안 만들어보기</s.Button>
-        </s.Search>
 
         <SearchCard
           imageMain={search_img01}
@@ -76,6 +73,12 @@ export default function SearchNew() {
             </s.Search>
           </s.Search>
         </s.Search>
+
+        <s.Search className="search-container center">
+          <s.StyledH2>"당신의 이야기를 예술로, 나만의 타투 도안 제작 – 당신만을 위한 유니크한 디자인을 만나보세요!"</s.StyledH2>
+          <s.Button className="Round" onClick={() => handleNavigation("/your_custom_tattoo")}>나만의 도안 만들어보기</s.Button>
+        </s.Search>
+
 
         {/* <CircularProgressbar/> */}
 

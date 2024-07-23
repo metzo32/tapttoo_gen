@@ -20,7 +20,7 @@ import Article from "./pages/Article";
 import SearchPage from "./pages/SearchPage";
 import Career from "./pages/Career";
 import Contact from "./pages/Contact";
-import ArtistRegister from "./pages/ArtistRegister";
+// import ArtistRegister from "./pages/ArtistRegister";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 import ArtistProfile from "./pages/ArtistProfile";
@@ -33,7 +33,6 @@ import CareerMarketing from "./pages/CareerMarketing";
 import SearchNew from "./pages/SearchNew";
 import ScrollTest from "./pages/ScrollTest";
 import ArtistData from "./assets/datas/artitst_data";
-import ArtistDetailPageComponent from "./components/ArtistDetailPageComponent";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import Modal from "./components/Modal";
 import GenerateImage from "./pages/GenerateImage";
@@ -77,7 +76,7 @@ const App: React.FC = () => {
               <Route path="/search" element={<SearchPage />} />
               <Route path="/career" element={<Career />} />
               <Route path="/contact" element={<Contact />} />
-              <Route path="/joinartist" element={<ArtistRegister />} />
+              {/* <Route path="/joinartist" element={<ArtistRegister />} /> */}
               <Route
                 path="/profile"
                 element={
