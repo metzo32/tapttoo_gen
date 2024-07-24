@@ -1,19 +1,28 @@
-import React, { useState } from "react";
 import s from "../stores/styling";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../firebase/firebaseConfig";
+
+import { auth, db } from "../firebase/firebaseConfig";
+import { setDoc, doc } from 'firebase/firestore';
 import { createUserWithEmailAndPassword } from "firebase/auth";
+
+import { nicknameRule, fullnameRule } from "../stores/NameRule";
 import RegisterInputItems from "../components/RegisterInputItems";
 import CalculateAge from "../components/CalculateAge";
 import GenderSelect from "../components/GenderSelect";
 import countrycode from "../assets/datas/country_code";
+
 import Modal from "../components/Modal";
 import useModal from "../hooks/ModalHook";
 
 import RegisterImage01 from "../assets/images/register_01.png";
 import RegisterImage02 from "../assets/images/register_02.png";
 
+
+
+
 const RegisterPage = () => {
+
   const navigate = useNavigate();
 
   const [registerEmail, setRegisterEmail] = useState<string>("");
@@ -28,9 +37,6 @@ const RegisterPage = () => {
 
   const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
 
-  const nicknameRule =
-    /^(([a-zA-Z]+[0-9]*|[0-9]*[a-zA-Z]+)[a-zA-Z0-9]*|([가-힣]+[0-9]*|[0-9]*[가-힣]+)[가-힣0-9]*)$/;
-  const fullnameRule = /^([a-zA-Z]{3,15}|[가-힣]{2,15})$/;
 
   const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -44,9 +50,22 @@ const RegisterPage = () => {
     }
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, registerEmail, registerPw);
+      const user = userCredential.user;
       console.log('User registered:', userCredential.user);
+
+      // 사용자 정보 firestore에 저장하기
+      await setDoc(doc(db, "users", user.uid), {
+        email: registerEmail,
+        fullname: registerFullname,
+        nickname: registerNickname,
+        phonenumber: registerPhonenumber,
+        countryCode: countryCode,
+        isValidAge: isValidAge
+      });
+
       navigate("/profile");
-    } catch (error) {
+    } 
+    catch (error) {
       console.error("Failed to sign up:", error);
       alert(`회원가입 중 오류가 발생했습니다: ${(error as Error).message}`);
     }

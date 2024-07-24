@@ -49,6 +49,7 @@ const Engraved = styled.div`
   text-shadow: rgba(245, 245, 245, 0.5) 3px 3px 1px;
 `;
 
+
 const infiniteSlideLeft = keyframes`
   0% {
     transform: translateX(0%);
@@ -2099,6 +2100,23 @@ const Portfolio = styled.div`
   }
 `;
 
+
+
+
+
+
+
+
+
+const moveUp = keyframes`
+  0% {
+    transform: translateY(100vh);
+  }
+  100% {
+    transform: translateY(0);
+  }
+`
+
 const Test = styled.div`
   width: 100vw;
   height: 100vh;
@@ -2109,8 +2127,7 @@ const Test = styled.div`
   position: sticky;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
+
 
   &.gradient {
     background: rgb(2, 0, 36);
@@ -2121,7 +2138,25 @@ const Test = styled.div`
       rgba(0, 212, 255, 1) 100%
     );
   }
+
+   &.animate {
+    ${(props) => css`
+      animation: ${moveUp} 0.3s forwards;
+    `}
+  }
 `;
+
+
+
+
+
+
+
+
+
+
+
+
 
 const Carousel = styled.div`
   &.carousel-wrapper {
