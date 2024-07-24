@@ -10,7 +10,7 @@ export default function SearchEventProfile() {
         <s.Search className="event-wrapper">
           <s.Search className="event-container">
             <s.Search className="event-title-box">
-            <s.StyledH4 className="event-title">이름</s.StyledH4>
+            <s.StyledH4 className="event-title">{profile.last_name}</s.StyledH4>
             </s.Search>
             <s.Search className="event-image-box">
             <s.Image
@@ -27,7 +27,7 @@ export default function SearchEventProfile() {
               </s.StyledP>
             </s.Search>
           </s.Search>
-          <s.Line className="dark" />
+          <s.Line className="horizontal dark" />
         </s.Search>
       ))}
     </>

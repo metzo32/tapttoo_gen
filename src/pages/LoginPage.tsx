@@ -109,6 +109,7 @@ const LoginPage = () => {
                   onChange={(event) => setSignInEmail(event.target.value)}
                   onBlur={handleBlur}
                   required
+                  autoComplete="username"
                 />
                 <s.Label
                   className={`login-info ${signInEmail ? "active" : ""}`}
@@ -126,6 +127,7 @@ const LoginPage = () => {
                   onChange={(event) => setSignInPw(event.target.value)}
                   onBlur={handleBlur}
                   required
+                  autoComplete="current-password"
                 />
                 <s.Label className={`login-info ${signInPw ? "active" : ""}`}>
                   Password

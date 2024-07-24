@@ -210,7 +210,7 @@ const RegisterPage = () => {
             </s.LoginDiv>
           )}
 
-          {step === 1 && (
+          {step === 2 && (
             <s.LoginDiv className="container step02">
               <s.LoginDiv className="input-wrapper step02">
                 <RegisterInputItems

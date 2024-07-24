@@ -87,7 +87,7 @@ export default function SearchNew() {
             UPCOMING EVENTS
           </s.StyledH3>
           <s.Search className="line-box">
-            <s.Line className="dark" />
+            <s.Line className="horizontal dark" />
 
             <SearchEventProfile />
           </s.Search>

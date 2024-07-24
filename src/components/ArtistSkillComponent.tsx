@@ -4,14 +4,20 @@ import s from "../stores/styling";
 const ArtistSkillComponent: React.FC<{ hash: string[] }> = ({ hash }) => {
   return (
     <s.Portfolio className="work-container-right">
-
-      {hash.map((skill, index) => { //index를 기준으로 
-        if (index % 2 === 0) { // 짝수일 때만 발생 (요소 2칸씩 렌더링)
+      {hash.map((skill, index) => {
+        //index를 기준으로
+        if (index % 2 === 0) {
+          // 짝수일 때만 발생 (요소 2칸씩 렌더링)
           return (
             <React.Fragment key={index}>
               <s.Portfolio className="work-box">
                 <s.Portfolio className="work-div">
                   <s.StyledH4 className="work">{skill}</s.StyledH4>
+                  <s.StyledP className="work-description">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Ratione soluta quo quia, eos quisquam hic laudantium, illo
+                    harum deserunt magnam corrupti, temporibus.
+                  </s.StyledP>
                 </s.Portfolio>
 
                 {index + 1 < hash.length && ( //이 조건이 만족할 경우 (다음 요소가 있는 경우) 수직 라인 추가하여 다음 요소 렌더링
@@ -21,6 +27,11 @@ const ArtistSkillComponent: React.FC<{ hash: string[] }> = ({ hash }) => {
                       <s.StyledH4 className="work">
                         {hash[index + 1]}
                       </s.StyledH4>
+                      <s.StyledP className="work-description">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Obcaecati quia alias modi quibusdam excepturi
+                        blanditiis suscipit deleniti, harum soluta corporis.
+                      </s.StyledP>
                     </s.Portfolio>
                   </>
                 )}
@@ -32,7 +43,7 @@ const ArtistSkillComponent: React.FC<{ hash: string[] }> = ({ hash }) => {
             </React.Fragment>
           );
         }
-        return null;  //index가 홀수라면 아무것도 그리지 않음
+        return null; //index가 홀수라면 아무것도 그리지 않음
       })}
     </s.Portfolio>
   );

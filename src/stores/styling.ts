@@ -339,7 +339,7 @@ const HeaderDiv = styled.div`
     width: 100%;
     height: 50px;
     background: transparent;
-    
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -689,7 +689,6 @@ const StyledH3 = styled.h3`
   font-size: 3.3em;
   letter-spacing: -0.05em;
   font-weight: 400;
-  white-space: nowrap;
   padding: 0;
   margin: 0;
   display: flex;
@@ -1615,7 +1614,7 @@ const Search = styled.div`
   &.search-wrapper {
     width: 100%;
     height: auto;
-    margin-top: 30px;
+    margin-top: 50px;
     overflow: hidden;
 
     display: flex;
@@ -2103,16 +2102,26 @@ const Portfolio = styled.div`
 const Test = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: blue;
-  opacity: 0.3;
-  mix-blend-mode: multiply;
+  color: #000;
+  font-size: 50px;
+  border: 1px solid red;
 
-   position: absolute;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-`
+
+  &.gradient {
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+      45deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(9, 9, 121, 1) 35%,
+      rgba(0, 212, 255, 1) 100%
+    );
+  }
+`;
 
 const Carousel = styled.div`
   &.carousel-wrapper {
@@ -2335,7 +2344,7 @@ const Footer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    
+
     position: absolute;
     bottom: 0;
   }
@@ -2355,7 +2364,7 @@ const Footer = styled.div`
     justify-content: space-between;
   }
 
-    &.copyright {
+  &.copyright {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -2372,7 +2381,7 @@ const Footer = styled.div`
     justify-content: space-between;
   }
 
-    &.footer-box-right {
+  &.footer-box-right {
     width: 168px;
     display: flex;
     align-items: center;
@@ -2393,7 +2402,6 @@ const Footer = styled.div`
     flex-direction: row;
     align-items: center;
   }
-
 `;
 
 const BrandLogo = styled(Logo)`
@@ -2557,11 +2565,18 @@ const Form = styled.form`
   }
 `;
 
+const ProfileDiv = styled.div`
+  &.wrapper {
+    margin-top: 50px;
+  }
+`;
+
 const LoginDiv = styled.div`
   &.wrapper {
     width: 100%;
     height: 792px;
     display: flex;
+    margin-top: 50px;
   }
 
   &.container {
@@ -3201,6 +3216,7 @@ const s = {
   Option,
   Input,
   Label,
+  ProfileDiv,
   LoginDiv,
   LongImgWrapper,
   MainImage,
