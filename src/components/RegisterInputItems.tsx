@@ -13,6 +13,7 @@ interface RegisterInputItemsProps {
      maxLength?: number;
      placeholder?: string;
      extraClass?: string;
+     autocomplete?: string;
 }
 
 const RegisterInputItems: React.FC<RegisterInputItemsProps> = ({ name, type, id, value, onChange, onBlur, required, label, minLength, placeholder, extraClass }) => {

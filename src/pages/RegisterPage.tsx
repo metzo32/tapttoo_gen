@@ -54,7 +54,7 @@ const RegisterPage = () => {
       console.log('User registered:', userCredential.user);
 
       // 사용자 정보 firestore에 저장하기
-      await setDoc(doc(db, "users", user.uid), {
+      await setDoc(doc(db, "users", user.uid), {  // user 컬렉션 하위의 각 사용자의 고유 uid를 문서 id로 설정
         email: registerEmail,
         fullname: registerFullname,
         nickname: registerNickname,
@@ -197,6 +197,7 @@ const RegisterPage = () => {
                   required={true}
                   label={"Password"}
                   placeholder={"8자 이상의 영문 또는 숫자"}
+                  autocomplete="new-password"
                 />
 
                 <RegisterInputItems
@@ -209,6 +210,7 @@ const RegisterPage = () => {
                   onBlur={handleBlur}
                   required={true}
                   label={"Password Confirm"}
+                  autocomplete="new-password"
                 />
               </s.LoginDiv>
 

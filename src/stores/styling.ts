@@ -2110,7 +2110,7 @@ const Portfolio = styled.div`
 
 const moveUp = keyframes`
   0% {
-    transform: translateY(100vh);
+    transform: translateY(-100vh);
   }
   100% {
     transform: translateY(0);
@@ -2128,6 +2128,9 @@ const Test = styled.div`
   top: 0;
   left: 0;
 
+  &.wrapper {
+    margin-top: 50px;
+  }
 
   &.gradient {
     background: rgb(2, 0, 36);
@@ -2140,9 +2143,11 @@ const Test = styled.div`
   }
 
    &.animate {
-    ${(props) => css`
-      animation: ${moveUp} 0.3s forwards;
-    `}
+   animation: ${moveUp} 1s forwards;
+  }
+
+  &.active {
+    animation: ${moveUp} 1s forwards;
   }
 `;
 
