@@ -1,4 +1,4 @@
-import styled, { keyframes, css } from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Route, Link as RouterLink } from "react-router-dom";
 import {
   Green,
@@ -11,7 +11,10 @@ import {
   Light,
   White,
   Black,
+  lightTheme,
+  darkTheme,
 } from "../stores/colors";
+
 import { RiHomeLine } from "react-icons/ri"; //홈
 import { GrSearch } from "react-icons/gr"; //검색
 import { RxHamburgerMenu } from "react-icons/rx"; //햄버거
@@ -48,7 +51,6 @@ const Engraved = styled.div`
   color: transparent;
   text-shadow: rgba(245, 245, 245, 0.5) 3px 3px 1px;
 `;
-
 
 const infiniteSlideLeft = keyframes`
   0% {
@@ -1867,137 +1869,6 @@ const ArticleDiv = styled.div`
   }
 `;
 
-// const ArtistDiv = styled.div`
-//   &.wrapper {
-//     width: 100%;
-//     margin-bottom: 100px;
-//   }
-
-//   &.h2-container {
-//     width: calc(100% - 20px);
-//     display: flex;
-//     justify-content: space-between;
-//     margin: 10px 10px 0 10px;
-//   }
-
-//   &.atags-container {
-//     width: 30%;
-//     height: 220px;
-//     display: flex;
-//     flex-direction: column;
-//     align-items: flex-start;
-//     justify-content: space-between;
-//     align-items: flex-end;
-//   }
-
-//   &.atags-box {
-//     width: 100%;
-//     display: flex;
-//     align-items: center;
-//   }
-
-//   &.img-wrapper {
-//     width: 100%;
-//     height: 600px;
-//     overflow: hidden;
-//     margin-top: 50px;
-//   }
-
-//   &.title-wrapper {
-//     display: flex;
-//   }
-
-//   &.title-container-left {
-//     width: 100%;
-//     height: 400px;
-//   }
-
-//   &.title-container-right {
-//     width: 30%;
-//     display: flex;
-//     align-items: flex-end;
-//     justify-content: center;
-//     padding: 0;
-//   }
-
-//   &.button-box {
-//     width: 100%;
-//     display: flex;
-//     justify-content: space-around;
-//   }
-
-//   &.mid-wrapper {
-//     display: flex;
-//     flex-direction: row;
-//     width: calc(100% - 80px);
-//     min-height: 680px;
-//     height: auto;
-//     padding: 40px;
-//   }
-
-//   &.mid-line {
-//     width: 2px;
-//     background-color: ${Grey};
-//     margin: 0 40px 0 0;
-//   }
-
-//   &.mid-left {
-//     width: 30%;
-//     height: 100%;
-//     min-height: 680px;
-//   }
-
-//   &.mid-right {
-//     width: calc(70% - 40px);
-//     height: 100%;
-//     min-height: 680px;
-//   }
-
-//   &.mid-container {
-//     height: auto;
-//     min-height: 200px;
-//     display: flex;
-//     flex-direction: column;
-//     margin-bottom: 50px;
-//   }
-//   &.mid-container:last-of-type {
-//     margin: 0;
-//   }
-
-//   &.h4-box {
-//     height: auto;
-//     margin: 10px 0 10px 0;
-//   }
-
-//   &.center-box {
-//     height: auto;
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-//   }
-
-//   &.p-box-line {
-//     width: 100%;
-//     border-bottom: 1px solid ${Grey};
-
-//     &.last {
-//       border: none;
-//     }
-//   }
-
-//   &.p-box {
-//     width: 100%;
-//     height: auto;
-//     min-height: 130px;
-//     margin-bottom: 50px;
-//   }
-
-//   &.bottom-wrapper {
-//     width: 100%;
-//     height: 500px;
-//   }
-// `;
-
 const Portfolio = styled.div`
   &.wrapper {
     width: calc(100vw - 40px);
@@ -2100,14 +1971,6 @@ const Portfolio = styled.div`
   }
 `;
 
-
-
-
-
-
-
-
-
 const moveUp = keyframes`
   0% {
     transform: translateY(-100vh);
@@ -2115,7 +1978,7 @@ const moveUp = keyframes`
   100% {
     transform: translateY(0);
   }
-`
+`;
 
 const Test = styled.div`
   width: 100vw;
@@ -2142,26 +2005,14 @@ const Test = styled.div`
     );
   }
 
-   &.animate {
-   animation: ${moveUp} 1s forwards;
+  &.animate {
+    animation: ${moveUp} 1s forwards;
   }
 
   &.active {
     animation: ${moveUp} 1s forwards;
   }
 `;
-
-
-
-
-
-
-
-
-
-
-
-
 
 const Carousel = styled.div`
   &.carousel-wrapper {
@@ -2799,7 +2650,7 @@ const LoginDiv = styled.div`
 const Select = styled.select`
   width: 90px;
   height: 30px;
-  color: ${Grey}
+  color: ${Grey};
   outline: 0;
   border: 2px solid ${Grey};
   padding: 4px;

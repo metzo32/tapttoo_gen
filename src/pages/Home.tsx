@@ -6,11 +6,11 @@ import MainPageImage02 from '../assets/images/main_page_png02_low.png';
 import Modal from '../components/Modal';
 import useModal from '../hooks/ModalHook';
 
+
 const TestPage = () => {
 
   const [loading, setLoading] = useState(true)
   const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
-
 
   const handleLoadingComplete = () => {
     setLoading(false);

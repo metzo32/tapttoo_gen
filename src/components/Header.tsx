@@ -3,14 +3,13 @@ import { useNavigate } from "react-router-dom";
 import s from "../stores/styling";
 import SideBar from "./SideBar";
 import { AuthContext } from "../context/AuthContext";
-import DarkModeButton from "./DarkModeButton";
 
+import DarkModeButton from "./DarkModeButton";
 
 export default function Header() {
   const navigate = useNavigate();
-  const { currentlyLoggedIn } = useContext(AuthContext)
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const { currentlyLoggedIn } = useContext(AuthContext);
   const [sidebar, setSidebar] = useState(false);
 
   const handleProfileNavigation = () => {
@@ -24,22 +23,17 @@ export default function Header() {
   const handleNavigation = (path: string) => {
     navigate(path);
     const viewportHeight = window.innerHeight;
-console.log(viewportHeight);
+    console.log(viewportHeight);
   };
 
   const showSidebar = () => setSidebar(!sidebar);
-
-
 
   return (
     <s.HeaderDiv className="wrapper">
       <SideBar sidebar={sidebar} showSidebar={showSidebar} />
       <s.HeaderDiv className="button-wrapper">
-        <s.Button 
-          className="header-button-item" 
-          onClick={showSidebar}
-        >
-          <s.HamburgerIcon/>
+        <s.Button className="header-button-item" onClick={showSidebar}>
+          <s.HamburgerIcon />
         </s.Button>
 
         <s.Button
@@ -49,14 +43,12 @@ console.log(viewportHeight);
           <s.HomeIcon />
         </s.Button>
 
-
         <s.Button
           className="header-button-item"
           onClick={() => handleNavigation("/article")}
         >
           <s.SearchIcon />
         </s.Button>
-
       </s.HeaderDiv>
       <s.HeaderDiv className="button-wrapper">
         <DarkModeButton />

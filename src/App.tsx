@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { createGlobalStyle } from "styled-components";
 import s from "./stores/styling";
 import {
   BrowserRouter as Router,
@@ -20,7 +19,7 @@ import Article from "./pages/Article";
 import SearchPage from "./pages/SearchPage";
 import Career from "./pages/Career";
 import Contact from "./pages/Contact";
-// import ArtistRegister from "./pages/ArtistRegister";
+
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 import ArtistProfile from "./pages/ArtistProfile";
