@@ -117,7 +117,7 @@ const LoginPage = () => {
                 <s.Label
                   className={`login-info ${signInEmail ? "active" : ""}`}
                 >
-                  Email
+                  이메일
                 </s.Label>
               </s.LoginDiv>
               <s.LoginDiv className="input-box">
@@ -133,7 +133,7 @@ const LoginPage = () => {
                   autoComplete="current-password"
                 />
                 <s.Label className={`login-info ${signInPw ? "active" : ""}`}>
-                  Password
+                  비밀번호
                 </s.Label>
               </s.LoginDiv>
             </s.LoginDiv>

@@ -1858,7 +1858,7 @@ const Portfolio = styled.div`
   &.wrapper {
     width: calc(100vw - 40px);
     height: auto;
-    margin: 50px 100px 0px 100px;
+    margin: 50px 100px 20px 100px;
   }
 
   &.header-wrapper {
@@ -1970,7 +1970,6 @@ const Test = styled.div`
   height: 100vh;
   color: #000;
   font-size: 50px;
-  border: 1px solid red;
 
   position: sticky;
   top: 0;
@@ -2582,11 +2581,15 @@ const LoginDiv = styled.div`
   }
   
   &.button-wrapper {
-    height: 150px;
+    height: 130px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
+    &.login {
+    height: 170px;
+    }
   }
 
   &.calandar-container {
@@ -2632,6 +2635,7 @@ const LoginDiv = styled.div`
 const Select = styled.select`
   width: 90px;
   height: 30px;
+  background-color: ${(props) => props.theme.Light};
   color: ${(props) => props.theme.Grey};
   outline: 0;
   border: 2px solid ${(props) => props.theme.Grey};
@@ -2640,7 +2644,9 @@ const Select = styled.select`
   cursor: pointer;
 `;
 
-const Option = styled.option``;
+const Option = styled.option`
+
+`;
 
 const Input = styled.input`
   background: transparent;
@@ -2735,7 +2741,6 @@ const Label = styled.label`
   }
 
   &.modal-label {
-    width: 100px;
     font-size: 0.8em;
     color: ${Grey};
     cursor: pointer;
@@ -2868,10 +2873,10 @@ const Button = styled.button`
   &.scroll-top-btn {
     width: 60px;
     height: 60px;
-    color: ${(props) => props.theme.Green};
+    color: ${Green};
     padding: 0;
     background-color: rgba(238, 237, 235, 0.6);
-    border: 3px solid ${(props) => props.theme.Green};
+    border: 3px solid ${Green};
     border-radius: 50%;
     display: flex;
     position: sticky;
@@ -2882,7 +2887,7 @@ const Button = styled.button`
     z-index: 5;
 
     &:hover {
-      color: ${(props) => props.theme.White};
+      color: ${Green};
       background-color: rgba(238, 237, 235, 0.9);
       transition: 0.3s ease;
     }
@@ -3013,13 +3018,13 @@ const RightIcon = styled(IoIosArrowForward)`
 const CheckboxBeforeIcon = styled(CheckboxBefore)`
   width: 15px;
   height: 15px;
-  margin-right: 5px;
+  margin: 0px 5px;
 `;
 
 const CheckboxAfterIcon = styled(CheckboxAfter)`
   width: 15px;
   height: 15px;
-  margin-right: 5px;
+  margin: 0px 5px;
 `;
 
 //Header Icons
@@ -3085,7 +3090,7 @@ const YoutubeIcon = styled(FaYoutube)`
 
 const TopArrowIcon = styled(MdOutlineArrowUpward)`
   ${StyledIcon}
-  fill: ${(props) => props.theme.Green};
+  fill: ${Green};
   width: 2.5em;
   height: 2.5em;
 `;

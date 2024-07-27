@@ -178,7 +178,7 @@ const RegisterPage = () => {
                   onChange={(event) => setRegisterEmail(event.target.value)}
                   onBlur={handleBlur}
                   required={true}
-                  label={"Email"}
+                  label={"이메일"}
                 />
 
                 <RegisterInputItems
@@ -190,7 +190,7 @@ const RegisterPage = () => {
                   onChange={(event) => setRegisterPw(event.target.value)}
                   onBlur={handleBlur}
                   required={true}
-                  label={"Password"}
+                  label={"비밀번호"}
                   placeholder={"8자 이상의 영문 또는 숫자"}
                   autocomplete="new-password"
                 />
@@ -204,7 +204,7 @@ const RegisterPage = () => {
                   onChange={(event) => setRegisterPwConfirm(event.target.value)}
                   onBlur={handleBlur}
                   required={true}
-                  label={"Password Confirm"}
+                  label={"비밀번호 확인"}
                   autocomplete="new-password"
                 />
               </s.LoginDiv>
@@ -226,7 +226,7 @@ const RegisterPage = () => {
             </s.LoginDiv>
           )}
 
-          {step === 2 && (
+          {step === 1 && (
             <s.LoginDiv className="container step02">
               <s.LoginDiv className="input-wrapper step02">
                 <RegisterInputItems
@@ -252,6 +252,7 @@ const RegisterPage = () => {
                   label={"닉네임"}
                   placeholder={"한글 또는 영문, 숫자 조합"}
                 />
+
                 <s.LoginDiv className="item-box">
                   <CalculateAge
                     isAdult={handleAgeValidation}
