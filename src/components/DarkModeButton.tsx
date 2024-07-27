@@ -1,9 +1,23 @@
-import React from 'react'
 
-export default function DarkModeButton() {
+import s from "../stores/styling";
+import useThemeContext from "../hooks/ThemeHook";
+
+const DarkModeButton: React.FC = () => {
+
+  const { isDark, setIsDark } = useThemeContext();
+
+  const toggleDark = () => {
+    setIsDark((prevMode: boolean) => !prevMode);
+  };
+
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <s.Button
+      className="Round"
+      onClick={toggleDark}
+    >
+      다크
+    </s.Button>
+  );
+};
+
+export default DarkModeButton;

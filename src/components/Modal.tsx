@@ -70,7 +70,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, modalTitle, children, sh
               />
               <s.Label
                 htmlFor="understand"
-                className={`understand ${isInvalid ? "invalid" : ""}`}
+                className={`modal-label ${isInvalid ? "invalid" : ""}`}
               >
                 {understand ? (
                   <s.CheckboxAfterIcon className="checkbox-icon-checked" />
@@ -80,7 +80,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, modalTitle, children, sh
                 {checkboxText}
               </s.Label>
             </s.Modal>}
-            <s.Button className="Round" onClick={handleModalClose}>
+            <s.Button className="Round modal" onClick={handleModalClose}>
               닫기
             </s.Button>
           </s.Modal>

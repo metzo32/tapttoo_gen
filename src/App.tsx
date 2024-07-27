@@ -10,6 +10,7 @@ import {
 
 import { AuthContext } from "./context/AuthContext";
 import ProtectedRouteHoc from "./components/ProtectedRouteHoc";
+import CustomThemeProvider from "./context/\bCustomThemeProvider";
 
 import Header from "./components/Header";
 import AboutUs from "./pages/AboutUs";
@@ -62,52 +63,53 @@ const App: React.FC = () => {
   return (
     <>
       <AuthContext.Provider value={{ currentlyLoggedIn, setCurrentlyLoggedIn }}>
-        {/* useContext로 넘겨줄 props */}
-        <s.Div className="App">
-          <Router>
-            <Header />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/aboutus" element={<AboutUs />} />
-              <Route path="/article" element={<Article />} />
+        <CustomThemeProvider>
+          <s.Div className="App">
+            <Router>
+              <Header />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/aboutus" element={<AboutUs />} />
+                <Route path="/article" element={<Article />} />
 
-              <Route path="/search" element={<SearchPage />} />
-              <Route path="/career" element={<Career />} />
-              <Route path="/contact" element={<Contact />} />
-              {/* <Route path="/joinartist" element={<ArtistRegister />} /> */}
-              <Route
-                path="/profile"
-                element={
-                  <ProtectedRouteHoc>
-                    <Profile />
-                  </ProtectedRouteHoc>
-                }
-              />
-              <Route path="/registerterms" element={<RegisterTerms />} />
-              <Route path="/register" element={<RegisterPage />} />
-              <Route path="/careerbusiness" element={<CareerBusiness />} />
-              <Route path="/careerdesign" element={<CareerDesign />} />
-              <Route
-                path="/careerengineering"
-                element={<CareerEngineering />}
-              />
-              <Route path="/careermarketing" element={<CareerMarketing />} />
-              <Route path="/searchnew" element={<SearchNew />} />
-              <Route path="/your_custom_tattoo" element={<GenerateImage />} />
-              <Route path="/scroll" element={<ScrollTest />} />
-              {ArtistData.map((artist) => (
+                <Route path="/search" element={<SearchPage />} />
+                <Route path="/career" element={<Career />} />
+                <Route path="/contact" element={<Contact />} />
+                {/* <Route path="/joinartist" element={<ArtistRegister />} /> */}
                 <Route
-                  key={artist.id}
-                  path={`/profile_artist_${artist.nickname}`}
-                  element={<ArtistProfile artist={artist} />}
+                  path="/profile"
+                  element={
+                    <ProtectedRouteHoc>
+                      <Profile />
+                    </ProtectedRouteHoc>
+                  }
                 />
-              ))}
-            </Routes>
-            <ScrollToTopButton />
-            <FooterWrapper />
-          </Router>
-        </s.Div>
+                <Route path="/registerterms" element={<RegisterTerms />} />
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/careerbusiness" element={<CareerBusiness />} />
+                <Route path="/careerdesign" element={<CareerDesign />} />
+                <Route
+                  path="/careerengineering"
+                  element={<CareerEngineering />}
+                />
+                <Route path="/careermarketing" element={<CareerMarketing />} />
+                <Route path="/searchnew" element={<SearchNew />} />
+                <Route path="/your_custom_tattoo" element={<GenerateImage />} />
+                <Route path="/scroll" element={<ScrollTest />} />
+                {ArtistData.map((artist) => (
+                  <Route
+                    key={artist.id}
+                    path={`/profile_artist_${artist.nickname}`}
+                    element={<ArtistProfile artist={artist} />}
+                  />
+                ))}
+              </Routes>
+              <ScrollToTopButton />
+              <FooterWrapper />
+            </Router>
+          </s.Div>
+        </CustomThemeProvider>
       </AuthContext.Provider>
     </>
   );

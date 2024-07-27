@@ -15,9 +15,6 @@ import countrycode from "../assets/datas/country_code";
 import Modal from "../components/Modal";
 import useModal from "../hooks/ModalHook";
 
-import RegisterImage01 from "../assets/images/register_01.png";
-import RegisterImage02 from "../assets/images/register_02.png";
-
 
 
 
@@ -153,8 +150,6 @@ const RegisterPage = () => {
   return (
     <>
       <s.LoginDiv className="wrapper">
-        <s.Image src={RegisterImage01} alt="" className="register-bg01" />
-        <s.Image src={RegisterImage02} alt="" className="register-bg02" />
         
         <Modal
           isOpen={isModalOpen}

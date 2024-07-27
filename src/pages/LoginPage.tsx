@@ -4,9 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { AuthContext } from "../context/AuthContext";
+import useThemeContext from "../hooks/ThemeHook";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+
+  const { isDark } = useThemeContext();
 
   const { currentlyLoggedIn, setCurrentlyLoggedIn } = useContext(AuthContext);
 
@@ -136,18 +139,29 @@ const LoginPage = () => {
             </s.LoginDiv>
             <s.LoginDiv className="button-wrapper login">
               <s.LoginDiv className="checkbox-box">
-                <s.Label className="remember">Remember me</s.Label>
+                <s.Label className="check-label" htmlFor="remember">
+                  Remember me
+                  {rememberMe ? (
+                    <s.CheckboxAfterIcon className="checkbox-icon-checked" />
+                  ) : (
+                    <s.CheckboxBeforeIcon className="checkbox-icon" />
+                  )}
+                </s.Label>
                 <s.Input
                   type="checkbox"
+                  id="remember"
                   checked={rememberMe}
                   onChange={handleRememberMeChange}
-                  className="check"
+                  className="remember-check"
                 />
               </s.LoginDiv>
               <s.Button type="submit" className="Round">
                 로그인
               </s.Button>
-              <s.Button type="button" onClick={() => handleNavigation("/register")}>
+              <s.Button
+                type="button"
+                onClick={() => handleNavigation("/register")}
+              >
                 가입하기
               </s.Button>
             </s.LoginDiv>

@@ -22,12 +22,12 @@ export default function GenderSelect() {
           required
           className="gender-radio"
         />
-        <s.Label htmlFor="gender-male" className="gender-label">
+        <s.Label htmlFor="gender-male" className="check-label">
           {selectedGender === "male" ? (
-            <s.CheckboxAfterIcon className="checkbox-icon-checked" />
-          ) : (
-            <s.CheckboxBeforeIcon className="checkbox-icon" />
-          )}
+              <s.CheckboxAfterIcon className="checkbox-icon-checked" />
+            ) : (
+              <s.CheckboxBeforeIcon className="checkbox-icon" />
+            )}
           Male
         </s.Label>
       </s.LoginDiv>
@@ -43,7 +43,7 @@ export default function GenderSelect() {
           required
           className="gender-radio"
         />
-        <s.Label htmlFor="gender-female" className="gender-label">
+        <s.Label htmlFor="gender-female" className="check-label">
           {selectedGender === "female" ? (
             <s.CheckboxAfterIcon className="checkbox-icon-checked" />
           ) : (
@@ -64,7 +64,7 @@ export default function GenderSelect() {
           required
           className="gender-radio"
         />
-        <s.Label htmlFor="gender-other" className="gender-label">
+        <s.Label htmlFor="gender-other" className="check-label">
           {selectedGender === "other" ? (
             <s.CheckboxAfterIcon className="checkbox-icon-checked" />
           ) : (

@@ -25,7 +25,7 @@ interface colorTheme {
 export const lightTheme: colorTheme = {
     Green: "#40A93E",
     HoverGreen: "#276E27",
-    Orange: "#FC6B00",
+    Orange: "#FF5C00",
     Yellow: "#FE9311",
     Grey: "#6E6560",
     LightGrey: "#A8A29C",
@@ -36,11 +36,11 @@ export const lightTheme: colorTheme = {
   };
   
   export const darkTheme: colorTheme = {
-    Green: "#276E27",
-    HoverGreen: "#40A93E",
-    Orange: "#FC6B00",
+    Green: "#30B62E",
+    HoverGreen: "#57d355",
+    Orange: "#FF5C00",
     Yellow: "#FE9311",
-    Grey: "#A8A29C",
+    Grey: "#D3CDC6",
     LightGrey: "#6E6560",
     HoverGrey: "#EEEDEB",
     Light: "#272423",
