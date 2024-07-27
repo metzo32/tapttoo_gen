@@ -1,16 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { Route, Link as RouterLink } from "react-router-dom";
 import {
-  Green,
-  HoverGreen,
-  Orange,
-  Yellow,
-  Grey,
-  LightGrey,
-  HoverGrey,
-  Light,
-  White,
-  Black,
   lightTheme,
   darkTheme,
 } from "../stores/colors";
@@ -568,7 +558,7 @@ const StyledH1 = styled.h1`
 
   &.article-name {
     box-sizing: content-box;
-    color: ${White};
+    color: ${lightTheme.White};
     opacity: 0.5;
     font-size: 10em;
     text-align: center;
@@ -591,7 +581,7 @@ const StyledH1 = styled.h1`
   }
 
   &.warning {
-    color: ${Green};
+    color: ${lightTheme.Green};
     font-size: 2em;
     font-weight: 400;
     line-height: 2em;
@@ -884,7 +874,7 @@ const StyledP = styled.p`
   }
 
   &.modal {
-    color: ${Grey};
+    color: ${lightTheme.Grey};
     font-size: 1em;
     line-height: 22px;
     text-align: center;
@@ -1432,7 +1422,7 @@ const Modal = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background-color: ${(props) => props.theme.Overlay};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1448,7 +1438,7 @@ const Modal = styled.div`
   &.modal-wrapper {
     width: 400px;
     height: 400px;
-    background-color: ${Light};
+    background-color: ${lightTheme.Light};
     border-radius: 10px;
     margin: 0 auto;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
@@ -1463,9 +1453,9 @@ const Modal = styled.div`
   &.circle {
     width: 90px;
     height: 90px;
-    background-color: ${Yellow};
+    background-color: ${lightTheme.Yellow};
     border-radius: 50%;
-    border: 3px solid ${Light};
+    border: 3px solid ${lightTheme.Light};
 
     position: absolute;
     top: 50%;
@@ -2094,7 +2084,7 @@ const SideBar = styled.div`
     position: fixed;
     top: 48px;
 
-    z-index: 5;
+    z-index: 9999;
 
     pointer-events: none;
   }
@@ -2119,7 +2109,7 @@ const SideBar = styled.div`
 `;
 
 const NavBar = styled.nav`
-  background-color: ${(props) => props.theme.White};
+  background-color: ${(props) => props.theme.HoverGrey};
   font-size: 1em;
   height: 100%;
 
@@ -2130,6 +2120,7 @@ const NavBar = styled.nav`
   z-index: 3;
 
   &.nav-menu {
+    background-color: ${(props) => props.theme.Light};
     left: -120%;
     transition: ease 0.3s;
     opacity: 0;
@@ -2155,9 +2146,8 @@ const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: ${(props) => props.theme.HoverGrey};
-  z-index: 3;
-  opacity: 0.3;
+  background-color: ${(props) => props.theme.Overlay};
+  z-index: 9998;
   transition: opacity 0.3s ease;
 `;
 
@@ -2742,22 +2732,22 @@ const Label = styled.label`
 
   &.modal-label {
     font-size: 0.8em;
-    color: ${Grey};
+    color: ${lightTheme.Grey};
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     &:hover {
-      color: ${HoverGrey};
+      color: ${lightTheme.HoverGrey};
 
       .checkbox-icon-checked {
-        color: ${HoverGreen};
+        color: ${lightTheme.HoverGreen};
       }
     }
 
     .checkbox-icon-checked {
-      color: ${Green};
+      color: ${lightTheme.Green};
     }
   }
 
@@ -2823,11 +2813,11 @@ const Button = styled.button`
     }
 
     &.modal {
-      color: ${Green};
+      color: ${lightTheme.Green};
       &:hover {
-        color: ${White};
-        background-color: ${HoverGreen};
-        border-color: ${HoverGreen};
+        color: ${lightTheme.White};
+        background-color: ${lightTheme.HoverGreen};
+        border-color: ${lightTheme.HoverGreen};
         transition: 0.3s ease;
       }
     }
@@ -2873,10 +2863,10 @@ const Button = styled.button`
   &.scroll-top-btn {
     width: 60px;
     height: 60px;
-    color: ${Green};
+    color: ${lightTheme.Green};
     padding: 0;
     background-color: rgba(238, 237, 235, 0.6);
-    border: 3px solid ${Green};
+    border: 3px solid ${lightTheme.Green};
     border-radius: 50%;
     display: flex;
     position: sticky;
@@ -2884,10 +2874,10 @@ const Button = styled.button`
     justify-content: center;
     bottom: 10%;
     left: 92%;
-    z-index: 5;
+    z-index: 9999;
 
     &:hover {
-      color: ${Green};
+      color: ${lightTheme.Green};
       background-color: rgba(238, 237, 235, 0.9);
       transition: 0.3s ease;
     }
@@ -2972,6 +2962,7 @@ interface IconProps {
 const StyledIcon = styled.svg<IconProps>`
   width: 4em;
   height: 4em;
+  stroke: ${(props) => props.theme.Grey};
   fill: ${(props) => props.theme.Grey};
   color: ${(props) => props.theme.Grey};
 
@@ -3090,14 +3081,14 @@ const YoutubeIcon = styled(FaYoutube)`
 
 const TopArrowIcon = styled(MdOutlineArrowUpward)`
   ${StyledIcon}
-  fill: ${Green};
+  fill: ${lightTheme.Green};
   width: 2.5em;
   height: 2.5em;
 `;
 
 const WarnIcon = styled(TbExclamationMark)`
   font-size: 100px;
-  color: ${White};
+  color: ${lightTheme.White};
 `;
 
 const s = {

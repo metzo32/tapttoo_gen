@@ -1,13 +1,13 @@
-export const Green = "#40A93E";
-export const HoverGreen = "#276E27";
-export const Orange = "#FC6B00";
-export const Yellow = "#FE9311"
-export const Grey = "#6E6560";
-export const LightGrey = "#A8A29C";
-export const HoverGrey = "#272423";
-export const Light = "#EEEDEB";
-export const White = "#FFF";
-export const Black = "#000"
+// export const Green = "#40A93E";
+// export const HoverGreen = "#276E27";
+// export const Orange = "#FC6B00";
+// export const Yellow = "#FE9311"
+// export const Grey = "#6E6560";
+// export const LightGrey = "#A8A29C";
+// export const HoverGrey = "#272423";
+// export const Light = "#EEEDEB";
+// export const White = "#FFF";
+// export const Black = "#000"
 
 interface colorTheme {
     Green: string;
@@ -20,6 +20,7 @@ interface colorTheme {
     Light: string;
     White: string;
     Black: string;
+    Overlay: string;
 }
 
 export const lightTheme: colorTheme = {
@@ -32,7 +33,8 @@ export const lightTheme: colorTheme = {
     HoverGrey: "#272423",
     Light: "#EEEDEB",
     White: "#FFF",
-    Black: "#000"
+    Black: "#000",
+    Overlay: "rgba(0, 0, 0, 0.5)",
   };
   
   export const darkTheme: colorTheme = {
@@ -45,5 +47,6 @@ export const lightTheme: colorTheme = {
     HoverGrey: "#EEEDEB",
     Light: "#272423",
     White: "#000",
-    Black: "#FFF"
+    Black: "#FFF",
+    Overlay: "rgba(0, 0, 0, 0.3)",
   };
