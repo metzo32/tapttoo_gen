@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { css } from "styled-components";
 import { Route, Link as RouterLink } from "react-router-dom";
 
 import {
@@ -14,6 +14,8 @@ import {
   pulse01,
   pulse02,
   pulse03,
+  moveUp,
+  ClickAnimation,
 } from "./animations";
 
 import { lightTheme, darkTheme } from "../stores/colors";
@@ -365,36 +367,6 @@ const SectionContainer = styled.div`
   }
 `;
 
-const SectionFrame = styled.div`
-  display: flex;
-
-  &.right {
-    display: flex;
-    flex-direction: column;
-    margin-left: 500px;
-  }
-
-  &.carousel-frame {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  &.career-img-wrapper {
-    width: 100%;
-    margin-top: 50px;
-    margin-bottom: 50px;
-
-    display: flex;
-    justify-content: space-between;
-  }
-
-  &.career-img-items {
-    width: calc(100% / 4);
-    aspect-ratio: 1 / 1;
-  }
-`;
-
 const BrandTitleWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -727,6 +699,7 @@ const StyledP = styled.p`
   }
 
   &.card-title {
+    color: ${lightTheme.Grey};
     font-weight: 500;
     font-size: 2em;
     margin-top: 30px;
@@ -734,6 +707,7 @@ const StyledP = styled.p`
   }
 
   &.card-semititle {
+    color: ${lightTheme.Grey};
     font-size: 1.2em;
     line-height: 25px;
     opacity: 0.7;
@@ -741,6 +715,7 @@ const StyledP = styled.p`
   }
 
   &.card-text {
+    color: ${lightTheme.Grey};
     line-height: 25px;
   }
 
@@ -966,6 +941,10 @@ const CareerP = styled.p`
 `;
 
 const Accordion = styled.div`
+  &.accordion-wrapper {
+    margin-top: 50px;
+  }
+
   &.acc {
     max-height: auto;
     position: relative;
@@ -976,30 +955,8 @@ const Accordion = styled.div`
     padding-bottom: 50px;
     position: relative;
   }
-`;
 
-const CareerDetail = styled.div`
-  width: 100%;
-  height: 100vh;
-
-  &.wrapper {
-    width: 100%;
-    height: auto;
-  }
-
-  &.img-container {
-    width: 100%;
-    height: auto;
-  }
-
-  &.item-box {
-    width: calc(100% - 40px);
-    height: 90px;
-    display: flex;
-    transition: transform 0.3s ease;
-  }
-
-  &.accordion-wrapper {
+  &.accordion-title-wrapper {
     width: calc(100% - 40px);
     height: auto;
     padding: 30px 20px 15px 20px;
@@ -1015,22 +972,7 @@ const CareerDetail = styled.div`
     &:hover .accordion-title2 {
       transition: transform 0.3s ease;
       transform: translateY(-5px);
-
-      background: -webkit-linear-gradient(
-        170deg,
-        rgba(46, 116, 47, 1) 40%,
-        rgba(141, 194, 139, 1) 60%
-      );
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-
-      background: linear-gradient(
-        170deg,
-        rgba(46, 116, 47, 1) 40%,
-        rgba(141, 194, 139, 1) 60%
-      );
-      background-clip: text;
-      color: transparent;
+      color: ${(props) => props.theme.Green};
     }
   }
 
@@ -1039,6 +981,14 @@ const CareerDetail = styled.div`
     height: auto;
     margin: 0 20px 0 0;
     position: relative;
+  }
+
+  &.item-box {
+    width: calc(100% - 40px);
+    height: 90px;
+    display: flex;
+    flex-direction: row;
+    transition: transform 0.3s ease;
   }
 
   &.accordion-border {
@@ -1055,26 +1005,67 @@ const CareerDetail = styled.div`
   &.cardbox {
     width: calc(100% - 40px);
     max-height: 0px;
+    margin: 0 auto;
+
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin: 0 auto;
-    margin-top: 0px;
     opacity: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease, opacity 0.3s ease;
+
+     transition: max-height 0.3s ease, opacity 0.5s ease;
   }
 
   &.cardbox-open {
     width: calc(100% - 40px);
-    max-height: 980px;
+    height: 850px;
+    max-height: 850px;
+    margin: 0 auto;
+
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin: 0 auto;
+    opacity: 1;
+    overflow: hidden;
 
     overflow: visible;
-    transition: 0.3s ease, opacity 0.3s ease;
+     transition: max-height 0.3s ease, opacity 0.5s ease;
+  }
+`;
+
+const CareerDetail = styled.div`
+  width: 100%;
+  height: 100vh;
+
+  &.wrapper {
+    width: 100%;
+    height: auto;
+    margin-top: 50px;
+  }
+
+  &.img-container {
+    width: 100%;
+    height: auto;
+  }
+
+  &.accordion-title-wrapper {
+    width: calc(100% - 40px);
+    height: auto;
+    padding: 30px 20px 15px 20px;
+    display: flex;
+    flex-direction: column;
+
+    &:hover .accordion-number {
+      transition: transform 0.3s ease;
+      transform: translateY(-5px);
+      color: ${(props) => props.theme.Green};
+    }
+
+    &:hover .accordion-title2 {
+      transition: transform 0.3s ease;
+      transform: translateY(-5px);
+      color: ${(props) => props.theme.Green};
+    }
   }
 
   &.card-item-container {
@@ -1098,7 +1089,7 @@ const CareerDetail = styled.div`
     border-radius: 10px;
     box-sizing: border-box;
     background-color: rgba(238, 237, 235, 0.8);
-    border: 1px solid ${(props) => props.theme.Grey};
+    border: 1px solid ${lightTheme.Grey};
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -1116,7 +1107,7 @@ const CareerDetail = styled.div`
   &.card-item-next {
     z-index: 1;
     opacity: 0;
-    box-shadow: 10px 10px 20px rgba(110, 101, 90, 0.7);
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
   }
 
   .cardImage {
@@ -1227,12 +1218,12 @@ const Image = styled.img`
 
   &.long-img {
     width: 100%;
-  aspect-ratio: 4/1;
-  overflow: hidden;
-  object-fit: cover;
+    aspect-ratio: 4/1;
+    overflow: hidden;
+    object-fit: cover;
 
-  margin-bottom: 150px;
-  position: relative;
+    margin-bottom: 150px;
+    position: relative;
   }
 
   &.artist-bg {
@@ -1852,15 +1843,6 @@ const Portfolio = styled.div`
   }
 `;
 
-const moveUp = keyframes`
-  0% {
-    transform: translateY(-100vh);
-  }
-  100% {
-    transform: translateY(0);
-  }
-`;
-
 const Test = styled.div`
   width: 100vw;
   height: 100vh;
@@ -1942,15 +1924,6 @@ const WishIconContainer = styled.div`
   top: 10px;
   right: 10px;
   z-index: 2;
-`;
-
-const ClickAnimation = keyframes`
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.2);
-  }
 `;
 
 const WishIconLine = styled(HeartLine)`
@@ -2186,17 +2159,6 @@ const BrandText = styled.div`
   font-weight: 600;
   letter-spacing: -0.3px;
   margin-left: 5px;
-`;
-
-const PageWrapper = styled.div`
-  width: 100%;
-  margin: 0 auto;
-  margin-top: 20px;
-  min-height: 75vh;
-
-  &.career-wrapper {
-    width: 100%;
-  }
 `;
 
 const Contact = styled.div`
@@ -2858,11 +2820,7 @@ const GridImage = styled.img`
   }
 `;
 
-interface IconProps {
-  className?: string;
-}
-
-const StyledIcon = styled.svg<IconProps>`
+const StyledIcon = css`
   width: 4em;
   height: 4em;
   stroke: ${(props) => props.theme.Grey};
@@ -2883,27 +2841,15 @@ const StyledIcon = styled.svg<IconProps>`
   }
 `;
 
-const StyledHeaderIcon = styled.svg<IconProps>`
-  width: 2em;
-  height: 2em;
-  fill: ${(props) => props.theme.Grey};
-  color: ${(props) => props.theme.Grey};
-
-  &:hover {
-    fill: ${(props) => props.theme.HoverGrey};
-    color: ${(props) => props.theme.HoverGrey};
-  }
-`;
-
 const LeftIcon = styled(IoIosArrowBack)`
-  ${StyledIcon}
+  ${StyledIcon};
   fill: white;
   width: 3em;
   height: 3em;
 `;
 
 const RightIcon = styled(IoIosArrowForward)`
-  ${StyledIcon}
+  ${StyledIcon};
   fill: white;
   width: 3em;
   height: 3em;
@@ -2922,6 +2868,18 @@ const CheckboxAfterIcon = styled(CheckboxAfter)`
 `;
 
 //Header Icons
+const StyledHeaderIcon = css`
+  width: 2em;
+  height: 2em;
+  fill: ${(props) => props.theme.Grey};
+  color: ${(props) => props.theme.Grey};
+
+  &:hover {
+    fill: ${(props) => props.theme.HoverGrey};
+    color: ${(props) => props.theme.HoverGrey};
+  }
+`;
+
 const HomeIcon = styled(RiHomeLine)`
   ${StyledHeaderIcon}
 `;
@@ -3000,8 +2958,6 @@ const s = {
   Accordion,
   ArticleDiv,
   ArticleGrid,
-  // ArtistDiv,
-  // ArtistReg,
   AboutDiv,
   Line,
   Atag,
@@ -3042,11 +2998,9 @@ const s = {
   MaskText,
   NavBar,
   Overlay,
-  PageWrapper,
   PolicyWrapper,
   ProfileGrid,
   SectionContainer,
-  SectionFrame,
   SideBar,
   SidebarLi,
   Span,

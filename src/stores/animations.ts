@@ -102,3 +102,21 @@ export const pulse03 = keyframes`
 40% { transform: translate(-50%, -76%) scale(1.1) }
 100% { transform: translate(-50%, -76%) scale(1) }
 `;
+
+export const moveUp = keyframes`
+  0% {
+    transform: translateY(-100vh);
+  }
+  100% {
+    transform: translateY(0);
+  }
+`;
+
+export const ClickAnimation = keyframes`
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+`;

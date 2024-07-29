@@ -26,9 +26,6 @@ import Profile from "./pages/Profile";
 import ArtistProfile from "./pages/ArtistProfile";
 import RegisterTerms from "./pages/RegisterTerms";
 import RegisterPage from "./pages/RegisterPage";
-import CareerBusiness from "./pages/CareerBusiness";
-import CareerDesign from "./pages/CareerDesign";
-import CareerEngineering from "./pages/CareerEngineering";
 import CareerMarketing from "./pages/CareerMarketing";
 import SearchNew from "./pages/SearchNew";
 import ScrollTest from "./pages/ScrollTest";
@@ -87,12 +84,7 @@ const App: React.FC = () => {
                 />
                 <Route path="/registerterms" element={<RegisterTerms />} />
                 <Route path="/register" element={<RegisterPage />} />
-                <Route path="/careerbusiness" element={<CareerBusiness />} />
-                <Route path="/careerdesign" element={<CareerDesign />} />
-                <Route
-                  path="/careerengineering"
-                  element={<CareerEngineering />}
-                />
+                
                 <Route path="/careermarketing" element={<CareerMarketing />} />
                 <Route path="/searchnew" element={<SearchNew />} />
                 <Route path="/your_custom_tattoo" element={<GenerateImage />} />
