@@ -1,9 +1,22 @@
 import styled, { keyframes } from "styled-components";
 import { Route, Link as RouterLink } from "react-router-dom";
+
 import {
-  lightTheme,
-  darkTheme,
-} from "../stores/colors";
+  infiniteSlideLeft,
+  animateIn,
+  animateOut,
+  FadeIn,
+  FadeOut,
+  slideUp,
+  slideDown,
+  shaking,
+  pulse00,
+  pulse01,
+  pulse02,
+  pulse03,
+} from "./animations";
+
+import { lightTheme, darkTheme } from "../stores/colors";
 
 import { RiHomeLine } from "react-icons/ri"; //홈
 import { GrSearch } from "react-icons/gr"; //검색
@@ -41,110 +54,6 @@ const Engraved = styled.div`
   color: transparent;
   text-shadow: rgba(245, 245, 245, 0.5) 3px 3px 1px;
 `;
-
-const infiniteSlideLeft = keyframes`
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-`;
-
-const animateIn = keyframes`
-  from {
-    transform: translateY(150px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(150px);
-    opacity: 1;
-  }
-`;
-
-const animateOut = keyframes`
-  from {
-    transform: translateY(150px);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(150px);
-    opacity: 0;
-  }
-`;
-
-const FadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
-
-const FadeOut = keyframes`
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-`;
-
-const slideUp = keyframes`
- from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-`;
-
-const slideDown = keyframes`
- from {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    to {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-`;
-
-const shaking = keyframes`
- 0% { transform: translateX(0) }
- 25% { transform: translateX(2px) }
- 50% { transform: translateX(-2px) }
- 75% { transform: translateX(2px) }
- 100% { transform: translateX(0) }
-`;
-
-const pulse00 = keyframes` 
-0% { transform: translate(-50%, -97%) scale(1.0) }
-10% { transform: translate(-50%, -97%) scale(1.1) }
-100% { transform: translate(-50%, -97%) scale(1) }
-`;
-
-const pulse01 = keyframes` 
-0% { transform: translate(-50%, -88%) scale(1.0) }
-20% { transform: translate(-50%, -88%) scale(1.1) }
-100% { transform: translate(-50%, -88%) scale(1) }
-`;
-
-const pulse02 = keyframes` 
-0% { transform: translate(-50%, -81%) scale(1) }
-30% { transform: translate(-50%, -81%) scale(1.1) }
-100% { transform: translate(-50%, -81%) scale(1) }
-`;
-
-const pulse03 = keyframes` 
-0% { transform: translate(-50%, -76%) scale(1) }
-40% { transform: translate(-50%, -76%) scale(1.1) }
-100% { transform: translate(-50%, -76%) scale(1) }
-`;
-
 const Div = styled.div`
   background-color: ${(props) => props.theme.Green};
 
@@ -284,6 +193,11 @@ const Line = styled.div`
     margin: 0px 30px;
     background-color: ${(props) => props.theme.Grey};
     opacity: 0.5;
+  }
+
+  &. dark-mode {
+    height: 1px;
+    margin-bottom: 1px;
   }
 `;
 
@@ -481,19 +395,6 @@ const SectionFrame = styled.div`
   }
 `;
 
-const LongImgWrapper = styled.div`
-  width: 100%;
-  height: 300px;
-  overflow: hidden;
-
-  margin-bottom: 150px;
-  position: relative;
-
-  &.contact {
-    margin: 0;
-  }
-`;
-
 const BrandTitleWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -590,6 +491,7 @@ const StyledH1 = styled.h1`
 
 const StyledH2 = styled.h2`
   letter-spacing: -0.05em;
+  color: ${(props) => props.theme.Grey};
 
   &.gradient-title {
     overflow: visible;
@@ -633,7 +535,6 @@ const StyledH2 = styled.h2`
     height: 100px;
     cursor: pointer;
 
-    color: ${(props) => props.theme.Grey};
     font-size: 5em;
     letter-spacing: -0.05em;
     font-weight: 400;
@@ -654,6 +555,7 @@ const StyledH2 = styled.h2`
 
   &.contact-card-title {
     width: 100%;
+
     font-size: 3em;
     letter-spacing: -0.05em;
     text-align: left;
@@ -1323,10 +1225,14 @@ const Image = styled.img`
     object-fit: cover;
   }
 
-  &.LongImage {
+  &.long-img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+  aspect-ratio: 4/1;
+  overflow: hidden;
+  object-fit: cover;
+
+  margin-bottom: 150px;
+  position: relative;
   }
 
   &.artist-bg {
@@ -2297,8 +2203,7 @@ const Contact = styled.div`
   &.contact-wrapper {
     width: 100%;
     height: auto;
-    margin: 0 auto;
-    margin-bottom: 50px;
+    margin: 50px 0px;
   }
 
   &.contact-container {
@@ -2634,9 +2539,7 @@ const Select = styled.select`
   cursor: pointer;
 `;
 
-const Option = styled.option`
-
-`;
+const Option = styled.option``;
 
 const Input = styled.input`
   background: transparent;
@@ -3133,7 +3036,6 @@ const s = {
   Label,
   ProfileDiv,
   LoginDiv,
-  LongImgWrapper,
   MainImage,
   Map,
   Mask,
