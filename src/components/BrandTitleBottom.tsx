@@ -16,12 +16,13 @@ export default function BrandBottomTitle() {
         <br /> into reality with us
       </s.StyledH2>
       <s.StyledP className="about-last-title">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus
-        corrupti numquam <br />
-        in excepturi dolores inventore debitis perspiciatis odit.
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+        <br />
+        Temporibus corrupti numquam in excepturi dolores inventore debitis
+        perspiciatis odit.
       </s.StyledP>
       <s.Button className="Round" onClick={() => handleNavigation("/joinus")}>
-        아티스트 등록하기
+        나만의 도안 만들기
       </s.Button>
     </s.AboutDiv>
   );

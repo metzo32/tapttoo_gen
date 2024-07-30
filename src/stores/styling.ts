@@ -329,9 +329,32 @@ const AboutDiv = styled.div`
     margin-top: 60px;
   }
 
-  &.description {
+  &.mid-description {
+    height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
+
+    @media (max-width: 767px) {
+      width: 100%;
+      margin-top: 60px;
+    }
+
+    @media (min-width: 768px) {
+      width: 100%;
+    }
+
+    @media (min-width: 1024px) {
+      width: 50%;
+    }
+  }
+
+  &.description {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 40px 0px 40px 4px;
 
     @media (max-width: 767px) {
       width: 100%;
@@ -343,14 +366,6 @@ const AboutDiv = styled.div`
 
     @media (min-width: 1024px) {
       width: 50%;
-    }
-
-    &.alignLeft {
-      justify-content: flex-start;
-    }
-
-    &.alignRight {
-      justify-content: flex-end;
     }
   }
 
@@ -366,7 +381,8 @@ const AboutDiv = styled.div`
   &.mid-title-wrapper {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: flex-start;
     position: relative;
     z-index: 0;
     padding-left: 5px;
@@ -378,12 +394,10 @@ const AboutDiv = styled.div`
 
     @media (min-width: 512px) {
       height: 480px;
-      flex-direction: column;
     }
 
     @media (min-width: 768px) {
       height: 650px;
-      flex-direction: column;
     }
 
     @media (min-width: 1024px) {
@@ -399,11 +413,13 @@ const AboutDiv = styled.div`
 
     @media (max-width: 767px) {
       width: 100%;
+      height: 250px;
     }
 
     @media (min-width: 768px) {
       width: 100%;
-      height: 250px;
+      height: 480px;
+      margin-bottom: 20px;
     }
 
     @media (min-width: 1024px) {
@@ -428,6 +444,7 @@ const AboutDiv = styled.div`
 
   &.button-box {
     width: 200px;
+    margin-left: 4px;
     margin-bottom: 20px;
   }
 
@@ -612,24 +629,25 @@ const StyledH2 = styled.h2`
       margin-bottom: 190px;
     }
 
-      &.bold {
-        @media (max-width: 767px) {
-          font-size: 30px;
-          line-height: 35px;
-        }
-
-        @media (min-width: 768px) {
-          font-size: 120px;
-          line-height: 130px;
-        }
-
-        @media (min-width: 1024px) {
-          font-size: 160px;
-          line-height: 170px;
-        }
+    &.bold {
+      @media (max-width: 767px) {
+        font-size: 80px;
+        line-height: 85px;
+        margin-bottom: 80px;
       }
-  }
 
+      @media (min-width: 768px) {
+        font-size: 120px;
+        line-height: 130px;
+        margin-bottom: 120px;
+      }
+
+      @media (min-width: 1024px) {
+        font-size: 140px;
+        line-height: 150px;
+      }
+    }
+  }
 
   &.accordion-title2 {
     display: inline-block;
@@ -703,7 +721,7 @@ const StyledH3 = styled.h3`
 
   @media (min-width: 1024px) {
     font-size: 70px;
-    line-height: 70px;
+    line-height: 80px;
   }
 
   &.mid-category {
@@ -758,11 +776,6 @@ const StyledH4 = styled.h4`
   padding: 0;
   margin: 0;
 
-  &.SemiTitle {
-    font-size: 4em;
-    line-height: 65px;
-  }
-
   &.artist-detail-header {
     color: ${(props) => props.theme.Grey};
     font-size: 1.7em;
@@ -804,7 +817,7 @@ const StyledP = styled.p`
   }
 
   @media (min-width: 1024px) {
-    font-size: 24px;
+    font-size: 27px;
     line-height: 35px;
   }
 
@@ -816,24 +829,33 @@ const StyledP = styled.p`
   }
 
   &.about-last-title {
-    font-size: 1.5em;
     color: ${(props) => props.theme.Green};
     text-align: center;
     margin: 40px 0 40px 0;
   }
 
   &.section-p {
-    margin: 20px 0 20px 5px;
-
     @media (max-width: 767px) {
-      margin: 5px 0 5px 5px;
     }
 
     @media (min-width: 768px) {
-      margin: 20px 0 20px 5px;
     }
 
     @media (min-width: 1024px) {
+    }
+
+    &.margin {
+      @media (max-width: 767px) {
+        margin-top: 20px;
+      }
+
+      @media (min-width: 768px) {
+        margin-top: 10px;
+      }
+
+      @media (min-width: 1024px) {
+        margin-top: 40px;
+      }
     }
   }
 
@@ -1355,16 +1377,17 @@ const StyledUl = styled.ul`
         justify-content: space-between;
 
         @media (max-width: 767px) {
-        height: 100px;
+        height: 200px;
         margin-top: 20px;
+        margin-bottom: 20px;
       }
       @media (min-width: 768px) {
-        height: 120px;
+        height: 250px;
         margin-top: 40px;
       }
 
       @media (min-width: 1024px) {
-
+height: 200px;
       }
     }
 
@@ -3029,13 +3052,11 @@ const Button = styled.button`
 const StyledGrid = styled.div`
   width: 100%;
   min-width: 100%;
-  height: 800px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(3, 1fr);
   grid-column-gap: 10px;
   grid-row-gap: 10px;
-  margin-bottom: 300px;
 `;
 
 const ProfileGrid = styled.div`

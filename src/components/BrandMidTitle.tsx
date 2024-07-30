@@ -15,11 +15,11 @@ export default function BrandMidTitle() {
           </s.StyledUl>
         </s.AboutDiv>
 
-        <s.AboutDiv className="description column-display">
+        <s.AboutDiv className="mid-description">
           <s.StyledH3 className="SemiTitle">
             Indivesins' Journey into <br />a Sustatinable Future
           </s.StyledH3>
-          <s.StyledP className="section-p">
+          <s.StyledP className="section-p margin">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
             dolores voluptatibus eum impedit eligendi quae nesciunt commodi
             totam hic consectetur, deleniti soluta dolorem? Excepturi enim

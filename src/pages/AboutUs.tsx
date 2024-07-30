@@ -28,7 +28,6 @@ export default function AboutUs() {
         {/* 캐러셀 */}
 
         <Description
-          alignRight={false}
           title={"Harmony of Heritage and Sustainability"}
           text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic modi dicta velit, magni corporis quisquam rem quos illum, quibusdam, dolore quae aliquid labore iure a? Debitis, soluta."
         />
@@ -36,7 +35,6 @@ export default function AboutUs() {
         <WideImage image={MidImage} alt="photo" />
 
         <Description
-          alignRight={true}
           title={"Designs created by Enthusiastic artitst"}
           text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam a ipsa iste, animi quaerat velit. Nulla est temporibus inventore iure. Nemo tempore, nam quidem fuga commodi enim maiores eos a."
         />
@@ -48,15 +46,11 @@ export default function AboutUs() {
         <GridBrand />
 
         <Description
-          alignRight={false}
           title={"Explore our other Collaborative works"}
           text="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia amet dicta saepe cum vel sunt officia delectus adipisci recusandae cupiditate, neque eaque aperiam. A aut tempore dolore dolorum deserunt veniam!"
         />
         <WideImage image={BrandMidImage02} alt="photo" />
-        <s.AboutDiv>
-          <BrandBottomTitle />
-        </s.AboutDiv>
-        {/* 여기 */}
+        <BrandBottomTitle />
       </s.AboutDiv>
     </>
   );
