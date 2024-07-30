@@ -8,27 +8,27 @@ export const SideBarData = [
     },
     {
         title: 'Search',
-        path: '/artist_profile',
+        path: '/article',
         className: 'sidebar-text'
     },
     {
         title: 'Only for you',
-        path: '/',
+        path: '/your_custom_tattoo',
         className: 'sidebar-text'
     },
     {
         title: 'Likes',
-        path: '/',
+        path: '/profile',
         className: 'sidebar-text'
     },
     {
         title: 'Event',
-        path: '/',
+        path: '/searchnew',
         className: 'sidebar-text'
     },
     {
         title: 'Join us',
-        path: '/Career',
+        path: '/career',
         className: 'sidebar-text'
     },
     {

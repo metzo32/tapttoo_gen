@@ -732,6 +732,12 @@ const StyledH3 = styled.h3`
     line-height: 30px;
   }
 
+  &.sidebar-logo {
+    font-size: 40px;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+
   &.carousel-title {
     width: 50%;
     font-family: "Archivo Black", sans-serif;
@@ -1280,13 +1286,14 @@ const CareerDetail = styled.div`
 
   &.card-item,
   &.card-item-next {
-    width: 460px;
-    height: 460px;
+    width: 400px;
+    height: 400px;
     border-radius: 10px;
     box-sizing: border-box;
     background-color: rgba(238, 237, 235, 0.8);
     border: 1px solid ${lightTheme.Grey};
     padding: 20px;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -1307,8 +1314,8 @@ const CareerDetail = styled.div`
   }
 
   .cardImage {
-    width: 460px;
-    height: 460px;
+    width: 400px;
+    height: 400px;
     border-radius: 10px;
     position: absolute;
     box-sizing: border-box;
@@ -2203,10 +2210,10 @@ const SideBar = styled.div`
   &.sidebar-item {
     width: 100%;
     height: auto;
+    margin-bottom: 30px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-bottom: 20px;
   }
 `;
 
@@ -2239,7 +2246,7 @@ const NavBar = styled.nav`
 `;
 
 const SidebarLi = styled.li`
-  margin-top: 15px;
+
 `;
 
 const Overlay = styled.div`
@@ -2262,6 +2269,7 @@ const TapttooIcon = styled(Tapttoo)`
 
 const StyledLink = styled(RouterLink)`
   &.menu-texts {
+  font-size: 20px;
     text-decoration: none;
     color: ${(props) => props.theme.Grey};
     margin-left: 20px;
@@ -2274,7 +2282,7 @@ const StyledLink = styled(RouterLink)`
   }
 
   &.close-arrow {
-    margin-left: 150px;
+    margin-left: 145px;
   }
 `;
 
@@ -3141,9 +3149,8 @@ const StyledIcon = css`
 
 const LeftIcon = styled(IoIosArrowBack)`
   ${StyledIcon};
-  fill: white;
-  width: 3em;
-  height: 3em;
+  width: 26px;
+  height: 26px;
 `;
 
 const RightIcon = styled(IoIosArrowForward)`

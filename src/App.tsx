@@ -85,7 +85,7 @@ const App: React.FC = () => {
                 <Route path="/registerterms" element={<RegisterTerms />} />
                 <Route path="/register" element={<RegisterPage />} />
                 
-                <Route path="/careermarketing" element={<CareerMarketing />} />
+                <Route path="/career" element={<CareerMarketing />} />
                 <Route path="/searchnew" element={<SearchNew />} />
                 <Route path="/your_custom_tattoo" element={<GenerateImage />} />
                 <Route path="/scroll" element={<ScrollTest />} />
