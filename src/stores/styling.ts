@@ -1,3 +1,14 @@
+// @media (min-width: 375px) {
+
+// }
+
+// @media (min-width: 768px) {
+
+// }
+
+// @media (min-width: 1024px) {
+// }
+
 import styled, { css } from "styled-components";
 import { Route, Link as RouterLink } from "react-router-dom";
 
@@ -195,6 +206,15 @@ const Line = styled.div`
     margin: 0px 30px;
     background-color: ${(props) => props.theme.Grey};
     opacity: 0.5;
+
+    @media (min-width: 375px) {
+     width: 0px;
+    }
+
+    @media (min-width: 768px) {
+      width: calc(100% - 428px);
+
+ 
   }
 
   &. dark-mode {
@@ -257,6 +277,22 @@ const HeaderDiv = styled.div`
     position: fixed;
     top: 0;
     z-index: 9999;
+
+    @media (min-width: 375px) {
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      width: 100%;
+    }
+
+    @media (min-width: 1024px) {
+      width: 100%;
+    }
+
+    @media (min-width: 1200px) {
+      width: 100%;
+    }
   }
 
   &.button-wrapper {
@@ -294,9 +330,20 @@ const AboutDiv = styled.div`
   }
 
   &.description {
-    width: 50%;
     display: flex;
     justify-content: flex-start;
+
+    @media (max-width: 767px) {
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      width: 100%;
+    }
+
+    @media (min-width: 1024px) {
+      width: 50%;
+    }
 
     &.alignLeft {
       justify-content: flex-start;
@@ -319,19 +366,50 @@ const AboutDiv = styled.div`
   &.mid-title-wrapper {
     width: 100%;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     position: relative;
     z-index: 0;
     padding-left: 5px;
+
+    @media (max-width: 511px) {
+      height: 600px;
+      flex-direction: column;
+    }
+
+    @media (min-width: 512px) {
+      height: 480px;
+      flex-direction: column;
+    }
+
+    @media (min-width: 768px) {
+      height: 650px;
+      flex-direction: column;
+    }
+
+    @media (min-width: 1024px) {
+      flex-direction: row;
+    }
   }
 
   &.service-wrapper {
-    width: 29.48%;
     display: flex;
     flex-direction: column;
     position: relative;
     z-index: 1;
+
+    @media (max-width: 767px) {
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      width: 100%;
+      height: 250px;
+    }
+
+    @media (min-width: 1024px) {
+      width: 50%;
+      height: 440px;
+    }
   }
 
   &.bottom-title-wrapper {
@@ -381,7 +459,7 @@ const BrandTitleWrapper = styled.div`
 
 const StyledH1 = styled.h1`
   color: ${(props) => props.theme.Green};
-  font-size: 16em;
+  font-size: 155pt;
   letter-spacing: -0.085em;
   font-weight: 400;
   line-height: 140px;
@@ -389,19 +467,31 @@ const StyledH1 = styled.h1`
   transform: scaleX(1);
   transform-origin: center;
 
+  @media (max-width: 767px) {
+    font-size: 50pt;
+    line-height: 70px;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 110pt;
+    line-height: 160px;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 155pt;
+    line-height: 210px;
+  }
+
   &.login-title {
-    font-size: 8em;
     white-space: nowrap;
     margin: 0 auto;
     margin-bottom: 100px;
   }
 
   &.brand-title {
-    line-height: 240px;
   }
 
   &.career-title {
-    line-height: 200px;
     margin-bottom: 200px;
   }
 
@@ -462,16 +552,26 @@ const StyledH1 = styled.h1`
 `;
 
 const StyledH2 = styled.h2`
-  letter-spacing: -0.05em;
+  letter-spacing: -1pt;
   color: ${(props) => props.theme.Grey};
+  @media (max-width: 767px) {
+    font-size: 30px;
+    line-height: 35px;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 50px;
+    line-height: 60px;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 70px;
+    line-height: 70px;
+  }
 
   &.gradient-title {
     overflow: visible;
-    font-size: 4.5em;
     font-weight: 300;
-    line-height: 80px;
-    margin-top: 120px;
-    margin-bottom: 200px;
 
     transform: scaleX(1);
     transform-origin: center;
@@ -491,15 +591,45 @@ const StyledH2 = styled.h2`
     );
     background-clip: text;
     color: transparent;
+
+    @media (max-width: 767px) {
+      font-size: 30px;
+      line-height: 35px;
+      margin-top: 50px;
+      margin-bottom: 100px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 50px;
+      line-height: 60px;
+      margin-top: 120px;
+      margin-bottom: 100px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 70px;
+      line-height: 70px;
+      margin-bottom: 190px;
+    }
+
+      &.bold {
+        @media (max-width: 767px) {
+          font-size: 30px;
+          line-height: 35px;
+        }
+
+        @media (min-width: 768px) {
+          font-size: 120px;
+          line-height: 130px;
+        }
+
+        @media (min-width: 1024px) {
+          font-size: 160px;
+          line-height: 170px;
+        }
+      }
   }
 
-  &.bold {
-    width: 100%;
-    font-size: 11em;
-    line-height: 170px;
-    margin-bottom: 0px;
-    padding-bottom: 20px;
-  }
 
   &.accordion-title2 {
     display: inline-block;
@@ -554,14 +684,27 @@ const StyledH2 = styled.h2`
 
 const StyledH3 = styled.h3`
   color: ${(props) => props.theme.Green};
-  font-size: 3.3em;
-  letter-spacing: -0.05em;
+  font-size: 50px;
+  letter-spacing: -3px;
   font-weight: 400;
   padding: 0;
   margin: 0;
-  display: flex;
-  transform: scaleX(1);
-  transform-origin: center;
+  text-align: left;
+
+  @media (max-width: 767px) {
+    font-size: 30px;
+    line-height: 35px;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 50px;
+    line-height: 60px;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 70px;
+    line-height: 70px;
+  }
 
   &.mid-category {
     width: 100px;
@@ -577,7 +720,7 @@ const StyledH3 = styled.h3`
     font-weight: 600;
     font-size: 4em;
     line-height: 70px;
-    color: ${(props) => props.theme.White};
+    color: ${lightTheme.Light};
     white-space: normal;
     position: absolute;
     top: 50%;
@@ -646,17 +789,27 @@ const StyledH4 = styled.h4`
 
 const StyledP = styled.p`
   color: ${(props) => props.theme.Grey};
-  font-size: 1.3em;
   font-weight: 300;
   text-align: left;
-  line-height: 30px;
-
   padding: 0;
 
+  @media (max-width: 767px) {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 24px;
+    line-height: 35px;
+  }
+
   &.about-first-title {
-    font-size: 1.5em;
     text-align: center;
-    line-height: 40px;
 
     margin-top: 50px;
     margin-bottom: 30px;
@@ -670,8 +823,18 @@ const StyledP = styled.p`
   }
 
   &.section-p {
-    line-height: 30px;
     margin: 20px 0 20px 5px;
+
+    @media (max-width: 767px) {
+      margin: 5px 0 5px 5px;
+    }
+
+    @media (min-width: 768px) {
+      margin: 20px 0 20px 5px;
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 
   &.article-text {
@@ -731,6 +894,17 @@ const StyledP = styled.p`
   &.footer-copyright {
     font-size: 1.1em;
     width: auto;
+
+    @media (max-width: 767px) {
+      height: 25px;
+    }
+
+    @media (min-width: 768px) {
+      height: 30px;
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 
   &.artist-contact-left {
@@ -1013,7 +1187,7 @@ const Accordion = styled.div`
     opacity: 0;
     overflow: hidden;
 
-     transition: max-height 0.3s ease, opacity 0.5s ease;
+    transition: max-height 0.3s ease, opacity 0.5s ease;
   }
 
   &.cardbox-open {
@@ -1029,7 +1203,7 @@ const Accordion = styled.div`
     overflow: hidden;
 
     overflow: visible;
-     transition: max-height 0.3s ease, opacity 0.5s ease;
+    transition: max-height 0.3s ease, opacity 0.5s ease;
   }
 `;
 
@@ -1162,10 +1336,36 @@ const StyledUl = styled.ul`
     margin; 0;
     position: relative;
 
+      @media (max-width: 767px) {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 24px;
+    line-height: 40px;
+  }
+
     &.section-ul {
-        height: 120px;
-        margin-top: 30px;
         justify-content: space-between;
+
+        @media (max-width: 767px) {
+        height: 100px;
+        margin-top: 20px;
+      }
+      @media (min-width: 768px) {
+        height: 120px;
+        margin-top: 40px;
+      }
+
+      @media (min-width: 1024px) {
+
+      }
     }
 
     &.nav-menu-items {
@@ -2088,17 +2288,34 @@ const Footer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    overflow: hidden;
 
     position: absolute;
     bottom: 0;
+
+    @media (max-width: 767px) {
+      height: auto;
+    }
   }
 
   &.container {
-    height: 40%;
+    height: auto;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+
+    @media (max-width: 767px) {
+      height: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    @media (min-width: 1024px);
   }
 
   &.footer-icon-box {
@@ -2106,6 +2323,20 @@ const Footer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media (max-width: 767px) {
+      width: 70%;
+      justify-content: space-between;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 768px) {
+      width: 165px;
+      margin: 0;
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 
   &.copyright {
@@ -2116,6 +2347,16 @@ const Footer = styled.div`
     align-items: center;
     font-size: 11px;
     white-space: nowrap;
+
+    @media (max-width: 767px) {
+      margin-top: 5px;
+      flex-direction: column;
+    }
+
+    @media (min-width: 768px) {
+      margin: 0;
+      flex-direction: row;
+    }
   }
 
   &.footer-box-left {
@@ -2130,6 +2371,14 @@ const Footer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media (max-width: 767px) {
+      width: 198px;
+    }
+
+    @media (min-width: 768px) {
+      width: 168px;
+    }
   }
 
   &.brand-wrapper {
@@ -2138,6 +2387,20 @@ const Footer = styled.div`
     flex-direction: row;
     align-items: center;
     margin-right: 60px;
+
+    @media (max-width: 767px) {
+      width: 150px;
+      margin: 0 auto;
+      justify-content: center;
+    }
+
+    @media (min-width: 768px) {
+      width: auto;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin: 0px 60px 0px 0px;
+    }
   }
 
   &.button-wrapper {
@@ -2145,6 +2408,20 @@ const Footer = styled.div`
     height: 30px;
     flex-direction: row;
     align-items: center;
+
+    @media (max-width: 767px) {
+      justify-content: space-between;
+      margin: 10px 0px;
+    }
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      align-items: center;
+      margin: 0;
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 `;
 
