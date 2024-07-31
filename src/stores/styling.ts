@@ -513,14 +513,24 @@ const StyledH1 = styled.h1`
   }
 
   &.career-detail-title {
-    font-size: 9em;
     text-align: left;
     text-transform: uppercase;
+    margin-bottom: 20px;
 
-    &.mid {
-      font-size: 6em;
-      line-height: 90px;
-    }
+    @media (max-width: 767px) {
+    font-size: 50pt;
+    line-height: 70px;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 70pt;
+    line-height: 105px;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 120pt;
+    line-height: 160px;
+  }
   }
 
   &.new-artists-title {
@@ -569,7 +579,7 @@ const StyledH1 = styled.h1`
 `;
 
 const StyledH2 = styled.h2`
-  letter-spacing: -1pt;
+  letter-spacing: -4px;
   color: ${(props) => props.theme.Grey};
   @media (max-width: 767px) {
     font-size: 30px;
@@ -650,20 +660,22 @@ const StyledH2 = styled.h2`
   }
 
   &.accordion-title2 {
-    display: inline-block;
-    width: 100%;
-    height: 100px;
-    cursor: pointer;
+    white-space: nowrap;
+    font-weight: 300;
 
-    font-size: 5em;
-    letter-spacing: -0.05em;
-    font-weight: 400;
-    text-align: left;
-    padding: 0;
-    margin: 0;
+    @media (max-width: 767px) {
+      font-size: 40px;
+      line-height: 50px;
+    }
 
-    &.active {
-      color: blue;
+    @media (min-width: 768px) {
+      font-size: 60px;
+      line-height: 60px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 90px;
+      line-height: 70px;
     }
   }
 
@@ -907,7 +919,19 @@ const StyledP = styled.p`
 
   &.card-text {
     color: ${lightTheme.Grey};
-    line-height: 25px;
+
+    @media (max-width: 767px) {
+      font-size: 16px;
+      line-height: 20px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 20px;
+      line-height: 24px;
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 
   &.hashtag {
@@ -1145,6 +1169,7 @@ const CareerP = styled.p`
 const Accordion = styled.div`
   &.accordion-wrapper {
     margin-top: 50px;
+    width: 100%;
   }
 
   &.acc {
@@ -1194,10 +1219,9 @@ const Accordion = styled.div`
   }
 
   &.accordion-border {
-    width: 98%;
+    width: calc(100% - 8px);
     height: 20px;
-    position: absolute;
-    left: 13px;
+
     border: 4px solid ${(props) => props.theme.Grey};
     border-bottom: none;
     border-top-left-radius: 20px;
@@ -1238,9 +1262,9 @@ const Accordion = styled.div`
 const CareerDetail = styled.div`
   width: 100%;
   height: 100vh;
+  margin: 0 auto;
 
   &.wrapper {
-    width: 100%;
     height: auto;
     margin-top: 50px;
   }
@@ -1279,9 +1303,6 @@ const CareerDetail = styled.div`
   }
 
   &.card-title-box {
-  }
-
-  &.card-text-box {
   }
 
   &.card-item,
@@ -2245,9 +2266,7 @@ const NavBar = styled.nav`
   }
 `;
 
-const SidebarLi = styled.li`
-
-`;
+const SidebarLi = styled.li``;
 
 const Overlay = styled.div`
   position: fixed;
@@ -2269,7 +2288,7 @@ const TapttooIcon = styled(Tapttoo)`
 
 const StyledLink = styled(RouterLink)`
   &.menu-texts {
-  font-size: 20px;
+    font-size: 20px;
     text-decoration: none;
     color: ${(props) => props.theme.Grey};
     margin-left: 20px;

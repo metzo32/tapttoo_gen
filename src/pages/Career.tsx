@@ -17,7 +17,7 @@ export default function Career() {
         <Accordion />
 
         <s.CareerDetail className="mid-title-container">
-        <s.StyledH1 className="career-detail-title mid">
+        <s.StyledH1 className="career-detail-title">
           If you are going through hell,
           <br />
           keep going.
