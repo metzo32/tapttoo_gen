@@ -1,15 +1,8 @@
 import React from "react";
 import s from "../stores/styling";
-import { CarouselItem } from "../types/CarouselType";
-import {
-  CustomCarousel,
-  defaultRenderItem,
-} from "../components/CustomCarousel";
+import CustomCarousel from "../components/CustomCarousel";
 import { useNavigate } from "react-router-dom";
 
-import { CarouselItemConverter } from "../stores/CarouselItemConverter";
-import searchMainImages from "../stores/CarouselData";
-import SearchProfiles from "../components/SearchProfiles";
 import SearchEventProfile from "../components/SearchEventProfile";
 
 import SearchCard from "../components/SearchCard";
@@ -19,27 +12,23 @@ import search_img01 from "../assets/images/search_img01.jpg";
 import search_img02 from "../assets/images/search_img02.jpg";
 import search_today01 from "../assets/images/search_today01.jpg";
 
-const items = CarouselItemConverter(searchMainImages)
-
 export default function SearchNew() {
-
   const navigate = useNavigate();
 
   const handleNavigation = (path: string) => {
     navigate(path);
   };
 
-
   return (
     <>
       <s.Search className="search-wrapper">
-        <s.Search className="top-container main">
-          <CustomCarousel items={items} renderItem={defaultRenderItem} />
+        <s.Search className="top-container">
+          <CustomCarousel />
         </s.Search>
-
+        {/* 
         <s.Search className="circles-container">
           <SearchProfiles />
-        </s.Search>
+        </s.Search> */}
 
         <SearchCard
           imageMain={search_img01}
@@ -75,10 +64,17 @@ export default function SearchNew() {
         </s.Search>
 
         <s.Search className="search-container center">
-          <s.StyledH2>"당신의 이야기를 예술로, 나만의 타투 도안 제작 – 당신만을 위한 유니크한 디자인을 만나보세요!"</s.StyledH2>
-          <s.Button className="Round" onClick={() => handleNavigation("/your_custom_tattoo")}>나만의 도안 만들어보기</s.Button>
+          <s.StyledH2>
+            "당신의 이야기를 예술로, 나만의 타투 도안 제작 – 당신만을 위한
+            유니크한 디자인을 만나보세요!"
+          </s.StyledH2>
+          <s.Button
+            className="Round"
+            onClick={() => handleNavigation("/your_custom_tattoo")}
+          >
+            나만의 도안 만들어보기
+          </s.Button>
         </s.Search>
-
 
         {/* <CircularProgressbar/> */}
 
@@ -113,35 +109,26 @@ export default function SearchNew() {
                 <s.Image src={new03} alt='photo' className='new-artist-img'/>
             </s.Search> */}
 
-
       <s.Search className="top-container extra-margin">
-        <s.Image className="search-wide" src="" alt="image"/>
+        <s.Image className="search-wide" src="" alt="image" />
       </s.Search>
-
 
       <s.Search className="top-container extra-margin">
         <s.Search>
-            <s.StyledH3 className="search-title">
-            Reviews
-            </s.StyledH3>
+          <s.StyledH3 className="search-title">Reviews</s.StyledH3>
         </s.Search>
         <s.Search className="review-container">
-            <s.Search>
-                description
-            </s.Search>
-            <s.Search className="review-image-container">
-            <s.Image className="search-review" src="" alt="image"/>
-            </s.Search>
+          <s.Search>description</s.Search>
+          <s.Search className="review-image-container">
+            <s.Image className="search-review" src="" alt="image" />
+          </s.Search>
         </s.Search>
         <s.Search className="review-container">
-            <s.Search>
-                description
-            </s.Search>
-            <s.Search className="review-image-container">
-            <s.Image className="search-review" src="" alt="image"/>
-            </s.Search>
+          <s.Search>description</s.Search>
+          <s.Search className="review-image-container">
+            <s.Image className="search-review" src="" alt="image" />
+          </s.Search>
         </s.Search>
-
       </s.Search>
       <s.Search className="top-container">4</s.Search>
       <s.Search className="top-container">4</s.Search>

@@ -69,12 +69,13 @@
 
 // export default TestPage;
 import React from 'react'
+import s from '../stores/styling'
 
 export default function Home() {
   return (
-    <div>
-      
-    </div>
+    <s.StyledH1>
+      멧츠가 해내따
+    </s.StyledH1>
   )
 }
 

@@ -17,11 +17,11 @@ export default function Career() {
         <Accordion />
 
         <s.CareerDetail className="mid-title-container">
-        <s.StyledH1 className="career-detail-title">
-          If you are going through hell,
-          <br />
-          keep going.
-        </s.StyledH1>
+          <s.StyledH1 className="career-detail-title">
+            If you are going through hell,
+            <br />
+            keep going.
+          </s.StyledH1>
         </s.CareerDetail>
         <s.CareerDetail className="img-container">
           <s.Image src={businessbg} alt="photo" className="" />

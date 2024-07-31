@@ -1,12 +1,35 @@
-import React from 'react';
-import s from '../stores/styling';
-import Carousel from './Carousel';
-import { CarouselItem, CarouselProps } from '../types/CarouselType';
+import React from "react";
+import Carousel from "./CarouselStructure";
+import { CarouselItem } from "../types/CarouselType";
+import CarouselData from "../assets/datas/CarouselData";
+import s from "../stores/styling";
 
-const CustomCarousel: React.FC<CarouselProps> = ({ items, renderItem }) => {
-  return <Carousel items={items} renderItem={renderItem} />;
+interface SearchPageMainProps {
+  title: string;
+  image: string;
+}
+
+const CarouselImage: React.FC<SearchPageMainProps> = ({ title, image }) => {
+  return (
+    <>
+      <s.Image src={image} alt="image" />
+      <s.Carousel className="title-box">
+        <s.StyledH3 className="carousel-title">{title}</s.StyledH3>
+      </s.Carousel>
+      <s.Line className="light carousel-line" />
+    </>
+  );
 };
 
-const defaultRenderItem = (item: CarouselItem): JSX.Element => <>{item.url}</>;
+const carouselItems: CarouselItem[] = CarouselData.map((data, index) => ({
+  id: index + 1,
+  url: <CarouselImage key={index} title={data.title} image={data.image} />,
+}));
 
-export { CustomCarousel, defaultRenderItem };
+const CustomCarousel: React.FC = () => {
+  const renderItem = (item: CarouselItem): JSX.Element => <>{item.url}</>;
+
+  return <Carousel items={carouselItems} renderItem={renderItem} />;
+};
+
+export default CustomCarousel;

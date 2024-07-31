@@ -1,4 +1,4 @@
-// @media (min-width: 375px) {
+// @media (max-width: 767px) {
 
 // }
 
@@ -30,6 +30,9 @@ import {
 } from "./animations";
 
 import { lightTheme, darkTheme } from "../stores/colors";
+
+import { CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 import { RiHomeLine } from "react-icons/ri"; //홈
 import { GrSearch } from "react-icons/gr"; //검색
@@ -168,6 +171,13 @@ const Line = styled.div`
     top: 55%;
     left: 50%;
     transform: translate(-50%, 50%);
+
+    &.carousel-line {
+      background-color: ${lightTheme.White};
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    }
   }
 
   &.infinite {
@@ -213,8 +223,6 @@ const Line = styled.div`
 
     @media (min-width: 768px) {
       width: calc(100% - 428px);
-
- 
   }
 
   &. dark-mode {
@@ -483,6 +491,7 @@ const StyledH1 = styled.h1`
   margin: 0px;
   transform: scaleX(1);
   transform-origin: center;
+  display: inline-block;
 
   @media (max-width: 767px) {
     font-size: 50pt;
@@ -518,19 +527,19 @@ const StyledH1 = styled.h1`
     margin-bottom: 20px;
 
     @media (max-width: 767px) {
-    font-size: 50pt;
-    line-height: 70px;
-  }
+      font-size: 50pt;
+      line-height: 70px;
+    }
 
-  @media (min-width: 768px) {
-    font-size: 70pt;
-    line-height: 105px;
-  }
+    @media (min-width: 768px) {
+      font-size: 70pt;
+      line-height: 105px;
+    }
 
-  @media (min-width: 1024px) {
-    font-size: 120pt;
-    line-height: 160px;
-  }
+    @media (min-width: 1024px) {
+      font-size: 120pt;
+      line-height: 160px;
+    }
   }
 
   &.new-artists-title {
@@ -539,11 +548,8 @@ const StyledH1 = styled.h1`
   }
 
   &.contact-title {
-    width: 900px;
-    font-size: 9em;
     text-align: right;
     color: ${(props) => props.theme.Grey};
-    margin: 40px 0px 20px 0px;
   }
 
   &.article-name {
@@ -664,8 +670,9 @@ const StyledH2 = styled.h2`
     font-weight: 300;
 
     @media (max-width: 767px) {
-      font-size: 40px;
+      font-size: 30px;
       line-height: 50px;
+      letter-spacing: -1px;
     }
 
     @media (min-width: 768px) {
@@ -751,17 +758,38 @@ const StyledH3 = styled.h3`
   }
 
   &.carousel-title {
-    width: 50%;
     font-family: "Archivo Black", sans-serif;
     font-weight: 600;
-    font-size: 4em;
-    line-height: 70px;
+    letter-spacing: -1px;
     color: ${lightTheme.Light};
+    display: inline-block;
+
     white-space: normal;
-    position: absolute;
-    top: 50%;
-    left: 60px;
-    transform: translate(0, -100%);
+
+    @media (max-width: 572px) {
+      font-size: 22px;
+      line-height: 25px;
+    }
+
+    @media (min-width: 573px) {
+      font-size: 28px;
+      line-height: 30px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 40px;
+      line-height: 45px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 40px;
+      line-height: 45px;
+    }
+
+    @media (min-width: 1486px) {
+      font-size: 70px;
+      line-height: 70px;
+    }
   }
 
   &.search-title {
@@ -898,7 +926,14 @@ const StyledP = styled.p`
     display: inline;
     width: auto;
     height: 20px;
-    margin: 10px 30px 0px 15px;
+
+    @media (max-width: 767px) {
+      margin: 15px 10px;
+    }
+
+    @media (min-width: 768px) {
+      margin: 10px 30px 0px 15px;
+    }
   }
 
   &.card-title {
@@ -1183,12 +1218,69 @@ const Accordion = styled.div`
     position: relative;
   }
 
+  &.item-box {
+    width: calc(100% - 40px);
+    height: 90px;
+
+    display: flex;
+    flex-direction: row;
+    transition: transform 0.3s ease;
+  }
+
+  &.border-container {
+    position: relative;
+
+    @media (max-width: 767px) {
+      height: 50px;
+    }
+
+    @media (min-width: 768px) {
+      height: 100px;
+    }
+
+    @media (min-width: 1024px) {
+      height: 114px;
+    }
+  }
+
+  &.accordion-border {
+    width: calc(100% - 48px);
+    height: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+
+    margin: 0px 20px;
+
+    @media (max-width: 767px) {
+      border: 2px solid ${(props) => props.theme.Grey};
+      border-bottom: none;
+    }
+
+    @media (min-width: 768px) {
+      border: 4px solid ${(props) => props.theme.Grey};
+      border-bottom: none;
+    }
+  }
+
   &.accordion-title-wrapper {
     width: calc(100% - 40px);
-    height: auto;
-    padding: 30px 20px 15px 20px;
+    height: 90px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    margin: 0 auto;
+
+    @media (max-width: 767px) {
+      height: 40px;
+      position: absolute;
+      top: 0px;
+      left: 28px;
+    }
+
+    @media (min-width: 768px) {
+    }
+
+    @media (min-width: 1024px) {
+    }
 
     &:hover .accordion-number {
       transition: transform 0.3s ease;
@@ -1201,31 +1293,6 @@ const Accordion = styled.div`
       transform: translateY(-5px);
       color: ${(props) => props.theme.Green};
     }
-  }
-
-  &.accordion-item {
-    width: calc(100% - 40px);
-    height: auto;
-    margin: 0 20px 0 0;
-    position: relative;
-  }
-
-  &.item-box {
-    width: calc(100% - 40px);
-    height: 90px;
-    display: flex;
-    flex-direction: row;
-    transition: transform 0.3s ease;
-  }
-
-  &.accordion-border {
-    width: calc(100% - 8px);
-    height: 20px;
-
-    border: 4px solid ${(props) => props.theme.Grey};
-    border-bottom: none;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
   }
 
   &.cardbox {
@@ -1473,7 +1540,6 @@ const Image = styled.img`
     overflow: hidden;
     object-fit: cover;
 
-    margin-bottom: 150px;
     position: relative;
   }
 
@@ -1518,9 +1584,22 @@ const Image = styled.img`
   }
 
   &.search-circle-profile {
-    width: 120px;
-    height: 120px;
     border-radius: 50%;
+
+    @media (max-width: 767px) {
+      width: 50px;
+      height: 50px;
+    }
+
+    @media (min-width: 768px) {
+      width: 100%;
+      aspect-ratio: 1/1;
+    }
+
+    @media (min-width: 1024px) {
+      width: 120px;
+      height: 120px;
+    }
   }
 
   &.search-square {
@@ -1756,12 +1835,25 @@ const Search = styled.div`
     display: flex;
     flex-direction: row;
     position: relative;
-    border: 1px solid pink;
 
     &.main {
-      width: calc(100% - 160px);
-      margin: 0px 80px;
-      aspect-ratio: 4/1;
+      // aspect-ratio: 4/1;
+
+      // @media (max-width: 767px) {
+      //   width: calc(100%);
+      //   aspect-ratio: 1/1;
+      //   margin: 0px;
+      // }
+
+      // @media (min-width: 768px) {
+      //   width: calc(100% - 80px);
+      //   margin: 0px 40px;
+      // }
+
+      // @media (min-width: 1024px) {
+      //   width: calc(100% - 160px);
+      //   margin: 0px 80px;
+      // }
     }
 
     &.column {
@@ -1772,19 +1864,27 @@ const Search = styled.div`
 
   &.circles-container {
     width: 100%;
-    height: 200px;
-    border: 1px solid yellow;
+    aspect-ratio: 10/1;
 
     display: flex;
-    flex-direction: row;
     align-items: center;
+    flex-direction: row;
+    overflow: hidden;
+
+    @media (max-width: 767px) {
+    }
+
+    @media (min-width: 768px) {
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 
   &.extra-margin {
     width: calc(100% - 160px);
     height: 900px;
     margin: 0px 80px 150px 80px;
-    border: 1px solid yellow;
 
     display: flex;
     flex-direction: row;
@@ -1820,13 +1920,22 @@ const Search = styled.div`
   }
 
   &.circle-profile-box {
-    height: 160px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+
     align-items: center;
 
-    margin: 0px 80px 0px 0px;
+    @media (max-width: 767px) {
+      margin: 0px 100px 0px 0px;
+    }
+
+    @media (min-width: 768px) {
+      margin: 0px 60px 0px 0px;
+    }
+
+    @media (min-width: 1024px) {
+      margin: 0px 80px 0px 0px;
+    }
   }
 
   &.item-box {
@@ -1839,7 +1948,6 @@ const Search = styled.div`
   &.text-box {
     width: 50%;
     height: 100%;
-    border: 1px solid purple;
   }
 
   &.line-box {
@@ -1914,7 +2022,6 @@ const Search = styled.div`
 
   &.review-image-container {
     height: 70%;
-    border: purple;
   }
 `;
 
@@ -2129,37 +2236,81 @@ const Test = styled.div`
 
 const Carousel = styled.div`
   &.carousel-wrapper {
+    border: 1px solid red;
     position: relative;
     height: 100%;
     aspect-ratio: 4/1;
     overflow: hidden;
     margin: 0 auto;
+
+    @media (max-width: 767px) {
+      width: calc(100%);
+      aspect-ratio: 1/1;
+      margin: 0px;
+    }
+
+    @media (min-width: 768px) {
+      width: calc(100% - 80px);
+      margin: 0px 40px;
+    }
+
+    @media (min-width: 1024px) {
+      width: calc(100% - 160px);
+      margin: 0px 80px;
+    }
+  }
+
+  &.title-box {
+    width: 65%;
+    heigth: 80%;
+
+    border: 1px solid white;
+
+    position: absolute;
+    top: 50%;
+    left: 60px;
+    transform: translate(0, -100%);
   }
 
   &.carousel-box {
     display: flex;
+    border: 1px solid blue;
   }
 
   &.carousel-item {
     width: 100%;
-    height: 200px;
+    height: 100%;
+    border: 1px solid purple;
     background-position: 50% 50%;
     background-size: contain;
     background-repeat: no-repeat;
     flex: none; // 이 속성을 넣어야 화면에 1개씩 보여진다.
-  }
-
-  &.data {
-    width: 100%;
     position: relative;
   }
 
   &.progress-box {
-    width: 90px;
     position: absolute;
     bottom: 120px;
     right: 50px;
     z-index: 1;
+
+    @media (max-width: 767px) {
+      width: 50px;
+      bottom: 0;
+      right: 0px;
+    }
+
+    @media (min-width: 768px) {
+      width: 70px;
+      bottom: 0;
+      right: 0px;
+    }
+
+    @media (min-width: 1024px) {
+      width: 90px;
+      bottom: 120px;
+      right: 50px;
+    }
   }
 `;
 
@@ -3145,6 +3296,21 @@ const GridImage = styled.img`
   }
 `;
 
+const StyledCircularProgressbar = styled(CircularProgressbar)`
+  .CircularProgressbar-path {
+    stroke-width: 3;
+    stroke: rgba(255, 255, 255, 0.8);
+  }
+
+  .CircularProgressbar-text {
+    fill: #fff;
+  }
+
+  .CircularProgressbar-trail {
+    stroke: rgba(255, 255, 255, 0.3);
+  }
+`;
+
 const StyledIcon = css`
   width: 4em;
   height: 4em;
@@ -3170,13 +3336,34 @@ const LeftIcon = styled(IoIosArrowBack)`
   ${StyledIcon};
   width: 26px;
   height: 26px;
+
+  &.carousel-arrow {
+    @media (max-width: 767px) {
+    }
+
+    @media (min-width: 768px) {
+    }
+
+    @media (min-width: 1024px) {
+    }
+  }
 `;
 
 const RightIcon = styled(IoIosArrowForward)`
   ${StyledIcon};
   fill: white;
-  width: 3em;
-  height: 3em;
+  width: 26px;
+  height: 26px;
+
+    &.carousel-arrow {
+    @media (max-width: 767px) {
+    }
+
+    @media (min-width: 768px) {
+    }
+
+    @media (min-width: 1024px) {
+    }
 `;
 
 const CheckboxBeforeIcon = styled(CheckboxBefore)`
@@ -3340,6 +3527,8 @@ const s = {
   TapttooIcon,
   Username,
   WishIconContainer,
+
+  StyledCircularProgressbar,
 
   LeftIcon,
   RightIcon,
