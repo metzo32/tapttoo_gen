@@ -163,6 +163,20 @@ const Span = styled.span`
 `;
 
 const Line = styled.div`
+
+  &.carousel-line {
+    width: 100%;
+    height: 2px;
+    background-color: ${lightTheme.White};
+    
+    position: absolute;
+    z-index: 2;
+
+    bottom: 80px;
+    right: 0;
+    // transform: translateY(-58%);
+  }
+
   &.light {
     width: 100%;
     height: 2px;
@@ -171,13 +185,6 @@ const Line = styled.div`
     top: 55%;
     left: 50%;
     transform: translate(-50%, 50%);
-
-    &.carousel-line {
-      background-color: ${lightTheme.White};
-      position: absolute;
-      top: 50%;
-      left: 50%;
-    }
   }
 
   &.infinite {
@@ -225,10 +232,11 @@ const Line = styled.div`
       width: calc(100% - 428px);
   }
 
-  &. dark-mode {
+  &.dark-mode {
     height: 1px;
     margin-bottom: 1px;
   }
+
 `;
 
 const Atag = styled.a`
@@ -1836,26 +1844,6 @@ const Search = styled.div`
     flex-direction: row;
     position: relative;
 
-    &.main {
-      // aspect-ratio: 4/1;
-
-      // @media (max-width: 767px) {
-      //   width: calc(100%);
-      //   aspect-ratio: 1/1;
-      //   margin: 0px;
-      // }
-
-      // @media (min-width: 768px) {
-      //   width: calc(100% - 80px);
-      //   margin: 0px 40px;
-      // }
-
-      // @media (min-width: 1024px) {
-      //   width: calc(100% - 160px);
-      //   margin: 0px 80px;
-      // }
-    }
-
     &.column {
       flex-direction: column;
       align-items: center;
@@ -1881,14 +1869,45 @@ const Search = styled.div`
     }
   }
 
-  &.extra-margin {
+  &.sub-container {
     width: calc(100% - 160px);
     height: 900px;
+    display: flex;
+
+    @media (max-width: 767px) {
+      width: calc(100% - 40px);
+      margin: 0px 20px 150px 20px;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    @media (min-width: 768px) {
+      width: calc(100% - 80px);
+      margin: 0px 40px 150px 40px;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    @media (min-width: 1024px) {
+      width: calc(100% - 160px);
+      margin: 0px 80px 150px 80px;
+    }
+  }
+
+  &.extra-margin {
     margin: 0px 80px 150px 80px;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    @media (max-width: 767px) {
+      margin: 0px 20px 150px 20px;
+    }
+
+    @media (min-width: 768px) {
+      margin: 0px 40px 150px 40px;
+    }
+
+    @media (min-width: 1024px) {
+      margin: 0px 80px 150px 80px;
+    }
   }
 
   &.mid-conatiner {
@@ -1897,11 +1916,29 @@ const Search = styled.div`
     flex-direction: column;
 
     &.left {
-      width: calc(60% - 28px);
+      @media (max-width: 767px) {
+        width: 100%;
+      }
+
+      @media (min-width: 768px) {
+        width: calc(60% - 28px);
+      }
+
+      @media (min-width: 1024px) {
+      }
     }
 
     &.right {
-      width: calc(40% - 28px);
+      @media (max-width: 767px) {
+        width: 100%;
+      }
+
+      @media (min-width: 768px) {
+        width: calc(40% - 28px);
+      }
+
+      @media (min-width: 1024px) {
+      }
     }
   }
 
@@ -2236,7 +2273,6 @@ const Test = styled.div`
 
 const Carousel = styled.div`
   &.carousel-wrapper {
-    border: 1px solid red;
     position: relative;
     height: 100%;
     aspect-ratio: 4/1;
@@ -2262,10 +2298,6 @@ const Carousel = styled.div`
 
   &.title-box {
     width: 65%;
-    heigth: 80%;
-
-    border: 1px solid white;
-
     position: absolute;
     top: 50%;
     left: 60px;
@@ -2273,14 +2305,13 @@ const Carousel = styled.div`
   }
 
   &.carousel-box {
+    // 가상요소까지 모두 포함
     display: flex;
-    border: 1px solid blue;
   }
 
   &.carousel-item {
     width: 100%;
     height: 100%;
-    border: 1px solid purple;
     background-position: 50% 50%;
     background-size: contain;
     background-repeat: no-repeat;
@@ -3312,8 +3343,8 @@ const StyledCircularProgressbar = styled(CircularProgressbar)`
 `;
 
 const StyledIcon = css`
-  width: 4em;
-  height: 4em;
+  width: 16px;
+  height: 16px;
   stroke: ${(props) => props.theme.Grey};
   fill: ${(props) => props.theme.Grey};
   color: ${(props) => props.theme.Grey};
@@ -3338,6 +3369,9 @@ const LeftIcon = styled(IoIosArrowBack)`
   height: 26px;
 
   &.carousel-arrow {
+    stroke: ${(props) => lightTheme.Light};
+    fill: ${(props) => lightTheme.Light};
+    color: ${(props) => lightTheme.Light};
     @media (max-width: 767px) {
     }
 
@@ -3355,7 +3389,10 @@ const RightIcon = styled(IoIosArrowForward)`
   width: 26px;
   height: 26px;
 
-    &.carousel-arrow {
+  &.carousel-arrow {
+    stroke: ${(props) => lightTheme.Light};
+    fill: ${(props) => lightTheme.Light};
+    color: ${(props) => lightTheme.Light};
     @media (max-width: 767px) {
     }
 
@@ -3364,6 +3401,7 @@ const RightIcon = styled(IoIosArrowForward)`
 
     @media (min-width: 1024px) {
     }
+  }
 `;
 
 const CheckboxBeforeIcon = styled(CheckboxBefore)`

@@ -16,7 +16,6 @@ const CarouselImage: React.FC<SearchPageMainProps> = ({ title, image }) => {
       <s.Carousel className="title-box">
         <s.StyledH3 className="carousel-title">{title}</s.StyledH3>
       </s.Carousel>
-      <s.Line className="light carousel-line" />
     </>
   );
 };

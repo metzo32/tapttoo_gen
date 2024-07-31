@@ -11,7 +11,7 @@ interface SearchCardProps {
 const SearchCard: React.FC<SearchCardProps> = ({ imageMain, imageSub, desMain, desSub }) => {
   return (
     <s.Search className="top-container">
-      <s.Search className="extra-margin">
+      <s.Search className="sub-container extra-margin">
         <s.Search className="mid-conatiner left">
           <s.Image src={imageMain} alt="image" className="search-square" />
         </s.Search>

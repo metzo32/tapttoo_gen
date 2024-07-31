@@ -92,7 +92,6 @@ const Carousel: React.FC<CarouselProps> = ({ items, renderItem }) => {
   // 퍼센티지 계산
   const progressValue = ((correctedIndex + 1) / totalSlides) * 100;
 
-
   return (
     <s.Carousel className="carousel-wrapper">
       <s.Carousel className="progress-box">
@@ -125,7 +124,7 @@ const Carousel: React.FC<CarouselProps> = ({ items, renderItem }) => {
           </s.Carousel>
         ))}
       </s.Carousel>
-
+      <s.Line className="carousel-line"/>
       <s.Button
         className="carousel-btn-right"
         disabled={disabled}

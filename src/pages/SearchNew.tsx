@@ -38,7 +38,7 @@ export default function SearchNew() {
         />
 
         <s.Search className="top-container">
-          <s.Search className="extra-margin">
+          <s.Search className="sub-container extra-margin">
             <s.Search className="today-container">
               <s.StyledH3 className="search-title">
                 CHOICE OF THE DAY
@@ -109,11 +109,11 @@ export default function SearchNew() {
                 <s.Image src={new03} alt='photo' className='new-artist-img'/>
             </s.Search> */}
 
-      <s.Search className="top-container extra-margin">
+      <s.Search className="top-container sub-container extra-margin">
         <s.Image className="search-wide" src="" alt="image" />
       </s.Search>
 
-      <s.Search className="top-container extra-margin">
+      <s.Search className="top-container sub-container extra-margin">
         <s.Search>
           <s.StyledH3 className="search-title">Reviews</s.StyledH3>
         </s.Search>
