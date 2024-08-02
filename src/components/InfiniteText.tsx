@@ -9,9 +9,7 @@ const InfiniteText: React.FC<InfiniteTextProps> = ({ text, repeat = 10 }) => {
   const repeatedText = new Array(repeat).fill(text).join(" ");
 
   return (
-    <s.InfiniteText className="container">
-      <s.StyledP className="infinite-text">{repeatedText}</s.StyledP>
-    </s.InfiniteText>
+    <s.StyledP className="infinite-text">{repeatedText}</s.StyledP>
   );
 };
 

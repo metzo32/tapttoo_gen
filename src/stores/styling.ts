@@ -191,7 +191,7 @@ const Line = styled.div`
     width: 100%;
     height: 2px;
     background-color: ${(props) => props.theme.LightGrey};
-    margin: 0;
+    margin: 30px 0;
     display: block;
   }
 
@@ -802,12 +802,54 @@ const StyledH3 = styled.h3`
 
   &.search-title {
     font-family: "Archivo Black", sans-serif;
-    font-weight: 600;
-    font-size: 4em;
     color: ${(props) => props.theme.Grey};
+    font-size: 80px;
+    font-weight: 600;
+    letter-spacing: -1px;
+
+    @media (max-width: 767px) {
+      font-size: 40px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 55px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 80px;
+    }
 
     &.margin {
-      margin: 50px 0px 150px 0px;
+      @media (max-width: 767px) {
+        margin: 50px 0px 10px 0px;
+      }
+
+      @media (min-width: 768px) {
+        margin: 50px 0px 50px 0px;
+      }
+
+      @media (min-width: 1024px) {
+        margin: 50px 0px 150px 0px;
+      }
+    }
+  }
+
+  &.name {
+    font-family: "Archivo Black", sans-serif;
+    color: ${(props) => props.theme.Grey};
+    font-weight: 600;
+    letter-spacing: -1px;
+
+    @media (max-width: 767px) {
+      font-size: 28px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 40px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 50px;
     }
   }
 
@@ -838,8 +880,19 @@ const StyledH4 = styled.h4`
   }
 
   &.event-title {
-    font-size: 1.2em;
     color: ${(props) => props.theme.Grey};
+
+    @media (max-width: 767px) {
+      font-size: 16px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 18px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 26px;
+    }
   }
 
   &.today-title {
@@ -1026,12 +1079,6 @@ const StyledP = styled.p`
     text-align: center;
   }
 
-  &.event-name {
-    font-size: 2.6em;
-    font-weight: 500;
-    letter-spacing: -0.05em;
-  }
-
   &.small {
     font-size: 1em;
   }
@@ -1042,12 +1089,14 @@ const StyledP = styled.p`
 
   &.infinite-text {
     font-family: "Tourney", sans-serif;
-    font-size: 4em;
     font-weight: 200;
+    font-size: 60px;
     color: ${(props) => props.theme.LightGrey};
     white-space: nowrap;
 
     animation: ${infiniteSlideLeft} 24000s linear infinite;
+
+ 
   }
 
   &.work-description {
@@ -1595,8 +1644,8 @@ const Image = styled.img`
     border-radius: 50%;
 
     @media (max-width: 767px) {
-      width: 50px;
-      height: 50px;
+      width: 100%;
+      aspect-ratio: 1/1;
     }
 
     @media (min-width: 768px) {
@@ -1605,8 +1654,8 @@ const Image = styled.img`
     }
 
     @media (min-width: 1024px) {
-      width: 120px;
-      height: 120px;
+      width: 100%;
+      aspect-ratio: 1/1;
     }
   }
 
@@ -1642,10 +1691,39 @@ const Image = styled.img`
   }
 `;
 
-const InfiniteText = styled.div`
-  height: 100px;
-  display: flex;
-  align-items: center;
+const Sticky = styled.div`
+  &.main-content {
+    width: 100%;
+    height: 300vh;
+    margin-top: 50px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    background-color: ${lightTheme.Light};
+  }
+
+  &.sticky {
+    border: 1px solid blue;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: ${lightTheme.LightGrey};
+
+    position: sticky;
+    top: 0;
+  }
+  &.section {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: pink;
+  }
+  &.title {
+    border-top: 1px solid black;
+    blackground-color: #22ee66;
+  }
+  &.content {
+  }
 `;
 
 const Modal = styled.div`
@@ -1870,8 +1948,9 @@ const Search = styled.div`
   }
 
   &.sub-container {
+    border: 1px solid orange;
     width: calc(100% - 160px);
-    height: 900px;
+    height: auto;
     display: flex;
 
     @media (max-width: 767px) {
@@ -1988,18 +2067,30 @@ const Search = styled.div`
   }
 
   &.line-box {
-    width: calc(100% - 160px);
     height: auto;
-    margin: 0px 80px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 767px) {
+      width: calc(100% - 40px);
+      margin: 0px 20px;
+    }
+
+    @media (min-width: 768px) {
+      width: calc(100% - 80px);
+      margin: 0px 40px;
+    }
+
+    @media (min-width: 1024px) {
+      width: calc(100% - 160px);
+      margin: 0px 80px;
+    }
   }
 
   &.event-wrapper {
     width: 100%;
-    height: 160px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2007,7 +2098,6 @@ const Search = styled.div`
   }
 
   &.event-container {
-    width: 95%;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -2019,22 +2109,41 @@ const Search = styled.div`
   &.event-title-box {
     width: 20%;
     height: 100%;
-    margin-left: 30px;
 
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    @media (max-width: 767px) {
+      margin-left: 0px;
+    }
+
+    @media (min-width: 768px) {
+      margin-left: 30px;
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 
   &.event-image-box {
-    width: 30%;
-    height: 100%;
+    @media (max-width: 767px) {
+      width: 90px;
+      height: 90px;
+    }
+
+    @media (min-width: 768px) {
+      width: 120px;
+      height: 120px;
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 
   &.event-text-box {
     width: 50%;
-    height: 70px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -2042,15 +2151,36 @@ const Search = styled.div`
   }
 
   &.today-container {
-    width: 700px;
+    width: 50%;
+
+    @media (max-width: 767px) {
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      width: 50%;
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 
   &.today-image-container {
     aspect-ratio: 1/1;
+
+    @media (max-width: 767px) {
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      width: 50%;
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 
   &.arrow {
-    height: 70%;
   }
 
   &.review-container {
@@ -3527,8 +3657,8 @@ const s = {
   Form,
   GridImage,
   HeaderDiv,
-  InfiniteText,
   Modal,
+  Sticky,
   Echo,
   Home,
   Search,

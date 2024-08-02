@@ -45,7 +45,7 @@ export default function SearchNew() {
               </s.StyledH3>
 
               <s.Search className="arrow">화살표</s.Search>
-              <s.StyledP className="event-text">
+              <s.StyledP >
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Necessitatibus quae impedit deleniti repellat! Aspernatur
                 deleniti, mollitia officia obcaecati eaque ipsam provident,
@@ -64,10 +64,10 @@ export default function SearchNew() {
         </s.Search>
 
         <s.Search className="search-container center">
-          <s.StyledH2>
+          <s.StyledH3>
             "당신의 이야기를 예술로, 나만의 타투 도안 제작 – 당신만을 위한
             유니크한 디자인을 만나보세요!"
-          </s.StyledH2>
+          </s.StyledH3>
           <s.Button
             className="Round"
             onClick={() => handleNavigation("/your_custom_tattoo")}
