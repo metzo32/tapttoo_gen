@@ -59,6 +59,7 @@ export default function Header() {
           <s.ProfileIcon />
         </s.Button>
       </s.HeaderDiv>
+      <s.HeaderDiv className="header-overlay"/>
     </s.HeaderDiv>
   );
 }

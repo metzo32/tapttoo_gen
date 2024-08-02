@@ -10,43 +10,47 @@
 // export const Black = "#000"
 
 interface colorTheme {
-    Green: string;
-    HoverGreen: string;
-    Orange: string;
-    Yellow: string;
-    Grey: string;
-    LightGrey: string;
-    HoverGrey: string;
-    Light: string;
-    White: string;
-    Black: string;
-    Overlay: string;
+  Green: string;
+  HoverGreen: string;
+  Orange: string;
+  Yellow: string;
+  Grey: string;
+  LightGrey: string;
+  HoverGrey: string;
+  Light: string;
+  White: string;
+  Black: string;
+  Overlay: string;
+  OverlayGradient: string;
 }
 
 export const lightTheme: colorTheme = {
-    Green: "#40A93E",
-    HoverGreen: "#276E27",
-    Orange: "#FF5C00",
-    Yellow: "#FE9311",
-    Grey: "#6E6560",
-    LightGrey: "#A8A29C",
-    HoverGrey: "#272423",
-    Light: "#EEEDEB",
-    White: "#FFF",
-    Black: "#000",
-    Overlay: "rgba(0, 0, 0, 0.5)",
-  };
-  
-  export const darkTheme: colorTheme = {
-    Green: "#30B62E",
-    HoverGreen: "#57d355",
-    Orange: "#FF5C00",
-    Yellow: "#FE9311",
-    Grey: "#D3CDC6",
-    LightGrey: "#6E6560",
-    HoverGrey: "#EEEDEB",
-    Light: "#272423",
-    White: "#000",
-    Black: "#FFF",
-    Overlay: "rgba(0, 0, 0, 0.3)",
-  };
+  Green: "#40A93E",
+  HoverGreen: "#276E27",
+  Orange: "#FF5C00",
+  Yellow: "#FE9311",
+  Grey: "#6E6560",
+  LightGrey: "#A8A29C",
+  HoverGrey: "#272423",
+  Light: "#EEEDEB",
+  White: "#FFF",
+  Black: "#000",
+  Overlay: "rgba(0, 0, 0, 0.5)",
+  //OverlayGradient: "linear-gradient(180deg, rgba(238,237,235,1) 0%, rgba(238,237,235,0) 100%);",
+  OverlayGradient: "linear-gradient(180deg, rgba(221,82,36,1) 0%, rgba(238,237,235,0) 100%)",
+};
+
+export const darkTheme: colorTheme = {
+  Green: "#30B62E",
+  HoverGreen: "#57d355",
+  Orange: "#FF5C00",
+  Yellow: "#FE9311",
+  Grey: "#D3CDC6",
+  LightGrey: "#6E6560",
+  HoverGrey: "#EEEDEB",
+  Light: "#272423",
+  White: "#000",
+  Black: "#FFF",
+  Overlay: "rgba(0, 0, 0, 0.3)",
+  OverlayGradient: "linear-gradient(180deg, rgba(39,36,35,1) 0%, rgba(238,237,235,0) 100%)",
+};

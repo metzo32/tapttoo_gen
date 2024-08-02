@@ -41,7 +41,7 @@ export default function SearchNew() {
           <s.Search className="sub-container extra-margin">
             <s.Search className="today-container">
               <s.StyledH3 className="search-title">
-                CHOICE OF THE DAY
+                CHOICE <br/>OF THE DAY
               </s.StyledH3>
 
               <s.Search className="arrow">화살표</s.Search>

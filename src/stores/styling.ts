@@ -163,10 +163,19 @@ const Span = styled.span`
 `;
 
 const Line = styled.div`
+width: 100%;
+@media (max-width: 767px) {
+    height: 1px;
+}
+
+@media (min-width: 768px) {
+    height: 2px;
+}
+
+@media (min-width: 1024px) {
+}
 
   &.carousel-line {
-    width: 100%;
-    height: 2px;
     background-color: ${lightTheme.White};
     
     position: absolute;
@@ -174,12 +183,9 @@ const Line = styled.div`
 
     bottom: 80px;
     right: 0;
-    // transform: translateY(-58%);
   }
 
   &.light {
-    width: 100%;
-    height: 2px;
     background-color: ${(props) => props.theme.White};
     position: absolute;
     top: 55%;
@@ -188,16 +194,12 @@ const Line = styled.div`
   }
 
   &.infinite {
-    width: 100%;
-    height: 2px;
     background-color: ${(props) => props.theme.LightGrey};
     margin: 30px 0;
     display: block;
   }
 
   &.horizontal {
-    width: 100%;
-    height: 2px;
     display: block;
   }
 
@@ -309,6 +311,15 @@ const HeaderDiv = styled.div`
     @media (min-width: 1200px) {
       width: 100%;
     }
+  }
+
+  &.header-overlay {
+    width: 100vw;
+    height: 12vh;
+    position: fixed;
+    top: 0;
+    background-color: ${(props) => props.theme.OverlayGradient};
+    pointer-events: none;
   }
 
   &.button-wrapper {
@@ -809,10 +820,14 @@ const StyledH3 = styled.h3`
 
     @media (max-width: 767px) {
       font-size: 40px;
+      line-height: 45px;
     }
 
     @media (min-width: 768px) {
       font-size: 55px;
+      & br {
+        display: none;
+      }
     }
 
     @media (min-width: 1024px) {
@@ -863,7 +878,6 @@ const StyledH3 = styled.h3`
 const StyledH4 = styled.h4`
   width: auto;
   color: ${(props) => props.theme.Green};
-  font-size: 3.3em;
   letter-spacing: -0.05em;
   line-height: 55px;
   font-weight: 400;
@@ -871,6 +885,18 @@ const StyledH4 = styled.h4`
   white-space: nowrap;
   padding: 0;
   margin: 0;
+
+  @media (max-width: 767px) {
+    font-size: 16px;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 28px;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 30px;
+  }
 
   &.artist-detail-header {
     color: ${(props) => props.theme.Grey};
@@ -963,6 +989,23 @@ const StyledP = styled.p`
       @media (min-width: 1024px) {
         margin-top: 40px;
       }
+    }
+  }
+
+  &.event-address {
+    @media (max-width: 767px) {
+      font-size: 12px;
+      line-height: 15px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 16px;
+      line-height: 18px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 20px;
+      line-height: 30px;
     }
   }
 
@@ -1095,8 +1138,6 @@ const StyledP = styled.p`
     white-space: nowrap;
 
     animation: ${infiniteSlideLeft} 24000s linear infinite;
-
- 
   }
 
   &.work-description {
@@ -2103,23 +2144,33 @@ const Search = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin: 10px 0;
+    margin: 20px 0;
+
+    @media (max-width: 767px) {
+      margin: 10px 0;
+    }
+
+    @media (min-width: 768px) {
+      margin: 20px 0;
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 
   &.event-title-box {
-    width: 20%;
     height: 100%;
-
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 
     @media (max-width: 767px) {
-      margin-left: 0px;
+      display: none;
     }
 
     @media (min-width: 768px) {
+      width: 13%;
       margin-left: 30px;
     }
 
@@ -2131,11 +2182,13 @@ const Search = styled.div`
     @media (max-width: 767px) {
       width: 90px;
       height: 90px;
+      margin-left: 10px;
     }
 
     @media (min-width: 768px) {
       width: 120px;
       height: 120px;
+      margin: 0px;
     }
 
     @media (min-width: 1024px) {
@@ -2143,11 +2196,21 @@ const Search = styled.div`
   }
 
   &.event-text-box {
-    width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
+
+    @media (max-width: 767px) {
+      width: 65%;
+    }
+
+    @media (min-width: 768px) {
+      width: 60%;
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 
   &.today-container {
@@ -2766,14 +2829,16 @@ const Footer = styled.div`
   }
 
   &.button-wrapper {
-    display: flex;
     height: 30px;
+    margin: 0 auto;
+    display: flex;
     flex-direction: row;
     align-items: center;
 
     @media (max-width: 767px) {
       justify-content: space-between;
-      margin: 10px 0px;
+      margin-top: 10px;
+      margin-bottom: 10px;
     }
 
     @media (min-width: 768px) {
@@ -2923,6 +2988,7 @@ const PolicyWrapper = styled.div`
 
 const Form = styled.form`
   display: flex;
+  height: auto;
   flex-direction: column;
   align-items: center;
   margin-top: 50px;
@@ -2945,80 +3011,142 @@ const ProfileDiv = styled.div`
 const LoginDiv = styled.div`
   &.wrapper {
     width: 100%;
-    height: 792px;
+    height: auto;
     display: flex;
-    margin: 50px 0;
+    margin: 80px 0px 240px 0px;
+
+    @media (max-width: 767px) {
+      margin: 80px 0px 240px 0px;
+    } 
+
+    @media (min-width: 768px) {
+      margin: 80px 0px 130px 0px;
+    }
+
+    @media (min-width: 1024px) {
+      margin: 80px 0px 130px 0px;
+    }
   }
 
   &.container {
-    width: 300px;
-    height: 700px;
-    padding: 20px 50px;
+    background-color: ${(props) => props.theme.Light};
     margin: 0 auto;
-    border-radius: 20px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+
+      @media (max-width: 767px) {
+        width: 250px;
+        height: 490px;
+        border-radius: 20px;
+      }
+  
+      @media (min-width: 768px) {
+        width: 320px;
+        height: 550px;
+        border-radius: 25px;
+
+      }
+  
+      @media (min-width: 1024px) {
+        width: 400px;
+        height: 700px;
+        border-radius: 35px;
+      }
 
     &:hover {
       transform: scale(1.02);
       transition: 0.4s ease;
     }
-
-    &.login-page {
-    background-color: ${(props) => props.theme.Light};
-      height: 460px;
-      padding: 120px 50px;
-    }
-
-    &.step01 {
-      height: 540px;
-      padding: 80px 50px;
-    }
-
-    &.step02 {
-      height: 620px;
-      padding: 30px 50px 50px 50px;
-    }
   }
 
   &.input-wrapper {
-    height: 400px;
+    width: 80%;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin-top: 50px;
-    padding-top: 20px;
 
-    &.login-page {
-       border: 1px solid red;
-    }
+      @media (max-width: 767px) {
+        height: 25%;
+        margin-bottom: 30px;
+      }
+
+      @media (min-width: 768px) {
+        width: 77%;
+        height: 30%;
+            margin-bottom: 40px;
+      }
+
+      @media (min-width: 1024px) {
+        width: 80%;
+        height: 20%;
+        margin-top: 50px;
+        margin-bottom: 70px;
+      }
 
     &.step01 {
-      height: 260px;
+      @media (max-width: 767px) {
+        height: 40%;
+      }
+
+      @media (min-width: 768px) {
+        width: 80%;
+        height: 40%;
+      }
+
+      @media (min-width: 1024px) {
+        width: 80%;
+        height: 40%;
+        margin-top: 50px;
+        margin-bottom: 50px;
+      }
     }
 
     &.step02 {
-      height: 365px;
-    }
 
-    &.login-page-box {
-    height: 150px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-  }
-  }
+      @media (max-width: 767px) {
+        width: 80%;
+        height: 60%;
+         margin-bottom: 0px;
+      }
+
+      @media (min-width: 768px) {
+        width: 80%;
+        height: 50%;
+        margin-bottom: 0px;
+      }
+
+      @media (min-width: 1024px) {
+        width: 80%;
+        height: 40%;
+        margin-top: 50px;
+        margin-bottom: 50px;
+      }
+    }
+}
 
   &.input-box {
-    width: 300px;
-    height: 25px;
     position: relative;
     display: flex;
     border-bottom: 2px solid ${(props) => props.theme.Grey};
+    
+    @media (max-width: 767px) {
+      width: 100%;
+      height: 25px;
+    }
+
+    @media (min-width: 768px) {
+       width: 100%;
+      height: 25px;
+    }
+
+    @media (min-width: 1024px) {
+         width: 100%;
+    height: 25px;
+    }
     
     &.phonenumber-box {
       width: 200px;
@@ -3053,11 +3181,18 @@ const LoginDiv = styled.div`
   }
 
   &.item-box {
+    width: 90%;
     height: 180px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    
+    &.register {
+      width: 100%;
+      height: 50%;
+      align-items: flex-start;
+    }
   }
 
   &.checkbox-box {
@@ -3066,7 +3201,18 @@ const LoginDiv = styled.div`
     height: 40px;
     display: flex;
     justify-content: space-around;
-    align-items: center;
+
+    @media (max-width: 767px) {
+      align-items: flex-start;
+    }
+
+    @media (min-width: 768px) {
+      align-items: center;
+    }
+
+    @media (min-width: 1024px) {
+      align-items: flex-start;
+    }
   }
 
   &.button-box {
@@ -3077,14 +3223,19 @@ const LoginDiv = styled.div`
   }
   
   &.button-wrapper {
-    height: 130px;
+    width: 90%;
+    height: 18%;
+    margin: 0 auto;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    //border: 1px solid yellow;
 
     &.login {
-    height: 170px;
+    height: 25%;
+    margin-top: 30px;
     }
   }
 
@@ -3106,6 +3257,7 @@ const LoginDiv = styled.div`
   }
 
   &.calandar-item-box {
+    width: 30%;
   }
 
   &.radio-container {
@@ -3122,6 +3274,7 @@ const LoginDiv = styled.div`
 
   &.radio-box {
     width: auto;
+    margin: 0 auto;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -3129,7 +3282,7 @@ const LoginDiv = styled.div`
 `;
 
 const Select = styled.select`
-  width: 90px;
+  width: 100%;
   height: 30px;
   background-color: ${(props) => props.theme.Light};
   color: ${(props) => props.theme.Grey};
@@ -3296,6 +3449,7 @@ const Button = styled.button`
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 5px;
+  white-space: nowrap;
 
   &.left {
     position: absolute;
@@ -3368,22 +3522,35 @@ const Button = styled.button`
     width: 60px;
     height: 60px;
     color: ${lightTheme.Green};
-    padding: 0;
     background-color: rgba(238, 237, 235, 0.6);
     border: 3px solid ${lightTheme.Green};
     border-radius: 50%;
+
+    padding: 0;
+
     display: flex;
-    position: sticky;
     align-items: center;
     justify-content: center;
-    bottom: 10%;
-    left: 92%;
+
+    position: sticky;
+    bottom: 5%;
     z-index: 9999;
 
     &:hover {
       color: ${lightTheme.Green};
       background-color: rgba(238, 237, 235, 0.9);
       transition: 0.3s ease;
+    }
+
+    @media (max-width: 767px) {
+      left: 80%;
+    }
+
+    @media (min-width: 768px) {
+      left: 92%;
+    }
+
+    @media (min-width: 1024px) {
     }
   }
 `;

@@ -101,7 +101,7 @@ const LoginPage = () => {
     <>
       <s.LoginDiv className="wrapper">
         <s.Form className="login" onSubmit={handleSignIn}>
-          <s.LoginDiv className="container login-page">
+          <s.LoginDiv className="container">
             <s.LoginDiv className="input-wrapper login-page-box">
               <s.LoginDiv className="input-box">
                 <s.Input

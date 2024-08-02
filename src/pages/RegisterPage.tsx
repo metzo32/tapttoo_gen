@@ -226,7 +226,7 @@ const RegisterPage = () => {
             </s.LoginDiv>
           )}
 
-          {step === 1 && (
+          {step === 2 && (
             <s.LoginDiv className="container step02">
               <s.LoginDiv className="input-wrapper step02">
                 <RegisterInputItems
@@ -253,7 +253,7 @@ const RegisterPage = () => {
                   placeholder={"한글 또는 영문, 숫자 조합"}
                 />
 
-                <s.LoginDiv className="item-box">
+                <s.LoginDiv className="item-box register">
                   <CalculateAge
                     isAdult={handleAgeValidation}
                     handleOpenModal={handleOpenModal}
