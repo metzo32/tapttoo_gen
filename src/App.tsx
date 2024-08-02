@@ -61,6 +61,7 @@ const App: React.FC = () => {
     <>
       <AuthContext.Provider value={{ currentlyLoggedIn, setCurrentlyLoggedIn }}>
         <CustomThemeProvider>
+          <s.GlobalStyle/>
           <s.Div className="App">
             <Router>
               <Header />

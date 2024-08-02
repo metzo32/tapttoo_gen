@@ -9,9 +9,8 @@
 // @media (min-width: 1024px) {
 // }
 
-import styled, { css } from "styled-components";
+import styled, { css, createGlobalStyle } from "styled-components";
 import { Route, Link as RouterLink } from "react-router-dom";
-
 import {
   infiniteSlideLeft,
   animateIn,
@@ -70,6 +69,15 @@ const Engraved = styled.div`
   color: transparent;
   text-shadow: rgba(245, 245, 245, 0.5) 3px 3px 1px;
 `;
+
+const GlobalStyle = createGlobalStyle`
+  body, html {
+    margin: 0;
+    height: 100%;
+    background-color: ${(props) => props.theme.Light};
+  }
+`;
+
 const Div = styled.div`
   background-color: ${(props) => props.theme.Green};
 
@@ -315,14 +323,15 @@ const HeaderDiv = styled.div`
 
   &.header-overlay {
     width: 100vw;
-    height: 12vh;
+    height: 15vh;
     position: fixed;
     top: 0;
-    background-color: ${(props) => props.theme.OverlayGradient};
+    background: ${(props) => props.theme.OverlayGradient};
     pointer-events: none;
+    z-index: 9998;
   }
 
-  &.button-wrapper {
+  &.header-button-wrapper {
     width: auto;
     height: 100%;
     display: flex;
@@ -2705,10 +2714,11 @@ const MainImage = styled.img`
 `;
 
 const Footer = styled.div`
-  &.wrapper {
-    width: 100%;
+  &.footer-wrapper {
+    width: calc(100% - 20px);
     height: 70px;
     background-color: transparent;
+    margin: 0px 10px;
 
     display: flex;
     flex-direction: column;
@@ -2720,10 +2730,11 @@ const Footer = styled.div`
 
     @media (max-width: 767px) {
       height: auto;
+      margin: 0;
     }
   }
 
-  &.container {
+  &.footer-container {
     height: auto;
     display: flex;
     flex-direction: column;
@@ -2828,7 +2839,7 @@ const Footer = styled.div`
     }
   }
 
-  &.button-wrapper {
+  &.footer-button-wrapper {
     height: 30px;
     margin: 0 auto;
     display: flex;
@@ -2842,12 +2853,14 @@ const Footer = styled.div`
     }
 
     @media (min-width: 768px) {
+      width: 50%;
       flex-direction: row;
       align-items: center;
       margin: 0;
     }
 
     @media (min-width: 1024px) {
+      width: 30%;
     }
   }
 `;
@@ -3013,7 +3026,6 @@ const LoginDiv = styled.div`
     width: 100%;
     height: auto;
     display: flex;
-    margin: 80px 0px 240px 0px;
 
     @media (max-width: 767px) {
       margin: 80px 0px 240px 0px;
@@ -3070,19 +3082,19 @@ const LoginDiv = styled.div`
     align-items: center;
 
       @media (max-width: 767px) {
-        height: 25%;
+        height: 30%;
         margin-bottom: 30px;
       }
 
       @media (min-width: 768px) {
         width: 77%;
         height: 30%;
-            margin-bottom: 40px;
+        margin-bottom: 40px;
       }
 
       @media (min-width: 1024px) {
         width: 80%;
-        height: 20%;
+        height: 30%;
         margin-top: 50px;
         margin-bottom: 70px;
       }
@@ -3799,6 +3811,7 @@ const WarnIcon = styled(TbExclamationMark)`
 `;
 
 const s = {
+  GlobalStyle,
   Engraved,
   ArticleCard,
   Accordion,

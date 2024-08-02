@@ -9,13 +9,13 @@ export default function Footer() {
   };
 
   return (
-    <s.Footer className="wrapper">
-      <s.Footer className="container">
+    <s.Footer className="footer-wrapper">
+      <s.Footer className="footer-container">
          <s.Footer className="brand-wrapper">
           <s.BrandLogo />
           <s.BrandText>Tapttoo</s.BrandText>
         </s.Footer>
-        <s.Footer className="button-wrapper">
+        <s.Footer className="footer-button-wrapper">
           <s.Button onClick={() => handleNavigation("/")}>Home</s.Button>
           <s.Button onClick={() => handleNavigation("/aboutus")}>
             About us

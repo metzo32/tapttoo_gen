@@ -36,8 +36,7 @@ export const lightTheme: colorTheme = {
   White: "#FFF",
   Black: "#000",
   Overlay: "rgba(0, 0, 0, 0.5)",
-  //OverlayGradient: "linear-gradient(180deg, rgba(238,237,235,1) 0%, rgba(238,237,235,0) 100%);",
-  OverlayGradient: "linear-gradient(180deg, rgba(221,82,36,1) 0%, rgba(238,237,235,0) 100%)",
+  OverlayGradient: "linear-gradient(180deg, rgba(238,237,235,1) 0%, rgba(238,237,235,0) 100%);",
 };
 
 export const darkTheme: colorTheme = {

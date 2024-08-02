@@ -29,37 +29,39 @@ export default function Header() {
   const showSidebar = () => setSidebar(!sidebar);
 
   return (
-    <s.HeaderDiv className="wrapper">
-      <SideBar sidebar={sidebar} showSidebar={showSidebar} />
-      <s.HeaderDiv className="button-wrapper">
-        <s.Button className="header-button-item" onClick={showSidebar}>
-          <s.HamburgerIcon />
-        </s.Button>
+    <>
+      <s.HeaderDiv className="wrapper">
+        <SideBar sidebar={sidebar} showSidebar={showSidebar} />
+        <s.HeaderDiv className="header-button-wrapper">
+          <s.Button className="header-button-item" onClick={showSidebar}>
+            <s.HamburgerIcon />
+          </s.Button>
 
-        <s.Button
-          onClick={() => handleNavigation("/")}
-          className="header-button-item"
-        >
-          <s.HomeIcon />
-        </s.Button>
+          <s.Button
+            onClick={() => handleNavigation("/")}
+            className="header-button-item"
+          >
+            <s.HomeIcon />
+          </s.Button>
 
-        <s.Button
-          className="header-button-item"
-          onClick={() => handleNavigation("/article")}
-        >
-          <s.SearchIcon />
-        </s.Button>
+          <s.Button
+            className="header-button-item"
+            onClick={() => handleNavigation("/article")}
+          >
+            <s.SearchIcon />
+          </s.Button>
+        </s.HeaderDiv>
+        <s.HeaderDiv className="header-button-wrapper">
+          <DarkModeButton />
+          <s.Button
+            onClick={() => handleProfileNavigation()}
+            className="header-button-item"
+          >
+            <s.ProfileIcon />
+          </s.Button>
+        </s.HeaderDiv>
       </s.HeaderDiv>
-      <s.HeaderDiv className="button-wrapper">
-        <DarkModeButton />
-        <s.Button
-          onClick={() => handleProfileNavigation()}
-          className="header-button-item"
-        >
-          <s.ProfileIcon />
-        </s.Button>
-      </s.HeaderDiv>
-      <s.HeaderDiv className="header-overlay"/>
-    </s.HeaderDiv>
+      <s.HeaderDiv className="header-overlay" />
+    </>
   );
 }
