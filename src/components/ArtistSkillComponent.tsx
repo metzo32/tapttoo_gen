@@ -38,7 +38,7 @@ const ArtistSkillComponent: React.FC<{ hash: string[] }> = ({ hash }) => {
               </s.Portfolio>
 
               {index + 2 < hash.length && ( // 이 다음에 요소가 2개 더 있다면 수평선 렌더
-                <s.Line className="horizontal dark margin-h" />
+                <s.Line className="horizontal dark margin-h display" />
               )}
             </React.Fragment>
           );

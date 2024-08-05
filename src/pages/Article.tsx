@@ -3,7 +3,6 @@ import s from "../stores/styling";
 import ArtistData from "../assets/datas/artitst_data";
 import ScrollToTop from "../components/ScrollToTop";
 import WishList from "../components/WishList";
-import TestPage from "./Home";
 
 const Article: React.FC = () => {
   const [articles, setArticles] = useState<number[]>([1, 2, 3, 4]);
@@ -78,6 +77,7 @@ const Article: React.FC = () => {
           신규순
         </s.Button>
       </s.ArticleDiv>
+
       <s.ArticleDiv className="mid-wrapper">
         {articles.map((index) => {
           const artist = sortedData[index]; // 정렬된 새로운 배열을 할당하여 업데이트

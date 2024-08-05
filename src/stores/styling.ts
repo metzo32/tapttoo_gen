@@ -82,6 +82,7 @@ const Div = styled.div`
   background-color: ${(props) => props.theme.Green};
 
   &.App {
+    min-width: 320px;
     background-color: ${(props) => props.theme.Light};
     position: relative;
     height: auto;
@@ -124,7 +125,6 @@ const Div = styled.div`
     justify-content: center;
     background-color: ${(props) => props.theme.Grey};
     color: white;
-    font-size: 1.5em;
     border-radius: 50%;
   }
 
@@ -158,7 +158,7 @@ const Div = styled.div`
 
 const Span = styled.span`
   display: inline-block;
-  font-size: 1em;
+  font-size: 12px;
   opacity: 0;
 
   &.FadeIn {
@@ -228,6 +228,19 @@ width: 100%;
     margin: 0px 20px;
   }
 
+  &.display {
+    @media (max-width: 767px) {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      display: block;
+    }
+
+    @media (min-width: 1024px) {
+    }
+  }
+
   &.footer {
     width: calc(100% - 428px);
     margin: 0px 30px;
@@ -250,7 +263,7 @@ width: 100%;
 `;
 
 const Atag = styled.a`
-  font-size: 1.1em;
+  font-size: 16px;
   color: ${(props) => props.theme.Grey};
   text-transform: uppercase;
   text-decoration: none;
@@ -276,8 +289,7 @@ const Atag = styled.a`
   }
 
   &.artist-contact {
-    white-space: nowrap;
-    font-size: 1em;
+    text-align: right;
     color: ${(props) => props.theme.Grey};
     letter-spacing: -0.3px;
     text-transform: none;
@@ -285,6 +297,20 @@ const Atag = styled.a`
 
     &:hover {
       color: ${(props) => props.theme.HoverGrey};
+    }
+
+    @media (max-width: 767px) {
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 14px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 16px;
+      margin-top: 6px;
     }
   }
 `;
@@ -323,7 +349,7 @@ const HeaderDiv = styled.div`
 
   &.header-overlay {
     width: 100vw;
-    height: 15vh;
+    height: 10vh;
     position: fixed;
     top: 0;
     background: ${(props) => props.theme.OverlayGradient};
@@ -444,23 +470,20 @@ const AboutDiv = styled.div`
   &.service-wrapper {
     display: flex;
     flex-direction: column;
-    position: relative;
-    z-index: 1;
+    margin-bottom: 20px;
 
     @media (max-width: 767px) {
       width: 100%;
-      height: 250px;
+      height: 350px;
     }
 
     @media (min-width: 768px) {
-      width: 100%;
-      height: 480px;
-      margin-bottom: 20px;
+      height: 500px;
     }
 
     @media (min-width: 1024px) {
       width: 50%;
-      height: 440px;
+      height: 380px;
     }
   }
 
@@ -512,8 +535,7 @@ const BrandTitleWrapper = styled.div`
 
 const StyledH1 = styled.h1`
   color: ${(props) => props.theme.Green};
-  font-size: 155pt;
-  letter-spacing: -0.085em;
+  font-size: 155px;
   font-weight: 400;
   line-height: 140px;
   margin: 0px;
@@ -522,18 +544,21 @@ const StyledH1 = styled.h1`
   display: inline-block;
 
   @media (max-width: 767px) {
-    font-size: 50pt;
+    font-size: 50px;
     line-height: 70px;
+     letter-spacing: -4px;
   }
 
   @media (min-width: 768px) {
-    font-size: 110pt;
+    font-size: 110px;
     line-height: 160px;
+     letter-spacing: -10px;
   }
 
   @media (min-width: 1024px) {
-    font-size: 155pt;
+    font-size: 155px;
     line-height: 210px;
+     letter-spacing: -12px;
   }
 
   &.login-title {
@@ -543,6 +568,41 @@ const StyledH1 = styled.h1`
   }
 
   &.brand-title {
+    @media (max-width: 405px) {
+      font-size: 50px;
+      line-height: 50px;
+      margin-bottom: 10px;
+    }
+
+    @media (min-width: 405px) {
+      font-size: 60px;
+      line-height: 60px;
+      margin-bottom: 15px;
+    }
+
+    @media (min-width: 540px) {
+      font-size: 80px;
+      line-height: 80px;
+      margin-bottom: 20px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 110px;
+      line-height: 110px;
+      margin-bottom: 30px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 150px;
+      line-height: 160px;
+      margin-bottom: 40px;
+    }
+
+    @media (min-width: 1220px) {
+      font-size: 180px;
+      line-height: 180px;
+      margin-bottom: 50px;
+    }
   }
 
   &.career-title {
@@ -555,23 +615,22 @@ const StyledH1 = styled.h1`
     margin-bottom: 20px;
 
     @media (max-width: 767px) {
-      font-size: 50pt;
+      font-size: 50px;
       line-height: 70px;
     }
 
     @media (min-width: 768px) {
-      font-size: 70pt;
+      font-size: 70px;
       line-height: 105px;
     }
 
     @media (min-width: 1024px) {
-      font-size: 120pt;
+      font-size: 120px;
       line-height: 160px;
     }
   }
 
   &.new-artists-title {
-    font-size: 9em;
     text-align: left;
   }
 
@@ -592,23 +651,47 @@ const StyledH1 = styled.h1`
     position: absolute;
     bottom: 0;
     right: 0;
+
+    @media (max-width: 767px) {
+      font-size: 70px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 90px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 120px;
+    }
   }
 
   &.artist-page-title {
     text-align: left;
     color: ${(props) => props.theme.Grey};
-    font-size: 10em;
-    letter-spacing: -0.08em;
     margin: 0;
     padding: 0;
     display: block;
+
+    @media (max-width: 767px) {
+      font-size: 100px;
+      letter-spacing: -8px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 200px;
+      letter-spacing: -16px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 200px;
+      letter-spacing: -16px;
+    }
   }
 
   &.warning {
     color: ${lightTheme.Green};
-    font-size: 2em;
+    font-size: 24px;
     font-weight: 400;
-    line-height: 2em;
   }
 `;
 
@@ -657,6 +740,7 @@ const StyledH2 = styled.h2`
     @media (max-width: 767px) {
       font-size: 30px;
       line-height: 35px;
+      letter-spacing: -2px;
       margin-top: 50px;
       margin-bottom: 100px;
     }
@@ -670,26 +754,27 @@ const StyledH2 = styled.h2`
 
     @media (min-width: 1024px) {
       font-size: 70px;
-      line-height: 70px;
+      line-height: 80px;
       margin-bottom: 190px;
     }
 
     &.bold {
       @media (max-width: 767px) {
-        font-size: 80px;
-        line-height: 85px;
-        margin-bottom: 80px;
+        font-size: 70px;
+        line-height: 70px;
+        margin: 40px 0px;
       }
 
       @media (min-width: 768px) {
-        font-size: 120px;
-        line-height: 130px;
-        margin-bottom: 120px;
+        font-size: 90px;
+        line-height: 90px;
+        margin: 60px 0px;
       }
 
       @media (min-width: 1024px) {
-        font-size: 140px;
-        line-height: 150px;
+        font-size: 130px;
+        line-height: 130px;
+        margin: 80px 0px;
       }
     }
   }
@@ -715,46 +800,48 @@ const StyledH2 = styled.h2`
     }
   }
 
-  &.artist-name {
-    font-size: 4em;
-    font-weight: bold;
-    letter-spacing: -0.05em;
-  }
-
   &.contact-card-title {
     width: 100%;
-
-    font-size: 3em;
-    letter-spacing: -0.05em;
     text-align: left;
-  }
 
-  &.artist-page-semititle {
-    width: 65%;
-    font-size: 1.8em;
-    font-weight: 500;
-    color: ${(props) => props.theme.Grey};
-    line-height: 35px;
-    text-align: left;
-  }
+    @media (max-width: 767px) {
+      font-size: 28px;
+      letter-spacing: -2px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 40px;
+      letter-spacing: -2px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 48px;
+      letter-spacing: -2px;
+    }
+  
 
   &.artist-description {
     font-weight: 500;
     text-align: left;
 
     @media (max-width: 767px) {
-      font-size: 28px;
-      line-height: 28px;
+      width: 100%;
+      font-size: 22px;
+      letter-spacing: -1px;
+      line-height: 26px;
     }
 
     @media (min-width: 768px) {
+      width: 90%;
       font-size: 34px;
-      line-height: 34px;
+      letter-spacing: -3px;
+      line-height: 38px;
     }
 
     @media (min-width: 1024px) {
       font-size: 42px;
-      line-height: 42px;
+      letter-spacing: -4px;
+      line-height: 48px;
     }
   }
 `;
@@ -781,20 +868,26 @@ const StyledH3 = styled.h3`
   @media (min-width: 1024px) {
     font-size: 70px;
     line-height: 80px;
-  }
-
-  &.mid-category {
-    width: 100px;
-    color: ${(props) => props.theme.Grey};
-    font-size: 1.5em;
-    font-weight: 500;
-    line-height: 30px;
-  }
+}
 
   &.sidebar-logo {
-    font-size: 40px;
     margin: 0 auto;
-    margin-top: 20px;
+    margin-top: 30px;
+
+    @media (max-width: 767px) {
+      font-size: 35px;
+      margin-bottom: 20px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 38px;
+      margin-top: 25px;
+    }
   }
 
   &.carousel-title {
@@ -891,15 +984,30 @@ const StyledH3 = styled.h3`
 
   &.work-title {
     color: ${(props) => props.theme.Grey};
-    font-size: 1.5em;
+    font-size: 30px;
     font-weight: 500;
+    letter-spacing: -2px;
+    line-height: 28px;
+
+    @media (max-width: 767px) {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 24px;
+      display: block;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 30px;
+    }
   }
 `;
 
 const StyledH4 = styled.h4`
   width: auto;
   color: ${(props) => props.theme.Green};
-  letter-spacing: -0.05em;
+  letter-spacing: -1px;
   line-height: 55px;
   font-weight: 400;
   text-align: left;
@@ -921,7 +1029,6 @@ const StyledH4 = styled.h4`
 
   &.artist-detail-header {
     color: ${(props) => props.theme.Grey};
-    font-size: 1.7em;
     font-weight: 600;
     line-height: 30px;
   }
@@ -943,14 +1050,25 @@ const StyledH4 = styled.h4`
   }
 
   &.today-title {
-    font-size: 2.5em;
     color: ${(props) => props.theme.Grey};
   }
 
   &.work {
-    font-size: 2em;
+    font-size: 30px;
     line-height: 1;
     color: ${(props) => props.theme.Grey};
+
+    @media (max-width: 767px) {
+      font-size: 20px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 24px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 30px;
+    }
   }
 `;
 
@@ -966,19 +1084,17 @@ const StyledP = styled.p`
   }
 
   @media (min-width: 768px) {
-    font-size: 20px;
-    line-height: 30px;
+    font-size: 18px;
+    line-height: 24px;
   }
 
   @media (min-width: 1024px) {
-    font-size: 27px;
-    line-height: 35px;
+    font-size: 20px;
+    line-height: 28px;
   }
 
   &.about-first-title {
     text-align: center;
-
-    margin-top: 50px;
     margin-bottom: 30px;
   }
 
@@ -1030,16 +1146,6 @@ const StyledP = styled.p`
     }
   }
 
-  &.article-text {
-    text-align: right;
-    font-size: 2em;
-    font-weight: 200;
-    color: ${(props) => props.theme.White};
-    opacity: 0.4;
-    position: absolute;
-    bottom: 0;
-  }
-
   &.career-info {
     width: 50%;
     position: absolute;
@@ -1064,15 +1170,15 @@ const StyledP = styled.p`
   &.card-title {
     color: ${lightTheme.Grey};
     font-weight: 500;
-    font-size: 2em;
+    font-size: 32px;
     margin-top: 30px;
     letter-spacing: -0.5px;
   }
 
   &.card-semititle {
     color: ${lightTheme.Grey};
-    font-size: 1.2em;
-    line-height: 25px;
+    font-size: 20px;
+    line-height: 22px;
     opacity: 0.7;
     margin-top: 10px;
   }
@@ -1099,12 +1205,12 @@ const StyledP = styled.p`
   }
 
   &.contact-info {
-    font-size: 1.1em;
+    font-size: 16px;
     text-transform: uppercase;
   }
 
   &.footer-copyright {
-    font-size: 1.1em;
+    font-size: 12px;
     width: auto;
 
     @media (max-width: 767px) {
@@ -1121,34 +1227,38 @@ const StyledP = styled.p`
 
   &.artist-contact-left {
     white-space: nowrap;
-    font-size: 1.3em;
     font-weight: bold;
     margin-left: 5px;
     margin-top: 5px;
   }
 
   &.artist-interview {
-    font-size: 1em;
   }
 
   &.number {
-    font-size: 1em;
+    font-size: 16px;
     font-weight: 500;
   }
 
   &.modal {
     color: ${lightTheme.Grey};
-    font-size: 1em;
+    font-size: 16px;
     line-height: 22px;
     text-align: center;
   }
 
   &.small {
-    font-size: 1em;
-  }
+    @media (max-width: 767px) {
+      font-size: 12px;
+    }
 
-  &.event-text {
-    font-size: 1.5em;
+    @media (min-width: 768px) {
+      font-size: 14px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 16px;
+    }
   }
 
   &.infinite-text {
@@ -1162,8 +1272,6 @@ const StyledP = styled.p`
   }
 
   &.work-description {
-    font-size: 1em;
-    line-height: 22px;
     margin-top: 10px;
   }
 `;
@@ -1211,53 +1319,25 @@ const Mask = styled.div`
   }
 `;
 
-const MaskText = styled.p`
-  font-family: "DM Serif Display", serif;
-  color: ${(props) => props.theme.Green};
-  font-size: 48em;
-  letter-spacing: -0.05em;
-  font-weight: 400;
-  line-height: 110px;
-  margin: 0px;
+// const MaskText = styled.p`
+//   font-family: "DM Serif Display", serif;
+//   color: ${(props) => props.theme.Green};
+//   font-size: 48em;
+//   letter-spacing: -0.05em;
+//   font-weight: 400;
+//   line-height: 110px;
+//   margin: 0px;
 
-  transform: scaleX(1);
-  transform-origin: center;
+//   transform: scaleX(1);
+//   transform-origin: center;
 
-  position: absolute;
-  top: 25%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+//   position: absolute;
+//   top: 25%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
 
-  &.masked {
-    color: ${(props) => props.theme.White};
-  }
-`;
-
-// const ArtistReg = styled.div`
-//   width: 100%;
-//   height: auto;
-//   position: relative;
-
-//   &.artist-wrapper {
-//     margin-top: 10px;
-//     position: relative;
-//   }
-
-//   &.bg-filter {
-//     width: 95%;
-//     height: 100vh;
-//     background: rgb(64, 169, 62);
-//     background: linear-gradient(
-//       135deg,
-//       rgba(64, 169, 62, 1) 0%,
-//       rgba(72, 186, 255, 1) 50%
-//     );
-//     opacity: 0.5;
-
-//     position: fixed;
-//     top: 0;
-//     left: 0;
-//     z-index: 1;
+//   &.masked {
+//     color: ${(props) => props.theme.White};
 //   }
 // `;
 
@@ -1298,25 +1378,6 @@ const CareerItem = styled.div`
     width: calc(100% / 2);
     height: 800px;
     aspect-ratio: 1 / 1;
-  }
-`;
-
-const CareerP = styled.p`
-  font-size: 2em;
-  color: white;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -80%) scale(1);
-  background-color: transparent;
-  padding: 10px;
-  text-align: center;
-  z-index: 1;
-  pointer-events: none;
-
-  ${CareerItem}:hover & {
-    transform: translate(-50%, -80%) scale(1.5);
-    transition: 0.3s ease;
   }
 `;
 
@@ -1559,7 +1620,7 @@ const CareerDetail = styled.div`
 `;
 
 const Username = styled.div`
-  font-size: 2em;
+  font-size: 24px;
 `;
 
 const StyledUl = styled.ul`
@@ -1572,7 +1633,7 @@ const StyledUl = styled.ul`
     margin; 0;
     position: relative;
 
-      @media (max-width: 767px) {
+  @media (max-width: 767px) {
     font-size: 16px;
     line-height: 20px;
   }
@@ -1588,22 +1649,20 @@ const StyledUl = styled.ul`
   }
 
     &.section-ul {
-        justify-content: space-between;
+      height: 100%;
+      justify-content: space-between;
 
-        @media (max-width: 767px) {
-        height: 200px;
+      @media (max-width: 767px) {
         margin-top: 20px;
-        margin-bottom: 20px;
       }
+
       @media (min-width: 768px) {
-        height: 250px;
         margin-top: 40px;
       }
 
       @media (min-width: 1024px) {
-height: 200px;
+        }
       }
-    }
 
     &.nav-menu-items {
         display: flex;
@@ -1621,8 +1680,19 @@ height: 200px;
 `;
 const StyledLi = styled.li`
   color: ${(props) => props.theme.Green};
-  font-size: 1em;
   margin-bottom: 5px;
+
+  @media (max-width: 767px) {
+    font-size: 16px;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 20px;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 24px;
+  }
 
   &.name-li {
     color: ${(props) => props.theme.HoverGrey};
@@ -2293,6 +2363,7 @@ const ArticleDiv = styled.div`
 
   &.wrapper {
     flex-direction: column;
+    margin-top: 50px;
   }
 
   &.mid-wrapper {
@@ -2314,19 +2385,19 @@ const ArticleDiv = styled.div`
     }
 
     &:hover .article-name {
-      font-size: 15em;
+      font-size: 48px;
       opacity: 1;
       transition: 0.3s ease;
     }
 
     &:hover .article-text {
-      font-size: 1.3em;
+      font-size: 20px;
       opacity: 1;
       transition: 0.3s ease;
     }
 
     @media (max-width: 767px) {
-      width: 50%;
+      width: 100%;
     }
 
     @media (min-width: 768px) {
@@ -2334,6 +2405,7 @@ const ArticleDiv = styled.div`
     }
 
     @media (min-width: 1024px) {
+      width: 50%;
     }
   }
 
@@ -2362,10 +2434,24 @@ const ArticleDiv = styled.div`
 `;
 
 const Portfolio = styled.div`
-  &.wrapper {
+  &.portfolio-wrapper {
     width: calc(100vw - 40px);
     height: auto;
-    margin: 50px 100px 20px 100px;
+    margin: 0 auto;
+    margin-top: 65px;
+
+    @media (max-width: 767px) {
+      width: calc(100vw - 20px);
+      margin-bottom: 120px;
+    }
+
+    @media (min-width: 768px) {
+      width: calc(100vw - 40px);
+    }
+
+    @media (min-width: 1024px) {
+      margin-bottom: 20px;
+    }
   }
 
   &.header-wrapper {
@@ -2380,10 +2466,11 @@ const Portfolio = styled.div`
   &.header-container {
     height: auto;
     margin-top: 40px;
+    margin-bottom: 20px;
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
 
     @media (max-width: 767px) {
       flex-direction: column;
@@ -2391,22 +2478,22 @@ const Portfolio = styled.div`
 
     @media (min-width: 768px) {
       flex-direction: column;
+      align-items: flex-end;
     }
 
     @media (min-width: 1024px) {
       flex-direction: row;
+      align-items: flex-start;
     }
   }
 
   &.mid-box-left {
     @media (max-width: 767px) {
       width: 100%;
-      margin-bottom: 20px;
     }
 
     @media (min-width: 768px) {
       width: 100%;
-      margin-bottom: 20px;
     }
 
     @media (min-width: 1024px) {
@@ -2415,14 +2502,36 @@ const Portfolio = styled.div`
   }
 
   &.mid-box-right {
-    width: calc(30% - 10px);
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @media (max-width: 767px) {
+      width: 100%;
+      height: 140px;
+      margin-top: 20px;
+    }
+
+    @media (min-width: 768px) {
+      width: 50%;
+      height: 200px;
+      margin-top: 20px;
+    }
+
+    @media (min-width: 1024px) {
+      width: calc(30% - 10px);
+      height: 200px;
+      margin-top: 0px;
+    }
+  }
+
+  &.header-profile {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
 
-  &.header-profile {
+  &.header-profile-box {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -2439,45 +2548,95 @@ const Portfolio = styled.div`
 
   &.work-wrapper-line {
     width: 100%;
-    height: 450px;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
 
   &.work-wrapper {
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: row;
+
+    @media (max-width: 767px) {
+      height: auto;
+    }
+
+    @media (min-width: 768px) {
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 
   &.work-container-left {
     width: calc(30% - 21px);
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    @media (max-width: 767px) {
+      justify-content: flex-end;
+    }
+
+    @media (min-width: 768px) {
+      justify-content: space-between;
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 
   &.work-container-right {
     width: calc(70% - 21px);
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
 
   &.work-box {
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      margin-bottom: 0px;
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 
   &.work-div {
-    width: calc(50% - 11px);
     display: flex;
     flex-direction: column;
+
+    @media (max-width: 767px) {
+      width: 100%;
+      margin-bottom: 20px;
+
+      &:last-child {
+        margin: 0;
+      }
+    }
+
+    @media (min-width: 768px) {
+      width: calc(50% - 11px);
+      margin-bottom: 0px;
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 
   &.img-wrapper {
@@ -2671,7 +2830,6 @@ const SideBar = styled.div`
 
 const NavBar = styled.nav`
   background-color: ${(props) => props.theme.HoverGrey};
-  font-size: 1em;
   height: 100%;
 
   display: flex;
@@ -2697,8 +2855,6 @@ const NavBar = styled.nav`
   }
 `;
 
-const SidebarLi = styled.li``;
-
 const Overlay = styled.div`
   position: fixed;
   top: 0;
@@ -2710,24 +2866,35 @@ const Overlay = styled.div`
   transition: opacity 0.3s ease;
 `;
 
-const TapttooIcon = styled(Tapttoo)`
-  width: 6em;
-  height: 100px;
-  margin: 0 auto;
-  display: block;
-`;
+// const TapttooIcon = styled(Tapttoo)`
+//   width: 12px;
+//   height: 100px;
+//   margin: 0 auto;
+//   display: block;
+// `;
 
 const StyledLink = styled(RouterLink)`
   &.menu-texts {
     font-size: 20px;
     text-decoration: none;
     color: ${(props) => props.theme.Grey};
-    margin-left: 20px;
-    padding: 10px 20px;
+    margin-left: 35px;
     white-space: nowrap;
 
     &:hover {
       color: ${(props) => props.theme.HoverGrey};
+    }
+
+    @media (max-width: 767px) {
+      font-size: 16px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 16px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 20px;
     }
   }
 
@@ -2903,6 +3070,7 @@ const Footer = styled.div`
       width: 50%;
       flex-direction: row;
       align-items: center;
+      justify-content: center;
       margin: 0;
     }
 
@@ -2913,8 +3081,8 @@ const Footer = styled.div`
 `;
 
 const BrandLogo = styled(Logo)`
-  width: 1.5em;
-  height: 1.5em;
+  width: 20px;
+  height: 20px;
   fill: ${(props) => props.theme.Grey};
 `;
 
@@ -3359,7 +3527,7 @@ const Input = styled.input`
   color: ${(props) => props.theme.Grey};
   border: none;
   outline: none;
-  font-size: 1em;
+  font-size: 16px;
   cursor: pointer;
 
   &.loginpage {
@@ -3421,13 +3589,13 @@ const Label = styled.label`
   }
 
   &.remember {
-    font-size: 0.8em;
+    font-size: 12px;
     margin-top: 3px;
   }
 
   &.understand {
     width: 100px;
-    font-size: 0.8em;
+    font-size: 12px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -3447,7 +3615,7 @@ const Label = styled.label`
   }
 
   &.modal-label {
-    font-size: 0.8em;
+    font-size: 12px;
     color: ${lightTheme.Grey};
     cursor: pointer;
     display: flex;
@@ -3468,7 +3636,7 @@ const Label = styled.label`
   }
 
   &.check-label {
-    font-size: 0.9em;
+    font-size: 16px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -3706,8 +3874,8 @@ const StyledIcon = css`
   color: ${(props) => props.theme.Grey};
 
   &.outlined {
-    width: 1.2em;
-    height: 1.2em;
+    width: 20px;
+    height: 20px;
     border-radius: 100px;
     border: 1px solid ${(props) => props.theme.Grey};
     padding: 5px;
@@ -3774,8 +3942,8 @@ const CheckboxAfterIcon = styled(CheckboxAfter)`
 
 //Header Icons
 const StyledHeaderIcon = css`
-  width: 2em;
-  height: 2em;
+  width: 26px;
+  height: 26px;
   fill: ${(props) => props.theme.Grey};
   color: ${(props) => props.theme.Grey};
 
@@ -3799,14 +3967,14 @@ const EyeIcon = styled(IoEyeOutline)`
 
 const SearchIcon = styled(GrSearch)`
   ${StyledHeaderIcon}
-  width: 1.8em;
-  height: 1.8em;
+  width: 24px;
+  height: 24px;
 `;
 
 const ProfileIcon = styled(GoPerson)`
   ${StyledHeaderIcon}
-  width: 2.2em;
-  height: 2.2em;
+  width: 28px;
+  height: 28px;
 `;
 
 //Footer Icons
@@ -3829,8 +3997,8 @@ const InstagramIcon = styled(RiInstagramLine)`
 const ArrowIcon = styled(FiArrowDownRight)`
   ${StyledIcon}
   fill: none;
-  width: 1.7em;
-  height: 1.7em;
+  width: 20px;
+  height: 20px;
 `;
 
 const MailIcon = styled(RiMailLine)`
@@ -3848,8 +4016,8 @@ const YoutubeIcon = styled(FaYoutube)`
 const TopArrowIcon = styled(MdOutlineArrowUpward)`
   ${StyledIcon}
   fill: ${lightTheme.Green};
-  width: 2.5em;
-  height: 2.5em;
+  width: 28px;
+  height: 28px;
 `;
 
 const WarnIcon = styled(TbExclamationMark)`
@@ -3874,7 +4042,6 @@ const s = {
   CareerDetail,
   CareerDiv,
   CareerItem,
-  CareerP,
   Portfolio,
   Carousel,
   Test,
@@ -3901,14 +4068,12 @@ const s = {
   MainImage,
   Map,
   Mask,
-  MaskText,
   NavBar,
   Overlay,
   PolicyWrapper,
   ProfileGrid,
   SectionContainer,
   SideBar,
-  SidebarLi,
   Span,
   StyledGrid,
   StyledH1,
@@ -3919,7 +4084,7 @@ const s = {
   StyledLink,
   StyledP,
   StyledUl,
-  TapttooIcon,
+  // TapttooIcon,
   Username,
   WishIconContainer,
 

@@ -30,38 +30,38 @@ const SideBar: React.FC<SideBarProps> = ({ sidebar, showSidebar }) => {
             <s.SideBar className="sidebar-box">
               <s.SideBar className="sidebar-item">
                 {group1.map((item, index) => (
-                  <s.SidebarLi key={index} className={item.className}>
+                  <s.StyledLi key={index} className={item.className}>
                     <s.StyledLink to={item.path} className="menu-texts">
                       <span>{item.title}</span>
                     </s.StyledLink>
-                  </s.SidebarLi>
+                  </s.StyledLi>
                 ))}
               </s.SideBar>
               <s.SideBar className="sidebar-item">
                 {group2.map((item, index) => (
-                  <s.SidebarLi key={index} className={item.className}>
+                  <s.StyledLi key={index} className={item.className}>
                     <s.StyledLink to={item.path} className="menu-texts">
                       <span>{item.title}</span>
                     </s.StyledLink>
-                  </s.SidebarLi>
+                  </s.StyledLi>
                 ))}
               </s.SideBar>
               <s.SideBar className="sidebar-item">
                 {group3.map((item, index) => (
-                  <s.SidebarLi key={index} className={item.className}>
+                  <s.StyledLi key={index} className={item.className}>
                     <s.StyledLink to={item.path} className="menu-texts">
                       <span>{item.title}</span>
                     </s.StyledLink>
-                  </s.SidebarLi>
+                  </s.StyledLi>
                 ))}
               </s.SideBar>
               <s.SideBar className="sidebar-item">
                 {group4.map((item, index) => (
-                  <s.SidebarLi key={index} className={item.className}>
+                  <s.StyledLi key={index} className={item.className}>
                     <s.StyledLink to={item.path} className="menu-texts">
                       <span>{item.title}</span>
                     </s.StyledLink>
-                  </s.SidebarLi>
+                  </s.StyledLi>
                 ))}
               </s.SideBar>
             </s.SideBar>

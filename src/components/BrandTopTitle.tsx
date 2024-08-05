@@ -6,7 +6,7 @@ export default function BrandTopTitle() {
     <>
       <s.AboutDiv className="title-container">
         <s.StyledH1 className="brand-title">
-          We are Visionary Craftsmen
+          We are Visionary<br/>Craftsmen
         </s.StyledH1>
         <s.StyledP className="about-first-title">
           Lorem ipsum dolor sit amet consectetur adipisicing elit maiores

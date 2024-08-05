@@ -21,7 +21,7 @@ export default function BrandBottomTitle() {
         Temporibus corrupti numquam in excepturi dolores inventore debitis
         perspiciatis odit.
       </s.StyledP>
-      <s.Button className="Round" onClick={() => handleNavigation("/joinus")}>
+      <s.Button className="Round" onClick={() => handleNavigation("/your_custom_tattoo")}>
         나만의 도안 만들기
       </s.Button>
     </s.AboutDiv>

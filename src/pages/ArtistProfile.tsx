@@ -30,7 +30,7 @@ const ArtistProfile: React.FC<ArtistDetailPageProps> = ({ artist }) => {
 
   return (
     <>
-      <s.Portfolio className="wrapper">
+      <s.Portfolio className="portfolio-wrapper">
         <s.Portfolio className="header-wrapper">
           <s.StyledH1 className="artist-page-title">
             {artist.nickname}
@@ -48,37 +48,40 @@ const ArtistProfile: React.FC<ArtistDetailPageProps> = ({ artist }) => {
 
             <s.Portfolio className="mid-box-right">
               <s.Portfolio className="header-profile">
-                <s.StyledP className="small">Works</s.StyledP>
-                <s.StyledP className="small">100+</s.StyledP>
+                <s.Portfolio className="header-profile-box">
+                  <s.StyledP className="small">Works</s.StyledP>
+                  <s.StyledP className="small">100+</s.StyledP>
+                </s.Portfolio>
+                <s.Line className="horizontal dark" />
               </s.Portfolio>
-
-              <s.Line className="horizontal dark" />
 
               <s.Portfolio className="header-profile">
-                <s.StyledP className="small">Region</s.StyledP>
-                <s.Atag
-                  className="artist-contact"
-                  title="주소 복사하기"
-                  onClick={handleCopy}
-                >
-                  {artist.street_address}, {artist.city}
-                </s.Atag>
+                <s.Portfolio className="header-profile-box">
+                  <s.StyledP className="small">Region</s.StyledP>
+                  <s.Atag
+                    className="artist-contact"
+                    title="주소 복사하기"
+                    onClick={handleCopy}
+                  >
+                    {artist.street_address}, {artist.city}
+                  </s.Atag>
+                </s.Portfolio>
+                <s.Line className="horizontal dark" />
               </s.Portfolio>
-
-              <s.Line className="horizontal dark" />
 
               <s.Portfolio className="header-profile">
-                <s.StyledP className="small">Email</s.StyledP>
-                <s.Atag
-                  href="mailto:{artist.email}"
-                  title="메일 보내기"
-                  className="artist-contact"
-                >
-                  {artist.email}
-                </s.Atag>
+                <s.Portfolio className="header-profile-box">
+                  <s.StyledP className="small">Email</s.StyledP>
+                  <s.Atag
+                    href="mailto:{artist.email}"
+                    title="메일 보내기"
+                    className="artist-contact"
+                  >
+                    {artist.email}
+                  </s.Atag>
+                </s.Portfolio>
+                <s.Line className="horizontal dark" />
               </s.Portfolio>
-
-              <s.Line className="horizontal dark" />
 
               <s.Button
                 className="Round reserve"
@@ -107,7 +110,7 @@ const ArtistProfile: React.FC<ArtistDetailPageProps> = ({ artist }) => {
               </s.StyledH2>
             </s.Portfolio>
 
-            <s.Line className="vertical dark" />
+            <s.Line className="vertical dark display" />
 
             <s.Portfolio className="mid-box-right">연락처</s.Portfolio>
           </s.Portfolio>
@@ -121,12 +124,13 @@ const ArtistProfile: React.FC<ArtistDetailPageProps> = ({ artist }) => {
               <s.ArrowIcon />
             </s.Portfolio>
 
-            <s.Line className="vertical dark margin-v" />
+            <s.Line className="vertical dark margin-v " />
 
             <ArtistSkillComponent hash={artist.hash || []} />
           </s.Portfolio>
           <s.Line className="horizontal dark margin-h" />
         </s.Portfolio>
+
         <s.Portfolio className="img-wrapper">
           <s.Image
             className="artist-page-portfolio"
