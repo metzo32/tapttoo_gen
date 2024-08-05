@@ -584,7 +584,7 @@ const StyledH1 = styled.h1`
     box-sizing: content-box;
     color: ${lightTheme.White};
     opacity: 0.5;
-    font-size: 10em;
+    font-size: 120px;
     text-align: center;
     line-height: 110px;
     text-align: right;
@@ -613,11 +613,12 @@ const StyledH1 = styled.h1`
 `;
 
 const StyledH2 = styled.h2`
+  font-size: 30px;
+  line-height: 35px;
   letter-spacing: -4px;
   color: ${(props) => props.theme.Grey};
+
   @media (max-width: 767px) {
-    font-size: 30px;
-    line-height: 35px;
   }
 
   @media (min-width: 768px) {
@@ -738,12 +739,23 @@ const StyledH2 = styled.h2`
   }
 
   &.artist-description {
-    width: 90%;
-    font-size: 1.8em;
     font-weight: 500;
-    color: ${(props) => props.theme.Grey};
-    line-height: 35px;
     text-align: left;
+
+    @media (max-width: 767px) {
+      font-size: 28px;
+      line-height: 28px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 34px;
+      line-height: 34px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 42px;
+      line-height: 42px;
+    }
   }
 `;
 
@@ -2211,7 +2223,7 @@ const Search = styled.div`
     align-items: flex-start;
 
     @media (max-width: 767px) {
-      width: 65%;
+      width: 55%;
     }
 
     @media (min-width: 768px) {
@@ -2312,6 +2324,17 @@ const ArticleDiv = styled.div`
       opacity: 1;
       transition: 0.3s ease;
     }
+
+    @media (max-width: 767px) {
+      width: 50%;
+    }
+
+    @media (min-width: 768px) {
+      width: 50%;
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 
   &.article-grid-image {
@@ -2355,16 +2378,40 @@ const Portfolio = styled.div`
   }
 
   &.header-container {
-    height: 200px;
+    height: auto;
     margin-top: 40px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+    }
+
+    @media (min-width: 768px) {
+      flex-direction: column;
+    }
+
+    @media (min-width: 1024px) {
+      flex-direction: row;
+    }
   }
 
   &.mid-box-left {
-    width: calc(70% - 10px);
+    @media (max-width: 767px) {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    @media (min-width: 768px) {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    @media (min-width: 1024px) {
+      width: calc(70% - 10px);
+    }
   }
 
   &.mid-box-right {

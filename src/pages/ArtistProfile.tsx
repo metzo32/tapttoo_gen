@@ -28,8 +28,6 @@ const ArtistProfile: React.FC<ArtistDetailPageProps> = ({ artist }) => {
     CopyToClipboard(innerText); //복사할 텍스트를 복사
   };
 
-
-
   return (
     <>
       <s.Portfolio className="wrapper">
@@ -41,7 +39,10 @@ const ArtistProfile: React.FC<ArtistDetailPageProps> = ({ artist }) => {
           <s.Portfolio className="header-container">
             <s.Portfolio className="mid-box-left">
               <s.StyledH2 className="artist-description">
-                {artist.nickname} Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.
+                {artist.nickname} Mauris enim leo, rhoncus sed, vestibulum sit
+                amet, cursus id, turpis. Integer aliquet, massa id lobortis
+                convallis, tortor risus dapibus augue, vel accumsan tellus nisi
+                eu orci. Mauris lacinia sapien quis libero.
               </s.StyledH2>
             </s.Portfolio>
 
@@ -79,7 +80,10 @@ const ArtistProfile: React.FC<ArtistDetailPageProps> = ({ artist }) => {
 
               <s.Line className="horizontal dark" />
 
-              <s.Button className="Round reserve" onClick={() => handleNavigation()}>
+              <s.Button
+                className="Round reserve"
+                onClick={() => handleNavigation()}
+              >
                 작가에게 문의하기
               </s.Button>
             </s.Portfolio>
@@ -120,15 +124,30 @@ const ArtistProfile: React.FC<ArtistDetailPageProps> = ({ artist }) => {
             <s.Line className="vertical dark margin-v" />
 
             <ArtistSkillComponent hash={artist.hash || []} />
-   
           </s.Portfolio>
           <s.Line className="horizontal dark margin-h" />
         </s.Portfolio>
         <s.Portfolio className="img-wrapper">
-            <s.Image className="artist-page-portfolio" src={artist.randomImage01} alt="image"/>
-            <s.Image className="artist-page-portfolio" src={artist.randomImage02} alt="image"/>
-            <s.Image className="artist-page-portfolio" src={artist.randomImage03} alt="image"/>
-            <s.Image className="artist-page-portfolio" src={artist.randomImage04} alt="image"/>
+          <s.Image
+            className="artist-page-portfolio"
+            src={artist.randomImage01}
+            alt="image"
+          />
+          <s.Image
+            className="artist-page-portfolio"
+            src={artist.randomImage02}
+            alt="image"
+          />
+          <s.Image
+            className="artist-page-portfolio"
+            src={artist.randomImage03}
+            alt="image"
+          />
+          <s.Image
+            className="artist-page-portfolio"
+            src={artist.randomImage04}
+            alt="image"
+          />
         </s.Portfolio>
       </s.Portfolio>
     </>
