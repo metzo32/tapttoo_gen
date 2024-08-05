@@ -12,14 +12,14 @@ const SearchCard: React.FC<SearchCardProps> = ({ imageMain, imageSub, desMain, d
   return (
     <s.Search className="top-container">
       <s.Search className="sub-container extra-margin">
-        <s.Search className="mid-conatiner left">
+        <s.Search className="mid-container left">
           <s.Image src={imageMain} alt="image" className="search-square" />
         </s.Search>
-        <s.Search className="mid-conatiner right">
+        <s.Search className="mid-container right">
           <s.Image src={imageSub} alt="image" className="search-square" />
           <s.Search className="item-box">
-            <s.Search className="text-box">{desMain}</s.Search>
-            <s.Search className="text-box">{desSub}</s.Search>
+            <s.StyledP className="search-top-des-main">{desMain}</s.StyledP>
+            <s.StyledP className="search-top-des-sub">{desSub}</s.StyledP>
           </s.Search>
         </s.Search>
       </s.Search>

@@ -33,19 +33,19 @@ export default function SearchNew() {
         <SearchCard
           imageMain={search_img01}
           imageSub={search_img02}
-          desMain="테스트"
-          desSub="테스트테스트"
+          desMain="Moriati features in a fashion story by the lake for Tarra new shot"
+          desSub="Lorem ipsum dolor sit amet consectetur hic itaque facilis accusamus? Consectetur, magnam illum. Quae, quod."
         />
-
         <s.Search className="top-container">
           <s.Search className="sub-container extra-margin">
             <s.Search className="today-container">
               <s.StyledH3 className="search-title">
-                CHOICE <br/>OF THE DAY
+                CHOICE <br />
+                OF THE DAY
               </s.StyledH3>
 
               <s.Search className="arrow">화살표</s.Search>
-              <s.StyledP >
+              <s.StyledP>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Necessitatibus quae impedit deleniti repellat! Aspernatur
                 deleniti, mollitia officia obcaecati eaque ipsam provident,
@@ -64,9 +64,9 @@ export default function SearchNew() {
         </s.Search>
 
         <s.Search className="search-container center">
-          <s.StyledH3>
-            "당신의 이야기를 예술로, 나만의 타투 도안 제작 – 당신만을 위한
-            유니크한 디자인을 만나보세요!"
+          <s.StyledH3 className="search-generate">
+            "당신의 이야기를 예술로" <br />
+            당신만을 위한 유니크한 디자인을 만나보세요!"
           </s.StyledH3>
           <s.Button
             className="Round"

@@ -51,7 +51,7 @@ export default function Header() {
             <s.SearchIcon />
           </s.Button>
         </s.HeaderDiv>
-        <s.HeaderDiv className="header-button-wrapper">
+        <s.HeaderDiv className="header-button-wrapper right">
           <DarkModeButton />
           <s.Button
             onClick={() => handleProfileNavigation()}

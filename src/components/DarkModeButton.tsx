@@ -1,34 +1,31 @@
-
 import s from "../stores/styling";
 import { useEffect } from "react";
 import useThemeContext from "../hooks/ThemeHook";
 
 const DarkModeButton: React.FC = () => {
-
   const { isDark, setIsDark } = useThemeContext();
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('isDark')
+    const savedTheme = localStorage.getItem("isDark");
     if (savedTheme) {
-      setIsDark(JSON.parse(savedTheme))
+      setIsDark(JSON.parse(savedTheme));
     }
-    }, [])
+  }, [setIsDark]);
 
-    const toggleDark = () => {
-      setIsDark((prevMode: boolean) => {
-        const newMode = !prevMode;
-        localStorage.setItem('isDark', JSON.stringify(newMode));
-        return newMode;
-      });
-    };
+  const toggleDark = () => {
+    setIsDark((prevMode: boolean) => {
+      const newMode = !prevMode;
+      localStorage.setItem("isDark", JSON.stringify(newMode));
+      return newMode;
+    });
+  };
 
   return (
-    <s.Button
-      className="Round"
-      onClick={toggleDark}
-    >
-      다크
-    </s.Button>
+    <s.DarkButton onClick={toggleDark}>
+      <s.DarkButton className="dark-circle" />
+      <s.Sun />
+      <s.Moon />
+    </s.DarkButton>
   );
 };
 

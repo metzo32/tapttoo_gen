@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const SideBarData = [
     {
         title: 'Home',
@@ -12,7 +10,7 @@ export const SideBarData = [
         className: 'sidebar-text'
     },
     {
-        title: 'Only for you',
+        title: 'Exclusive',
         path: '/your_custom_tattoo',
         className: 'sidebar-text'
     },
@@ -27,7 +25,7 @@ export const SideBarData = [
         className: 'sidebar-text'
     },
     {
-        title: 'Join us',
+        title: 'Career',
         path: '/career',
         className: 'sidebar-text'
     },

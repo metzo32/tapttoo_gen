@@ -45,6 +45,9 @@ import { BiLogoFacebook } from "react-icons/bi"; //페이스북
 import { AiOutlineTikTok } from "react-icons/ai"; //틱톡
 import { FaYoutube } from "react-icons/fa6"; //유튜브
 
+import { PiSunBold } from "react-icons/pi"; //태양
+import { PiMoonBold } from "react-icons/pi"; //달
+
 import { FiArrowDownRight } from "react-icons/fi"; //대각선 화살표
 import { MdOutlineArrowUpward } from "react-icons/md"; // 위 화살표
 
@@ -365,6 +368,31 @@ const HeaderDiv = styled.div`
     padding-top: 3px;
     justify-content: space-between;
     align-items: center;
+
+    @media (max-width: 767px) {
+      width: 150px;
+    }
+
+    @media (min-width: 768px) {
+      width: 180px;
+    }
+
+    @media (min-width: 1024px) {
+      width: 210px;
+    }
+  }
+
+  &.right {
+    @media (max-width: 767px) {
+      width: 130px;
+    }
+
+    @media (min-width: 768px) {
+      width: 150px;
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 `;
 
@@ -546,19 +574,19 @@ const StyledH1 = styled.h1`
   @media (max-width: 767px) {
     font-size: 50px;
     line-height: 70px;
-     letter-spacing: -4px;
+    letter-spacing: -4px;
   }
 
   @media (min-width: 768px) {
     font-size: 110px;
     line-height: 160px;
-     letter-spacing: -10px;
+    letter-spacing: -10px;
   }
 
   @media (min-width: 1024px) {
     font-size: 155px;
     line-height: 210px;
-     letter-spacing: -12px;
+    letter-spacing: -12px;
   }
 
   &.login-title {
@@ -662,6 +690,20 @@ const StyledH1 = styled.h1`
 
     @media (min-width: 1024px) {
       font-size: 120px;
+    }
+
+    :hover {
+      @media (max-width: 767px) {
+        font-size: 40px;
+      }
+
+      @media (min-width: 768px) {
+        font-size: 60px;
+      }
+
+      @media (min-width: 1024px) {
+        font-size: 90px;
+      }
     }
   }
 
@@ -818,30 +860,26 @@ const StyledH2 = styled.h2`
       font-size: 48px;
       letter-spacing: -2px;
     }
-  
+  }
 
   &.artist-description {
-    font-weight: 500;
     text-align: left;
+    font-weight: 300;
+    letter-spacing: -2px;
 
     @media (max-width: 767px) {
-      width: 100%;
-      font-size: 22px;
-      letter-spacing: -1px;
-      line-height: 26px;
+      font-size: 26px;
+      line-height: 30px;
     }
 
     @media (min-width: 768px) {
-      width: 90%;
-      font-size: 34px;
-      letter-spacing: -3px;
-      line-height: 38px;
+      font-size: 30px;
+      line-height: 40px;
     }
 
     @media (min-width: 1024px) {
-      font-size: 42px;
-      letter-spacing: -4px;
-      line-height: 48px;
+      font-size: 40px;
+      line-height: 50px;
     }
   }
 `;
@@ -868,7 +906,7 @@ const StyledH3 = styled.h3`
   @media (min-width: 1024px) {
     font-size: 70px;
     line-height: 80px;
-}
+  }
 
   &.sidebar-logo {
     margin: 0 auto;
@@ -1000,6 +1038,45 @@ const StyledH3 = styled.h3`
 
     @media (min-width: 1024px) {
       font-size: 30px;
+    }
+  }
+
+  &.search-generate {
+    @media (max-width: 475px) {
+      width: 100%;
+      font-size: 24px;
+      line-height: 32px;
+      margin-bottom: 10px;
+    }
+
+    @media (min-width: 476px) {
+      width: 100%;
+      font-size: 28px;
+      line-height: 40px;
+      margin-bottom: 10px;
+    }
+
+    @media (min-width: 768px) {
+      white-space: nowrap;
+      width: 80%;
+      font-size: 40px;
+      line-height: 60px;
+      margin-bottom: 20px;
+    }
+
+    @media (min-width: 1024px) {
+      white-space: nowrap;
+      width: 80%;
+      font-size: 70px;
+      line-height: 90px;
+      margin-bottom: 30px;
+    }
+
+    @media (min-width: 1495px) {
+      width: 80%;
+      font-size: 80px;
+      line-height: 110px;
+      margin-bottom: 30px;
     }
   }
 `;
@@ -1273,6 +1350,55 @@ const StyledP = styled.p`
 
   &.work-description {
     margin-top: 10px;
+  }
+
+  &.search-top-des-main {
+    width: calc(50% - 15px);
+    font-weight: 500;
+
+    @media (max-width: 767px) {
+      font-size: 18px;
+      line-height: 20px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 20px;
+      line-height: 22px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 22px;
+      line-height: 28px;
+    }
+
+    @media (min-width: 1258px) {
+      font-size: 28px;
+      line-height: 32px;
+    }
+  }
+
+  &.search-top-des-sub {
+    width: calc(50% - 15px);
+
+    @media (max-width: 767px) {
+      font-size: 12px;
+      line-height: 20px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 12px;
+      line-height: 20px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 15px;
+      line-height: 24px;
+    }
+
+    @media (min-width: 1258px) {
+      font-size: 18px;
+      line-height: 30px;
+    }
   }
 `;
 
@@ -1815,6 +1941,17 @@ const Image = styled.img`
     aspect-ratio: 4/1;
     margin-left: -20px;
     object-fit: cover;
+
+    @media (max-width: 767px) {
+      aspect-ratio: 1/1;
+    }
+
+    @media (min-width: 768px) {
+    }
+
+    @media (min-width: 1024px) {
+      aspect-ratio: 4/1;
+    }
   }
 
   &.artist-page-portfolio {
@@ -2049,7 +2186,6 @@ const Search = styled.div`
     width: 100%;
     height: auto;
     aspect-ratio: 4/1;
-    margin-bottom: 150px;
     display: flex;
     flex-direction: row;
     position: relative;
@@ -2057,6 +2193,18 @@ const Search = styled.div`
     &.column {
       flex-direction: column;
       align-items: center;
+    }
+
+    @media (max-width: 767px) {
+      margin-bottom: 50px;
+    }
+
+    @media (min-width: 768px) {
+      margin-bottom: 100px;
+    }
+
+    @media (min-width: 1024px) {
+      margin-bottom: 150px;
     }
   }
 
@@ -2080,7 +2228,6 @@ const Search = styled.div`
   }
 
   &.sub-container {
-    border: 1px solid orange;
     width: calc(100% - 160px);
     height: auto;
     display: flex;
@@ -2121,7 +2268,7 @@ const Search = styled.div`
     }
   }
 
-  &.mid-conatiner {
+  &.mid-container {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -2155,15 +2302,33 @@ const Search = styled.div`
 
   &.search-container {
     width: 100%;
-    height: 100px;
+    height: auto;
     display: flex;
-    align-items: center;
     justify-content: center;
 
     &.center {
+      width: 100%;
       display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: space-between;
+      align-items: flex-start;
+
+      @media (max-width: 767px) {
+        width: calc(100% - 40px);
+        margin-left: 20px;
+        margin-right: 20px;
+      }
+
+      @media (min-width: 768px) {
+        width: calc(100% - 40px);
+        margin-left: 40px;
+        margin-right: 0px;
+      }
+
+      @media (min-width: 1024px) {
+        width: calc(100% - 80px);
+        margin-left: 80px;
+      }
     }
   }
 
@@ -2190,7 +2355,8 @@ const Search = styled.div`
     display: flex;
     height: auto;
     flex-direction: row;
-    border: 1px solid green;
+    justify-content: space-between;
+    margin-top: 30px;
   }
 
   &.text-box {
@@ -2305,14 +2471,14 @@ const Search = styled.div`
   }
 
   &.today-container {
-    width: 50%;
-
     @media (max-width: 767px) {
       width: 100%;
+      margin-bottom: 30px;
     }
 
     @media (min-width: 768px) {
-      width: 50%;
+      width: calc(50% - 40px);
+      margin-bottom: 0px;
     }
 
     @media (min-width: 1024px) {
@@ -2386,12 +2552,6 @@ const ArticleDiv = styled.div`
 
     &:hover .article-name {
       font-size: 48px;
-      opacity: 1;
-      transition: 0.3s ease;
-    }
-
-    &:hover .article-text {
-      font-size: 20px;
       opacity: 1;
       transition: 0.3s ease;
     }
@@ -3636,11 +3796,22 @@ const Label = styled.label`
   }
 
   &.check-label {
-    font-size: 16px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media (max-width: 767px) {
+      font-size: 12px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 13px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 14px;
+    }
 
     &.login {
       width: 130px;
@@ -3662,6 +3833,27 @@ const Label = styled.label`
   &.invalid {
     color: ${(props) => props.theme.Orange};
     animation: ${shaking} 0.2s infinite;
+  }
+`;
+
+const DarkButton = styled.div`
+  width: 70px;
+  height: 60%;
+  border: 2px solid green;
+  border-radius: 20px;
+  background: ${darkTheme.Light};
+  position: relative;
+
+  &.dark-circle {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background-color: ${(props) => props.theme.Green};
+    position: absolute;
+    top: calc(50% - 12px);
+    // left: 42px;
+    left: 4px;
+    z-index: 1;
   }
 `;
 
@@ -3887,6 +4079,30 @@ const StyledIcon = css`
   }
 `;
 
+const Sun = styled(PiSunBold)`
+  fill: white;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: calc(50% - 12px);
+  left: 4px;
+`;
+
+const Moon = styled(PiMoonBold)`
+  fill: white;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: calc(50% - 12px);
+  left: 42px;
+`;
+
+// background-color: ${(props) => props.theme.Green};;
+// position: absolute;
+// top: calc(50% - 12px);
+// // left: 42px;
+// left: 4px;
+
 const LeftIcon = styled(IoIosArrowBack)`
   ${StyledIcon};
   width: 26px;
@@ -4038,6 +4254,7 @@ const s = {
   BrandLogo,
   BrandText,
   BrandTitleWrapper,
+  DarkButton,
   Button,
   CareerDetail,
   CareerDiv,
@@ -4089,6 +4306,9 @@ const s = {
   WishIconContainer,
 
   StyledCircularProgressbar,
+
+  Sun,
+  Moon,
 
   LeftIcon,
   RightIcon,
