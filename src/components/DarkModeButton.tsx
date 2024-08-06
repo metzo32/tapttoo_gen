@@ -10,7 +10,7 @@ const DarkModeButton: React.FC = () => {
     if (savedTheme) {
       setIsDark(JSON.parse(savedTheme));
     }
-  }, [setIsDark]);
+  }, []);
 
   const toggleDark = () => {
     setIsDark((prevMode: boolean) => {
@@ -21,11 +21,13 @@ const DarkModeButton: React.FC = () => {
   };
 
   return (
-    <s.DarkButton onClick={toggleDark}>
-      <s.DarkButton className="dark-circle" />
-      <s.Sun />
-      <s.Moon />
-    </s.DarkButton>
+    <>
+      <s.DarkButton onClick={toggleDark}>
+        <s.DarkButton className={`dark-circle ${isDark ? "dark-mode" : "light-mode"}`}/>
+        <s.Sun />
+        <s.Moon />
+      </s.DarkButton>
+    </>
   );
 };
 

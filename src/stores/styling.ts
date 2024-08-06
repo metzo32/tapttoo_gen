@@ -60,7 +60,6 @@ import { ReactComponent as CheckboxBefore } from "../assets/icons/checkbox-passi
 import { ReactComponent as CheckboxAfter } from "../assets/icons/checkbox-active.svg";
 
 import { ReactComponent as Logo } from "../assets/icons/v.svg";
-import { ReactComponent as Tapttoo } from "../assets/icons/Tapttoo.svg";
 import { ReactComponent as HeartLine } from "../assets/icons/heart_outlined.svg";
 import { ReactComponent as HeartFull } from "../assets/icons/heart_full.svg";
 
@@ -3850,24 +3849,33 @@ const Label = styled.label`
 `;
 
 const DarkButton = styled.div`
-  width: 70px;
-  height: 60%;
+  width: 55px;
+  height: 50%;
   border: 2px solid green;
   border-radius: 20px;
-  background: ${darkTheme.Light};
+
   position: relative;
   cursor: pointer;
 
   &.dark-circle {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     border: none;
     background-color: ${(props) => props.theme.Green};
+
     position: absolute;
-    top: calc(50% - 12px);
-    // left: 42px;
-    left: 4px;
+    top: calc(50% - 10px);
+
+    transition: left 0.3s ease;
     z-index: 1;
+
+    &.dark-mode {
+      left: 3px;
+    }
+
+    &.light-mode {
+      left: 32px;
+    }
   }
 `;
 
@@ -4090,21 +4098,21 @@ const StyledIcon = css`
 `;
 
 const Sun = styled(PiSunBold)`
-  fill: white;
-  width: 24px;
-  height: 24px;
+  fill: ${(props) => props.theme.Grey};
+  width: 18px;
+  height: 18px;
   position: absolute;
-  top: calc(50% - 12px);
+  top: calc(50% - 9px);
   left: 4px;
 `;
 
 const Moon = styled(PiMoonBold)`
-  fill: white;
-  width: 24px;
-  height: 24px;
+  fill: ${(props) => props.theme.Grey};
+  width: 218x;
+  height: 18px;
   position: absolute;
-  top: calc(50% - 12px);
-  left: 42px;
+  top: calc(50% - 9px);
+  left: 34px;
 `;
 
 // background-color: ${(props) => props.theme.Green};;
@@ -4168,8 +4176,8 @@ const CheckboxAfterIcon = styled(CheckboxAfter)`
 
 //Header Icons
 const StyledHeaderIcon = css`
-  width: 26px;
-  height: 26px;
+  width: 20px;
+  height: 20px;
   fill: ${(props) => props.theme.Grey};
   color: ${(props) => props.theme.Grey};
 
@@ -4193,14 +4201,12 @@ const EyeIcon = styled(IoEyeOutline)`
 
 const SearchIcon = styled(GrSearch)`
   ${StyledHeaderIcon}
-  width: 24px;
-  height: 24px;
 `;
 
 const ProfileIcon = styled(GoPerson)`
   ${StyledHeaderIcon}
-  width: 28px;
-  height: 28px;
+  width: 23px;
+  height: 23px;
 `;
 
 //Footer Icons
