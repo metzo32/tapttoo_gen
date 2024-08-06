@@ -192,8 +192,20 @@ width: 100%;
     position: absolute;
     z-index: 2;
 
-    bottom: 80px;
+    bottom: 20%;
     right: 0;
+
+    @media (max-width: 767px) {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      display: none;
+    }
+
+    @media (min-width: 1024px) {
+    display: block;
+    }
   }
 
   &.light {
@@ -934,7 +946,6 @@ const StyledH3 = styled.h3`
     letter-spacing: -1px;
     color: ${lightTheme.Light};
     display: inline-block;
-
     white-space: normal;
 
     @media (max-width: 572px) {
@@ -971,12 +982,15 @@ const StyledH3 = styled.h3`
     letter-spacing: -1px;
 
     @media (max-width: 767px) {
-      font-size: 40px;
+      font-size: 36px;
       line-height: 45px;
+      margin-bottom: 20px;
     }
 
     @media (min-width: 768px) {
       font-size: 55px;
+      margin-bottom: 30px;
+
       & br {
         display: none;
       }
@@ -984,20 +998,7 @@ const StyledH3 = styled.h3`
 
     @media (min-width: 1024px) {
       font-size: 80px;
-    }
-
-    &.margin {
-      @media (max-width: 767px) {
-        margin: 50px 0px 10px 0px;
-      }
-
-      @media (min-width: 768px) {
-        margin: 50px 0px 50px 0px;
-      }
-
-      @media (min-width: 1024px) {
-        margin: 50px 0px 150px 0px;
-      }
+      margin-bottom: 40px;
     }
   }
 
@@ -1042,41 +1043,39 @@ const StyledH3 = styled.h3`
   }
 
   &.search-generate {
+    width: 100%;
+
     @media (max-width: 475px) {
-      width: 100%;
       font-size: 24px;
       line-height: 32px;
-      margin-bottom: 10px;
+      text-align: left;
     }
 
     @media (min-width: 476px) {
-      width: 100%;
       font-size: 28px;
       line-height: 40px;
-      margin-bottom: 10px;
     }
 
     @media (min-width: 768px) {
       white-space: nowrap;
-      width: 80%;
       font-size: 40px;
       line-height: 60px;
-      margin-bottom: 20px;
     }
 
     @media (min-width: 1024px) {
       white-space: nowrap;
-      width: 80%;
       font-size: 70px;
       line-height: 90px;
-      margin-bottom: 30px;
+      text-align: center;
     }
 
     @media (min-width: 1495px) {
-      width: 80%;
       font-size: 80px;
       line-height: 110px;
-      margin-bottom: 30px;
+
+      br {
+        display: none;
+      }
     }
   }
 `;
@@ -2185,7 +2184,6 @@ const Search = styled.div`
   &.top-container {
     width: 100%;
     height: auto;
-    aspect-ratio: 4/1;
     display: flex;
     flex-direction: row;
     position: relative;
@@ -2315,21 +2313,36 @@ const Search = styled.div`
 
       @media (max-width: 767px) {
         width: calc(100% - 40px);
-        margin-left: 20px;
-        margin-right: 20px;
+        margin: 0px 20px 200px 20px;
       }
 
       @media (min-width: 768px) {
         width: calc(100% - 40px);
-        margin-left: 40px;
-        margin-right: 0px;
+        margin: 0px 0px 250px 40px;
       }
 
       @media (min-width: 1024px) {
-        width: calc(100% - 80px);
-        margin-left: 80px;
+        width: 100%;
+        margin: 0 auto;
+        align-items: center;
+        margin: 0px 0px 250px 0px;
       }
     }
+  }
+
+  &.search-gen-titles {
+    height: auto;
+    margin-bottom: 10px;
+    // @media (max-width: 767px) {
+
+    // }
+
+    // @media (min-width: 768px) {
+
+    // }
+
+    // @media (min-width: 1024px) {
+    // }
   }
 
   &.circle-profile-box {
@@ -2847,21 +2860,21 @@ const Carousel = styled.div`
     overflow: hidden;
     margin: 0 auto;
 
-    @media (max-width: 767px) {
-      width: calc(100%);
-      aspect-ratio: 1/1;
-      margin: 0px;
-    }
+    // @media (max-width: 767px) {
+    //   width: calc(100%);
+    //   aspect-ratio: 1/1;
+    //   margin: 0px;
+    // }
 
-    @media (min-width: 768px) {
-      width: calc(100% - 80px);
-      margin: 0px 40px;
-    }
+    // @media (min-width: 768px) {
+    //   width: calc(100% - 80px);
+    //   margin: 0px 40px;
+    // }
 
-    @media (min-width: 1024px) {
-      width: calc(100% - 160px);
-      margin: 0px 80px;
-    }
+    // @media (min-width: 1024px) {
+    //   width: calc(100% - 160px);
+    //   margin: 0px 80px;
+    // }
   }
 
   &.title-box {
@@ -2889,26 +2902,26 @@ const Carousel = styled.div`
 
   &.progress-box {
     position: absolute;
-    bottom: 120px;
-    right: 50px;
     z-index: 1;
+    bottom: 30%;
+    right: 3%;
 
-    @media (max-width: 767px) {
+    @media (max-width: 512px) {
+      display: none;
+    }
+
+    @media (min-width: 513px) {
       width: 50px;
-      bottom: 0;
-      right: 0px;
+      bottom: 30%;
+      right: 3%;
     }
 
     @media (min-width: 768px) {
       width: 70px;
-      bottom: 0;
-      right: 0px;
     }
 
     @media (min-width: 1024px) {
       width: 90px;
-      bottom: 120px;
-      right: 50px;
     }
   }
 `;
@@ -3843,6 +3856,7 @@ const DarkButton = styled.div`
   border-radius: 20px;
   background: ${darkTheme.Light};
   position: relative;
+  cursor: pointer;
 
   &.dark-circle {
     width: 24px;
@@ -3921,20 +3935,16 @@ const Button = styled.button`
 
   &.carousel-btn-left {
     position: absolute;
-    z-index: 1;
-
-    bottom: 0;
+    bottom: 5%;
     left: 0;
-    transform: translateY(-58%);
+    z-index: 1;
   }
 
   &.carousel-btn-right {
     position: absolute;
-    z-index: 1;
-
-    bottom: 0;
+    bottom: 5%;
     right: 0;
-    transform: translateY(-58%);
+    z-index: 1;
   }
 
   &.scroll-top-btn {

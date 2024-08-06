@@ -64,10 +64,14 @@ export default function SearchNew() {
         </s.Search>
 
         <s.Search className="search-container center">
-          <s.StyledH3 className="search-generate">
-            "당신의 이야기를 예술로" <br />
-            당신만을 위한 유니크한 디자인을 만나보세요!"
-          </s.StyledH3>
+          <s.Search className="search-gen-titles">
+            <s.StyledH3 className="search-generate">
+              " 당신의 이야기를 예술로 "
+            </s.StyledH3>
+            <s.StyledH3 className="search-generate">
+              당신만을 위한 유니크한 디자인을&nbsp;<br/>만나보세요!"
+            </s.StyledH3>
+          </s.Search>
           <s.Button
             className="Round"
             onClick={() => handleNavigation("/your_custom_tattoo")}
@@ -79,7 +83,7 @@ export default function SearchNew() {
         {/* <CircularProgressbar/> */}
 
         <s.Search className="top-container column">
-          <s.StyledH3 className="search-title margin">
+          <s.StyledH3 className="search-title">
             UPCOMING EVENTS
           </s.StyledH3>
           <s.Search className="line-box">
