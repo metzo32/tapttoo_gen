@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import GenerateImageApi from '../components/api/GenerateImageApi';
+import s from '../stores/styling';
 
 const GenerateImage: React.FC = () => {
   const [prompt, setPrompt] = useState<string>('');
@@ -18,28 +19,27 @@ const GenerateImage: React.FC = () => {
   };
 
   return (
-    <div className="image-generator">
-      <h1>Chat GPT Image Generator</h1>
-      <form onSubmit={handleSubmit}>
-        <input
+    <s.GenDiv className="image-generator">
+      <s.Form onSubmit={handleSubmit}>
+        <s.Input
           type="text"
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           placeholder="Enter your prompt"
           required
         />
-        <label>
-          <input
+        <s.Label>
+          <s.Input
             type="checkbox"
             checked={color}
             onChange={(e) => setColor(e.target.checked)}
           />
           Color
-        </label>
-        <button type="submit">Generate Image</button>
-      </form>
+        </s.Label>
+        <s.Button className="Round " type="submit">Generate Image</s.Button>
+      </s.Form>
       {imageUrl && <img src={imageUrl} alt="Generated" />}
-    </div>
+    </s.GenDiv>
   );
 };
 

@@ -12,6 +12,7 @@
 import styled, { css, createGlobalStyle } from "styled-components";
 import { Route, Link as RouterLink } from "react-router-dom";
 import {
+  openLeftDrop,
   infiniteSlideLeft,
   animateIn,
   animateOut,
@@ -55,6 +56,7 @@ import { IoIosArrowBack } from "react-icons/io"; // 왼쪽 꺽쇠
 import { IoIosArrowForward } from "react-icons/io"; // 오른쪽 꺽쇠
 
 import { TbExclamationMark } from "react-icons/tb"; //느낌표
+import { GrSort } from "react-icons/gr"; //정렬
 
 import { ReactComponent as CheckboxBefore } from "../assets/icons/checkbox-passive.svg";
 import { ReactComponent as CheckboxAfter } from "../assets/icons/checkbox-active.svg";
@@ -692,10 +694,11 @@ const StyledH1 = styled.h1`
     right: 0;
 
     @media (max-width: 767px) {
-      font-size: 70px;
+      display: none;
     }
 
     @media (min-width: 768px) {
+      display: block;
       font-size: 90px;
     }
 
@@ -889,8 +892,8 @@ const StyledH2 = styled.h2`
     }
 
     @media (min-width: 1024px) {
-      font-size: 40px;
-      line-height: 50px;
+      font-size: 34px;
+      line-height: 45px;
     }
   }
 `;
@@ -947,27 +950,27 @@ const StyledH3 = styled.h3`
     display: inline-block;
     white-space: normal;
 
-    @media (max-width: 572px) {
-      font-size: 22px;
-      line-height: 25px;
+    @media (max-width: 394px) {
+      font-size: 18px;
+      line-height: 24px;
     }
 
-    @media (min-width: 573px) {
-      font-size: 28px;
-      line-height: 30px;
+    @media (min-width: 395px) {
+      font-size: 25px;
+      line-height: 28px;
+    }
+
+    @media (min-width: 555px) {
+      font-size: 32px;
+      line-height: 38px;
     }
 
     @media (min-width: 768px) {
-      font-size: 40px;
-      line-height: 45px;
+      font-size: 50px;
+      line-height: 55px;
     }
 
     @media (min-width: 1024px) {
-      font-size: 40px;
-      line-height: 45px;
-    }
-
-    @media (min-width: 1486px) {
       font-size: 70px;
       line-height: 70px;
     }
@@ -983,12 +986,10 @@ const StyledH3 = styled.h3`
     @media (max-width: 767px) {
       font-size: 36px;
       line-height: 45px;
-      margin-bottom: 20px;
     }
 
     @media (min-width: 768px) {
       font-size: 55px;
-      margin-bottom: 30px;
 
       & br {
         display: none;
@@ -998,6 +999,20 @@ const StyledH3 = styled.h3`
     @media (min-width: 1024px) {
       font-size: 80px;
       margin-bottom: 40px;
+    }
+
+    &.upcoming {
+      @media (max-width: 767px) {
+        margin-bottom: 10px;
+      }
+
+      @media (min-width: 768px) {
+        margin-bottom: 20px;
+      }
+
+      @media (min-width: 1024px) {
+        margin-bottom: 40px;
+      }
     }
   }
 
@@ -1771,6 +1786,21 @@ const StyledUl = styled.ul`
     font-size: 24px;
     line-height: 40px;
   }
+    &.dropdown-box {
+      width: 400px;
+      height: calc(100% - 10px);
+      margin-right: 10px;
+      margin-bottom: 8px;
+
+      display: none;
+
+      &.open-drop-left {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
 
     &.section-ul {
       height: 100%;
@@ -1830,6 +1860,10 @@ const StyledLi = styled.li`
     height: calc(100vh - 50px - 2px);
     margin: 0;
     display: flex;
+  }
+
+  &.dropdown-li {
+    margin-bottom: 0px;
   }
 `;
 
@@ -2332,16 +2366,6 @@ const Search = styled.div`
   &.search-gen-titles {
     height: auto;
     margin-bottom: 10px;
-    // @media (max-width: 767px) {
-
-    // }
-
-    // @media (min-width: 768px) {
-
-    // }
-
-    // @media (min-width: 1024px) {
-    // }
   }
 
   &.circle-profile-box {
@@ -2544,6 +2568,26 @@ const ArticleDiv = styled.div`
     margin-top: 50px;
   }
 
+  &.button-container {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+
+    @media (max-width: 767px) {
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      width: 100%;
+    }
+
+    @media (min-width: 1024px) {
+    }
+  }
+
   &.mid-wrapper {
     flex-wrap: wrap;
     justify-content: space-between;
@@ -2563,7 +2607,8 @@ const ArticleDiv = styled.div`
     }
 
     &:hover .article-name {
-      font-size: 48px;
+      font-size: 100px;
+      letter-spacing: -4px;
       opacity: 1;
       transition: 0.3s ease;
     }
@@ -2602,6 +2647,30 @@ const ArticleDiv = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+
+  &.heart-wrapper {
+    position: absolute;
+    z-index: 2;
+
+    @media (max-width: 767px) {
+      width: 50px;
+      height: 50px;
+      bottom: 10px;
+      right: 10px;
+    }
+
+    @media (min-width: 768px) {
+      width: 30px;
+      height: 30px;
+      top: 10px;
+      right: 10px;
+    }
+
+    @media (min-width: 1024px) {
+      width: 50px;
+      height: 50px;
+    }
   }
 `;
 
@@ -2858,22 +2927,6 @@ const Carousel = styled.div`
     aspect-ratio: 4/1;
     overflow: hidden;
     margin: 0 auto;
-
-    // @media (max-width: 767px) {
-    //   width: calc(100%);
-    //   aspect-ratio: 1/1;
-    //   margin: 0px;
-    // }
-
-    // @media (min-width: 768px) {
-    //   width: calc(100% - 80px);
-    //   margin: 0px 40px;
-    // }
-
-    // @media (min-width: 1024px) {
-    //   width: calc(100% - 160px);
-    //   margin: 0px 80px;
-    // }
   }
 
   &.title-box {
@@ -2925,18 +2978,17 @@ const Carousel = styled.div`
   }
 `;
 
+const GenDiv = styled.div`
+  &.image-generator {
+    width: 100%;
+    height: auto;
+    margin-top: 50px;
+  }
+`;
+
 const Map = styled.div`
   width: 100%;
   height: 500px;
-`;
-
-const WishIconContainer = styled.div`
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 2;
 `;
 
 const WishIconLine = styled(HeartLine)`
@@ -3037,13 +3089,6 @@ const Overlay = styled.div`
   z-index: 9998;
   transition: opacity 0.3s ease;
 `;
-
-// const TapttooIcon = styled(Tapttoo)`
-//   width: 12px;
-//   height: 100px;
-//   margin: 0 auto;
-//   display: block;
-// `;
 
 const StyledLink = styled(RouterLink)`
   &.menu-texts {
@@ -3630,7 +3675,6 @@ const LoginDiv = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    //border: 1px solid yellow;
 
     &.login {
     height: 25%;
@@ -3849,8 +3893,8 @@ const Label = styled.label`
 `;
 
 const DarkButton = styled.div`
-  width: 55px;
-  height: 50%;
+  width: 58px;
+  height: 60%;
   border: 2px solid green;
   border-radius: 20px;
 
@@ -3892,6 +3936,19 @@ const Button = styled.button`
   border-radius: 5px;
   white-space: nowrap;
 
+  &.dropdown-btn {
+    color: ${(props) => props.theme.Green};
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0;
+    padding: 0px 20px;
+
+    &:hover {
+      color: ${(props) => props.theme.HoverGreen};
+      transition: 0.3s ease;
+    }
+  }
+
   &.left {
     position: absolute;
     left: 0;
@@ -3913,6 +3970,7 @@ const Button = styled.button`
 
     &.modal {
       color: ${lightTheme.Green};
+
       &:hover {
         color: ${lightTheme.White};
         background-color: ${lightTheme.HoverGreen};
@@ -4097,7 +4155,7 @@ const StyledIcon = css`
   }
 `;
 
-const Sun = styled(PiSunBold)`
+const Moon = styled(PiMoonBold)`
   fill: ${(props) => props.theme.Grey};
   width: 18px;
   height: 18px;
@@ -4106,20 +4164,14 @@ const Sun = styled(PiSunBold)`
   left: 4px;
 `;
 
-const Moon = styled(PiMoonBold)`
+const Sun = styled(PiSunBold)`
   fill: ${(props) => props.theme.Grey};
-  width: 218x;
+  width: 18px;
   height: 18px;
   position: absolute;
   top: calc(50% - 9px);
-  left: 34px;
+  left: 32px;
 `;
-
-// background-color: ${(props) => props.theme.Green};;
-// position: absolute;
-// top: calc(50% - 12px);
-// // left: 42px;
-// left: 4px;
 
 const LeftIcon = styled(IoIosArrowBack)`
   ${StyledIcon};
@@ -4185,6 +4237,10 @@ const StyledHeaderIcon = css`
     fill: ${(props) => props.theme.HoverGrey};
     color: ${(props) => props.theme.HoverGrey};
   }
+`;
+
+const SortIcon = styled(GrSort)`
+  ${StyledHeaderIcon}
 `;
 
 const HomeIcon = styled(RiHomeLine)`
@@ -4299,6 +4355,7 @@ const s = {
   ProfileDiv,
   LoginDiv,
   MainImage,
+  GenDiv,
   Map,
   Mask,
   NavBar,
@@ -4317,9 +4374,7 @@ const s = {
   StyledLink,
   StyledP,
   StyledUl,
-  // TapttooIcon,
   Username,
-  WishIconContainer,
 
   StyledCircularProgressbar,
 
@@ -4332,6 +4387,7 @@ const s = {
   CheckboxBeforeIcon,
   CheckboxAfterIcon,
 
+  SortIcon,
   HomeIcon,
   HamburgerIcon,
   EyeIcon,

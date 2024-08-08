@@ -25,10 +25,10 @@ export default function SearchNew() {
         <s.Search className="top-container">
           <CustomCarousel />
         </s.Search>
-        {/* 
+        
         <s.Search className="circles-container">
-          <SearchProfiles />
-        </s.Search> */}
+         
+        </s.Search>
 
         <SearchCard
           imageMain={search_img01}
@@ -66,10 +66,10 @@ export default function SearchNew() {
         <s.Search className="search-container center">
           <s.Search className="search-gen-titles">
             <s.StyledH3 className="search-generate">
-              " 당신의 이야기를 예술로 "
+              " 당신의 이야기를 예술로. "
             </s.StyledH3>
             <s.StyledH3 className="search-generate">
-              당신만을 위한 유니크한 디자인을&nbsp;<br/>만나보세요!"
+              당신만을 위한 유니크한 디자인을&nbsp;<br/>만나보세요."
             </s.StyledH3>
           </s.Search>
           <s.Button
@@ -83,7 +83,7 @@ export default function SearchNew() {
         {/* <CircularProgressbar/> */}
 
         <s.Search className="top-container column">
-          <s.StyledH3 className="search-title">
+          <s.StyledH3 className="search-title upcoming">
             UPCOMING EVENTS
           </s.StyledH3>
           <s.Search className="line-box">

@@ -1,5 +1,16 @@
 import { keyframes } from "styled-components";
 
+export const openLeftDrop = keyframes`
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+`;
+
 export const infiniteSlideLeft = keyframes`
   0% {
     transform: translateX(0%);

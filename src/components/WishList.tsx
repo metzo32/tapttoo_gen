@@ -1,46 +1,65 @@
-import React, { useState } from 'react'
-import s from '../stores/styling'
+import React, { useState, useEffect } from "react";
+import s from "../stores/styling";
 
 const WishList: React.FC = () => {
+  const [hovered, setHovered] = useState(false);
+  const [clicked, setClicked] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  const [hovered, setHovered] = useState(false)
-  const [clicked, setClicked] = useState(false)
+  useEffect(() => {
+    const userAgent =
+      typeof window.navigator === "undefined" ? "" : navigator.userAgent;
+    const mobile = Boolean(
+      userAgent.match(/Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i)
+    );
+    setIsMobile(mobile);
+  }, []);
 
   const handleMouseEnter = () => {
-    setHovered(true)
-  }
+    if (!isMobile) {
+      setHovered(true);
+    }
+  };
 
   const handleMouseLeave = () => {
-    setHovered(false)
-  }
+    if (!isMobile) {
+      setHovered(false);
+    }
+  };
 
-  const handleMouseClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleMouseClick = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
     event.stopPropagation();
-    setClicked(!clicked)
-    console.log('클릭')
-  }
+    setClicked(!clicked);
+  };
+
+  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+    setClicked(!clicked);
+  };
 
   const renderIcon = () => {
     if (clicked) {
-      return <s.WishIconClicked/>
-    } 
-    else if (hovered) {
-      return <s.WishIconHover/>
+      return <s.WishIconClicked />;
+    } else if (hovered) {
+      return <s.WishIconHover />;
+    } else {
+      return <s.WishIconLine />;
     }
-    else {
-      return <s.WishIconLine/>
-    }
-  }
+  };
 
   return (
-    <s.WishIconContainer 
+    <s.ArticleDiv
+      className="heart-wrapper"
       onMouseOver={handleMouseEnter}
       onMouseOut={handleMouseLeave}
       onClick={handleMouseClick}
+      onTouchStart={handleTouchStart}
     >
-     {renderIcon()}
-    </s.WishIconContainer>
-  )
-}
+      {renderIcon()}
+    </s.ArticleDiv>
+  );
+};
 
-export default WishList
+export default WishList;

@@ -7,6 +7,7 @@ import WishList from "../components/WishList";
 const Article: React.FC = () => {
   const [articles, setArticles] = useState<number[]>([1, 2, 3, 4]);
   const [sortedData, setSortedData] = useState(ArtistData);
+  const [showDropLeft, setShowDropLeft] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,22 +60,48 @@ const Article: React.FC = () => {
     setSortedData(sorted);
   };
 
+  const handleDropLeft = () => {
+    setShowDropLeft((prevShowDropLeft) => !prevShowDropLeft);
+    console.log(showDropLeft);
+  };
+
   return (
     <s.ArticleDiv className="wrapper">
       <ScrollToTop />
 
-      <s.ArticleDiv className="button-wrapper">
-        <s.Button className="Round" onClick={handleSortAlphabet}>
-          abc순
-        </s.Button>
-        <s.Button className="Round" onClick={handleSortAlphabetReverse}>
-          abc역순
-        </s.Button>
-        <s.Button className="Round" onClick={handleSortOld}>
-          오래된순
-        </s.Button>
-        <s.Button className="Round" onClick={handleSortNew}>
-          신규순
+      <s.ArticleDiv className="button-container">
+        <s.StyledUl
+          className={`dropdown-box ${showDropLeft ? "open-drop-left" : ""}`}
+        >
+          <s.StyledLi className="dropdown-li">
+            <s.Button className="dropdown-btn" onClick={handleSortAlphabet}>
+              오름차순
+            </s.Button>
+          </s.StyledLi>
+
+          <s.StyledLi className="dropdown-li">
+            <s.Button
+              className="dropdown-btn"
+              onClick={handleSortAlphabetReverse}
+            >
+              내림차순
+            </s.Button>
+          </s.StyledLi>
+
+          <s.StyledLi className="dropdown-li">
+            <s.Button className="dropdown-btn" onClick={handleSortNew}>
+              신규순
+            </s.Button>
+          </s.StyledLi>
+
+          <s.StyledLi className="dropdown-li">
+            <s.Button className="dropdown-btn" onClick={handleSortOld}>
+              오래된순
+            </s.Button>
+          </s.StyledLi>
+        </s.StyledUl>
+        <s.Button className="header-button-item">
+          <s.SortIcon onClick={handleDropLeft} />
         </s.Button>
       </s.ArticleDiv>
 
