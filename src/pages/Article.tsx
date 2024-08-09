@@ -3,11 +3,11 @@ import s from "../stores/styling";
 import ArtistData from "../assets/datas/artitst_data";
 import ScrollToTop from "../components/ScrollToTop";
 import WishList from "../components/WishList";
+import SortButtons from "../components/SortButtons";
 
 const Article: React.FC = () => {
   const [articles, setArticles] = useState<number[]>([1, 2, 3, 4]);
   const [sortedData, setSortedData] = useState(ArtistData);
-  const [showDropLeft, setShowDropLeft] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,74 +36,17 @@ const Article: React.FC = () => {
     }
   };
 
-  const handleSortAlphabet = () => {
-    const sorted = [...sortedData].sort((a, b) =>
-      a.nickname.localeCompare(b.nickname)
-    );
-    setSortedData(sorted);
+  const handleSort = (sortedArray: typeof ArtistData) => {
+    setSortedData(sortedArray);
   };
 
-  const handleSortAlphabetReverse = () => {
-    const sorted = [...sortedData].sort((a, b) =>
-      b.nickname.localeCompare(a.nickname)
-    );
-    setSortedData(sorted);
-  };
 
-  const handleSortOld = () => {
-    const sorted = [...sortedData].sort((a, b) => a.id - b.id);
-    setSortedData(sorted);
-  };
-
-  const handleSortNew = () => {
-    const sorted = [...sortedData].sort((a, b) => b.id - a.id);
-    setSortedData(sorted);
-  };
-
-  const handleDropLeft = () => {
-    setShowDropLeft((prevShowDropLeft) => !prevShowDropLeft);
-    console.log(showDropLeft);
-  };
 
   return (
     <s.ArticleDiv className="wrapper">
       <ScrollToTop />
 
-      <s.ArticleDiv className="button-container">
-        <s.StyledUl
-          className={`dropdown-box ${showDropLeft ? "open-drop-left" : ""}`}
-        >
-          <s.StyledLi className="dropdown-li">
-            <s.Button className="dropdown-btn" onClick={handleSortAlphabet}>
-              오름차순
-            </s.Button>
-          </s.StyledLi>
-
-          <s.StyledLi className="dropdown-li">
-            <s.Button
-              className="dropdown-btn"
-              onClick={handleSortAlphabetReverse}
-            >
-              내림차순
-            </s.Button>
-          </s.StyledLi>
-
-          <s.StyledLi className="dropdown-li">
-            <s.Button className="dropdown-btn" onClick={handleSortNew}>
-              신규순
-            </s.Button>
-          </s.StyledLi>
-
-          <s.StyledLi className="dropdown-li">
-            <s.Button className="dropdown-btn" onClick={handleSortOld}>
-              오래된순
-            </s.Button>
-          </s.StyledLi>
-        </s.StyledUl>
-        <s.Button className="header-button-item">
-          <s.SortIcon onClick={handleDropLeft} />
-        </s.Button>
-      </s.ArticleDiv>
+      <SortButtons sortedData={sortedData} sortDone={handleSort}/>
 
       <s.ArticleDiv className="mid-wrapper">
         {articles.map((index) => {

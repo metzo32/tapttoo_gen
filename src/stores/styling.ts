@@ -3092,7 +3092,6 @@ const Overlay = styled.div`
 
 const StyledLink = styled(RouterLink)`
   &.menu-texts {
-    font-size: 20px;
     text-decoration: none;
     color: ${(props) => props.theme.Grey};
     margin-left: 35px;
@@ -3111,7 +3110,7 @@ const StyledLink = styled(RouterLink)`
     }
 
     @media (min-width: 1024px) {
-      font-size: 20px;
+      font-size: 18px;
     }
   }
 
@@ -3893,8 +3892,8 @@ const Label = styled.label`
 `;
 
 const DarkButton = styled.div`
-  width: 58px;
-  height: 60%;
+  width: 62px;
+  height: 28px;
   border: 2px solid green;
   border-radius: 20px;
 
@@ -3902,13 +3901,13 @@ const DarkButton = styled.div`
   cursor: pointer;
 
   &.dark-circle {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     border: none;
     background-color: ${(props) => props.theme.Green};
 
     position: absolute;
-    top: calc(50% - 10px);
+    top: calc(50% - 11px);
 
     transition: left 0.3s ease;
     z-index: 1;
@@ -3918,7 +3917,7 @@ const DarkButton = styled.div`
     }
 
     &.light-mode {
-      left: 32px;
+      left: 37px;
     }
   }
 `;
@@ -4161,7 +4160,7 @@ const Moon = styled(PiMoonBold)`
   height: 18px;
   position: absolute;
   top: calc(50% - 9px);
-  left: 4px;
+  left: 5px;
 `;
 
 const Sun = styled(PiSunBold)`
@@ -4170,7 +4169,7 @@ const Sun = styled(PiSunBold)`
   height: 18px;
   position: absolute;
   top: calc(50% - 9px);
-  left: 32px;
+  left: 38px;
 `;
 
 const LeftIcon = styled(IoIosArrowBack)`

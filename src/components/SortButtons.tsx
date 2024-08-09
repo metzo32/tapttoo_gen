@@ -1,40 +1,46 @@
 import React from "react";
 import s from "../stores/styling";
 import { useState } from "react";
-import ArtistData from "../assets/datas/artitst_data";
+import { ArtistDataProps } from "../assets/datas/artitst_data";
 
-export default function SortButtons() {
+interface SortButtonsProps {
+  sortedData: ArtistDataProps[];
+  sortDone: (sortedArray: ArtistDataProps[]) => void;
+}
+
+export default function SortButtons({ sortedData, sortDone }: SortButtonsProps) {
   const [showDropLeft, setShowDropLeft] = useState(false);
-  const [sortedData, setSortedData] = useState(ArtistData);
 
   const handleSortAlphabet = () => {
     const sorted = [...sortedData].sort((a, b) =>
       a.nickname.localeCompare(b.nickname)
     );
-    setSortedData(sorted);
+    sortDone(sorted);
   };
 
   const handleSortAlphabetReverse = () => {
     const sorted = [...sortedData].sort((a, b) =>
       b.nickname.localeCompare(a.nickname)
     );
-    setSortedData(sorted);
+    sortDone(sorted);
   };
 
   const handleSortOld = () => {
     const sorted = [...sortedData].sort((a, b) => a.id - b.id);
-    setSortedData(sorted);
+    sortDone(sorted);
   };
 
   const handleSortNew = () => {
     const sorted = [...sortedData].sort((a, b) => b.id - a.id);
-    setSortedData(sorted);
+    sortDone(sorted);
   };
 
   const handleDropLeft = () => {
     setShowDropLeft((prevShowDropLeft) => !prevShowDropLeft);
     console.log(showDropLeft);
   };
+
+
   return (
     <>
       <s.ArticleDiv className="button-container">
