@@ -4,9 +4,10 @@ import s from "../stores/styling";
 interface CalculateAgeProps {
   isAdult: (isValid: boolean | null) => void;
   handleOpenModal : () => void; //모달 열기. 모달을 열어야할 때 해당 함수 호출
+  onBirthdateChange: (year: string, month: string, day: string) => void;
 }
 
-const CalculateAge: React.FC<CalculateAgeProps> = ({ isAdult, handleOpenModal }) => {
+const CalculateAge: React.FC<CalculateAgeProps> = ({ isAdult, handleOpenModal, onBirthdateChange }) => {
   const [year, setYear] = useState(""); // 원래는 빈 문자열을 쓰다가 null로 바꾸었다. 그렇지 않으면 초기값이 현재 연도의 1월 1일인데, 이미 valid 상태로 선택됨
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
@@ -83,6 +84,8 @@ const CalculateAge: React.FC<CalculateAgeProps> = ({ isAdult, handleOpenModal })
     };
 
     validateDate();
+    onBirthdateChange(year, month, day)
+
   }, [year, month, day]); //입력이 바뀔 때마다 유효성 검사
 
   const classValid = () => {

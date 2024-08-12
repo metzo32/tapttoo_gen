@@ -25,13 +25,29 @@ const RegisterPage = () => {
   const [registerFullname, setRegisterFullname] = useState<string>("");
   const [registerPhonenumber, setRegisterPhonenumber] = useState<string>("");
   const [countryCode, setCountryCode] = useState<string>("");
-  const [isValidAge, setIsValidAge] = useState<boolean | null>(null);
-  const [step, setStep] = useState(1);
+  const [isValidAge, setIsValidAge] = useState<boolean>(false);
+  const [birthYear, setBirthYear] = useState<string>("");
+  const [birthMonth, setBirthMonth] = useState<string>("");
+  const [birthDay, setBirthDay] = useState<string>("");
+  const [gender, setGender] = useState<string>("");
+
+  const [step, setStep] = useState<number>(1);
 
   const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
 
   const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    console.log("회원가입 시도:", {
+      email: registerEmail,
+      password: registerPw,
+      fullname: registerFullname,
+      nickname: registerNickname,
+      phonenumber: registerPhonenumber,
+      countryCode: countryCode,
+      isValidAge: isValidAge,
+    });
+
     if (registerPw !== registerPwConfirm) {
       alert("비밀번호가 일치하지 않습니다.");
       return;
@@ -47,22 +63,29 @@ const RegisterPage = () => {
         registerPw
       );
       const user = userCredential.user;
-      console.log("User registered:", userCredential.user);
+      console.log("User registered:", user);
 
-      // 사용자 정보 firestore에 저장하기
-      await setDoc(doc(db, "users", user.uid), {
-        // user 컬렉션 하위의 각 사용자의 고유 uid를 문서 id로 설정
-        email: registerEmail,
-        fullname: registerFullname,
-        nickname: registerNickname,
-        phonenumber: registerPhonenumber,
-        countryCode: countryCode,
-        isValidAge: isValidAge,
-      });
+      try {
+        await setDoc(doc(db, "users", user.uid), {
+          email: registerEmail,
+          fullname: registerFullname,
+          nickname: registerNickname,
+          phonenumber: registerPhonenumber,
+          countryCode: countryCode,
+          isValidAge: isValidAge,
+          birthYear: birthYear,
+          birthMonth: birthMonth,
+          birthDay: birthDay,
+          gender: gender,
+        });
+        console.log("Firestore에 사용자 정보 저장 성공!");
+      } catch (error) {
+        console.error("Firestore에 사용자 정보 저장 실패:", error);
+      }
 
       navigate("/profile");
     } catch (error) {
-      console.error("Failed to sign up:", error);
+      console.error("회원가입 실패:", error);
       alert(`회원가입 중 오류가 발생했습니다: ${(error as Error).message}`);
     }
   };
@@ -149,6 +172,17 @@ const RegisterPage = () => {
     );
   };
 
+  const handleBirthdateChange = (year: string, month: string, day: string) => {
+    setBirthYear(year);
+    setBirthMonth(month);
+    setBirthDay(day);
+    console.log(year, month, day);
+  };
+
+  const handleGenderChange = (onGenderChange: string) => {
+    setGender(onGenderChange);
+  };
+
   return (
     <>
       <s.LoginDiv className="wrapper">
@@ -208,6 +242,7 @@ const RegisterPage = () => {
                   onBlur={handleBlur}
                   required={true}
                   label={"비밀번호 확인"}
+                  placeholder={"비밀번호 재입력"}
                   autocomplete="new-password"
                 />
               </s.LoginDiv>
@@ -263,9 +298,10 @@ const RegisterPage = () => {
                   <CalculateAge
                     isAdult={handleAgeValidation}
                     handleOpenModal={handleOpenModal}
+                    onBirthdateChange={handleBirthdateChange}
                   />
 
-                  <GenderSelect />
+                  <GenderSelect onGenderChange={handleGenderChange} />
 
                   <s.LoginDiv
                     className={`number-box ${countryCode ? "valid" : ""}`}

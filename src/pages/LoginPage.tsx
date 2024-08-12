@@ -121,17 +121,15 @@ const LoginPage = () => {
   return (
     <>
       <s.LoginDiv className="wrapper">
-      <Modal
+        <Modal
           isOpen={isModalOpen}
           onClose={handleCloseModal}
-          modalTitle={"로그인 실패"}
+          modalTitle={"앗!"}
           showCheckbox={false}
           modalButtonClose={"닫기"}
           addButton={false}
         >
-          <s.StyledP className="modal">
-            {modalMessage}
-          </s.StyledP>
+          <s.StyledP className="modal">{modalMessage}</s.StyledP>
         </Modal>
 
         <s.Form className="login" onSubmit={handleSignIn}>
@@ -193,6 +191,7 @@ const LoginPage = () => {
                 로그인
               </s.Button>
               <s.Button
+                className="login-btn"
                 type="button"
                 onClick={() => handleNavigation("/register")}
               >

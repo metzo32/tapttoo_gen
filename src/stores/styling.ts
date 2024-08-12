@@ -372,6 +372,7 @@ const HeaderDiv = styled.div`
     background: ${(props) => props.theme.OverlayGradient};
     pointer-events: none;
     z-index: 9998;
+    backdrop-filter: blur(1px);
   }
 
   &.header-button-wrapper {
@@ -2093,7 +2094,7 @@ const Modal = styled.div`
 
   &.modal-container {
     width: 300px;
-    height: 250px;
+    height: 200px;
 
     display: flex;
     flex-direction: column;
@@ -2104,6 +2105,10 @@ const Modal = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -40%);
+
+    &.with-checkbox {
+      height: 250px;
+    }
   }
 
   &.checkbox-container {
@@ -2114,10 +2119,14 @@ const Modal = styled.div`
     align-items: center;
   }
 
-  &.button-box {
-  width: 60%;
-   display: flex;
-     justify-content: space-between;
+  &.modal-button-box {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+
+    &.two-buttons {
+      justify-content: space-between;
+    }
   }
 `;
 
@@ -3543,6 +3552,11 @@ const LoginDiv = styled.div`
         margin-bottom: 70px;
       }
 
+    &.login-page-box {
+      height: 25%;
+      margin-bottom: 20px;
+    }
+
     &.step01 {
       @media (max-width: 767px) {
         height: 40%;
@@ -3654,7 +3668,6 @@ const LoginDiv = styled.div`
   &.checkbox-box {
     color: ${(props) => props.theme.Grey};
     width: 140px;
-    height: 40px;
     display: flex;
     justify-content: space-around;
 
@@ -3667,7 +3680,6 @@ const LoginDiv = styled.div`
     }
 
     @media (min-width: 1024px) {
-      align-items: flex-start;
     }
   }
 
@@ -3689,8 +3701,8 @@ const LoginDiv = styled.div`
     align-items: center;
 
     &.login {
-    height: 25%;
-    margin-top: 30px;
+      height: 20%;
+      margin-top: 40px;
     }
   }
 
@@ -3751,6 +3763,8 @@ const Select = styled.select`
 const Option = styled.option``;
 
 const Input = styled.input`
+    width: 100%;
+    height: 30px;
   background: transparent;
   color: ${(props) => props.theme.Grey};
   border: none;
@@ -3758,9 +3772,20 @@ const Input = styled.input`
   font-size: 16px;
   cursor: pointer;
 
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #fff inset;
+    -webkit-text-fill-color: #000;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
   &.loginpage {
-    width: 100%;
-    height: 30px;
+
   }
 
   &.input-hide {
@@ -3963,6 +3988,12 @@ const Button = styled.button`
 
     @media (min-width: 1024px) {
     }
+  }
+
+  &.login-btn {
+    height: 20px;
+    margin: 0;
+    padding: 0px 20px;
   }
 
   &.dropdown-btn {

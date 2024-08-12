@@ -1,12 +1,17 @@
 import { useState } from "react";
 import s from "../stores/styling";
 
-export default function GenderSelect() {
+interface GenderSelectProps {
+  onGenderChange: (gender: string) => void;
+}
+
+export default function GenderSelect({ onGenderChange }: GenderSelectProps) {
   const [selectedGender, setSelectedGender] = useState<string>("");
 
   const handleGenderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const gender = event.target.value;
     setSelectedGender(gender);
+    onGenderChange(gender);
   };
 
   return (
