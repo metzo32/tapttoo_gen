@@ -8,7 +8,10 @@ interface SortButtonsProps {
   sortDone: (sortedArray: ArtistDataProps[]) => void;
 }
 
-export default function SortButtons({ sortedData, sortDone }: SortButtonsProps) {
+export default function SortButtons({
+  sortedData,
+  sortDone,
+}: SortButtonsProps) {
   const [showDropLeft, setShowDropLeft] = useState(false);
 
   const handleSortAlphabet = () => {
@@ -37,15 +40,15 @@ export default function SortButtons({ sortedData, sortDone }: SortButtonsProps) 
 
   const handleDropLeft = () => {
     setShowDropLeft((prevShowDropLeft) => !prevShowDropLeft);
-    console.log(showDropLeft);
   };
-
 
   return (
     <>
       <s.ArticleDiv className="button-container">
-        <s.StyledUl
-          className={`dropdown-box ${showDropLeft ? "open-drop-left" : ""}`}
+      <s.StyledUl
+          className={`dropdown-box ${
+            showDropLeft ? "open-drop-left" : "close-drop-left"
+          }`}
         >
           <s.StyledLi className="dropdown-li">
             <s.Button className="dropdown-btn" onClick={handleSortAlphabet}>
@@ -74,9 +77,8 @@ export default function SortButtons({ sortedData, sortDone }: SortButtonsProps) 
             </s.Button>
           </s.StyledLi>
         </s.StyledUl>
- <s.Button
-            className="header-button-item">
-        <s.SortIcon onClick={handleDropLeft} />
+        <s.Button className="header-button-item">
+          <s.SortIcon onClick={handleDropLeft} />
         </s.Button>
       </s.ArticleDiv>
     </>

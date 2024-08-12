@@ -16,8 +16,6 @@ import Modal from "../components/Modal";
 import useModal from "../hooks/ModalHook";
 
 
-
-
 const RegisterPage = () => {
 
   const navigate = useNavigate();

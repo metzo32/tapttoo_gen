@@ -46,7 +46,7 @@ export const darkTheme: colorTheme = {
   Yellow: "#FE9311",
   Grey: "#D3CDC6",
   LightGrey: "#6E6560",
-  HoverGrey: "#EEEDEB",
+  HoverGrey: "#FFFDEB",
   Light: "#272423",
   White: "#000",
   Black: "#FFF",

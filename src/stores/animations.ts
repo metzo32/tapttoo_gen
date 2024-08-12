@@ -1,13 +1,24 @@
 import { keyframes } from "styled-components";
 
 export const openLeftDrop = keyframes`
-  from {
-    transform: translateX(-100%);
+  0% {
+    transform: translateX(20px);
     opacity: 0;
   }
-  to {
+  100% {
     transform: translateX(0);
     opacity: 1;
+  }
+`;
+
+export const closeLeftDrop = keyframes`
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(20px);
+    opacity: 0;
   }
 `;
 

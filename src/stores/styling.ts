@@ -13,6 +13,7 @@ import styled, { css, createGlobalStyle } from "styled-components";
 import { Route, Link as RouterLink } from "react-router-dom";
 import {
   openLeftDrop,
+  closeLeftDrop,
   infiniteSlideLeft,
   animateIn,
   animateOut,
@@ -748,6 +749,8 @@ const StyledH1 = styled.h1`
     color: ${lightTheme.Green};
     font-size: 24px;
     font-weight: 400;
+    line-height: 10px;
+    letter-spacing: 0px;
   }
 `;
 
@@ -1791,14 +1794,20 @@ const StyledUl = styled.ul`
       height: calc(100% - 10px);
       margin-right: 10px;
       margin-bottom: 8px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
 
-      display: none;
 
       &.open-drop-left {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+        animation: ${openLeftDrop} 0.3s forwards;
+        transform-origin: top right;
+      }
+
+      &.close-drop-left {
+      animation: ${closeLeftDrop} 0.3s forwards;
+        transform-origin: top right;
       }
     }
 
@@ -3215,7 +3224,7 @@ const Footer = styled.div`
     white-space: nowrap;
 
     @media (max-width: 767px) {
-      margin-top: 5px;
+      margin-top: 10px;
       flex-direction: column;
     }
 
@@ -3270,6 +3279,7 @@ const Footer = styled.div`
   }
 
   &.footer-button-wrapper {
+    width: 100%;
     height: 30px;
     margin: 0 auto;
     display: flex;
@@ -3934,6 +3944,23 @@ const Button = styled.button`
   cursor: pointer;
   border-radius: 5px;
   white-space: nowrap;
+
+  &.footer-btn {
+    @media (max-width: 767px) {
+      font-size: 12px;
+      margin: 0;
+      padding: 10px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 13px;
+      margin: 4px 2px;
+      padding: 10px 20px;
+    }
+
+    @media (min-width: 1024px) {
+    }
+  }
 
   &.dropdown-btn {
     color: ${(props) => props.theme.Green};

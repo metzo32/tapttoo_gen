@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { AuthContext } from "../context/AuthContext";
-import useThemeContext from "../hooks/ThemeHook";
+
+import Modal from "../components/Modal";
+import useModal from "../hooks/ModalHook";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-
-  const { isDark } = useThemeContext();
 
   const { currentlyLoggedIn, setCurrentlyLoggedIn } = useContext(AuthContext);
 
@@ -17,6 +17,9 @@ const LoginPage = () => {
   const [signInPw, setSignInPw] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
+  const [modalMessage, setModalMessage] = useState(""); // 모달에 표시될 메시지 상태
 
   useEffect(() => {
     if (currentlyLoggedIn) {
@@ -45,8 +48,26 @@ const LoginPage = () => {
       .catch((error) => {
         console.error("Error signing in:", error);
         const errorCode = error.code;
-        const errorMessage = error.message;
-        console.error(`로그인 실패: ${errorCode}, ${errorMessage}`);
+        let message = ""; // 모달에 표시할 메시지 변수
+
+        // 에러 코드에 따라 메시지 설정
+        switch (errorCode) {
+          case "auth/user-not-found":
+            message = "등록되지 않은 계정입니다. 회원가입을 진행해 주세요.";
+            break;
+          case "auth/wrong-password":
+            message = "비밀번호가 올바르지 않습니다. 다시 시도해 주세요.";
+            break;
+          case "auth/too-many-requests":
+            message =
+              "로그인 시도가 너무 많습니다. 잠시 후 다시 시도해 주세요.";
+            break;
+          default:
+            message = "로그인에 실패했습니다. 다시 시도해 주세요.";
+        }
+
+        setModalMessage(message); // 모달 메시지 설정
+        handleOpenModal(); // 모달 열기
         setCurrentlyLoggedIn(false);
         setIsLoggedIn(false);
       });
@@ -100,6 +121,15 @@ const LoginPage = () => {
   return (
     <>
       <s.LoginDiv className="wrapper">
+        <Modal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          modalTitle={"로그인 오류"}
+          showCheckbox={false}
+        >
+          <s.StyledP className="modal">{modalMessage}</s.StyledP>
+        </Modal>
+
         <s.Form className="login" onSubmit={handleSignIn}>
           <s.LoginDiv className="container">
             <s.LoginDiv className="input-wrapper login-page-box">

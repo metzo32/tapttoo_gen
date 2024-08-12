@@ -1,4 +1,4 @@
-import { useState, useEffect, ReactNode } from "react";
+import { useState, ReactNode } from "react";
 import ReactDOM from "react-dom";
 import s from "../stores/styling";
 
