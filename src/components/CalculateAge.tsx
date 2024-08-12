@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import s from "../stores/styling";
-import Modal from "./Modal";
 
 interface CalculateAgeProps {
   isAdult: (isValid: boolean | null) => void;

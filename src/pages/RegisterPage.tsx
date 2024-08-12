@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { auth, db } from "../firebase/firebaseConfig";
-import { setDoc, doc } from 'firebase/firestore';
+import { setDoc, doc } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 import { nicknameRule, fullnameRule } from "../stores/NameRule";
@@ -15,9 +15,7 @@ import countrycode from "../assets/datas/country_code";
 import Modal from "../components/Modal";
 import useModal from "../hooks/ModalHook";
 
-
 const RegisterPage = () => {
-
   const navigate = useNavigate();
 
   const [registerEmail, setRegisterEmail] = useState<string>("");
@@ -32,7 +30,6 @@ const RegisterPage = () => {
 
   const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
 
-
   const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (registerPw !== registerPwConfirm) {
@@ -44,23 +41,27 @@ const RegisterPage = () => {
       return;
     }
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, registerEmail, registerPw);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        registerEmail,
+        registerPw
+      );
       const user = userCredential.user;
-      console.log('User registered:', userCredential.user);
+      console.log("User registered:", userCredential.user);
 
       // 사용자 정보 firestore에 저장하기
-      await setDoc(doc(db, "users", user.uid), {  // user 컬렉션 하위의 각 사용자의 고유 uid를 문서 id로 설정
+      await setDoc(doc(db, "users", user.uid), {
+        // user 컬렉션 하위의 각 사용자의 고유 uid를 문서 id로 설정
         email: registerEmail,
         fullname: registerFullname,
         nickname: registerNickname,
         phonenumber: registerPhonenumber,
         countryCode: countryCode,
-        isValidAge: isValidAge
+        isValidAge: isValidAge,
       });
 
       navigate("/profile");
-    } 
-    catch (error) {
+    } catch (error) {
       console.error("Failed to sign up:", error);
       alert(`회원가입 중 오류가 발생했습니다: ${(error as Error).message}`);
     }
@@ -79,7 +80,8 @@ const RegisterPage = () => {
     if (label) {
       if (
         !target.checkValidity() ||
-        (target.name === "passwordConfirm" && registerPw !== registerPwConfirm) ||
+        (target.name === "passwordConfirm" &&
+          registerPw !== registerPwConfirm) ||
         (target.name === "nickname" && !nicknameRule.test(target.value)) ||
         (target.name === "fullname" && !fullnameRule.test(target.value))
       ) {
@@ -103,7 +105,9 @@ const RegisterPage = () => {
     setRegisterFullname(capitalizedName);
   };
 
-  const handlePhonenumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePhonenumberChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const value = event.target.value;
     setRegisterPhonenumber(value);
   };
@@ -148,13 +152,14 @@ const RegisterPage = () => {
   return (
     <>
       <s.LoginDiv className="wrapper">
-        
         <Modal
           isOpen={isModalOpen}
           onClose={handleCloseModal}
           modalTitle={"잠깐!"}
           showCheckbox={true}
           checkboxText={"이해했습니다."}
+          modalButtonClose={"닫기"}
+          addButton={false}
         >
           <s.StyledP className="modal">
             19세 미만 회원의 경우,
@@ -217,7 +222,10 @@ const RegisterPage = () => {
                   다음
                 </s.Button>
 
-                <s.Button type="button" onClick={() => handleNavigation("/login")}>
+                <s.Button
+                  type="button"
+                  onClick={() => handleNavigation("/login")}
+                >
                   이미 계정이 있으신가요?
                 </s.Button>
               </s.LoginDiv>
@@ -302,7 +310,10 @@ const RegisterPage = () => {
                 <s.Button type="submit" className="Round" value="submit">
                   가입하기
                 </s.Button>
-                <s.Button type="button" onClick={() => handleNavigation("/login")}>
+                <s.Button
+                  type="button"
+                  onClick={() => handleNavigation("/login")}
+                >
                   이미 계정이 있으신가요?
                 </s.Button>
               </s.LoginDiv>

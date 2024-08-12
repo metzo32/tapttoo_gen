@@ -366,7 +366,7 @@ const HeaderDiv = styled.div`
 
   &.header-overlay {
     width: 100vw;
-    height: 10vh;
+    height: 6vh;
     position: fixed;
     top: 0;
     background: ${(props) => props.theme.OverlayGradient};
@@ -747,9 +747,9 @@ const StyledH1 = styled.h1`
 
   &.warning {
     color: ${lightTheme.Green};
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 400;
-    line-height: 10px;
+    line-height: 35px;
     letter-spacing: 0px;
   }
 `;
@@ -2051,7 +2051,7 @@ const Modal = styled.div`
     align-items: center;
     position: fixed;
     animation: ${FadeIn} 0.1s ease-in-out forwards;
-    z-index: 10;
+    z-index: 9999;
 
     &.closing {
       animation: ${FadeOut} 0.8s forwards;
@@ -2114,7 +2114,10 @@ const Modal = styled.div`
     align-items: center;
   }
 
-  &.text-box {
+  &.button-box {
+  width: 60%;
+   display: flex;
+     justify-content: space-between;
   }
 `;
 
