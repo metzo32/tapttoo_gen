@@ -1,5 +1,17 @@
 import { keyframes } from "styled-components";
 
+
+export const fadeInRotate = keyframes `
+  0% {
+    opacity: 0;
+    transform: rotate(0deg) translateX(150px);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(calc(var(--char-index) * 30deg)) translateX(150px);
+  }
+`
+
 export const openLeftDrop = keyframes`
   0% {
     transform: translateX(20px);

@@ -12,6 +12,7 @@
 import styled, { css, createGlobalStyle } from "styled-components";
 import { Route, Link as RouterLink } from "react-router-dom";
 import {
+  fadeInRotate,
   openLeftDrop,
   closeLeftDrop,
   infiniteSlideLeft,
@@ -158,6 +159,14 @@ const Div = styled.div`
     width: 100%;
     font-size: 200px;
     margin-top: 1000px;
+  }
+
+  &.cir-text-wrapper {
+    width: 300px;
+    height: 300px;
+    border: 1px solid red;
+    margin: 0 auto;
+    background-color: transparent;
   }
 `;
 
@@ -1521,6 +1530,29 @@ const Mask = styled.div`
 //     color: ${(props) => props.theme.White};
 //   }
 // `;
+
+const CirText = styled.span`
+  &.splitting {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+    position: relative;
+    margin: auto;
+    border-radius: 50%; 
+    border: 1px solid green;
+  }
+
+  &.splitting .char {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: 0 0;
+    opacity: 0;
+    animation: ${fadeInRotate} 2s ease forwards;
+  }
+`;
 
 const CareerDiv = styled.div`
   &.career-row {
@@ -4607,6 +4639,7 @@ const s = {
   BrandTitleWrapper,
   DarkButton,
   Button,
+  CirText,
   CareerDetail,
   CareerDiv,
   CareerItem,

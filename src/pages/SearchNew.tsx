@@ -7,6 +7,7 @@ import SearchEventProfile from "../components/SearchEventProfile";
 
 import SearchCard from "../components/SearchCard";
 import InfiniteText from "../components/InfiniteText";
+import CircularText from "../components/CircularText";
 
 import search_img01 from "../assets/images/search_img01.jpg";
 import search_img02 from "../assets/images/search_img02.jpg";
@@ -44,7 +45,9 @@ export default function SearchNew() {
                 OF THE DAY
               </s.StyledH3>
 
-              <s.Search className="arrow">화살표</s.Search>
+              <s.Search className="arrow">
+                <CircularText/>
+              </s.Search>
               <s.StyledP>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Necessitatibus quae impedit deleniti repellat! Aspernatur
