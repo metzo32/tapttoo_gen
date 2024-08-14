@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import s from "../stores/styling";
-import { useState } from "react";
 import { ArtistDataProps } from "../assets/datas/artitst_data";
 
 interface SortButtonsProps {
@@ -13,6 +12,11 @@ export default function SortButtons({
   sortDone,
 }: SortButtonsProps) {
   const [showDropLeft, setShowDropLeft] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const handleSortAlphabet = () => {
     const sorted = [...sortedData].sort((a, b) =>
@@ -45,9 +49,13 @@ export default function SortButtons({
   return (
     <>
       <s.ArticleDiv className="button-container">
-      <s.StyledUl
+        <s.StyledUl
           className={`dropdown-box ${
-            showDropLeft ? "open-drop-left" : "close-drop-left"
+            isMounted
+              ? showDropLeft
+                ? "open-drop-left"
+                : "close-drop-left"
+              : "" // 초기 마운트 시에는 아무 클래스도 추가하지 않음
           }`}
         >
           <s.StyledLi className="dropdown-li">

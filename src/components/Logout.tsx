@@ -1,6 +1,3 @@
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
 import s from "../stores/styling";
 
 interface LogoutButtonProps {
@@ -8,8 +5,6 @@ interface LogoutButtonProps {
 }
 
 const LogoutButton : React.FC<LogoutButtonProps> = ( {handleOpenModal}) => {
-  const navigate = useNavigate();
-  const { currentlyLoggedIn, setCurrentlyLoggedIn } = useContext(AuthContext);
 
   const handleLogout = () => {
     handleOpenModal()

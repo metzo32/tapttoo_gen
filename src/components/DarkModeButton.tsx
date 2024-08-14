@@ -23,9 +23,11 @@ const DarkModeButton: React.FC = () => {
   return (
     <>
       <s.DarkButton onClick={toggleDark}>
-        <s.DarkButton className={`dark-circle ${isDark ? "dark-mode" : "light-mode"}`}/>
-        <s.Sun />
-        <s.Moon />
+        <s.DarkButton
+          className={`dark-circle ${isDark ? "dark-mode" : "light-mode"}`}
+        />
+        <s.Sun className={`${isDark ? "" : "off"}`} />
+        <s.Moon className={`${isDark ? "off" : ""}`} />
       </s.DarkButton>
     </>
   );

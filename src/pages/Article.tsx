@@ -27,8 +27,8 @@ const Article: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []); //컴포넌트가 마운트될 때 이벤트 리스너 추가
 
-  const handleCardRedirect = (index: number) => {
-    const url = `/profile_artist_${ArtistData[index].nickname}`;
+  const handleCardRedirect = (nickname: string) => {
+    const url = `/profile_artist_${nickname}`;
     if (url) {
       window.location.href = url;
     } else {
@@ -53,9 +53,9 @@ const Article: React.FC = () => {
           const artist = sortedData[index]; // 정렬된 새로운 배열을 할당하여 업데이트
           return (
             <s.ArticleDiv
-              key={index}
+              key={artist.nickname} // 초기 {index} 사용 시 재정렬이 화면 상에는 적용되나, 리디렉션이 되지 않음.
               className="article-cards"
-              onClick={() => handleCardRedirect(index)}
+              onClick={() => handleCardRedirect(artist.nickname)}
             >
               <WishList />
               <s.ArticleDiv className="article-grid-image">

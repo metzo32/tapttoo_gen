@@ -245,16 +245,27 @@ width: 100%;
     margin: 0px 20px;
   }
 
-  &.display {
+  &.display-narrow {
+    @media (max-width: 767px) {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      display: none;
+    }
+
+    @media (min-width: 1024px) {
+      display: block;
+    }
+  }
+
+  &.display-mid {
     @media (max-width: 767px) {
       display: none;
     }
 
     @media (min-width: 768px) {
       display: block;
-    }
-
-    @media (min-width: 1024px) {
     }
   }
 
@@ -399,7 +410,7 @@ const HeaderDiv = styled.div`
 
   &.right {
     @media (max-width: 767px) {
-      width: 130px;
+      width: 120px;
     }
 
     @media (min-width: 768px) {
@@ -731,8 +742,8 @@ const StyledH1 = styled.h1`
     display: block;
 
     @media (max-width: 767px) {
-      font-size: 100px;
-      letter-spacing: -8px;
+      font-size: 60px;
+      letter-spacing: -6px;
     }
 
     @media (min-width: 768px) {
@@ -820,8 +831,8 @@ const StyledH2 = styled.h2`
 
     &.bold {
       @media (max-width: 767px) {
-        font-size: 70px;
-        line-height: 70px;
+        font-size: 40px;
+        line-height: 45px;
         margin: 40px 0px;
       }
 
@@ -886,13 +897,15 @@ const StyledH2 = styled.h2`
     letter-spacing: -2px;
 
     @media (max-width: 767px) {
-      font-size: 26px;
-      line-height: 30px;
+      font-size: 20px;
+      line-height: 26px;
+      etter-spacing: -1px;
     }
 
     @media (min-width: 768px) {
       font-size: 30px;
       line-height: 40px;
+      letter-spacing: -2px;
     }
 
     @media (min-width: 1024px) {
@@ -1164,6 +1177,15 @@ const StyledH4 = styled.h4`
       font-size: 30px;
     }
   }
+
+  &.brand-text {
+    color: ${(props) => props.theme.Grey};
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    line-height: 20px;
+    margin-left: 5px;
+  }
 `;
 
 const StyledP = styled.p`
@@ -1195,7 +1217,23 @@ const StyledP = styled.p`
   &.about-last-title {
     color: ${(props) => props.theme.Green};
     text-align: center;
-    margin: 40px 0 40px 0;
+
+    @media (max-width: 767px) {
+      width: 90%;
+      margin: 0 auto;
+      margin-bottom: 50px;
+    }
+
+    @media (min-width: 768px) {
+      width: 100%;
+      margin: 0 auto;
+      margin-bottom: 50px;
+    }
+
+    @media (min-width: 1024px) {
+      margin: 0 auto;
+      margin-bottom: 50px;
+    }
   }
 
   &.section-p {
@@ -1800,6 +1838,8 @@ const StyledUl = styled.ul`
       justify-content: space-between;
       align-items: center;
 
+      opacity: 0;
+
 
       &.open-drop-left {
         animation: ${openLeftDrop} 0.3s forwards;
@@ -2060,8 +2100,6 @@ const Modal = styled.div`
   }
 
   &.modal-wrapper {
-    width: 400px;
-    height: 400px;
     background-color: ${lightTheme.Light};
     border-radius: 10px;
     margin: 0 auto;
@@ -2071,6 +2109,19 @@ const Modal = styled.div`
 
     &.closing {
       animation: ${slideDown} 0.5s forwards;
+    }
+
+    @media (max-width: 767px) {
+      width: 300px;
+      height: 300px;
+    }
+
+    @media (min-width: 768px) {
+      width: 400px;
+      height: 400px;
+    }
+
+    @media (min-width: 1024px) {
     }
   }
 
@@ -2082,7 +2133,6 @@ const Modal = styled.div`
     border: 3px solid ${lightTheme.Light};
 
     position: absolute;
-    top: 50%;
     left: 50%;
     transform: translate(-50%, -254%);
     z-index: 1;
@@ -2090,6 +2140,21 @@ const Modal = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media (max-width: 767px) {
+      width: 70px;
+      height: 70px;
+      top: calc(50% + 10px);
+    }
+
+    @media (min-width: 768px) {
+      width: 90px;
+      height: 90px;
+      top: 50%;
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 
   &.modal-container {
@@ -2105,6 +2170,14 @@ const Modal = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -40%);
+
+    @media (max-width: 767px) {
+      height: 160px;
+    }
+
+    @media (min-width: 768px) {
+      height: 200px;
+    }
 
     &.with-checkbox {
       height: 250px;
@@ -2132,19 +2205,30 @@ const Modal = styled.div`
 
 const Echo = styled.div`
   &.wrapper {
-    width: 200px;
-    height: 100px;
     overflow: hidden;
 
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -200%);
+
+    @media (max-width: 767px) {
+      width: 180px;
+      height: 90px;
+      top: calc(50% + 30px);
+    }
+
+    @media (min-width: 768px) {
+      width: 200px;
+      height: 100px;
+      top: 50%;
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 
   &.circle00 {
-    width: 98px;
-    height: 98px;
     background-color: ${(props) => props.theme.Yellow};
     opacity: 0.5;
     border-radius: 50%;
@@ -2155,11 +2239,22 @@ const Echo = styled.div`
     transform: translate(-50%, -97%);
 
     animation: ${pulse00} 1s infinite;
+
+    @media (max-width: 767px) {
+      width: 82px;
+      height: 82px;
+    }
+
+    @media (min-width: 768px) {
+      width: 98px;
+      height: 98px;
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 
   &.circle01 {
-    width: 120px;
-    height: 120px;
     background-color: ${(props) => props.theme.Yellow};
     opacity: 0.3;
     border-radius: 50%;
@@ -2170,11 +2265,19 @@ const Echo = styled.div`
     transform: translate(-50%, -88%);
 
     animation: ${pulse01} 1s infinite;
+
+    @media (max-width: 767px) {
+      width: 100px;
+      height: 100px;
+    }
+
+    @media (min-width: 768px) {
+      width: 120px;
+      height: 120px;
+    }
   }
 
   &.circle02 {
-    width: 140px;
-    height: 140px;
     background-color: ${(props) => props.theme.Yellow};
     opacity: 0.2;
     border-radius: 50%;
@@ -2185,6 +2288,16 @@ const Echo = styled.div`
     transform: translate(-50%, -81%);
 
     animation: ${pulse02} 1s infinite;
+
+    @media (max-width: 767px) {
+      width: 120px;
+      height: 120px;
+    }
+
+    @media (min-width: 768px) {
+      width: 140px;
+      height: 140px;
+    }
   }
 
   &.circle03 {
@@ -2200,6 +2313,16 @@ const Echo = styled.div`
     transform: translate(-50%, -76%);
 
     animation: ${pulse03} 1s infinite;
+
+    @media (max-width: 767px) {
+      width: 140px;
+      height: 140px;
+    }
+
+    @media (min-width: 768px) {
+      width: 160px;
+      height: 160px;
+    }
   }
 `;
 
@@ -2386,7 +2509,17 @@ const Search = styled.div`
 
   &.search-gen-titles {
     height: auto;
-    margin-bottom: 10px;
+
+    @media (max-width: 767px) {
+      margin-bottom: 10px;
+    }
+
+    @media (min-width: 768px) {
+      margin-bottom: 40px;
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 
   &.circle-profile-box {
@@ -2727,7 +2860,7 @@ const Portfolio = styled.div`
 
   &.header-container {
     height: auto;
-    margin-top: 40px;
+
     margin-bottom: 20px;
 
     display: flex;
@@ -2735,10 +2868,12 @@ const Portfolio = styled.div`
     justify-content: space-between;
 
     @media (max-width: 767px) {
+      margin-top: 20px;
       flex-direction: column;
     }
 
     @media (min-width: 768px) {
+      margin-top: 40px;
       flex-direction: column;
       align-items: flex-end;
     }
@@ -2759,7 +2894,7 @@ const Portfolio = styled.div`
     }
 
     @media (min-width: 1024px) {
-      width: calc(70% - 10px);
+      width: calc(60% - 10px);
     }
   }
 
@@ -2771,7 +2906,7 @@ const Portfolio = styled.div`
     @media (max-width: 767px) {
       width: 100%;
       height: 140px;
-      margin-top: 20px;
+      margin-top: 30px;
     }
 
     @media (min-width: 768px) {
@@ -2784,6 +2919,34 @@ const Portfolio = styled.div`
       width: calc(30% - 10px);
       height: 200px;
       margin-top: 0px;
+    }
+
+    &.centered {
+      @media (max-width: 767px) {
+        align-items: center;
+      }
+
+      @media (min-width: 768px) {
+        align-items: flex-start;
+      }
+    }
+  }
+
+  &.sns-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    @media (max-width: 767px) {
+      width: 65%;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      width: 50%;
+    }
+
+    @media (min-width: 1024px) {
     }
   }
 
@@ -3299,6 +3462,7 @@ const Footer = styled.div`
     align-items: center;
 
     @media (max-width: 767px) {
+      width: 90%;
       justify-content: space-between;
       margin-top: 10px;
       margin-bottom: 10px;
@@ -3316,19 +3480,6 @@ const Footer = styled.div`
       width: 30%;
     }
   }
-`;
-
-const BrandLogo = styled(Logo)`
-  width: 20px;
-  height: 20px;
-  fill: ${(props) => props.theme.Grey};
-`;
-
-const BrandText = styled.div`
-  font-size: 24px;
-  font-weight: 600;
-  letter-spacing: -0.3px;
-  margin-left: 5px;
 `;
 
 const Contact = styled.div`
@@ -3495,11 +3646,11 @@ const LoginDiv = styled.div`
 
   &.container {
     background-color: ${(props) => props.theme.Light};
-    margin: 0 auto;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
 
       @media (max-width: 767px) {
         width: 250px;
@@ -3579,19 +3730,18 @@ const LoginDiv = styled.div`
 
       @media (max-width: 767px) {
         width: 80%;
-        height: 60%;
-         margin-bottom: 0px;
+        height: 55%;
+        margin-bottom: 0px;
       }
 
       @media (min-width: 768px) {
-        width: 80%;
         height: 50%;
-        margin-bottom: 0px;
+        margin-top: 20px;
       }
 
       @media (min-width: 1024px) {
         width: 80%;
-        height: 40%;
+        height: 45%;
         margin-top: 50px;
         margin-bottom: 50px;
       }
@@ -3694,11 +3844,22 @@ const LoginDiv = styled.div`
     width: 90%;
     height: 18%;
     margin: 0 auto;
-    margin-top: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
+    @media (max-width: 767px) {
+      margin-top: 20px;
+    }
+
+    @media (min-width: 768px) {
+      margin-top: 0px;
+    }
+
+    @media (min-width: 1024px) {
+    margin-top: 0px;
+    }
 
     &.login {
       height: 20%;
@@ -3734,6 +3895,16 @@ const LoginDiv = styled.div`
     justify-content: space-between;
     align-items: center;
 
+    @media (max-width: 767px) {
+      width: 98%;
+      margin: 0;
+    }
+
+    @media (min-width: 768px) {
+      width: 90%;
+      margin-left: 10px;
+    }
+
     Input, Label {
     cursor: pointer;
     }
@@ -3763,30 +3934,18 @@ const Select = styled.select`
 const Option = styled.option``;
 
 const Input = styled.input`
-    width: 100%;
-    height: 30px;
+  width: 100%;
+  height: 30px;
   background: transparent;
   color: ${(props) => props.theme.Grey};
   border: none;
   outline: none;
   font-size: 16px;
   cursor: pointer;
-
-  input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 30px #fff inset;
-    -webkit-text-fill-color: #000;
-  }
-
-  input:-webkit-autofill,
-  input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus,
-  input:-webkit-autofill:active {
-    transition: background-color 5000s ease-in-out 0s;
-  }
-
-  &.loginpage {
-
-  }
+  padding: 0;
+  margin: 0;
+  text-indent: 0;
+  box-sizing: border-box;
 
   &.input-hide {
     display: none;
@@ -3823,22 +3982,31 @@ const Label = styled.label`
     transform: translateY(-30%);
     pointer-events: none;
     transition: 0.3s ease;
+    
+    
+    @media (max-width: 767px) {
+      font-size: 14px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 16px;
+    }
 
     ${Input}:focus + &,
-    &.active {
-      top: -20px;
-      transform: translateY(0%);
-      color: ${(props) => props.theme.Grey};
-    }
+      &.active {
+        top: -20px;
+        transform: translateY(0%);
+        color: ${(props) => props.theme.Grey};
+      }
 
-    &.active.valid {
-      color: ${(props) => props.theme.Green};
-    }
+      &.active.valid {
+        color: ${(props) => props.theme.Green};
+      }
 
-    &.active.invalid {
-      color: ${(props) => props.theme.Orange};
-      animation: ${shaking} 0.2s infinite;
-    }
+      &.active.invalid {
+        color: ${(props) => props.theme.Orange};
+        animation: ${shaking} 0.2s infinite;
+      }
   }
 
   &.remember {
@@ -3910,13 +4078,25 @@ const Label = styled.label`
       width: 130px;
     }
 
-    &:hover {
-      color: ${(props) => props.theme.HoverGrey};
 
-      .checkbox-icon-checked {
-        color: ${(props) => props.theme.HoverGreen};
+    @media (max-width: 767px) {
+      &:hover {
+        color: ${(props) => props.theme.HoverGrey};
+  
+        .checkbox-icon-checked {
+          color: ${(props) => props.theme.Green};
+        }
       }
     }
+  
+    @media (min-width: 768px) {
+      &:hover {
+        color: ${(props) => props.theme.HoverGrey};
+  
+        .checkbox-icon-checked {
+          color: ${(props) => props.theme.HoverGreen};
+        }
+      }
 
     .checkbox-icon-checked {
       color: ${(props) => props.theme.Green};
@@ -3930,8 +4110,8 @@ const Label = styled.label`
 `;
 
 const DarkButton = styled.div`
-  width: 62px;
-  height: 28px;
+  width: 52px;
+  height: 22px;
   border: 2px solid green;
   border-radius: 20px;
 
@@ -3939,23 +4119,31 @@ const DarkButton = styled.div`
   cursor: pointer;
 
   &.dark-circle {
-    width: 22px;
-    height: 22px;
     border: none;
     background-color: ${(props) => props.theme.Green};
 
     position: absolute;
-    top: calc(50% - 11px);
+    top: calc(58% - 11px);
 
     transition: left 0.3s ease;
     z-index: 1;
 
+    @media (max-width: 767px) {
+      width: 19px;
+      height: 19px;
+    }
+
+    @media (min-width: 768px) {
+      width: 18px;
+      height: 18px;
+    }
+
     &.dark-mode {
-      left: 3px;
+      left: 2px;
     }
 
     &.light-mode {
-      left: 37px;
+      left: 32px;
     }
   }
 `;
@@ -3968,10 +4156,30 @@ const Button = styled.button`
   padding: 10px 20px;
   text-align: center;
   display: inline-block;
-  margin: 4px 2px;
   cursor: pointer;
   border-radius: 5px;
   white-space: nowrap;
+
+  &.register-back {
+    position: absolute;
+    margin: 0;
+    padding: 10px;
+
+    @media (max-width: 767px) {
+      top: 12px;
+      left: 10px;
+    }
+
+    @media (min-width: 768px) {
+      top: 20px;
+      left: 15px;
+    }
+
+    @media (min-width: 1024px) {
+      top: 30px;
+      left: 25px;
+    }
+  }
 
   &.footer-btn {
     @media (max-width: 767px) {
@@ -4052,7 +4260,6 @@ const Button = styled.button`
     padding: 0;
     width: 55px;
     height: 100%;
-    margin-right: 20px;
 
     &:last-child {
       margin: 0;
@@ -4215,22 +4422,36 @@ const StyledIcon = css`
   }
 `;
 
+const BrandLogo = styled(Logo)`
+  width: 20px;
+  height: 20px;
+  fill: ${(props) => props.theme.Grey};
+`;
+
 const Moon = styled(PiMoonBold)`
   fill: ${(props) => props.theme.Grey};
   width: 18px;
   height: 18px;
   position: absolute;
   top: calc(50% - 9px);
-  left: 5px;
+  left: 2px;
+
+  &.off {
+    opacity: 0;
+  }
 `;
 
 const Sun = styled(PiSunBold)`
   fill: ${(props) => props.theme.Grey};
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   position: absolute;
-  top: calc(50% - 9px);
-  left: 38px;
+  top: calc(50% - 8px);
+  left: 33px;
+
+  &.off {
+    opacity: 0;
+  }
 `;
 
 const LeftIcon = styled(IoIosArrowBack)`
@@ -4383,8 +4604,6 @@ const s = {
   AboutDiv,
   Line,
   Atag,
-  BrandLogo,
-  BrandText,
   BrandTitleWrapper,
   DarkButton,
   Button,
@@ -4438,6 +4657,7 @@ const s = {
 
   StyledCircularProgressbar,
 
+  BrandLogo,
   Sun,
   Moon,
 

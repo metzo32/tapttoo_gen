@@ -12,6 +12,7 @@ import CurrentUserData from "../stores/CurrentUserData";
 export default function Profile() {
   const { currentlyLoggedIn, setCurrentlyLoggedIn } = useContext(AuthContext);
   const [userData, setUserData] = useState<any>(null);
+  const [daysPassed, setDaysPassed] = useState<number | null>(null);
   const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
   const navigate = useNavigate();
 
@@ -35,8 +36,31 @@ export default function Profile() {
         }
       }
     };
-
     fetchUserData();
+  }, []);
+
+  useEffect(() => {
+    const fetchSignupDate = async () => {
+      try {
+        const user = auth.currentUser;
+        if (user) {
+          const userRef = doc(db, "users", user.uid);
+          const userDoc = await getDoc(userRef);
+
+          if (userDoc.exists()) {
+            const signupDate = userDoc.data().signupDate.toDate();
+            const currentDate = new Date();
+            const timeDifference = currentDate.getTime() - signupDate.getTime();
+            const daysPassed = Math.floor(timeDifference / (1000 * 3600 * 24)) + 1; // 첫날을 1일로
+            setDaysPassed(daysPassed);
+          }
+        }
+      } catch (error) {
+        console.error("가입 날짜를 가져오는 중 오류 발생:", error);
+      }
+    };
+
+    fetchSignupDate();
   }, []);
 
 

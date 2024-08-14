@@ -38,16 +38,6 @@ const RegisterPage = () => {
   const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    console.log("회원가입 시도:", {
-      email: registerEmail,
-      password: registerPw,
-      fullname: registerFullname,
-      nickname: registerNickname,
-      phonenumber: registerPhonenumber,
-      countryCode: countryCode,
-      isValidAge: isValidAge,
-    });
-
     if (registerPw !== registerPwConfirm) {
       alert("비밀번호가 일치하지 않습니다.");
       return;
@@ -66,6 +56,7 @@ const RegisterPage = () => {
       console.log("User registered:", user);
 
       try {
+        //firestore에 사용자 입력값 저장
         await setDoc(doc(db, "users", user.uid), {
           email: registerEmail,
           fullname: registerFullname,
@@ -176,11 +167,14 @@ const RegisterPage = () => {
     setBirthYear(year);
     setBirthMonth(month);
     setBirthDay(day);
-    console.log(year, month, day);
   };
 
   const handleGenderChange = (onGenderChange: string) => {
     setGender(onGenderChange);
+  };
+
+  const handlePrevStep = () => {
+    setStep(1);
   };
 
   return (
@@ -269,6 +263,10 @@ const RegisterPage = () => {
 
           {step === 2 && (
             <s.LoginDiv className="container step02">
+              <s.Button className="register-back" onClick={handlePrevStep}>
+                <s.LeftIcon />
+              </s.Button>
+
               <s.LoginDiv className="input-wrapper step02">
                 <RegisterInputItems
                   name={"fullname"}

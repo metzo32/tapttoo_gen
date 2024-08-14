@@ -7,24 +7,28 @@ interface UserProfileProps {
     countryCode: string;
     isValidAge: boolean;
     gender: string;
-    birthYear: string;    // 생년월일 추가
-    birthMonth: string;   // 생년월일 추가
-    birthDay: string;     // 생년월일 추가
-
+    birthYear: string;
+    birthMonth: string;
+    birthDay: string;
   };
 }
 
 const CurrentUserData: React.FC<UserProfileProps> = ({ userData }) => {
   return (
     <div>
-      <h1>사용자 프로필</h1>
       <p>이름: {userData.fullname}</p>
       <p>닉네임: {userData.nickname}</p>
       <p>이메일: {userData.email}</p>
-      <p>전화번호: {userData.countryCode} {userData.phonenumber}</p>
-      <p>성인여부: {userData.isValidAge ? "성인" : "미성년자"}</p>
+      <p>
+        전화번호: {userData.countryCode} {userData.phonenumber}
+      </p>
+      <p>성인여부: {userData.isValidAge ? "O" : "X"}</p>
       <p>성별: {userData.gender}</p>
-      <p>생년월일: {`${userData.birthYear}-${userData.birthMonth}-${userData.birthDay}`}</p>
+      <p>
+        생년월일:
+        {`${userData.birthYear}-${userData.birthMonth}-${userData.birthDay}`}
+      </p>
+      {/* <p>가입한지: {userData.signupDate}일째</p> */}
     </div>
   );
 };

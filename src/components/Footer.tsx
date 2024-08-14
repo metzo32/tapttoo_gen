@@ -13,7 +13,7 @@ export default function Footer() {
       <s.Footer className="footer-container">
         <s.Footer className="brand-wrapper">
           <s.BrandLogo />
-          <s.BrandText>Tapttoo</s.BrandText>
+          <s.StyledH4 className="brand-text">Tapttoo</s.StyledH4>
         </s.Footer>
         <s.Footer className="footer-button-wrapper">
           <s.Button
@@ -76,7 +76,7 @@ export default function Footer() {
       <s.Footer className="copyright">
         <s.Footer className="footer-box-left">
           <s.StyledP className="footer-copyright">
-            {"\u00A9"} 2024 Tabttoo All Rights Reserved
+            {"\u00A9"} 2024 Tapttoo All Rights Reserved
           </s.StyledP>
         </s.Footer>
 

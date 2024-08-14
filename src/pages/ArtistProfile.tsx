@@ -110,9 +110,36 @@ const ArtistProfile: React.FC<ArtistDetailPageProps> = ({ artist }) => {
               </s.StyledH2>
             </s.Portfolio>
 
-            <s.Line className="vertical dark display" />
+            <s.Line className="vertical dark display-narrow" />
 
-            <s.Portfolio className="mid-box-right">연락처</s.Portfolio>
+            <s.Portfolio className="mid-box-right centered">
+                <s.StyledH4 className="profile-sns">
+                  Have a Look
+                </s.StyledH4>
+              <s.Portfolio className="sns-box">
+                <a
+                  href="https://www.facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <s.FaceBookIcon className="outlined" />
+                </a>
+                <a
+                  href="https://www.instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <s.InstagramIcon className="outlined" />
+                </a>
+                <a
+                  href="https://www.youtube.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <s.YoutubeIcon className="outlined" />
+                </a>
+              </s.Portfolio>
+            </s.Portfolio>
           </s.Portfolio>
         </s.Portfolio>
 

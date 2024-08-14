@@ -74,7 +74,9 @@ const Modal: React.FC<ModalProps> = ({
             <s.Echo className="circle02" />
             <s.Echo className="circle03" />
           </s.Echo>
-          <s.Modal className={`modal-container ${showCheckbox} ? "with-checkbox" : ""`}>
+          <s.Modal
+            className={`modal-container ${showCheckbox ? "with-checkbox" : ""}`}
+          >
             <s.StyledH1 className="warning">{modalTitle}</s.StyledH1>
             <s.Modal className="text-box">{children}</s.Modal>
             {showCheckbox && (
@@ -99,7 +101,9 @@ const Modal: React.FC<ModalProps> = ({
                 </s.Label>
               </s.Modal>
             )}
-            <s.Modal className={`modal-button-box ${addButton ? "two-buttons" : ""}`}>
+            <s.Modal
+              className={`modal-button-box ${addButton ? "two-buttons" : ""}`}
+            >
               <s.Button className="Round modal" onClick={handleModalClose}>
                 {modalButtonClose}
               </s.Button>
