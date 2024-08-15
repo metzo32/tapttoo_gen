@@ -19,7 +19,7 @@ const LoginPage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
-  const [modalMessage, setModalMessage] = useState(""); // 모달에 표시될 메시지 상태
+  const [modalMessage, setModalMessage] = useState<React.ReactNode>(""); // 모달에 표시될 메시지 상태
 
   useEffect(() => {
     if (currentlyLoggedIn) {
@@ -27,50 +27,80 @@ const LoginPage = () => {
     }
   }, [currentlyLoggedIn, navigate]);
 
-  const handleSignIn = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    signInWithEmailAndPassword(auth, signInEmail, signInPw)
-      .then((userCredential) => {
-        console.log(userCredential);
-        const user = userCredential.user;
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        signInEmail,
+        signInPw
+      );
+      console.log(userCredential);
+      const user = userCredential.user;
 
-        if (rememberMe) {
-          //체크된 경우
-          localStorage.setItem("username", signInEmail);
-        } else {
-          localStorage.removeItem("username");
-        }
-        setCurrentlyLoggedIn(true);
-        setIsLoggedIn(true);
-        navigate("/"); // 성공 시 홈으로 이동
-      })
-      .catch((error) => {
-        console.error("Error signing in:", error);
-        const errorCode = error.code;
-        let message = ""; // 모달에 표시할 메시지 변수
+      if (rememberMe) {
+        // 체크된 경우
+        localStorage.setItem("username", signInEmail);
+      } else {
+        localStorage.removeItem("username");
+      }
 
-        // 에러 코드에 따라 메시지 설정
-        switch (errorCode) {
-          case "auth/user-not-found":
-            message = "등록되지 않은 계정입니다. 회원가입을 진행해 주세요.";
-            break;
-          case "auth/wrong-password":
-            message = "비밀번호가 올바르지 않습니다. 다시 시도해 주세요.";
-            break;
-          case "auth/too-many-requests":
-            message =
-              "로그인 시도가 너무 많습니다. 잠시 후 다시 시도해 주세요.";
-            break;
-          default:
-            message = "로그인에 실패했습니다. 다시 시도해 주세요.";
-        }
+      setCurrentlyLoggedIn(true);
+      setIsLoggedIn(true);
+      navigate("/"); // 성공 시 홈으로 이동
+    } 
+    
+    catch (error) {
+      const typedError = error as { code: string }; // error를 명시적으로 타입 단언
+      console.error("Error signing in:", typedError);
+      const errorCode = typedError.code;
 
-        setModalMessage(message); // 모달 메시지 설정
-        handleOpenModal(); // 모달 열기
-        setCurrentlyLoggedIn(false);
-        setIsLoggedIn(false);
-      });
+      // 에러 코드에 따라 메시지 설정
+      switch (errorCode) {
+        case "auth/user-not-found":
+          setModalMessage(
+            <>
+              <s.StyledP className="modal-text">등록되지 않은 계정입니다.</s.StyledP>
+              <s.StyledP className="modal-text">회원가입을 진행해 주세요.</s.StyledP>
+            </>
+          );
+          break;
+        case "auth/wrong-password":
+          setModalMessage(
+            <>
+              <s.StyledP className="modal-text">
+                비밀번호가 올바르지 않습니다.
+              </s.StyledP>
+              <s.StyledP className="modal-text">다시 시도해주세요.</s.StyledP>
+            </>
+          );
+          break;
+        case "auth/too-many-requests":
+          setModalMessage(
+            <>
+              <s.StyledP className="modal-text">
+                로그인 시도가 너무 많습니다.
+              </s.StyledP>
+              <s.StyledP className="modal-text">
+                잠시 후 다시 시도해주세요.
+              </s.StyledP>
+            </>
+          );
+          break;
+        default:
+          setModalMessage(
+            <>
+              <s.StyledP className="modal-text">로그인에 실패했습니다.</s.StyledP>
+              <s.StyledP className="modal-text">다시 시도해주세요.</s.StyledP>
+            </>
+          );
+      }
+
+      handleOpenModal(); // 모달 열기
+      setCurrentlyLoggedIn(false);
+      setIsLoggedIn(false);
+    }
   };
 
   const handleNavigation = (path: string) => {
@@ -128,9 +158,9 @@ const LoginPage = () => {
           showCheckbox={false}
           modalButtonClose={"닫기"}
           addButton={false}
-        >
-          <s.StyledP className="modal">{modalMessage}</s.StyledP>
-        </Modal>
+          text={modalMessage}
+        />
+
 
         <s.Form className="login" onSubmit={handleSignIn}>
           <s.LoginDiv className="container">

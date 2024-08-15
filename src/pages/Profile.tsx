@@ -14,6 +14,7 @@ export default function Profile() {
   const [userData, setUserData] = useState<any>(null);
   const [daysPassed, setDaysPassed] = useState<number | null>(null);
   const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
+  const [modalMessage, setModalMessage] = useState<React.ReactNode>(""); // 모달에 표시될 메시지 상태
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -30,7 +31,7 @@ export default function Profile() {
         console.log("Done!");
         if (userDoc.exists()) {
           setUserData(userDoc.data());
-          console.log(userDoc.data())
+          console.log(userDoc.data());
         } else {
           console.log("No such document!");
         }
@@ -51,7 +52,8 @@ export default function Profile() {
             const signupDate = userDoc.data().signupDate.toDate();
             const currentDate = new Date();
             const timeDifference = currentDate.getTime() - signupDate.getTime();
-            const daysPassed = Math.floor(timeDifference / (1000 * 3600 * 24)) + 1; // 첫날을 1일로
+            const daysPassed =
+              Math.floor(timeDifference / (1000 * 3600 * 24)) + 1; // 첫날을 1일로
             setDaysPassed(daysPassed);
           }
         }
@@ -63,8 +65,6 @@ export default function Profile() {
     fetchSignupDate();
   }, []);
 
-
-
   return (
     <s.ProfileDiv className="wrapper">
       <Modal
@@ -72,13 +72,18 @@ export default function Profile() {
         onClose={handleCloseModal}
         modalTitle={"잠깐!"}
         showCheckbox={false}
+        text={
+          <>
+          <s.StyledP className="modal-text">
+            정말 로그아웃 하시겠습니까?
+          </s.StyledP>
+          </>
+        }
         modalButtonClose={"취소"}
         addButton={true}
         modalButtonOption={"로그아웃"}
         onOptionClick={handleLogout}
-      >
-        <s.StyledP className="modal">정말 로그아웃 하시겠습니까?</s.StyledP>
-      </Modal>
+      />
 
       <s.ProfileDiv>
         {userData ? <CurrentUserData userData={userData} /> : <p>Loading...</p>}

@@ -34,6 +34,7 @@ const RegisterPage = () => {
   const [step, setStep] = useState<number>(1);
 
   const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
+  const [modalMessage, setModalMessage] = useState<React.ReactNode>(""); // 모달에 표시될 메시지 상태
 
   const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -70,14 +71,32 @@ const RegisterPage = () => {
           gender: gender,
         });
         console.log("Firestore에 사용자 정보 저장 성공!");
+        handleOpenModal();
       } catch (error) {
         console.error("Firestore에 사용자 정보 저장 실패:", error);
       }
 
       navigate("/profile");
     } catch (error) {
-      console.error("회원가입 실패:", error);
-      alert(`회원가입 중 오류가 발생했습니다: ${(error as Error).message}`);
+      const typedError = error as { code: string }; // error를 명시적으로 타입 단언
+      console.error("Error signing in:", typedError);
+      const errorCode = typedError.code;
+
+      switch (errorCode) {
+        case "auth/email-already-in-use":
+          setModalMessage("이미 사용 중인 이메일입니다.");
+          break;
+        case "auth/invalid-email":
+          setModalMessage("유효하지 않은 이메일 주소입니다.");
+          break;
+        case "auth/operation-not-allowed":
+          setModalMessage("회원가입이 현재 허용되지 않습니다.");
+          break;
+        default:
+          setModalMessage("회원가입 중 알 수 없는 오류가 발생했습니다.");
+      }
+
+      handleOpenModal(); // 모달 열기
     }
   };
 
@@ -131,7 +150,14 @@ const RegisterPage = () => {
   };
 
   const handleAgeValidation = (isValid: boolean | null) => {
+    if (!birthYear || !birthMonth || !birthDay) {
+      return; // 모든 날짜 정보가 입력되지 않았다면 아무것도 하지 않음
+    }
+
     setIsValidAge(!isValid);
+    if (!isValid) {
+      handleOpenModal(); // 모달 열기
+    }
   };
 
   const handleNextStep = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -188,13 +214,17 @@ const RegisterPage = () => {
           checkboxText={"이해했습니다."}
           modalButtonClose={"닫기"}
           addButton={false}
-        >
-          <s.StyledP className="modal">
-            19세 미만 회원의 경우,
-            <br />
-            예약 및 시술이 제한될 수 있습니다.
-          </s.StyledP>
-        </Modal>
+          text={
+            <>
+              <s.StyledP className="modal-text">
+                19세 미만 회원의 경우,
+              </s.StyledP>
+              <s.StyledP className="modal-text">
+                예약 또는 시술이 제한될 수 있습니다.
+              </s.StyledP>
+            </>
+          }
+        />
 
         <s.Form className="login" onSubmit={handleSignUp}>
           {step === 1 && (

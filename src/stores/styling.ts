@@ -770,8 +770,19 @@ const StyledH1 = styled.h1`
     color: ${lightTheme.Green};
     font-size: 28px;
     font-weight: 400;
-    line-height: 35px;
+    line-height: 30px;
     letter-spacing: 0px;
+
+    @media (max-width: 767px) {
+      font-size: 24px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 28px;
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 `;
 
@@ -1381,7 +1392,7 @@ const StyledP = styled.p`
     font-weight: 500;
   }
 
-  &.modal {
+  &.modal-text {
     color: ${lightTheme.Grey};
     font-size: 16px;
     line-height: 22px;
@@ -1540,7 +1551,7 @@ const CirText = styled.span`
     height: 300px;
     position: relative;
     margin: auto;
-    border-radius: 50%; 
+    border-radius: 50%;
     border: 1px solid green;
   }
 
@@ -2212,16 +2223,26 @@ const Modal = styled.div`
     }
 
     &.with-checkbox {
-      height: 250px;
+      @media (max-width: 767px) {
+        width: 235x;
+        height: 180px;
+      }
+
+      @media (min-width: 768px) {
+        height: 250px;
+      }
+
+      @media (min-width: 1024px) {
+      }
     }
   }
 
   &.checkbox-container {
-    margin-top: 30px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-top: 0px;
   }
 
   &.modal-button-box {
@@ -2581,11 +2602,6 @@ const Search = styled.div`
     margin-top: 30px;
   }
 
-  &.text-box {
-    width: 50%;
-    height: 100%;
-  }
-
   &.line-box {
     height: auto;
     display: flex;
@@ -2734,6 +2750,11 @@ const Search = styled.div`
   }
 `;
 
+const ModalText = styled.div`
+  width: 80%;
+  height: auto;
+`;
+
 const ArticleGrid = styled.div`
   width: 100%;
   height: auto;
@@ -2775,13 +2796,13 @@ const ArticleDiv = styled.div`
   }
 
   &.mid-wrapper {
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
   }
 
   &.article-cards {
-    width: 50%;
-    aspect-ratio: 1 / 1;
+    width: 100vw;
+    height: 100vh;
     margin: 0;
     position: relative;
     z-index: 1;
@@ -2790,25 +2811,14 @@ const ArticleDiv = styled.div`
 
     &:hover .article-grid-image {
       filter: brightness(0.6);
+      transition: filter 0.5s ease 0.5s;
     }
 
     &:hover .article-name {
       font-size: 100px;
       letter-spacing: -4px;
       opacity: 1;
-      transition: 0.3s ease;
-    }
-
-    @media (max-width: 767px) {
-      width: 100%;
-    }
-
-    @media (min-width: 768px) {
-      width: 50%;
-    }
-
-    @media (min-width: 1024px) {
-      width: 50%;
+      transition: 0.5s ease 0.5s;
     }
   }
 
@@ -4058,7 +4068,13 @@ const Label = styled.label`
       color: ${(props) => props.theme.HoverGrey};
 
       .checkbox-icon-checked {
-        color: ${(props) => props.theme.HoverGreen};
+        @media (max-width: 767px) {
+          color: ${(props) => props.theme.Green};
+        }
+
+        @media (min-width: 768px) {
+          color: ${(props) => props.theme.HoverGreen};
+        }
       }
     }
 
@@ -4079,7 +4095,13 @@ const Label = styled.label`
       color: ${lightTheme.HoverGrey};
 
       .checkbox-icon-checked {
-        color: ${lightTheme.HoverGreen};
+        @media (max-width: 767px) {
+          color: ${lightTheme.Green};
+        }
+
+        @media (min-width: 768px) {
+          color: ${lightTheme.HoverGreen};
+        }
       }
     }
 
@@ -4648,6 +4670,7 @@ const s = {
   Test,
   Contact,
   Div,
+  ModalText,
   Footer,
   Form,
   GridImage,

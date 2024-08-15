@@ -1,104 +1,48 @@
-import useFolderScroll from "../hooks/FolderScrollHook";
-import { useRef } from "react";
+// import React, { useEffect, useRef } from 'react';
+// import gsap from 'gsap';
+// import ScrollTrigger from 'gsap/ScrollTrigger';
+// import '../stores/test.css'
 
-// styles.ts
-import styled from 'styled-components';
+// gsap.registerPlugin(ScrollTrigger);
 
-export const Header = styled.div`
-  position: fixed;
-  z-index: 1;
-  background-color: #FFF;
-  top: 0;
-  width: 100%;
-  height: 4vh;
-  border-bottom: 1px solid #191919;
-  display: flex;
-  align-items: center;
-  padding-left: 5vh;
-  font-size: 2vh;
-`;
+// const CareerMarketing = () => {
+//   const boxesRef = useRef<(HTMLDivElement | null)[]>([]);
 
-export const StartScreen = styled.div`
-  padding-top: 4vh;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 6vh;
-  text-align: center;
-`;
+//   useEffect(() => {
+//     boxesRef.current.forEach((box, i) => {
+//       ScrollTrigger.create({
+//         trigger: box,
+//         start: 'top top',
+//         pin: true,
+//         pinSpacing: false,
+//         anticipatePin: 1,
+//         markers: true,
+//         snap: {
+//           snapTo: 1, // Snap to each section
+//           duration: { min: 0.2, max: 0.6 }, // Snap animation duration
+//           delay: 0, // Delay before snap animation starts
+//         },
+//       });
+//     });
+//   }, []);
 
-export const MainContent1 = styled.div`
-  background-color: #ebefd6;
-  border-top: 1px solid #191919;
-  border-bottom: 1px solid #191919;
-  width: 100%;
-  height: 500vh;
-  margin-bottom: 100vh;
-`;
+//   return (
+//     <div>
+//       <div className="box a" ref={(el) => (boxesRef.current[0] = el)}>a</div>
+//       <div className="box b" ref={(el) => (boxesRef.current[1] = el)}>b</div>
+//       <div className="box c" ref={(el) => (boxesRef.current[2] = el)}>c</div>
+//       <div className="box d" ref={(el) => (boxesRef.current[3] = el)}>d</div>
+//     </div>
+//   );
+// };
 
-export const StickyTitle = styled.div`
-  width: 100%;
-  height: 76vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3vw;
-  font-weight: bold;
-  text-align: center;
-`;
+// export default CareerMarketing;
+import React from 'react'
 
-export const Sticky = styled.div`
-  position: sticky;
-  top: 0;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-`;
-
-export const Section = styled.div`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background-color: #FAFAFA;
-`;
-
-export const Title = styled.div`
-  border-top: 1px solid #191919;
-  background-color: #FFF;
-  height: 6vh;
-  display: flex;
-  align-items: center;
-  font-size: 2vh;
-  padding-left: 3vh;
-`;
-
-export const Content = styled.div`
-  height: calc(96vh - 6vh * 4);
-`;
-
-
-const App: React.FC = () => {
-  const mainContentRef = useRef<HTMLDivElement>(null);
-  const stickyRef = useRef<HTMLDivElement>(null);
-
-  useFolderScroll(mainContentRef, stickyRef);
-
+export default function CareerMarketing() {
   return (
-    <>
-      <MainContent1 ref={mainContentRef} className="main-content-1">
-        <Sticky ref={stickyRef} className="sticky">
-          <StickyTitle>Inspired By <br />https://www.appart.agency/</StickyTitle>
-          {Array.from({ length: 4 }, (_, i) => (
-            <Section className={`section section-${i + 1}`} key={i}>
-              <Title className="title">TITLE #{i + 1}</Title>
-              <Content className="content" />
-            </Section>
-          ))}
-        </Sticky>
-      </MainContent1>
-    </>
-  );
+    <div>
+      
+    </div>
+  )
 }
-
-export default App;

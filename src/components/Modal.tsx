@@ -6,7 +6,7 @@ interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   modalTitle: string;
-  children: ReactNode;
+  text: ReactNode;
   showCheckbox: boolean;
   checkboxText?: string;
   modalButtonClose: string;
@@ -19,7 +19,7 @@ const Modal: React.FC<ModalProps> = ({
   isOpen,
   onClose,
   modalTitle,
-  children,
+  text,
   showCheckbox,
   checkboxText,
   modalButtonClose,
@@ -78,7 +78,7 @@ const Modal: React.FC<ModalProps> = ({
             className={`modal-container ${showCheckbox ? "with-checkbox" : ""}`}
           >
             <s.StyledH1 className="warning">{modalTitle}</s.StyledH1>
-            <s.Modal className="text-box">{children}</s.Modal>
+            <s.ModalText>{text}</s.ModalText>
             {showCheckbox && (
               <s.Modal className="checkbox-container">
                 <s.Input

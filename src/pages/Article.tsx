@@ -5,7 +5,13 @@ import ScrollToTop from "../components/ScrollToTop";
 import WishList from "../components/WishList";
 import SortButtons from "../components/SortButtons";
 
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 const Article: React.FC = () => {
+
   const [articles, setArticles] = useState<number[]>([1, 2, 3, 4]);
   const [sortedData, setSortedData] = useState(ArtistData);
 
@@ -40,17 +46,15 @@ const Article: React.FC = () => {
     setSortedData(sortedArray);
   };
 
-
-
   return (
     <s.ArticleDiv className="wrapper">
       <ScrollToTop />
 
-      <SortButtons sortedData={sortedData} sortDone={handleSort}/>
+      <SortButtons sortedData={sortedData} sortDone={handleSort} />
 
       <s.ArticleDiv className="mid-wrapper">
-        {articles.map((index) => {
-          const artist = sortedData[index]; // 정렬된 새로운 배열을 할당하여 업데이트
+        {articles.map((nickname) => {
+          const artist = sortedData[nickname]; // 정렬된 새로운 배열을 할당하여 업데이트
           return (
             <s.ArticleDiv
               key={artist.nickname} // 초기 {index} 사용 시 재정렬이 화면 상에는 적용되나, 리디렉션이 되지 않음.
