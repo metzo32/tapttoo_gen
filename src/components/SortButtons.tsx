@@ -12,11 +12,7 @@ export default function SortButtons({
   sortDone,
 }: SortButtonsProps) {
   const [showDropLeft, setShowDropLeft] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  const [isDropped, setIsDropped] = useState<null | boolean>(null);
 
   const handleSortAlphabet = () => {
     const sorted = [...sortedData].sort((a, b) =>
@@ -43,7 +39,19 @@ export default function SortButtons({
   };
 
   const handleDropLeft = () => {
-    setShowDropLeft((prevShowDropLeft) => !prevShowDropLeft);
+    if (isDropped === null) {
+      setIsDropped(true);
+      setShowDropLeft(true);
+    } else {
+      setShowDropLeft((prevShowDropLeft) => !prevShowDropLeft);
+      if (isDropped) {
+        setIsDropped(false);
+        setTimeout(() => setShowDropLeft(false), 300);
+      } else {
+        setShowDropLeft(true);
+        setTimeout(() => setIsDropped(true), 0);
+      }
+    }
   };
 
   return (
@@ -51,11 +59,11 @@ export default function SortButtons({
       <s.ArticleDiv className="button-container">
         <s.StyledUl
           className={`dropdown-box ${
-            isMounted
-              ? showDropLeft
-                ? "open-drop-left"
-                : "close-drop-left"
-              : "" // 초기 마운트 시에는 아무 클래스도 추가하지 않음
+            isDropped === null
+              ? ""
+              : isDropped
+              ? "open-drop-left"
+              : "close-drop-left"
           }`}
         >
           <s.StyledLi className="dropdown-li">

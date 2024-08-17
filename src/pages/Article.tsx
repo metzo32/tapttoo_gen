@@ -10,10 +10,19 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Article: React.FC = () => {
+// Helper function to generate random image URL
+const generateRandomImage = (id: number) => `https://picsum.photos/1440/900?random=${id}`;
 
-  const [articles, setArticles] = useState<number[]>([1, 2, 3, 4]);
-  const [sortedData, setSortedData] = useState(ArtistData);
+const Article: React.FC = () => {
+  // Initialize state with random images
+  const [sortedData, setSortedData] = useState(
+    ArtistData.map((artist) => ({
+      ...artist,
+      randomImage: generateRandomImage(artist.id), 
+    }))
+  );
+
+  const [articles, setArticles] = useState<number[]>([0, 1, 2, 3]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,16 +31,16 @@ const Article: React.FC = () => {
         document.body.offsetHeight - 1500
       ) {
         setArticles((prevArticles) => [
-          ...prevArticles, //useState에 사용된 articles의 최신 상태를 참조
+          ...prevArticles, 
+          prevArticles.length, 
           prevArticles.length + 1,
-          prevArticles.length + 2,
         ]);
       }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []); //컴포넌트가 마운트될 때 이벤트 리스너 추가
+  }, []);
 
   const handleCardRedirect = (nickname: string) => {
     const url = `/profile_artist_${nickname}`;
@@ -43,7 +52,11 @@ const Article: React.FC = () => {
   };
 
   const handleSort = (sortedArray: typeof ArtistData) => {
-    setSortedData(sortedArray);
+    const sortedWithImages = sortedArray.map((artist) => ({
+      ...artist,
+      randomImage: generateRandomImage(artist.id),
+    }));
+    setSortedData(sortedWithImages);
   };
 
   return (
@@ -53,11 +66,14 @@ const Article: React.FC = () => {
       <SortButtons sortedData={sortedData} sortDone={handleSort} />
 
       <s.ArticleDiv className="mid-wrapper">
-        {articles.map((nickname) => {
-          const artist = sortedData[nickname]; // 정렬된 새로운 배열을 할당하여 업데이트
+        {articles.map((index) => {
+          const artist = sortedData[index]; // index로 접근
+
+          if (!artist) return null; // artist가 undefined일 경우 null 반환
+
           return (
             <s.ArticleDiv
-              key={artist.nickname} // 초기 {index} 사용 시 재정렬이 화면 상에는 적용되나, 리디렉션이 되지 않음.
+              key={artist.id}
               className="article-cards"
               onClick={() => handleCardRedirect(artist.nickname)}
             >

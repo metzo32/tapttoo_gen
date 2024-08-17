@@ -1475,6 +1475,12 @@ const StyledP = styled.p`
       line-height: 30px;
     }
   }
+
+  &.loading-text01 {
+    position: absolute;
+    top: 0;
+    left: 50%;
+  }
 `;
 
 const Mask = styled.div`
@@ -1520,27 +1526,47 @@ const Mask = styled.div`
   }
 `;
 
-// const MaskText = styled.p`
-//   font-family: "DM Serif Display", serif;
-//   color: ${(props) => props.theme.Green};
-//   font-size: 48em;
-//   letter-spacing: -0.05em;
-//   font-weight: 400;
-//   line-height: 110px;
-//   margin: 0px;
+const Loading = styled.div`
+  &.loading-wrapper {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+`;
 
-//   transform: scaleX(1);
-//   transform-origin: center;
+const MaskText = styled.div`
 
-//   position: absolute;
-//   top: 25%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
+  &.text-contatiner {
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+    position: absolute;
+  }
+  &.text {
+    width: 140%;
+    background-color: #fff;
 
-//   &.masked {
-//     color: ${(props) => props.theme.White};
-//   }
-// `;
+    color: black;
+    font-size: 30vw;
+    font-weight: 600;
+    line-height: 1em;
+    letter-spacing: -2vw;
+    text-align- bottom;
+
+    margin: 0;
+    padding-top: 80%;
+    mix-blend-mode: lighten;
+    
+
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 50%;
+    transform-origin: bottom;
+    transform: translate(-50%, 5%);
+  }
+`;
 
 const CirText = styled.span`
   &.splitting {
@@ -1890,7 +1916,7 @@ const StyledUl = styled.ul`
       }
 
       &.close-drop-left {
-      animation: ${closeLeftDrop} 0.3s forwards;
+        animation: ${closeLeftDrop} 0.3s forwards;
         transform-origin: top right;
       }
     }
@@ -1968,6 +1994,13 @@ const ArticleCard = styled.div`
 
 const Image = styled.img`
   width: 100%;
+
+  &.loading-image {
+    width: 100vw;
+    height: 100%;
+    object-fit: cover; /* 이미지가 컨테이너를 덮도록 조절 */
+    object-position: center; /* 이미지의 중앙을 기준으로 위치 */
+  }
 
   &.BrandMidImage {
     height: auto;
@@ -3971,6 +4004,8 @@ const Select = styled.select`
   padding: 4px;
   border-radius: 8px;
   cursor: pointer;
+
+  }
 `;
 
 const Option = styled.option``;
@@ -3988,6 +4023,16 @@ const Input = styled.input`
   margin: 0;
   text-indent: 0;
   box-sizing: border-box;
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-transition: background-color 9999s ease-out;
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+    -webkit-text-fill-color: #fff !important;
+  }
 
   &.input-hide {
     display: none;
@@ -4661,6 +4706,8 @@ const s = {
   BrandTitleWrapper,
   DarkButton,
   Button,
+  Loading,
+  MaskText,
   CirText,
   CareerDetail,
   CareerDiv,

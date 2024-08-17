@@ -33,6 +33,8 @@ import ArtistData from "./assets/datas/artitst_data";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import Modal from "./components/Modal";
 import GenerateImage from "./pages/GenerateImage";
+import loading from "./pages/testpage"
+import Loading from "./components/Loading";
 
 const App: React.FC = () => {
   const [currentlyLoggedIn, setCurrentlyLoggedIn] = useState(false);
@@ -54,9 +56,8 @@ const App: React.FC = () => {
 
   // 초기 로딩 중이면 로딩 표시
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading />; // 로딩 화면에 헤더와 푸터가 보이지 않도록 설정
   }
-
   return (
     <>
       <AuthContext.Provider value={{ currentlyLoggedIn, setCurrentlyLoggedIn }}>
@@ -70,6 +71,7 @@ const App: React.FC = () => {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/aboutus" element={<AboutUs />} />
                 <Route path="/article" element={<Article />} />
+                <Route path="/loading" element={<Loading />} />
 
                 <Route path="/search" element={<SearchPage />} />
                 <Route path="/career" element={<Career />} />
@@ -99,7 +101,7 @@ const App: React.FC = () => {
                 ))}
               </Routes>
               <ScrollToTopButton />
-              <FooterWrapper />
+              <Footer/>
             </Router>
           </s.Div>
         </CustomThemeProvider>
@@ -108,11 +110,5 @@ const App: React.FC = () => {
   );
 };
 
-const FooterWrapper: React.FC = () => {
-  const location = useLocation();
-  const showFooter = location.pathname !== "/careerengineering";
-
-  return showFooter ? <Footer /> : null;
-};
 
 export default App;

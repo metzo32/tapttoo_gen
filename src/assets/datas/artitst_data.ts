@@ -1631,7 +1631,7 @@ const artistdata: ArtistDataProps[] = [
   },
   {
     id: 107,
-    nickname: "Delphinia",
+    nickname: "Delo",
     last_name: "Barks",
     email: "dbarks2y@dailymail.co.uk",
     city: "Karangbalong",
