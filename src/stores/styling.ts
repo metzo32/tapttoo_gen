@@ -1475,6 +1475,44 @@ const StyledP = styled.p`
       line-height: 30px;
     }
   }
+
+  &.loading-text {
+    color: ${darkTheme.Grey};
+    @media (max-width: 767px) {
+      font-size: 3vw;
+      line-height: 3vw;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 2vw;
+      line-height: 2vw;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 1.5vw;
+      line-height: 1.5vw;
+    }
+
+    &.bold {
+      font-weight: 600;
+      letter-spacing: -1px;
+
+      @media (max-width: 767px) {
+        font-size: 4vw;
+        line-height: 4vw;
+      }
+
+      @media (min-width: 768px) {
+        font-size: 3vw;
+        line-height: 3vw;
+      }
+
+      @media (min-width: 1024px) {
+        font-size: 2vw;
+        line-height: 2vw;
+      }
+    }
+  }
 `;
 
 const Mask = styled.div`
@@ -1535,34 +1573,57 @@ const MaskText = styled.div`
     height: 50%;
     overflow: hidden;
     position: absolute;
-    border: 1px solid blue;
+
+    display: flex;
+    flex-direction: column-reverse;
+
+    @media (max-width: 767px) {
+    height: 40%;
+    }
+
+    @media (min-width: 768px) {
+    height: 50%;
+    }
+
+    @media (min-width: 1024px) {
+        height: 60%;
+    }
+  }
+
+  &.white-box {
+    width: 100%;
+    flex-grow: 1; 
+    background-color: #fff;
   }
 
   &.small-text-container {
-    width: 100vw;
     height: 20%;
-    border: 1px solid red;
+    background-color: #fff;
 
-    // padding-top: 50%;
-    
     display: flex;
     flex-direction: row;
     align-items: flex-end;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform-origin: bottom;
-    transform: translate(20%, 0%);
+    justify-content: space-between;
 
     z-index: 1;
+
+    @media (max-width: 767px) {
+      width: calc(100vw - 20px);
+      padding: 0 10px;
+    }
+
+    @media (min-width: 768px) {
+      width: calc(100vw - 40px);
+      padding: 0 20px;
+    }
   }
 
   &.small-text-box {
-    display: flex;
-    flex-direction: column;
     font-size: 12px;
     letter-spacing: 0;
+
+    display: flex;
+    flex-direction: column;
   }
 
   &.loading-title {
@@ -1577,7 +1638,6 @@ const MaskText = styled.div`
     text-align- bottom;
 
     margin: 0;
-    // padding-top: 80%;
     mix-blend-mode: lighten;
     
     position: absolute;
@@ -1585,6 +1645,19 @@ const MaskText = styled.div`
     left: 50%;
     transform-origin: bottom;
     transform: translate(-50%, 18%);
+  }
+  
+  &.fake-box {
+    display: block;
+    width: 100%;
+    margin: 0;
+
+    color: transparent;
+    font-size: 22vw;
+    font-weight: 600;
+    line-height: 1em;
+    letter-spacing: -2vw;
+    text-align- bottom;
   }
 `;
 

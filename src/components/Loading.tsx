@@ -34,37 +34,56 @@ export default function Loading() {
     setSelectedImage(randomImage);
   }, []);
 
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  let hours = date.getHours();
+  const minutes = date.getMinutes();
+
+
+  const zeroMonth = month < 10 ? "0" + month : month
+  const zeroDay = day < 10 ? "0" + day : day
+  const zeroHours = hours < 10 ? "0" + hours : hours
+  const zeroMinutes = minutes < 10 ? "0" + minutes : minutes
+
+  const ampm = hours >= 12 ? "PM" : "AM";
+
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+
   return (
     <s.Loading className="loading-wrapper">
       <s.MaskText className="text-contatiner">
-        <s.MaskText className="loading-title">
-          Tapttoo
-        
+        <s.MaskText className="fake-box">null</s.MaskText>
+        <s.MaskText className="loading-title">Tapttoo</s.MaskText>
 
-          <s.MaskText className="small-text-container">
+        <s.MaskText className="small-text-container">
           <s.MaskText className="small-text-box">
-            <s.StyledP>info</s.StyledP>
-            <s.StyledP>details</s.StyledP>
+            <s.StyledP className="loading-text bold">Title -</s.StyledP>
+            <s.StyledP className="loading-text">taptoo</s.StyledP>
           </s.MaskText>
           <s.MaskText className="small-text-box">
-            <s.StyledP>info</s.StyledP>
-            <s.StyledP>details</s.StyledP>
+            <s.StyledP className="loading-text bold">Date -</s.StyledP>
+            <s.StyledP className="loading-text">
+              {zeroDay}.{zeroMonth}.{year}
+            </s.StyledP>
           </s.MaskText>
           <s.MaskText className="small-text-box">
-            <s.StyledP>info</s.StyledP>
-            <s.StyledP>details</s.StyledP>
+            <s.StyledP className="loading-text bold">Time -</s.StyledP>
+            <s.StyledP className="loading-text">{zeroHours}:{zeroMinutes}{ampm}</s.StyledP>
           </s.MaskText>
           <s.MaskText className="small-text-box">
-            <s.StyledP>info</s.StyledP>
-            <s.StyledP>details</s.StyledP>
+            <s.StyledP className="loading-text bold">Poster</s.StyledP>
+            <s.StyledP className="loading-text">Everyday</s.StyledP>
           </s.MaskText>
           <s.MaskText className="small-text-box">
-            <s.StyledP>info</s.StyledP>
-            <s.StyledP>details</s.StyledP>
+            <s.StyledP className="loading-text bold">Designer</s.StyledP>
+            <s.StyledP className="loading-text">Untitled</s.StyledP>
           </s.MaskText>
         </s.MaskText>
 
-        </s.MaskText>
+        <s.MaskText className="white-box" />
       </s.MaskText>
       <s.Image className="loading-image" src={selectedImage} alt="image" />
     </s.Loading>
