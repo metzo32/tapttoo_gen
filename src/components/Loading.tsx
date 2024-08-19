@@ -36,13 +36,37 @@ export default function Loading() {
 
   return (
     <s.Loading className="loading-wrapper">
-
       <s.MaskText className="text-contatiner">
-        <s.MaskText className="full-box"/>
-        <s.MaskText className="text">Tapttoo</s.MaskText>
+        <s.MaskText className="loading-title">
+          Tapttoo
+        
+
+          <s.MaskText className="small-text-container">
+          <s.MaskText className="small-text-box">
+            <s.StyledP>info</s.StyledP>
+            <s.StyledP>details</s.StyledP>
+          </s.MaskText>
+          <s.MaskText className="small-text-box">
+            <s.StyledP>info</s.StyledP>
+            <s.StyledP>details</s.StyledP>
+          </s.MaskText>
+          <s.MaskText className="small-text-box">
+            <s.StyledP>info</s.StyledP>
+            <s.StyledP>details</s.StyledP>
+          </s.MaskText>
+          <s.MaskText className="small-text-box">
+            <s.StyledP>info</s.StyledP>
+            <s.StyledP>details</s.StyledP>
+          </s.MaskText>
+          <s.MaskText className="small-text-box">
+            <s.StyledP>info</s.StyledP>
+            <s.StyledP>details</s.StyledP>
+          </s.MaskText>
+        </s.MaskText>
+
+        </s.MaskText>
       </s.MaskText>
       <s.Image className="loading-image" src={selectedImage} alt="image" />
-      {/* <s.StyledP className="loading-text01">Paragraph</s.StyledP> */}
     </s.Loading>
   );
 }

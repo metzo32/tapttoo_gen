@@ -1475,12 +1475,6 @@ const StyledP = styled.p`
       line-height: 30px;
     }
   }
-
-  &.loading-text01 {
-    position: absolute;
-    top: 0;
-    left: 50%;
-  }
 `;
 
 const Mask = styled.div`
@@ -1536,35 +1530,61 @@ const Loading = styled.div`
 `;
 
 const MaskText = styled.div`
-
   &.text-contatiner {
     width: 100%;
     height: 50%;
     overflow: hidden;
     position: absolute;
+    border: 1px solid blue;
   }
-  &.text {
+
+  &.small-text-container {
+    width: 100vw;
+    height: 20%;
+    border: 1px solid red;
+
+    // padding-top: 50%;
+    
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: bottom;
+    transform: translate(20%, 0%);
+
+    z-index: 1;
+  }
+
+  &.small-text-box {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    letter-spacing: 0;
+  }
+
+  &.loading-title {
     width: 140%;
     background-color: #fff;
 
     color: black;
-    font-size: 30vw;
+    font-size: 31vw;
     font-weight: 600;
     line-height: 1em;
     letter-spacing: -2vw;
     text-align- bottom;
 
     margin: 0;
-    padding-top: 80%;
+    // padding-top: 80%;
     mix-blend-mode: lighten;
     
-
     position: absolute;
-    z-index: 1;
     bottom: 0;
     left: 50%;
     transform-origin: bottom;
-    transform: translate(-50%, 5%);
+    transform: translate(-50%, 18%);
   }
 `;
 
@@ -1994,6 +2014,7 @@ const ArticleCard = styled.div`
 
 const Image = styled.img`
   width: 100%;
+  min-width: 320px;
 
   &.loading-image {
     width: 100vw;
