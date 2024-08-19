@@ -59,6 +59,7 @@ import { IoIosArrowForward } from "react-icons/io"; // 오른쪽 꺽쇠
 
 import { TbExclamationMark } from "react-icons/tb"; //느낌표
 import { GrSort } from "react-icons/gr"; //정렬
+import { GoPlusCircle } from "react-icons/go"; //플러스
 
 import { ReactComponent as CheckboxBefore } from "../assets/icons/checkbox-passive.svg";
 import { ReactComponent as CheckboxAfter } from "../assets/icons/checkbox-active.svg";
@@ -870,6 +871,25 @@ const StyledH2 = styled.h2`
     }
   }
 
+  &.profile-name {
+    color: ${(props) => props.theme.Grey};
+    font-size: 30px;
+    letter-spacing: 0px;
+    line-height: 30px;
+
+    @media (max-width: 767px) {
+      font-size: 20px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 24px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 30px;
+    }
+  }
+
   &.accordion-title2 {
     white-space: nowrap;
     font-weight: 300;
@@ -976,6 +996,24 @@ const StyledH3 = styled.h3`
     @media (min-width: 1024px) {
       font-size: 38px;
       margin-top: 25px;
+    }
+  }
+
+  &.profile-nickname {
+    color: ${(props) => props.theme.LightGrey};
+    letter-spacing: 0px;
+    line-height: 18px;
+
+    @media (max-width: 767px) {
+      font-size: 14px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 18px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 24px;
     }
   }
 
@@ -1158,6 +1196,24 @@ const StyledH4 = styled.h4`
     color: ${(props) => props.theme.Grey};
     font-weight: 600;
     line-height: 30px;
+  }
+
+  &.profile-details {
+    color: ${(props) => props.theme.Grey};
+    letter-spacing: 0px;
+    line-height: 18px;
+
+    @media (max-width: 767px) {
+      font-size: 12px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 15px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 18px;
+    }
   }
 
   &.event-title {
@@ -1630,7 +1686,7 @@ const MaskText = styled.div`
     width: 140%;
     background-color: #fff;
 
-    color: black;
+    color: #000;
     font-size: 31vw;
     font-weight: 600;
     line-height: 1em;
@@ -2241,7 +2297,7 @@ const Sticky = styled.div`
   }
   &.title {
     border-top: 1px solid black;
-    blackground-color: #22ee66;
+    background-color: #22ee66;
   }
   &.content {
   }
@@ -3789,8 +3845,149 @@ const Form = styled.form`
 `;
 
 const ProfileDiv = styled.div`
-  &.wrapper {
-    margin-top: 50px;
+  &.profile-wrapper {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+
+    @media (max-width: 767px) {
+    margin-bottom: 30%;
+    }
+
+    @media (min-width: 768px) {
+    margin-bottom: 20px;
+    }
+
+    @media (min-width: 1024px) {
+    margin-bottom: 20px;
+    }
+  }
+
+  &.proflie-label {
+    width: 100%;
+    height: 35%;
+    background-color: green;
+  }
+
+  &.profile-section {
+    width: 60%;
+    aspect-ratio: 16/9;
+    border-radius: 30px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    background-color: ${(props) => props.theme.Light};
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    @media (max-width: 767px) {
+      width: 70%;
+      aspect-ratio: 3/4;
+    }
+
+    @media (min-width: 768px) {
+      width: 60%;
+      aspect-ratio: 4/3;
+    }
+
+    @media (min-width: 1024px) {
+      width: 60%;
+      aspect-ratio: 16/9;
+    }
+  }
+
+  &.user-image {
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background-color: ${(props) => props.theme.Light};
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    @media (max-width: 767px) {
+      width: 40%;
+    }
+
+    @media (min-width: 768px) {
+      width: 30%;
+    }
+
+    @media (min-width: 1024px) {
+      width: 20%;
+    }
+  }
+
+  &.profile-text-container {
+    width: 60%;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (max-width: 767px) {
+      height: 60%;
+      padding-top: 0px;
+    }
+
+    @media (min-width: 768px) {
+      height: calc(60% - 40px);
+      padding-top: 40px;
+    }
+  }
+
+  &.profile-name-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (max-width: 767px) {
+      height: 50px;
+    }
+
+    @media (min-width: 1024px) {
+      height: 60px;
+      margin-bottom: 10px;
+    }
+  }
+
+  &.profile-text-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    :last-child {
+      margin: 0;
+    }
+
+    @media (max-width: 767px) {
+      height: 50px;
+    }
+
+    @media (min-width: 768px) {
+      height: 60px;
+      margin-bottom: 10px;
+    }
+
+    @media (min-width: 1024px) {
+      height: 70px;
+      margin-bottom: 10px;
+    }
   }
 `;
 
@@ -4787,6 +4984,11 @@ const WarnIcon = styled(TbExclamationMark)`
   color: ${lightTheme.White};
 `;
 
+const PlusIcon = styled(GoPlusCircle)`
+  font-size: 40px;
+  color: ${lightTheme.LightGrey};
+`;
+
 const s = {
   GlobalStyle,
   Engraved,
@@ -4883,6 +5085,7 @@ const s = {
   StyledHeaderIcon,
   TopArrowIcon,
   WarnIcon,
+  PlusIcon,
 };
 
 export default s;

@@ -40,31 +40,6 @@ export default function Profile() {
     fetchUserData();
   }, []);
 
-  useEffect(() => {
-    const fetchSignupDate = async () => {
-      try {
-        const user = auth.currentUser;
-        if (user) {
-          const userRef = doc(db, "users", user.uid);
-          const userDoc = await getDoc(userRef);
-
-          if (userDoc.exists()) {
-            const signupDate = userDoc.data().signupDate.toDate();
-            const currentDate = new Date();
-            const timeDifference = currentDate.getTime() - signupDate.getTime();
-            const daysPassed =
-              Math.floor(timeDifference / (1000 * 3600 * 24)) + 1; // 첫날을 1일로
-            setDaysPassed(daysPassed);
-          }
-        }
-      } catch (error) {
-        console.error("가입 날짜를 가져오는 중 오류 발생:", error);
-      }
-    };
-
-    fetchSignupDate();
-  }, []);
-
   return (
     <s.ProfileDiv className="wrapper">
       <Modal
@@ -74,9 +49,9 @@ export default function Profile() {
         showCheckbox={false}
         text={
           <>
-          <s.StyledP className="modal-text">
-            정말 로그아웃 하시겠습니까?
-          </s.StyledP>
+            <s.StyledP className="modal-text">
+              정말 로그아웃 하시겠습니까?
+            </s.StyledP>
           </>
         }
         modalButtonClose={"취소"}
@@ -86,10 +61,47 @@ export default function Profile() {
       />
 
       <s.ProfileDiv>
-        {userData ? <CurrentUserData userData={userData} /> : <p>Loading...</p>}
-      </s.ProfileDiv>
+        <s.ProfileDiv className="profile-wrapper">
+          <s.ProfileDiv className="proflie-label" />
+          <s.ProfileDiv className="profile-section">
+            <s.ProfileDiv className="user-image">
+              <s.PlusIcon />
+            </s.ProfileDiv>
+            <s.ProfileDiv className="profile-text-container">
+              <s.ProfileDiv className="profile-name-box">
+                <s.StyledH2 className="profile-name">
+                  {userData ? userData.fullname : "Loading..."}
+                </s.StyledH2>
+                <s.StyledH3 className="profile-nickname">
+                  {userData ? userData.nickname : "Loading..."}
+                </s.StyledH3>
+              </s.ProfileDiv>
 
-      <LogoutButton handleOpenModal={handleOpenModal} />
+              <s.ProfileDiv className="profile-text-box">
+                <s.StyledH4 className="profile-details">
+                  {userData ? userData.email : "Loading..."}
+                </s.StyledH4>
+                <s.StyledH4 className="profile-details">
+                  {userData ? userData.countryCode : "Loading..."}
+                  {userData ? userData.phonenumber : "Loading..."}
+                </s.StyledH4>
+                <s.StyledH4 className="profile-details">
+                  {userData ? userData.birthYear : "Loading..."}.
+                  {userData ? userData.birthMonth : "Loading..."}.
+                  {userData ? userData.birthDay : "Loading..."}
+                </s.StyledH4>
+              </s.ProfileDiv>
+
+              <s.ProfileDiv className="profile-text-box">
+              <s.StyledH4 className="profile-details">Likes</s.StyledH4>
+              </s.ProfileDiv>
+
+                <LogoutButton handleOpenModal={handleOpenModal} />
+            </s.ProfileDiv>
+          </s.ProfileDiv>
+        </s.ProfileDiv>
+        {/* {userData ? <CurrentUserData userData={userData} /> : <p>Loading...</p>} */}
+      </s.ProfileDiv>
     </s.ProfileDiv>
   );
 }
