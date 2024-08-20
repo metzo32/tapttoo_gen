@@ -7,12 +7,10 @@ import { doc, getDoc } from "firebase/firestore";
 import useModal from "../hooks/ModalHook";
 import Modal from "../components/Modal";
 import LogoutButton from "../components/Logout";
-import CurrentUserData from "../stores/CurrentUserData";
 
 export default function Profile() {
   const { currentlyLoggedIn, setCurrentlyLoggedIn } = useContext(AuthContext);
   const [userData, setUserData] = useState<any>(null);
-  const [daysPassed, setDaysPassed] = useState<number | null>(null);
   const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
   const [modalMessage, setModalMessage] = useState<React.ReactNode>(""); // 모달에 표시될 메시지 상태
   const navigate = useNavigate();
@@ -94,6 +92,9 @@ export default function Profile() {
 
               <s.ProfileDiv className="profile-text-box">
               <s.StyledH4 className="profile-details">Likes</s.StyledH4>
+              <s.StyledH4 className="profile-details">
+                  {userData ? userData.wishList : "Loading..."}
+                </s.StyledH4>
               </s.ProfileDiv>
 
                 <LogoutButton handleOpenModal={handleOpenModal} />

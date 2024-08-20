@@ -14,6 +14,7 @@ import countrycode from "../assets/datas/country_code";
 
 import Modal from "../components/Modal";
 import useModal from "../hooks/ModalHook";
+import WishList from "../components/WishList";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -69,6 +70,7 @@ const RegisterPage = () => {
           birthMonth: birthMonth,
           birthDay: birthDay,
           gender: gender,
+          wishList: [],
         });
         console.log("Firestore에 사용자 정보 저장 성공!");
         handleOpenModal();

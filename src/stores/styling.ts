@@ -2983,27 +2983,46 @@ const ArticleDiv = styled.div`
     flex-direction: column;
   }
 
-  &.article-cards {
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-    cursor: pointer;
+&.article-cards {
+  width: 100vw;
+  aspect-ratio: 1440/900;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  cursor: pointer;
 
-    &:hover .article-grid-image {
-      filter: brightness(0.6);
-      transition: filter 0.5s ease 0.5s;
-    }
+  /* 기본 hover 스타일 (비터치 장치에서 적용됨) */
+  &:hover .article-grid-image {
+    filter: brightness(0.6);
+    transition: filter 0.5s ease 0.5s;
+  }
 
+  &:hover .article-name {
+    font-size: 100px;
+    letter-spacing: -4px;
+    opacity: 1;
+    transition: 0.5s ease 0.5s;
+  }
+
+  @media (max-width: 767px) {
+    &:hover .article-grid-image,
     &:hover .article-name {
-      font-size: 100px;
-      letter-spacing: -4px;
-      opacity: 1;
-      transition: 0.5s ease 0.5s;
+      filter: none;
+      font-size: inherit;
+      letter-spacing: inherit;
+      opacity: inherit;
+      transition: none;
     }
   }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+  }
+
+  @media (min-width: 1024px) {
+  }
+}
+
 
   &.article-grid-image {
     position: absolute;
@@ -3030,7 +3049,8 @@ const ArticleDiv = styled.div`
 
   &.heart-wrapper {
     position: absolute;
-    z-index: 2;
+    z-index: 3;
+    touch-action: manipulation;
 
     @media (max-width: 767px) {
       width: 50px;
@@ -3851,15 +3871,15 @@ const ProfileDiv = styled.div`
     position: relative;
 
     @media (max-width: 767px) {
-    margin-bottom: 30%;
+      margin-bottom: 30%;
     }
 
     @media (min-width: 768px) {
-    margin-bottom: 20px;
+      margin-bottom: 20px;
     }
 
     @media (min-width: 1024px) {
-    margin-bottom: 20px;
+      margin-bottom: 20px;
     }
   }
 

@@ -15,6 +15,7 @@ export interface ArtistDataProps {
   randomImage04: string;
   hash?: string[];
   url?: string;
+  isWishlisted?: boolean;
 }
 
 const skills = [
