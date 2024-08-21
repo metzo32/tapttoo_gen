@@ -354,10 +354,8 @@ const Atag = styled.a`
 `;
 
 const HeaderDiv = styled.div`
-  &.wrapper {
+  &.header-wrapper {
     width: 100%;
-    height: 50px;
-    background: transparent;
 
     display: flex;
     flex-direction: row;
@@ -365,35 +363,36 @@ const HeaderDiv = styled.div`
     align-items: center;
 
     position: fixed;
-    top: 0;
     z-index: 9999;
 
-    @media (min-width: 375px) {
-      width: 100%;
+    @media (max-width: 767px) {
+      width: calc(100% - 20px);
+      height: 80px;
+      padding: 0 10px;
+      bottom: 0;
+      background-color: ${(props) => props.theme.Light};
+      box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.3);
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
     }
 
     @media (min-width: 768px) {
       width: 100%;
-    }
-
-    @media (min-width: 1024px) {
-      width: 100%;
-    }
-
-    @media (min-width: 1200px) {
-      width: 100%;
+      height: 50px;
+      top: 0;
+      background: transparent;
+      border-radius: 0;
     }
   }
 
   &.header-overlay {
     width: 100vw;
-    height: 6vh;
+    height: 5vh;
     position: fixed;
     top: 0;
-    background: ${(props) => props.theme.OverlayGradient};
     pointer-events: none;
     z-index: 9998;
-    backdrop-filter: blur(1px);
+    backdrop-filter: blur(2px);
   }
 
   &.header-button-wrapper {
@@ -406,7 +405,7 @@ const HeaderDiv = styled.div`
     align-items: center;
 
     @media (max-width: 767px) {
-      width: 150px;
+      width: 70%;
     }
 
     @media (min-width: 768px) {
@@ -2133,6 +2132,11 @@ const StyledLi = styled.li`
   &.dropdown-li {
     margin-bottom: 0px;
   }
+
+  &.sidebar-text {
+    margin: 0;
+    line-height: 35px;
+  }
 `;
 
 const ArticleCard = styled.div`
@@ -2983,46 +2987,45 @@ const ArticleDiv = styled.div`
     flex-direction: column;
   }
 
-&.article-cards {
-  width: 100vw;
-  aspect-ratio: 1440/900;
-  margin: 0;
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-  cursor: pointer;
+  &.article-cards {
+    width: 100vw;
+    aspect-ratio: 1440/900;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    cursor: pointer;
 
-  /* 기본 hover 스타일 (비터치 장치에서 적용됨) */
-  &:hover .article-grid-image {
-    filter: brightness(0.6);
-    transition: filter 0.5s ease 0.5s;
-  }
+    /* 기본 hover 스타일 (비터치 장치에서 적용됨) */
+    &:hover .article-grid-image {
+      filter: brightness(0.6);
+      transition: filter 0.5s ease 0.5s;
+    }
 
-  &:hover .article-name {
-    font-size: 100px;
-    letter-spacing: -4px;
-    opacity: 1;
-    transition: 0.5s ease 0.5s;
-  }
-
-  @media (max-width: 767px) {
-    &:hover .article-grid-image,
     &:hover .article-name {
-      filter: none;
-      font-size: inherit;
-      letter-spacing: inherit;
-      opacity: inherit;
-      transition: none;
+      font-size: 100px;
+      letter-spacing: -4px;
+      opacity: 1;
+      transition: 0.5s ease 0.5s;
+    }
+
+    @media (max-width: 767px) {
+      &:hover .article-grid-image,
+      &:hover .article-name {
+        filter: none;
+        font-size: inherit;
+        letter-spacing: inherit;
+        opacity: inherit;
+        transition: none;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+    }
+
+    @media (min-width: 1024px) {
     }
   }
-
-  @media (min-width: 768px) and (max-width: 1023px) {
-  }
-
-  @media (min-width: 1024px) {
-  }
-}
-
 
   &.article-grid-image {
     position: absolute;
@@ -3445,9 +3448,10 @@ const SideBar = styled.div`
   height: 100%;
   padding: 0;
 
-  &.sidebar-dark {
+  &.sidebar-wrapper {
     width: 200px;
     height: 100%;
+    border: 1px solid red;
 
     display: flex;
     justify-content: center;
@@ -3456,10 +3460,18 @@ const SideBar = styled.div`
     box-sizing: content-box;
     position: fixed;
     top: 48px;
-
+    left: 0;
     z-index: 9999;
 
     pointer-events: none;
+
+    @media (max-width: 767px) {
+      top: 0;
+    }
+
+    @media (min-width: 768px) {
+      top: 48px;
+    }
   }
 
   &.sidebar-box {
@@ -3515,8 +3527,15 @@ const Overlay = styled.div`
   width: 100%;
   height: 100%;
   background-color: ${(props) => props.theme.Overlay};
-  z-index: 9998;
+  z-index: 9997;
   transition: opacity 0.3s ease;
+
+  &.scroll-top-box {
+    width: 100vw;
+    height: 100vh;
+    background-color: transparent;
+    pointer-events: none;
+  }
 `;
 
 const StyledLink = styled(RouterLink)`
@@ -4693,36 +4712,34 @@ const Button = styled.button`
   &.scroll-top-btn {
     width: 60px;
     height: 60px;
-    color: ${lightTheme.Green};
-    background-color: rgba(238, 237, 235, 0.6);
-    border: 3px solid ${lightTheme.Green};
+    color: ${lightTheme.Light};
+    background-color: ${lightTheme.Green};
     border-radius: 50%;
-
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
     padding: 0;
+    pointer-events: auto;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    position: sticky;
-    bottom: 5%;
+    position: fixed;
+    bottom: 0;
+    right: 0;
     z-index: 9999;
 
     &:hover {
-      color: ${lightTheme.Green};
-      background-color: rgba(238, 237, 235, 0.9);
+      color: ${lightTheme.Light};
+      background-color: ${lightTheme.HoverGreen};
       transition: 0.3s ease;
     }
 
     @media (max-width: 767px) {
-      left: 80%;
+      transform: translate(-20%, -150%);
     }
 
     @media (min-width: 768px) {
-      left: 92%;
-    }
-
-    @media (min-width: 1024px) {
+      transform: translate(-100%, -100%);
     }
   }
 `;
@@ -4919,8 +4936,6 @@ const CheckboxAfterIcon = styled(CheckboxAfter)`
 
 //Header Icons
 const StyledHeaderIcon = css`
-  width: 20px;
-  height: 20px;
   fill: ${(props) => props.theme.Grey};
   color: ${(props) => props.theme.Grey};
 
@@ -4928,10 +4943,42 @@ const StyledHeaderIcon = css`
     fill: ${(props) => props.theme.HoverGrey};
     color: ${(props) => props.theme.HoverGrey};
   }
+
+  @media (max-width: 767px) {
+    width: 27px;
+    height: 27px;
+  }
+
+  @media (min-width: 768px) {
+    width: 20px;
+    height: 20px;
+  }
 `;
 
 const SortIcon = styled(GrSort)`
-  ${StyledHeaderIcon}
+  @media (max-width: 767px) {
+    width: 27px;
+    height: 27px;
+    fill: ${lightTheme.Light};
+    color: ${lightTheme.Light};
+
+    &:hover {
+      fill: ${lightTheme.Light};
+      color: ${lightTheme.Light};
+    }
+  }
+
+  @media (min-width: 768px) {
+    width: 20px;
+    height: 20px;
+    fill: ${(props) => props.theme.Grey};
+    color: ${(props) => props.theme.Grey};
+
+    &:hover {
+      fill: ${(props) => props.theme.HoverGrey};
+      color: ${(props) => props.theme.HoverGrey};
+    }
+  }
 `;
 
 const HomeIcon = styled(RiHomeLine)`
@@ -4952,8 +4999,15 @@ const SearchIcon = styled(GrSearch)`
 
 const ProfileIcon = styled(GoPerson)`
   ${StyledHeaderIcon}
-  width: 23px;
-  height: 23px;
+  @media (max-width: 767px) {
+    width: 30px;
+    height: 30px;
+  }
+
+  @media (min-width: 768px) {
+    width: 23px;
+    height: 23px;
+  }
 `;
 
 //Footer Icons
@@ -4994,7 +5048,7 @@ const YoutubeIcon = styled(FaYoutube)`
 
 const TopArrowIcon = styled(MdOutlineArrowUpward)`
   ${StyledIcon}
-  fill: ${lightTheme.Green};
+  fill: ${lightTheme.Light};
   width: 28px;
   height: 28px;
 `;

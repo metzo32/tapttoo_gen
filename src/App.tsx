@@ -66,6 +66,7 @@ const App: React.FC = () => {
           <s.Div className="App">
             <Router>
               <Header />
+              <ScrollToTopButton />
               <Routes>
                 <Route path="/" element={<SearchNew />} />
                 <Route path="/login" element={<LoginPage />} />
@@ -100,7 +101,6 @@ const App: React.FC = () => {
                   />
                 ))}
               </Routes>
-              <ScrollToTopButton />
               <Footer/>
             </Router>
           </s.Div>

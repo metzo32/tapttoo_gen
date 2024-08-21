@@ -29,9 +29,11 @@ const ScrollToTopButton: React.FC = () => {
   return (
     <>
       {isVisible && (
-        <s.Button onClick={scrollToTop} className="scroll-top-btn">
-            <s.TopArrowIcon/>
-        </s.Button>
+        <s.Overlay className="scroll-top-box">
+          <s.Button onClick={scrollToTop} className="scroll-top-btn">
+            <s.TopArrowIcon />
+          </s.Button>
+        </s.Overlay>
       )}
     </>
   );

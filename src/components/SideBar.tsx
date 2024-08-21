@@ -16,12 +16,10 @@ const SideBar: React.FC<SideBarProps> = ({ sidebar, showSidebar }) => {
   return (
     <>
       {sidebar && <s.Overlay onClick={showSidebar} />}
-      <s.SideBar className="sidebar-dark">
+      <s.SideBar className="sidebar-wrapper">
         <s.NavBar className={sidebar ? "nav-menu active" : "nav-menu"}>
           <s.StyledUl className="nav-menu-items" onClick={showSidebar}>
-            <s.StyledH3 className="sidebar-logo">
-                Tapttoo
-            </s.StyledH3>
+            <s.StyledH3 className="sidebar-logo">Tapttoo</s.StyledH3>
             <s.StyledLi className="navbar-toggle">
               <s.StyledLink to="#" className="close-arrow">
                 <s.LeftIcon className="close-arrow" />

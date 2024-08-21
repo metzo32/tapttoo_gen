@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import s from "../stores/styling";
 import { ArtistDataProps } from "../assets/datas/artitst_data";
 

@@ -30,7 +30,7 @@ export default function Header() {
 
   return (
     <>
-      <s.HeaderDiv className="wrapper">
+      <s.HeaderDiv className="header-wrapper">
         <SideBar sidebar={sidebar} showSidebar={showSidebar} />
         <s.HeaderDiv className="header-button-wrapper">
           <s.Button className="header-button-item" onClick={showSidebar}>

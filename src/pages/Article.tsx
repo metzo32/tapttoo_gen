@@ -7,25 +7,18 @@ import ScrollToTop from "../components/ScrollToTop";
 import WishList from "../components/WishList";
 import SortButtons from "../components/SortButtons";
 
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
-
 // Helper function to generate random image URL
 const generateRandomImage = (id: number) =>
   `https://picsum.photos/1440/900?random=${id}`;
 
 const Article: React.FC = () => {
-  // Initialize state with random images
+  const [articles, setArticles] = useState<number[]>([0, 1, 2, 3]);
   const [sortedData, setSortedData] = useState(
     ArtistData.map((artist) => ({
       ...artist,
       randomImage: generateRandomImage(artist.id),
     }))
   );
-
-  const [articles, setArticles] = useState<number[]>([0, 1, 2, 3]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,28 +38,35 @@ const Article: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Fetch wishlist on component mount
+  
+  //위시리스트
   useEffect(() => {
     const fetchWishlist = async () => {
       const user = auth.currentUser;
       if (user) {
-        // "users" 컬렉션의 현재 사용자의 문서 참조
-        const userRef = doc(db, "users", user.uid);
-        const userDoc = await getDoc(userRef);
+        // firebase db에 설정한 users컬렉션의 현재 로그인한 사용자의 문서를 참조
+        const userRef = doc(db, "users", user.uid); //현재 사용자를 가리키는 잠조
+        const userDoc = await getDoc(userRef); //이 데이터를 포함한 객체
 
         if (userDoc.exists()) {
-          // "wishList" 필드를 가져옵니다.
-          const wishlistedIds = userDoc.data()?.wishList || [];
-          setSortedData((prevData) =>
-            prevData.map((artist) => ({
-              ...artist,
-              isWishlisted: wishlistedIds.includes(artist.id),
-            }))
+          //문서가 있는 경우
+          // "wishList" 필드 호출
+          const wishlistedIds = userDoc.data()?.wishList || []; //userDoc.data() : 데이터를 객체로 변환
+          //?. : 옵셔널 체이닝. wishList 필드가 존재하지 않으면 빈 배열을 반환 -> 에러 차단
+          setSortedData(
+            (
+              prevData //이전 상태를 기반으로 업데이트 해야하는 경우, 콜백을 인수로 받음
+            ) =>
+              //prevData: sort 이전 상태
+              prevData.map((artist) => ({
+                //각 아티스트 객체에 isWishlisted 속성 추가 (포함 여부)
+                ...artist,
+                isWishlisted: wishlistedIds.includes(artist.id), //유저의 위시리스트(wishlistedIds)에 포함 여부 저장
+              }))
           );
         }
       }
     };
-
     fetchWishlist();
   }, []);
 
@@ -98,7 +98,7 @@ const Article: React.FC = () => {
   };
 
   // 현재 위시리스트에 포함된 아티스트들을 필터링
-  const wishlistedArtists = sortedData.filter(artist => artist.isWishlisted);
+  const wishlistedArtists = sortedData.filter((artist) => artist.isWishlisted);
 
   return (
     <s.ArticleDiv className="wrapper">
@@ -111,7 +111,7 @@ const Article: React.FC = () => {
           <p>No artists in wishlist.</p>
         ) : (
           <ul>
-            {wishlistedArtists.map(artist => (
+            {wishlistedArtists.map((artist) => (
               <li key={artist.id}>{artist.id}</li>
             ))}
           </ul>
