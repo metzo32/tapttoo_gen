@@ -79,6 +79,7 @@ const Article: React.FC = () => {
     }
   };
 
+  //실제로 보여질 데이터를 업데이트하는 함수
   const handleSort = (sortedArray: typeof ArtistData) => {
     const sortedWithImages = sortedArray.map((artist) => ({
       ...artist,
@@ -102,7 +103,7 @@ const Article: React.FC = () => {
 
   return (
     <s.ArticleDiv className="wrapper">
-      <ScrollToTop />
+      {/* <ScrollToTop /> */}
 
       {/* 위시리스트를 표시하는 섹션 */}
       <div>
@@ -118,7 +119,7 @@ const Article: React.FC = () => {
         )}
       </div>
 
-      <SortButtons sortedData={sortedData} sortDone={handleSort} />
+      {/* <SortButtons sortBefore={sortedData} sortDone={handleSort} /> */}
 
       <s.ArticleDiv className="mid-wrapper">
         {articles.map((index) => {

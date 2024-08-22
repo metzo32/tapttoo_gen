@@ -3,41 +3,39 @@ import s from "../stores/styling";
 import { ArtistDataProps } from "../assets/datas/artitst_data";
 
 interface SortButtonsProps {
-  sortedData: ArtistDataProps[];
-  sortDone: (sortedArray: ArtistDataProps[]) => void;
+sortBefore: ArtistDataProps[];
+sortDone: (sortedArray: ArtistDataProps[]) => void;
 }
 
-export default function SortButtons({
-  sortedData,
-  sortDone,
-}: SortButtonsProps) {
+export default function SortButtons({ sortBefore, sortDone }: SortButtonsProps) {
   const [showDropLeft, setShowDropLeft] = useState(false);
   const [isDropped, setIsDropped] = useState<null | boolean>(null);
 
   const handleSortAlphabet = () => {
-    const sorted = [...sortedData].sort((a, b) =>
+    const sorted = [...sortBefore].sort((a, b) =>
       a.nickname.localeCompare(b.nickname)
     );
     sortDone(sorted);
   };
 
   const handleSortAlphabetReverse = () => {
-    const sorted = [...sortedData].sort((a, b) =>
+    const sorted = [...sortBefore].sort((a, b) =>
       b.nickname.localeCompare(a.nickname)
     );
     sortDone(sorted);
   };
 
   const handleSortOld = () => {
-    const sorted = [...sortedData].sort((a, b) => a.id - b.id);
+    const sorted = [...sortBefore].sort((a, b) => a.id - b.id);
     sortDone(sorted);
   };
 
   const handleSortNew = () => {
-    const sorted = [...sortedData].sort((a, b) => b.id - a.id);
+    const sorted = [...sortBefore].sort((a, b) => b.id - a.id);
     sortDone(sorted);
   };
 
+  //메뉴 열기
   const handleDropLeft = () => {
     if (isDropped === null) {
       setIsDropped(true);
@@ -93,6 +91,7 @@ export default function SortButtons({
             </s.Button>
           </s.StyledLi>
         </s.StyledUl>
+        
         <s.Button className="header-button-item">
           <s.SortIcon onClick={handleDropLeft} />
         </s.Button>
