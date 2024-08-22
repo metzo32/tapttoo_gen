@@ -12,6 +12,7 @@
 import styled, { css, createGlobalStyle } from "styled-components";
 import { Route, Link as RouterLink } from "react-router-dom";
 import {
+  drawLetter,
   fadeInRotate,
   openDrop,
   closeDrop,
@@ -47,6 +48,8 @@ import { RiInstagramLine } from "react-icons/ri"; //인스타그램
 import { BiLogoFacebook } from "react-icons/bi"; //페이스북
 import { AiOutlineTikTok } from "react-icons/ai"; //틱톡
 import { FaYoutube } from "react-icons/fa6"; //유튜브
+
+import { ReactComponent as LetterTIcon } from "../assets/icons/letter_t.svg"; // T
 
 import { PiSunBold } from "react-icons/pi"; //태양
 import { PiMoonBold } from "react-icons/pi"; //달
@@ -2030,12 +2033,43 @@ const Username = styled.div`
   font-size: 24px;
 `;
 
+const DrawIcon = styled.div`
+  &.draw-wrapper {
+    width: 500px;
+    height: 500px;
+    margin: 0 auto;
+    margin-top: 100px;
+    border: 1px solid blue;
+
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &.icon {
+    width: 200px;
+
+    path {
+      fill: beige;
+      stroke-width: 10;
+      stroke: blue;
+
+
+      stroke-dasharray: 1642;
+      stroke-dashoffset: 1642;
+
+      animation: ${drawLetter} 1s linear forwards;
+    }
+  }
+`;
+
 const StyledUl = styled.ul`
     list-style-type: none;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     justify-content: center;
+    align-items: flex-start;
     padding: 0;
     margin; 0;
     position: relative;
@@ -3046,7 +3080,6 @@ const ArticleDiv = styled.div`
   }
 
   &.article-grid-image {
-
     overflow: hidden;
   }
 
@@ -4888,6 +4921,13 @@ const BrandLogo = styled(Logo)`
   fill: ${(props) => props.theme.Grey};
 `;
 
+const LetterIcon = styled(LetterTIcon)`
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  margin-top: 100px;
+`;
+
 const Moon = styled(PiMoonBold)`
   fill: ${(props) => props.theme.Grey};
   width: 18px;
@@ -5148,12 +5188,14 @@ const s = {
   StyledP,
   StyledUl,
   Username,
+  DrawIcon,
 
   StyledCircularProgressbar,
 
   BrandLogo,
-  Sun,
+  LetterIcon,
   Moon,
+  Sun,
 
   LeftIcon,
   RightIcon,

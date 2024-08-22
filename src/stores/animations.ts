@@ -1,7 +1,23 @@
 import { keyframes } from "styled-components";
 
+export const drawLetter = keyframes`
+  0% {
+    stroke-dashoffset: 1642;
+     fill: transparent;
 
-export const fadeInRotate = keyframes `
+  80% {
+    stroke-dashoffset: 3284;
+    fill: transparent;
+  }
+
+  }
+  100% {
+    stroke-dashoffset: 3284;
+    fill: green;
+  }
+`;
+
+export const fadeInRotate = keyframes`
   0% {
     opacity: 0;
     transform: rotate(0deg) translateX(150px);
@@ -10,7 +26,7 @@ export const fadeInRotate = keyframes `
     opacity: 1;
     transform: rotate(calc(var(--char-index) * 30deg)) translateX(150px);
   }
-`
+`;
 
 export const openDrop = keyframes`
   0% {
