@@ -3,8 +3,8 @@ import s from "../stores/styling";
 import { auth, db } from "../firebase/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import ArtistData from "../assets/datas/artitst_data";
-import ScrollToTop from "../components/ScrollToTop";
 import WishList from "../components/WishList";
+import ScrollToTopButton from "../components/SortButtons";
 import SortButtons from "../components/SortButtons";
 
 // Helper function to generate random image URL
@@ -103,7 +103,7 @@ const Article: React.FC = () => {
 
   return (
     <s.ArticleDiv className="wrapper">
-      {/* <ScrollToTop /> */}
+      {/* <ScrollToTopButton /> */}
 
       {/* 위시리스트를 표시하는 섹션 */}
       <div>
@@ -119,7 +119,7 @@ const Article: React.FC = () => {
         )}
       </div>
 
-      {/* <SortButtons sortBefore={sortedData} sortDone={handleSort} /> */}
+      <SortButtons sortBefore={sortedData} sortHandle={handleSort} />
 
       <s.ArticleDiv className="mid-wrapper">
         {articles.map((index) => {

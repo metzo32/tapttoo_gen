@@ -1,12 +1,12 @@
 import s from "../stores/styling";
 import ContactImage from "../assets/images/contactimage02.jpg";
 import ContactCard from "../components/ContactCard";
-import ScrollToTop from "../components/ScrollToTop";
+import StartFromTop from "../components/StartFromTop";
 
 export default function Contact() {
   return (
     <>
-      <ScrollToTop />
+      <StartFromTop />
       <s.Contact className="contact-wrapper">
         <s.Image src={ContactImage} alt="photo" className="long-img" />
 

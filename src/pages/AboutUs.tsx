@@ -1,22 +1,29 @@
 import React, { useEffect } from "react";
 import s from "../stores/styling";
-
+import { useNavigate } from "react-router-dom";
 import BrandTopTitle from "../components/BrandTopTitle";
 import BrandMidTitle from "../components/BrandMidTitle";
 import Description from "../components/Description";
 import GridBrand from "../components/GridBrand";
 import BrandBottomTitle from "../components/BrandTitleBottom";
 import WideImage from "../components/WideImage";
-import ScrollToTop from "../components/ScrollToTop";
+import StartFromTop from "../components/StartFromTop";
 
 import BrandMidImage from "../assets/images/15.jpg";
 import BrandMidImage02 from "../assets/images/mid.jpg";
 import MidImage from "../assets/images/11.jpg";
 
 export default function AboutUs() {
+
+  const navigate = useNavigate();
+
+  const handleNavigation = (path: string) => {
+    navigate(path);
+  };
+
   return (
     <>
-      {/* <ScrollToTop /> */}
+      <StartFromTop />
       <s.AboutDiv className="wrapper">
         <s.AboutDiv>
           <BrandTopTitle />
@@ -40,7 +47,7 @@ export default function AboutUs() {
         />
 
         <s.AboutDiv className="button-box">
-          <s.Button className="Round">바로 둘러보기</s.Button>
+          <s.Button onClick={() => handleNavigation("/article")} className="Round">바로 둘러보기</s.Button>
         </s.AboutDiv>
 
         <GridBrand />

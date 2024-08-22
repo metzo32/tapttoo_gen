@@ -1280,7 +1280,7 @@ const StyledP = styled.p`
   }
 
   @media (min-width: 1024px) {
-    font-size: 20px;
+    font-size: 22px;
     line-height: 28px;
   }
 
@@ -2048,6 +2048,8 @@ const StyledUl = styled.ul`
     &.dropdown-box {
       width: 400px;
       height: calc(100% - 10px);
+      background-color: ${lightTheme.Light};
+      border-radius: 10px;
       margin-right: 10px;
       margin-bottom: 8px;
       display: flex;
@@ -3451,7 +3453,6 @@ const SideBar = styled.div`
   &.sidebar-wrapper {
     width: 200px;
     height: 100%;
-    border: 1px solid red;
 
     display: flex;
     justify-content: center;

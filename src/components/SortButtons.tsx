@@ -4,10 +4,10 @@ import { ArtistDataProps } from "../assets/datas/artitst_data";
 
 interface SortButtonsProps {
 sortBefore: ArtistDataProps[];
-sortDone: (sortedArray: ArtistDataProps[]) => void;
+sortHandle: (sortedArray: ArtistDataProps[]) => void;
 }
 
-export default function SortButtons({ sortBefore, sortDone }: SortButtonsProps) {
+export default function SortButtons({ sortBefore, sortHandle }: SortButtonsProps) {
   const [showDropLeft, setShowDropLeft] = useState(false);
   const [isDropped, setIsDropped] = useState<null | boolean>(null);
 
@@ -15,24 +15,24 @@ export default function SortButtons({ sortBefore, sortDone }: SortButtonsProps) 
     const sorted = [...sortBefore].sort((a, b) =>
       a.nickname.localeCompare(b.nickname)
     );
-    sortDone(sorted);
+    sortHandle(sorted);
   };
 
   const handleSortAlphabetReverse = () => {
     const sorted = [...sortBefore].sort((a, b) =>
       b.nickname.localeCompare(a.nickname)
     );
-    sortDone(sorted);
+    sortHandle(sorted);
   };
 
   const handleSortOld = () => {
     const sorted = [...sortBefore].sort((a, b) => a.id - b.id);
-    sortDone(sorted);
+    sortHandle(sorted);
   };
 
   const handleSortNew = () => {
     const sorted = [...sortBefore].sort((a, b) => b.id - a.id);
-    sortDone(sorted);
+    sortHandle(sorted);
   };
 
   //메뉴 열기

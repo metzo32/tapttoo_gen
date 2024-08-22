@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import s from "../../stores/styling";
 import ArtistData from "../../assets/datas/artitst_data";
-import ScrollToTop from "../ScrollToTop";
+import ScrollToTop from "../StartFromTop";
 import WishList from "../WishList";
 
 const ArticleOld: React.FC = () => {
