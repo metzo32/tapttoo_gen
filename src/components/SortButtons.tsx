@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import s from "../stores/styling";
 import { ArtistDataProps } from "../assets/datas/artitst_data";
+import { handleScrollToTop } from "./HandleScrollToTop"
 
 interface SortButtonsProps {
-sortBefore: ArtistDataProps[];
-sortHandle: (sortedArray: ArtistDataProps[]) => void;
+  sortBefore: ArtistDataProps[];
+  sortHandle: (sortedArray: ArtistDataProps[]) => void;
 }
 
-export default function SortButtons({ sortBefore, sortHandle }: SortButtonsProps) {
+export default function SortButtons({
+  sortBefore,
+  sortHandle,
+}: SortButtonsProps) {
   const [showDropLeft, setShowDropLeft] = useState(false);
   const [isDropped, setIsDropped] = useState<null | boolean>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const handleSortAlphabet = () => {
     const sorted = [...sortBefore].sort((a, b) =>
@@ -35,7 +40,7 @@ export default function SortButtons({ sortBefore, sortHandle }: SortButtonsProps
     sortHandle(sorted);
   };
 
-  //메뉴 열기
+  // 메뉴 열기
   const handleDropLeft = () => {
     if (isDropped === null) {
       setIsDropped(true);
@@ -52,9 +57,28 @@ export default function SortButtons({ sortBefore, sortHandle }: SortButtonsProps
     }
   };
 
+  // 스크롤 이벤트
+  const scrollEvent = () => {
+    if (window.scrollY > 500) {
+      setIsScrolled(true);
+      if (isDropped) {
+        setIsDropped(false);
+        setTimeout(() => setShowDropLeft(false), 300);
+      }
+    } else {
+      setIsScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", scrollEvent);
+    return () => {
+      window.removeEventListener("scroll", scrollEvent);
+    };
+  }, [isDropped]);
+
   return (
     <>
-      <s.ArticleDiv className="button-container">
         <s.StyledUl
           className={`dropdown-box ${
             isDropped === null
@@ -91,11 +115,14 @@ export default function SortButtons({ sortBefore, sortHandle }: SortButtonsProps
             </s.Button>
           </s.StyledLi>
         </s.StyledUl>
-        
-        <s.Button className="header-button-item">
-          <s.SortIcon onClick={handleDropLeft} />
+
+        <s.Button className="scroll-top-btn">
+          {isScrolled ? (
+            <s.TopArrowIcon onClick={handleScrollToTop} />
+          ) : (
+            <s.SortIcon onClick={handleDropLeft} />
+          )}
         </s.Button>
-      </s.ArticleDiv>
     </>
   );
 }

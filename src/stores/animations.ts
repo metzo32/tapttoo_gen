@@ -12,24 +12,24 @@ export const fadeInRotate = keyframes `
   }
 `
 
-export const openLeftDrop = keyframes`
+export const openDrop = keyframes`
   0% {
-    transform: translateX(20px);
+    transform: translateY(20px);
     opacity: 0;
   }
   100% {
-    transform: translateX(0);
+    transform: translateY(0);
     opacity: 1;
   }
 `;
 
-export const closeLeftDrop = keyframes`
+export const closeDrop = keyframes`
   0% {
-    transform: translateX(0);
+    transform: translateY(0);
     opacity: 1;
   }
   100% {
-    transform: translateX(20px);
+    transform: translateY(20px);
     opacity: 0;
   }
 `;
@@ -151,6 +151,6 @@ export const ClickAnimation = keyframes`
     transform: scale(1);
   }
   50% {
-    transform: scale(1.2);
+    transform: scale(1.3);
   }
 `;

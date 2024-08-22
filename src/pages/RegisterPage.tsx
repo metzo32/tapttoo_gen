@@ -7,6 +7,7 @@ import { setDoc, doc } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 import { nicknameRule, fullnameRule } from "../stores/NameRule";
+import StartFromTop from "../components/StartFromTop";
 import RegisterInputItems from "../components/RegisterInputItems";
 import CalculateAge from "../components/CalculateAge";
 import GenderSelect from "../components/GenderSelect";
@@ -207,6 +208,7 @@ const RegisterPage = () => {
 
   return (
     <>
+      <StartFromTop />
       <s.LoginDiv className="wrapper">
         <Modal
           isOpen={isModalOpen}

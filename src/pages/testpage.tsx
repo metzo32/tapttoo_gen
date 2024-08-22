@@ -7,6 +7,8 @@ import loading03 from "../assets/images/loading03.jpg";
 import loading04 from "../assets/images/loading04.jpg";
 import loading05 from "../assets/images/loading05.jpg";
 
+import test from "../assets/datas/test";
+
 export default function Loading() {
   const [selectedImage, setSelectedImage] = useState("");
 
@@ -21,6 +23,8 @@ export default function Loading() {
     const randomImage = getRandomImage();
     setSelectedImage(randomImage);
   }, []);
+
+  test()
 
   return (
     <s.Loading>

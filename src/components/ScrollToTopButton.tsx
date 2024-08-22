@@ -1,51 +1,35 @@
 import React, { useState, useEffect } from "react";
 import s from "../stores/styling";
-import { HandleScrollToTop } from "./HandleScrollToTop";
+import { handleScrollToTop } from "./HandleScrollToTop"
 
-type ScrollToTopProps = {
-  showSortButton: true;
-  sortedData: any[];
-  handleSort: (sortedArray: any[]) => void;
-} | {
-  showSortButton: false;
-  sortedData?: undefined;
-  handleSort?: undefined;
-};
+const ScrollToTopButton: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
 
-const ScrollToTopButton: React.FC<ScrollToTopProps> = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  // 스크롤 이벤트 핸들러
-  const scrollEvent = () => {
+  const toggleVisibility = () => {
     if (window.scrollY > 500) {
-      setIsScrolled(true);
+      setIsVisible(true);
     } else {
-      setIsScrolled(false);
+      setIsVisible(false);
     }
   };
 
-  // 작은 스크롤 (10px) 이동하는 함수
-  const test = () => {
-    window.scrollTo({
-      top: 10,
-      behavior: "smooth",
-    });
-  };
-
   useEffect(() => {
-    window.addEventListener("scroll", scrollEvent);
+    window.addEventListener("scroll", toggleVisibility);
     return () => {
-      window.removeEventListener("scroll", scrollEvent);
+      window.removeEventListener("scroll", toggleVisibility);
     };
   }, []);
 
   return (
-    // 버튼이 항상 화면에 표시되도록 수정
-    <s.Overlay className="scroll-top-box">
-      <s.Button onClick={isScrolled ? HandleScrollToTop : test} className="scroll-top-btn">
-      {isScrolled ? <s.TopArrowIcon /> : <s.SortIcon/>}
-      </s.Button>
-    </s.Overlay>
+    <>
+      {isVisible && (
+        <s.Overlay className="scroll-top-box">
+          <s.Button onClick={handleScrollToTop} className="scroll-top-btn">
+            <s.TopArrowIcon />
+          </s.Button>
+        </s.Overlay>
+      )}
+    </>
   );
 };
 

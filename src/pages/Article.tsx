@@ -4,19 +4,17 @@ import { auth, db } from "../firebase/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import ArtistData from "../assets/datas/artitst_data";
 import WishList from "../components/WishList";
-import ScrollToTopButton from "../components/SortButtons";
 import SortButtons from "../components/SortButtons";
+import { getRandomImage } from "../assets/datas/getRandomImages";
 
 // Helper function to generate random image URL
-const generateRandomImage = (id: number) =>
-  `https://picsum.photos/1440/900?random=${id}`;
 
 const Article: React.FC = () => {
   const [articles, setArticles] = useState<number[]>([0, 1, 2, 3]);
   const [sortedData, setSortedData] = useState(
     ArtistData.map((artist) => ({
       ...artist,
-      randomImage: generateRandomImage(artist.id),
+      randomImage: getRandomImage(),
     }))
   );
 
@@ -38,7 +36,6 @@ const Article: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  
   //위시리스트
   useEffect(() => {
     const fetchWishlist = async () => {
@@ -83,7 +80,7 @@ const Article: React.FC = () => {
   const handleSort = (sortedArray: typeof ArtistData) => {
     const sortedWithImages = sortedArray.map((artist) => ({
       ...artist,
-      randomImage: generateRandomImage(artist.id),
+      randomImage: getRandomImage(),
     }));
     setSortedData(sortedWithImages);
   };
@@ -103,8 +100,6 @@ const Article: React.FC = () => {
 
   return (
     <s.ArticleDiv className="wrapper">
-      {/* <ScrollToTopButton /> */}
-
       {/* 위시리스트를 표시하는 섹션 */}
       <div>
         <h2>Wishlist</h2>
@@ -139,7 +134,7 @@ const Article: React.FC = () => {
                 onToggleWishlist={() => toggleWishlist(artist.id)}
               />
               <s.ArticleDiv className="article-grid-image">
-                <s.Image src={artist.randomImage} alt={`${artist.nickname}`} />
+                <s.Image src={artist.randomImage} alt={`${artist.nickname}`} className="article-random-image"/>
               </s.ArticleDiv>
               <s.ArticleDiv className="article-text-container">
                 <s.StyledH1 className="article-name">

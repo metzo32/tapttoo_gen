@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { AuthContext } from "../context/AuthContext";
+import StartFromTop from "../components/StartFromTop";
 
 import Modal from "../components/Modal";
 import useModal from "../hooks/ModalHook";
@@ -49,9 +50,7 @@ const LoginPage = () => {
       setCurrentlyLoggedIn(true);
       setIsLoggedIn(true);
       navigate("/"); // 성공 시 홈으로 이동
-    } 
-    
-    catch (error) {
+    } catch (error) {
       const typedError = error as { code: string }; // error를 명시적으로 타입 단언
       console.error("Error signing in:", typedError);
       const errorCode = typedError.code;
@@ -61,8 +60,12 @@ const LoginPage = () => {
         case "auth/user-not-found":
           setModalMessage(
             <>
-              <s.StyledP className="modal-text">등록되지 않은 계정입니다.</s.StyledP>
-              <s.StyledP className="modal-text">회원가입을 진행해 주세요.</s.StyledP>
+              <s.StyledP className="modal-text">
+                등록되지 않은 계정입니다.
+              </s.StyledP>
+              <s.StyledP className="modal-text">
+                회원가입을 진행해 주세요.
+              </s.StyledP>
             </>
           );
           break;
@@ -91,7 +94,9 @@ const LoginPage = () => {
         default:
           setModalMessage(
             <>
-              <s.StyledP className="modal-text">로그인에 실패했습니다.</s.StyledP>
+              <s.StyledP className="modal-text">
+                로그인에 실패했습니다.
+              </s.StyledP>
               <s.StyledP className="modal-text">다시 시도해주세요.</s.StyledP>
             </>
           );
@@ -150,6 +155,7 @@ const LoginPage = () => {
 
   return (
     <>
+      <StartFromTop />
       <s.LoginDiv className="wrapper">
         <Modal
           isOpen={isModalOpen}
@@ -160,7 +166,6 @@ const LoginPage = () => {
           addButton={false}
           text={modalMessage}
         />
-
 
         <s.Form className="login" onSubmit={handleSignIn}>
           <s.LoginDiv className="container">

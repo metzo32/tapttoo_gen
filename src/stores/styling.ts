@@ -13,8 +13,8 @@ import styled, { css, createGlobalStyle } from "styled-components";
 import { Route, Link as RouterLink } from "react-router-dom";
 import {
   fadeInRotate,
-  openLeftDrop,
-  closeLeftDrop,
+  openDrop,
+  closeDrop,
   infiniteSlideLeft,
   animateIn,
   animateOut,
@@ -359,29 +359,29 @@ const HeaderDiv = styled.div`
 
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
 
     position: fixed;
     z-index: 9999;
 
     @media (max-width: 767px) {
-      width: calc(100% - 20px);
-      height: 80px;
-      padding: 0 10px;
-      bottom: 0;
       background-color: ${(props) => props.theme.Light};
+      width: calc(100% - 20px);
+      height: 70px;
+      padding: 20px 10px 0 10px;
+      bottom: 0;
       box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.3);
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
+      justify-content: space-between;
+      align-items: flex-start;
     }
 
     @media (min-width: 768px) {
+      background: transparent;
       width: 100%;
       height: 50px;
+      padding: 0 20px;
       top: 0;
-      background: transparent;
-      border-radius: 0;
+      justify-content: space-between;
+      align-items: center;
     }
   }
 
@@ -393,11 +393,18 @@ const HeaderDiv = styled.div`
     pointer-events: none;
     z-index: 9998;
     backdrop-filter: blur(2px);
+
+    @media (max-width: 767px) {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      display: block;
+    }
   }
 
   &.header-button-wrapper {
     width: auto;
-    height: 100%;
     display: flex;
     flex-direction: row;
     padding-top: 3px;
@@ -405,11 +412,13 @@ const HeaderDiv = styled.div`
     align-items: center;
 
     @media (max-width: 767px) {
-      width: 70%;
+      width: 50%;
+      height: auto;
     }
 
     @media (min-width: 768px) {
       width: 180px;
+      height: 100%;
     }
 
     @media (min-width: 1024px) {
@@ -1648,12 +1657,12 @@ const MaskText = styled.div`
   &.white-box {
     width: 100%;
     flex-grow: 1; 
-    background-color: #fff;
+  background-color: ${lightTheme.Light};
   }
 
   &.small-text-container {
     height: 20%;
-    background-color: #fff;
+    background-color: ${lightTheme.Light};
 
     display: flex;
     flex-direction: row;
@@ -1683,7 +1692,7 @@ const MaskText = styled.div`
 
   &.loading-title {
     width: 140%;
-    background-color: #fff;
+    background-color: ${lightTheme.Light};
 
     color: #000;
     font-size: 31vw;
@@ -2031,44 +2040,61 @@ const StyledUl = styled.ul`
     margin; 0;
     position: relative;
 
-  @media (max-width: 767px) {
-    font-size: 16px;
-    line-height: 20px;
-  }
+    @media (max-width: 767px) {
+      font-size: 16px;
+      line-height: 20px;
+    }
 
-  @media (min-width: 768px) {
-    font-size: 20px;
-    line-height: 30px;
-  }
+    @media (min-width: 768px) {
+      font-size: 20px;
+      line-height: 30px;
+    }
 
-  @media (min-width: 1024px) {
-    font-size: 24px;
-    line-height: 40px;
-  }
+    @media (min-width: 1024px) {
+      font-size: 24px;
+      line-height: 40px;
+    }
+
     &.dropdown-box {
-      width: 400px;
-      height: calc(100% - 10px);
-      background-color: ${lightTheme.Light};
+      width: 120px;
+      height: 200px;
+      background-color:  ${(props) => props.theme.Light};
       border-radius: 10px;
-      margin-right: 10px;
-      margin-bottom: 8px;
+      padding: 20px 0;
+      box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       justify-content: space-between;
       align-items: center;
 
       opacity: 0;
 
+      position: fixed;
+      z-index: 9999;
+
+      @media (max-width: 767px) {
+        right: 12px;
+        bottom: 160px;
+        transform: translate(-20%, -150%);
+      }
+
+      @media (min-width: 768px) {
+        right: 72px;
+        bottom: 160px;
+        transform: translate(-100%, -100%);
+      }
 
       &.open-drop-left {
-        animation: ${openLeftDrop} 0.3s forwards;
+        animation: ${openDrop} 0.3s forwards;
         transform-origin: top right;
       }
 
       &.close-drop-left {
-        animation: ${closeLeftDrop} 0.3s forwards;
+        animation: ${closeDrop} 0.3s forwards;
         transform-origin: top right;
       }
+
     }
 
     &.section-ul {
@@ -2149,13 +2175,19 @@ const ArticleCard = styled.div`
 
 const Image = styled.img`
   width: 100%;
+  height: 100%;
   min-width: 320px;
+
+  &.article-random-image {
+    object-fit: cover;
+    object-position: center;
+  }
 
   &.loading-image {
     width: 100vw;
     height: 100%;
-    object-fit: cover; /* 이미지가 컨테이너를 덮도록 조절 */
-    object-position: center; /* 이미지의 중앙을 기준으로 위치 */
+    object-fit: cover;
+    object-position: center;
   }
 
   &.BrandMidImage {
@@ -2964,41 +2996,18 @@ const ArticleDiv = styled.div`
     margin-top: 50px;
   }
 
-  &.button-container {
-    width: 100%;
-    height: 50px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-
-    @media (max-width: 767px) {
-      width: 100%;
-    }
-
-    @media (min-width: 768px) {
-      width: 100%;
-    }
-
-    @media (min-width: 1024px) {
-    }
-  }
-
   &.mid-wrapper {
     display: flex;
     flex-direction: column;
   }
 
-  &.article-cards {
-    width: 100vw;
-    aspect-ratio: 1440/900;
+  .article-cards {
     margin: 0;
     position: relative;
     z-index: 1;
     overflow: hidden;
     cursor: pointer;
 
-    /* 기본 hover 스타일 (비터치 장치에서 적용됨) */
     &:hover .article-grid-image {
       filter: brightness(0.6);
       transition: filter 0.5s ease 0.5s;
@@ -3012,6 +3021,9 @@ const ArticleDiv = styled.div`
     }
 
     @media (max-width: 767px) {
+      width: 100vw;
+      aspect-ratio: 1/1;
+
       &:hover .article-grid-image,
       &:hover .article-name {
         filter: none;
@@ -3023,16 +3035,18 @@ const ArticleDiv = styled.div`
     }
 
     @media (min-width: 768px) and (max-width: 1023px) {
+      width: 100vw;
+      aspect-ratio: 1440/900;
     }
 
     @media (min-width: 1024px) {
+      width: 100vw;
+      aspect-ratio: 1440/900;
     }
   }
 
   &.article-grid-image {
-    position: absolute;
-    z-index: 1;
-    object-fit: cover;
+
     overflow: hidden;
   }
 
@@ -3125,6 +3139,7 @@ const Portfolio = styled.div`
     @media (min-width: 768px) {
       margin-top: 40px;
       flex-direction: column;
+
       align-items: flex-end;
     }
 
@@ -3604,11 +3619,12 @@ const Footer = styled.div`
     justify-content: space-evenly;
     overflow: hidden;
 
-    position: absolute;
-    bottom: 0;
-
     @media (max-width: 767px) {
       height: auto;
+      margin-bottom: 130px;
+    }
+
+    @media (min-width: 768px) {
       margin: 0;
     }
   }
@@ -4038,11 +4054,11 @@ const LoginDiv = styled.div`
     display: flex;
 
     @media (max-width: 767px) {
-      margin: 80px 0px 240px 0px;
+      margin: 45px 0px 240px 0px;
     } 
 
     @media (min-width: 768px) {
-      margin: 80px 0px 130px 0px;
+      margin: 80px 0px;
     }
 
     @media (min-width: 1024px) {
@@ -4689,10 +4705,20 @@ const Button = styled.button`
   &.header-button-item {
     padding: 0;
     width: 55px;
-    height: 100%;
 
     &:last-child {
       margin: 0;
+    }
+
+    @media (max-width: 767px) {
+      height: 50%;
+    }
+
+    @media (min-width: 768px) {
+      height: 100%;
+    }
+
+    @media (min-width: 1024px) {
     }
   }
 
@@ -4736,7 +4762,13 @@ const Button = styled.button`
     }
 
     @media (max-width: 767px) {
-      transform: translate(-20%, -150%);
+      transform: translate(-20%, -175%);
+
+      &:hover {
+        color: ${lightTheme.Light};
+        background-color: ${lightTheme.Green};
+        transition: none;
+      }
     }
 
     @media (min-width: 768px) {
@@ -4946,8 +4978,8 @@ const StyledHeaderIcon = css`
   }
 
   @media (max-width: 767px) {
-    width: 27px;
-    height: 27px;
+    width: 24px;
+    height: 24px;
   }
 
   @media (min-width: 768px) {
@@ -4957,28 +4989,16 @@ const StyledHeaderIcon = css`
 `;
 
 const SortIcon = styled(GrSort)`
+  fill: ${lightTheme.Light};
+  color: ${lightTheme.Light};
   @media (max-width: 767px) {
     width: 27px;
     height: 27px;
-    fill: ${lightTheme.Light};
-    color: ${lightTheme.Light};
-
-    &:hover {
-      fill: ${lightTheme.Light};
-      color: ${lightTheme.Light};
-    }
   }
 
   @media (min-width: 768px) {
     width: 20px;
     height: 20px;
-    fill: ${(props) => props.theme.Grey};
-    color: ${(props) => props.theme.Grey};
-
-    &:hover {
-      fill: ${(props) => props.theme.HoverGrey};
-      color: ${(props) => props.theme.HoverGrey};
-    }
   }
 `;
 

@@ -66,7 +66,7 @@ const App: React.FC = () => {
           <s.Div className="App">
             <Router>
               <Header />
-              <ScrollToTopButton showSortButton={false}/>
+              <ScrollToTopButton/>
               <Routes>
                 <Route path="/" element={<SearchNew />} />
                 <Route path="/login" element={<LoginPage />} />
