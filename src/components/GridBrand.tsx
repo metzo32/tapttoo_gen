@@ -1,10 +1,10 @@
 import React from "react";
 import s from "../stores/styling";
-import GridImage01 from "../assets/grid images/01.jpg";
-import GridImage02 from "../assets/grid images/02.jpg";
-import GridImage03 from "../assets/grid images/03.jpg";
-import GridImage04 from "../assets/grid images/04.jpg";
-import GridImage05 from "../assets/grid images/05.jpg";
+import GridImage01 from "../assets/images/about_03.jpg"
+import GridImage02 from "../assets/images/about_04.jpg"
+import GridImage03 from "../assets/images/about_05.jpg"
+import GridImage04 from "../assets/images/about_06.jpg"
+import GridImage05 from "../assets/images/about_07.jpg"
 
 export default function GridBrand() {
   return (

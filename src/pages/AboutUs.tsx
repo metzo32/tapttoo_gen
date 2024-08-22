@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import s from "../stores/styling";
 import { useNavigate } from "react-router-dom";
 import BrandTopTitle from "../components/BrandTopTitle";
@@ -9,12 +8,13 @@ import BrandBottomTitle from "../components/BrandTitleBottom";
 import WideImage from "../components/WideImage";
 import StartFromTop from "../components/StartFromTop";
 
-import BrandMidImage from "../assets/images/15.jpg";
-import BrandMidImage02 from "../assets/images/mid.jpg";
-import MidImage from "../assets/images/11.jpg";
+import BrandMidImage from "../assets/images/about_02.jpg";
+import MidImage from "../assets/images/about_02.jpg";
+import BrandLastImage from "../assets/images/about_01.jpg";
+
+import DrawLetter from "../components/DrawLetter";
 
 export default function AboutUs() {
-
   const navigate = useNavigate();
 
   const handleNavigation = (path: string) => {
@@ -25,14 +25,10 @@ export default function AboutUs() {
     <>
       <StartFromTop />
       <s.AboutDiv className="wrapper">
-        <s.AboutDiv>
-          <BrandTopTitle />
-        </s.AboutDiv>
-        <s.AboutDiv>
-          <BrandMidTitle />
-        </s.AboutDiv>
+        <DrawLetter/>
+        <BrandTopTitle />
+        <BrandMidTitle />
         <WideImage image={BrandMidImage} alt="photo" />
-        {/* 캐러셀 */}
 
         <Description
           title={"Harmony of Heritage and Sustainability"}
@@ -47,7 +43,12 @@ export default function AboutUs() {
         />
 
         <s.AboutDiv className="button-box">
-          <s.Button onClick={() => handleNavigation("/article")} className="Round">바로 둘러보기</s.Button>
+          <s.Button
+            onClick={() => handleNavigation("/article")}
+            className="Round"
+          >
+            바로 둘러보기
+          </s.Button>
         </s.AboutDiv>
 
         <GridBrand />
@@ -56,7 +57,7 @@ export default function AboutUs() {
           title={"Explore our other Collaborative works"}
           text="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia amet dicta saepe cum vel sunt officia delectus adipisci recusandae cupiditate, neque eaque aperiam. A aut tempore dolore dolorum deserunt veniam!"
         />
-        <WideImage image={BrandMidImage02} alt="photo" />
+        <WideImage image={BrandLastImage} alt="photo" />
         <BrandBottomTitle />
       </s.AboutDiv>
     </>
