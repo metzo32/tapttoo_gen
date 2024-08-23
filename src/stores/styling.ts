@@ -471,7 +471,7 @@ const AboutDiv = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    
+
     @media (max-width: 767px) {
       width: 100%;
       margin-top: 60px;
@@ -525,12 +525,12 @@ const AboutDiv = styled.div`
     padding-left: 5px;
 
     @media (max-width: 511px) {
-      height: 600px;
+
       flex-direction: column;
     }
 
     @media (min-width: 512px) {
-      height: 480px;
+
     }
 
     @media (min-width: 768px) {
@@ -624,15 +624,15 @@ const StyledH1 = styled.h1`
 
   &.brand-title {
     @media (max-width: 405px) {
-      font-size: 50px;
+      font-size: 45px;
       line-height: 50px;
-      margin-bottom: 10px;
+      margin-bottom: 25px;
     }
 
     @media (min-width: 405px) {
       font-size: 60px;
       line-height: 60px;
-      margin-bottom: 15px;
+      margin-bottom: 30px;
     }
 
     @media (min-width: 540px) {
@@ -1278,7 +1278,31 @@ const StyledP = styled.p`
 
   &.about-first-title {
     text-align: center;
-    margin-bottom: 30px;
+
+    @media (max-width: 405px) {
+      margin-bottom: 25px;
+    }
+
+    @media (min-width: 405px) {
+      margin-bottom: 30px;
+    }
+
+    @media (min-width: 540px) {
+      margin-bottom: 20px;
+    }
+
+    @media (min-width: 768px) {
+      margin-bottom: 30px;
+    }
+
+    @media (min-width: 1024px) {
+      margin-bottom: 40px;
+    }
+
+    @media (min-width: 1220px) {
+      margin-bottom: 50px;
+    }
+  }
   }
 
   &.about-last-title {
@@ -2111,7 +2135,7 @@ const StyledUl = styled.ul`
       justify-content: space-between;
 
       @media (max-width: 767px) {
-        height: 100%;
+        height: 20%;
         margin-top: 20px;
       }
 
@@ -3615,7 +3639,6 @@ const MainImage = styled.img`
   width: 100%;
   border-bottom-right-radius: 50% 95%;
   border-bottom-left-radius: 50% 95%;
-  margin-top: 20px;
 `;
 
 const Footer = styled.div`

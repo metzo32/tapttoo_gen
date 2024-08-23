@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import s from "../stores/styling";
 import { ArtistDataProps } from "../assets/datas/artitst_data";
-import { handleScrollToTop } from "./HandleScrollToTop"
+import { handleScrollToTop } from "./HandleScrollToTop";
+import { PopUpBelow } from "./FramerMotions/scrollMotions";
 
 interface SortButtonsProps {
   sortBefore: ArtistDataProps[];
@@ -79,21 +80,24 @@ export default function SortButtons({
 
   return (
     <>
-        <s.StyledUl
-          className={`dropdown-box ${
-            isDropped === null
-              ? ""
-              : isDropped
-              ? "open-drop-left"
-              : "close-drop-left"
-          }`}
-        >
+      <s.StyledUl
+        className={`dropdown-box ${
+          isDropped === null
+            ? ""
+            : isDropped
+            ? "open-drop-left"
+            : "close-drop-left"
+        }`}
+      >
+        <PopUpBelow delay={0.5}>
           <s.StyledLi className="dropdown-li">
             <s.Button className="dropdown-btn" onClick={handleSortAlphabet}>
               오름차순
             </s.Button>
           </s.StyledLi>
+        </PopUpBelow>
 
+        <PopUpBelow delay={0.8}>
           <s.StyledLi className="dropdown-li">
             <s.Button
               className="dropdown-btn"
@@ -102,27 +106,32 @@ export default function SortButtons({
               내림차순
             </s.Button>
           </s.StyledLi>
+        </PopUpBelow>
 
+        <PopUpBelow delay={1.1}>
           <s.StyledLi className="dropdown-li">
             <s.Button className="dropdown-btn" onClick={handleSortNew}>
               신규순
             </s.Button>
           </s.StyledLi>
+        </PopUpBelow>
 
+        <PopUpBelow delay={1.4}>
           <s.StyledLi className="dropdown-li">
             <s.Button className="dropdown-btn" onClick={handleSortOld}>
               오래된순
             </s.Button>
           </s.StyledLi>
-        </s.StyledUl>
+        </PopUpBelow>
+      </s.StyledUl>
 
-        <s.Button className="scroll-top-btn">
-          {isScrolled ? (
-            <s.TopArrowIcon onClick={handleScrollToTop} />
-          ) : (
-            <s.SortIcon onClick={handleDropLeft} />
-          )}
-        </s.Button>
+      <s.Button className="scroll-top-btn">
+        {isScrolled ? (
+          <s.TopArrowIcon onClick={handleScrollToTop} />
+        ) : (
+          <s.SortIcon onClick={handleDropLeft} />
+        )}
+      </s.Button>
     </>
   );
 }

@@ -23,7 +23,7 @@ export default function AboutUs() {
 
   return (
     <>
-      {/* <StartFromTop /> */}
+      <StartFromTop />
       <s.AboutDiv className="wrapper">
         {/* <DrawLetter/> */}
         <BrandTopTitle />
