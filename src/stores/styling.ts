@@ -471,7 +471,7 @@ const AboutDiv = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-
+    
     @media (max-width: 767px) {
       width: 100%;
       margin-top: 60px;
@@ -539,26 +539,6 @@ const AboutDiv = styled.div`
 
     @media (min-width: 1024px) {
       flex-direction: row;
-    }
-  }
-
-  &.service-wrapper {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-
-    @media (max-width: 767px) {
-      width: 100%;
-      height: 350px;
-    }
-
-    @media (min-width: 768px) {
-      height: 500px;
-    }
-
-    @media (min-width: 1024px) {
-      width: 50%;
-      height: 380px;
     }
   }
 
@@ -2039,11 +2019,9 @@ const DrawIcon = styled.div`
     height: 500px;
     margin: 0 auto;
     margin-top: 100px;
-    border: 1px solid blue;
 
-    position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
   }
 
@@ -2051,15 +2029,13 @@ const DrawIcon = styled.div`
     width: 200px;
 
     path {
-      fill: beige;
-      stroke-width: 10;
-      stroke: blue;
-
+      stroke-width: 5;
+      stroke: ${(props) => props.theme.Green};
 
       stroke-dasharray: 1642;
       stroke-dashoffset: 1642;
 
-      animation: ${drawLetter} 1s linear forwards;
+      animation: ${drawLetter} 1s ease forwards;
     }
   }
 `;
@@ -2109,12 +2085,12 @@ const StyledUl = styled.ul`
 
       @media (max-width: 767px) {
         right: 12px;
-        bottom: 160px;
+        bottom: 180px;
         transform: translate(-20%, -150%);
       }
 
       @media (min-width: 768px) {
-        right: 72px;
+        right: 35px;
         bottom: 160px;
         transform: translate(-100%, -100%);
       }
@@ -2132,20 +2108,22 @@ const StyledUl = styled.ul`
     }
 
     &.section-ul {
-      height: 100%;
       justify-content: space-between;
 
       @media (max-width: 767px) {
+        height: 100%;
         margin-top: 20px;
       }
 
       @media (min-width: 768px) {
+        height: 30%;
         margin-top: 40px;
       }
 
       @media (min-width: 1024px) {
+        height: 38%;
         }
-      }
+    }
 
     &.nav-menu-items {
         display: flex;
@@ -4921,13 +4899,6 @@ const BrandLogo = styled(Logo)`
   fill: ${(props) => props.theme.Grey};
 `;
 
-const LetterIcon = styled(LetterTIcon)`
-  width: 200px;
-  height: 200px;
-  margin: 0 auto;
-  margin-top: 100px;
-`;
-
 const Moon = styled(PiMoonBold)`
   fill: ${(props) => props.theme.Grey};
   width: 18px;
@@ -5193,7 +5164,6 @@ const s = {
   StyledCircularProgressbar,
 
   BrandLogo,
-  LetterIcon,
   Moon,
   Sun,
 

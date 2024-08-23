@@ -23,9 +23,9 @@ export default function AboutUs() {
 
   return (
     <>
-      <StartFromTop />
+      {/* <StartFromTop /> */}
       <s.AboutDiv className="wrapper">
-        <DrawLetter/>
+        {/* <DrawLetter/> */}
         <BrandTopTitle />
         <BrandMidTitle />
         <WideImage image={BrandMidImage} alt="photo" />

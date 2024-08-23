@@ -5,7 +5,7 @@ export default function BrandMidTitle() {
   return (
     <>
       <s.AboutDiv className="mid-title-wrapper ">
-        <s.AboutDiv className="service-wrapper">
+        <s.AboutDiv className="mid-description">
           <s.StyledH3>The service we use</s.StyledH3>
           <s.StyledUl className="section-ul">
             <s.StyledLi>Digital Marketing</s.StyledLi>

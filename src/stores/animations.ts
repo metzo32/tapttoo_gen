@@ -13,7 +13,7 @@ export const drawLetter = keyframes`
   }
   100% {
     stroke-dashoffset: 3284;
-    fill: green;
+
   }
 `;
 

@@ -1,12 +1,15 @@
 import mainImage from "../assets/images/main.jpg";
 import s from "../stores/styling";
+import { motion, useInView, useAnimation } from "framer-motion";
 
 export default function BrandTopTitle() {
   return (
     <>
       <s.AboutDiv className="title-container">
         <s.StyledH1 className="brand-title">
-          We are Visionary<br/>Craftsmen
+          We are Visionary
+          <br />
+          Craftsmen
         </s.StyledH1>
         <s.StyledP className="about-first-title">
           Lorem ipsum dolor sit amet consectetur adipisicing elit maiores
