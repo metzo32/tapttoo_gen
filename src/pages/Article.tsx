@@ -6,8 +6,8 @@ import ArtistData from "../assets/datas/artitst_data";
 import WishList from "../components/WishList";
 import SortButtons from "../components/SortButtons";
 import { getRandomImage } from "../assets/datas/getRandomImages";
-
-// Helper function to generate random image URL
+import StartFromTop from "../components/StartFromTop";
+import { PopUpBelow } from "../components/FramerMotions/scrollMotions";
 
 const Article: React.FC = () => {
   const [articles, setArticles] = useState<number[]>([0, 1, 2, 3]);
@@ -95,57 +95,52 @@ const Article: React.FC = () => {
     );
   };
 
-  // 현재 위시리스트에 포함된 아티스트들을 필터링
-  const wishlistedArtists = sortedData.filter((artist) => artist.isWishlisted);
 
   return (
-    <s.ArticleDiv className="wrapper">
-      {/* 위시리스트를 표시하는 섹션 */}
-      <div>
-        <h2>Wishlist</h2>
-        {wishlistedArtists.length === 0 ? (
-          <p>No artists in wishlist.</p>
-        ) : (
-          <ul>
-            {wishlistedArtists.map((artist) => (
-              <li key={artist.id}>{artist.id}</li>
-            ))}
-          </ul>
-        )}
-      </div>
+    <>
+      <StartFromTop />
+      <s.ArticleDiv className="wrapper">
 
-      <SortButtons sortBefore={sortedData} sortHandle={handleSort} />
+        <SortButtons sortBefore={sortedData} sortHandle={handleSort} />
 
-      <s.ArticleDiv className="mid-wrapper">
-        {articles.map((index) => {
-          const artist = sortedData[index]; // index로 접근
 
-          if (!artist) return null; // artist가 undefined일 경우 null 반환
+        <s.ArticleDiv className="mid-wrapper">
+          {articles.map((index) => {
+            const artist = sortedData[index]; // index로 접근
 
-          return (
-            <s.ArticleDiv
-              key={artist.id}
-              className="article-cards"
-              onClick={() => handleCardRedirect(artist.nickname)}
-            >
-              <WishList
-                artistId={artist.id}
-                isWishlisted={!!artist.isWishlisted} // isWishlisted를 불리언 값으로 변환하여 전달
-                onToggleWishlist={() => toggleWishlist(artist.id)}
-              />
-              <s.ArticleDiv className="article-grid-image">
-                <s.Image src={artist.randomImage} alt={`${artist.nickname}`} className="article-random-image"/>
+            if (!artist) return null; // artist가 undefined일 경우 null 반환
+
+            return (
+              <PopUpBelow delay={0}>
+              <s.ArticleDiv
+                key={artist.id}
+                className="article-cards"
+                onClick={() => handleCardRedirect(artist.nickname)}
+              >
+                <WishList
+                  artistId={artist.id}
+                  isWishlisted={!!artist.isWishlisted} // isWishlisted를 불리언 값으로 변환하여 전달
+                  onToggleWishlist={() => toggleWishlist(artist.id)}
+                />
+                <s.ArticleDiv className="article-grid-image">
+                  <s.Image
+                    src={artist.randomImage}
+                    alt={`${artist.nickname}`}
+                    className="article-random-image"
+                  />
+                </s.ArticleDiv>
+                <s.ArticleDiv className="article-text-container">
+                  <s.StyledH1 className="article-name">
+                    {artist.nickname}
+                  </s.StyledH1>
+                </s.ArticleDiv>
               </s.ArticleDiv>
-              <s.ArticleDiv className="article-text-container">
-                <s.StyledH1 className="article-name">
-                  {artist.nickname}
-                </s.StyledH1>
-              </s.ArticleDiv>
-            </s.ArticleDiv>
-          );
-        })}
+              </PopUpBelow>
+            );
+          })}
+        </s.ArticleDiv>
       </s.ArticleDiv>
-    </s.ArticleDiv>
+    </>
   );
 };
 

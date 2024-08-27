@@ -1,4 +1,3 @@
-
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import s from "../stores/styling";
 import { useState, useEffect } from "react";
@@ -10,20 +9,38 @@ interface WishListProps {
   onToggleWishlist: () => void;
 }
 
-const WishList: React.FC<WishListProps> = ({
-  artistId,
-  isWishlisted,
-  onToggleWishlist,
-}) => {
-  const [hovered, setHovered] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+const WishList: React.FC<WishListProps> = ({ artistId, isWishlisted, onToggleWishlist }) => {
+  const [wishButton, setWishButton] = useState<boolean>(false);
+  const [hovered, setHovered] = useState(false); 
+
 
   useEffect(() => {
-    const mobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(
-      navigator.userAgent
-    );
-    setIsMobile(mobile);
-  }, []);
+    const fetchWishlistStatus = async () => {
+      const user = auth.currentUser;
+      if (!user) {
+        console.error("로그인이 필요합니다.");
+        return;
+      }
+
+      const userRef = doc(db, "users", user.uid);
+
+      try {
+        const userDoc = await getDoc(userRef);
+        const currentWishlist = userDoc.data()?.wishList || [];
+        const isAlreadyWishlisted = currentWishlist.includes(artistId);
+
+        setWishButton(isAlreadyWishlisted); // DB에 있는지 여부에 따라 초기값 설정
+      } catch (error) {
+        console.error("위시리스트 상태를 가져오는 중 오류 발생:", error);
+      }
+    };
+
+    fetchWishlistStatus();
+  }, [artistId]);
+
+  useEffect(() => {
+    setHovered(false); // 상태 변경 시 hover 상태 초기화
+  }, [isWishlisted]);
 
   const handleWishlistToggle = async () => {
     const user = auth.currentUser;
@@ -41,7 +58,7 @@ const WishList: React.FC<WishListProps> = ({
 
       let updatedWishlist;
 
-      if (isWishlisted) {
+      if (wishButton) {
         // 이미 위시리스트에 포함되어 있으면 제거
         updatedWishlist = currentWishlist.filter(
           (id: number) => id !== artistId
@@ -58,16 +75,16 @@ const WishList: React.FC<WishListProps> = ({
 
       await updateDoc(userRef, { wishList: updatedWishlist });
 
-      console.log("Updated Wishlist:", updatedWishlist);
+      setWishButton(!wishButton); // 상태 업데이트
       onToggleWishlist(); // 부모 컴포넌트에서 상태를 업데이트하도록 콜백 실행
-    } catch (error) {
+    } 
+    catch (error) {
       console.error("위시리스트 업데이트 중 오류 발생:", error);
     }
   };
 
-  const handleMouseClick = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) => {
+
+  const handleMouseClick = ( event: React.MouseEvent<HTMLDivElement, MouseEvent> ) => {
     event.stopPropagation();
     handleWishlistToggle();
   };
@@ -77,26 +94,21 @@ const WishList: React.FC<WishListProps> = ({
     handleWishlistToggle();
   };
 
+  const handleMouseEnter = () => {
+      setHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+      setHovered(false);
+  };
+
   const renderIcon = () => {
-    if (isWishlisted) {
+    if (wishButton) {
       return <s.WishIconClicked />;
     } else if (hovered) {
       return <s.WishIconHover />;
     } else {
       return <s.WishIconLine />;
-    }
-  };
-
-  // 모바일일 경우 hover관련 이벤트 차단
-  const handleMouseEnter = () => {
-    if (!isMobile) {
-      setHovered(true);
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (!isMobile) {
-      setHovered(false);
     }
   };
 

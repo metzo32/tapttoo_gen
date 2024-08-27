@@ -11,6 +11,7 @@ import {
 import { AuthContext } from "./context/AuthContext";
 import ProtectedRouteHoc from "./components/ProtectedRouteHoc";
 import CustomThemeProvider from "./context/\bCustomThemeProvider";
+import { MobileProvider } from "./context/MobileContext";
 
 import Header from "./components/Header";
 import AboutUs from "./pages/AboutUs";
@@ -62,6 +63,7 @@ const App: React.FC = () => {
     <>
       <AuthContext.Provider value={{ currentlyLoggedIn, setCurrentlyLoggedIn }}>
         <CustomThemeProvider>
+        <MobileProvider>
           <s.GlobalStyle/>
           <s.Div className="App">
             <Router>
@@ -104,6 +106,7 @@ const App: React.FC = () => {
               <Footer/>
             </Router>
           </s.Div>
+          </MobileProvider>
         </CustomThemeProvider>
       </AuthContext.Provider>
     </>

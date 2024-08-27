@@ -63,6 +63,9 @@ import { IoIosArrowForward } from "react-icons/io"; // 오른쪽 꺽쇠
 import { TbExclamationMark } from "react-icons/tb"; //느낌표
 import { GrSort } from "react-icons/gr"; //정렬
 import { GoPlusCircle } from "react-icons/go"; //플러스
+import { MdOutlineSmartphone } from "react-icons/md"; //스마트폰
+import { LiaBirthdayCakeSolid } from "react-icons/lia"; //생일
+import { IoExitOutline } from "react-icons/io5"; //로그아웃
 
 import { ReactComponent as CheckboxBefore } from "../assets/icons/checkbox-passive.svg";
 import { ReactComponent as CheckboxAfter } from "../assets/icons/checkbox-active.svg";
@@ -525,12 +528,10 @@ const AboutDiv = styled.div`
     padding-left: 5px;
 
     @media (max-width: 511px) {
-
       flex-direction: column;
     }
 
     @media (min-width: 512px) {
-
     }
 
     @media (min-width: 768px) {
@@ -556,7 +557,7 @@ const AboutDiv = styled.div`
     margin-left: 5px;
   }
 
-  &.button-box {
+  &.about-button-box {
     width: 200px;
     margin-left: 4px;
     margin-bottom: 20px;
@@ -620,6 +621,12 @@ const StyledH1 = styled.h1`
     white-space: nowrap;
     margin: 0 auto;
     margin-bottom: 100px;
+  }
+
+  &.gen-title {
+    color: ${lightTheme.Light};
+    line-height: 135px;
+    text-align: left;
   }
 
   &.brand-title {
@@ -1004,7 +1011,7 @@ const StyledH3 = styled.h3`
     }
 
     @media (min-width: 1024px) {
-      font-size: 24px;
+      font-size: 22px;
     }
   }
 
@@ -1190,20 +1197,41 @@ const StyledH4 = styled.h4`
   }
 
   &.profile-details {
-    color: ${(props) => props.theme.Grey};
+    color: ${(props) => props.theme.LightGrey};
     letter-spacing: 0px;
     line-height: 18px;
 
     @media (max-width: 767px) {
       font-size: 12px;
+      margin-bottom: 0px;
     }
 
     @media (min-width: 768px) {
       font-size: 15px;
+      margin-bottom: 2px;
     }
 
     @media (min-width: 1024px) {
       font-size: 18px;
+      margin-bottom: 0px;
+    }
+  }
+
+  &.profile-likes {
+    color: ${(props) => props.theme.Grey};
+    letter-spacing: 0px;
+    line-height: 18px;
+
+    @media (max-width: 767px) {
+      font-size: 18px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 20px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 24px;
     }
   }
 
@@ -1709,7 +1737,7 @@ const MaskText = styled.div`
     text-align- bottom;
 
     margin: 0;
-    mix-blend-mode: lighten;
+h
     
     position: absolute;
     bottom: 0;
@@ -2212,7 +2240,6 @@ const ArticleCard = styled.div`
 const Image = styled.img`
   width: 100%;
   height: 100%;
-  min-width: 320px;
 
   &.article-random-image {
     object-fit: cover;
@@ -2274,6 +2301,12 @@ const Image = styled.img`
     width: 100%;
   }
 
+  &.proflie-label {
+    width: 100%;
+    height: 40%;
+    object-fit: cover;
+  }
+
   &.artist-page-main {
     width: 100%;
     object-fit: cover;
@@ -2282,19 +2315,20 @@ const Image = styled.img`
 
   &.search-circle-profile {
     border-radius: 50%;
+    object-fit: cover;
 
     @media (max-width: 767px) {
-      width: 100%;
+      width: 150px;
       aspect-ratio: 1/1;
     }
 
     @media (min-width: 768px) {
-      width: 100%;
+      width: 180px;
       aspect-ratio: 1/1;
     }
 
     @media (min-width: 1024px) {
-      width: 100%;
+      width: 200px;
       aspect-ratio: 1/1;
     }
   }
@@ -2897,17 +2931,6 @@ const Search = styled.div`
     justify-content: space-between;
     align-items: center;
     margin: 20px 0;
-
-    @media (max-width: 767px) {
-      margin: 10px 0;
-    }
-
-    @media (min-width: 768px) {
-      margin: 20px 0;
-    }
-
-    @media (min-width: 1024px) {
-    }
   }
 
   &.event-title-box {
@@ -2931,6 +2954,7 @@ const Search = styled.div`
   }
 
   &.event-image-box {
+    border: 1px solid blue;
     @media (max-width: 767px) {
       width: 90px;
       height: 90px;
@@ -2944,6 +2968,9 @@ const Search = styled.div`
     }
 
     @media (min-width: 1024px) {
+      width: 120px;
+      height: 120px;
+      margin: 0px;
     }
   }
 
@@ -2955,13 +2982,16 @@ const Search = styled.div`
 
     @media (max-width: 767px) {
       width: 55%;
+      margin-left: 40px;
     }
 
     @media (min-width: 768px) {
       width: 60%;
+      margin-left: 50px;
     }
 
     @media (min-width: 1024px) {
+      margin-left: 90px;
     }
   }
 
@@ -3072,12 +3102,12 @@ const ArticleDiv = styled.div`
 
     @media (min-width: 768px) and (max-width: 1023px) {
       width: 100vw;
-      aspect-ratio: 1440/900;
+      aspect-ratio: 16/9;
     }
 
     @media (min-width: 1024px) {
       width: 100vw;
-      aspect-ratio: 1440/900;
+      aspect-ratio: 16/9;
     }
   }
 
@@ -3463,10 +3493,69 @@ const Carousel = styled.div`
 `;
 
 const GenDiv = styled.div`
-  &.image-generator {
+  &.gen-wrapper {
     width: 100%;
-    height: auto;
+    height: calc(100vh - 50px);
     margin-top: 50px;
+    background-color: beige;
+    position: relative;
+  }
+
+  &.gen-image-box {
+    width: 512px;
+    height: 512px;
+    margin: 0 auto;
+    border: 1px solid yellow;
+  }
+
+  &.gen-input-container {
+    width: 30%;
+    height: auto;
+    background-color: pink;
+    display: flex;
+    flex-direction: row;
+  }
+
+  &.gen-grad-wrapper01 {
+    width: calc(100% - 80px);
+    height: 60%;
+    padding: 0px 40px;
+
+    display: flex;
+    flex-direction: column;
+    border: 1px solid red;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    background: rgb(38, 38, 38);
+    background: linear-gradient(
+      0deg,
+      rgba(38, 38, 38, 1) 0%,
+      rgba(28, 28, 28, 0) 100%
+    );
+  }
+
+  &.gen-grad-wrapper02 {
+    width: calc(100% - 80px);
+    height: 100%;
+    padding: 0px 40px;
+    border: 1px solid green;
+
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background: rgb(38, 38, 38);
+    background: linear-gradient(
+      0deg,
+      rgba(38, 38, 38, 1) 0%,
+      rgba(28, 28, 28, 0) 100%
+    );
   }
 `;
 
@@ -3921,9 +4010,9 @@ const PolicyWrapper = styled.div`
 const Form = styled.form`
   display: flex;
   height: auto;
+  margin-top: 50px;
   flex-direction: column;
   align-items: center;
-  margin-top: 50px;
 
   &.login {
     width: 100%;
@@ -3931,6 +4020,18 @@ const Form = styled.form`
     flex-direction: row;
     justify-content: center;
     margin: 0;
+  }
+
+  &.img-gen-form {
+    width: 100%;
+    height: 50%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 `;
 
@@ -3951,12 +4052,6 @@ const ProfileDiv = styled.div`
     @media (min-width: 1024px) {
       margin-bottom: 20px;
     }
-  }
-
-  &.proflie-label {
-    width: 100%;
-    height: 35%;
-    background-color: green;
   }
 
   &.profile-section {
@@ -3986,6 +4081,11 @@ const ProfileDiv = styled.div`
     }
 
     @media (min-width: 1024px) {
+      width: 60%;
+      aspect-ratio: 4/3;
+    }
+
+    @media (min-width: 1440px) {
       width: 60%;
       aspect-ratio: 16/9;
     }
@@ -4028,13 +4128,23 @@ const ProfileDiv = styled.div`
     justify-content: space-between;
     align-items: center;
 
-    @media (max-width: 767px) {
-      height: 60%;
-      padding-top: 0px;
+    @media (max-width: 425px) {
+      height: calc(65% - 15px);
+      padding-top: 15px;
+    }
+
+    @media (min-width: 426px) {
+      height: calc(70% - 35px);
+      padding-top: 35px;
     }
 
     @media (min-width: 768px) {
-      height: calc(60% - 40px);
+        height: calc(70% - 50px);
+        padding-top: 50px;
+    }
+
+    @media (min-width: 1024px) {
+      height: calc(70% - 40px);
       padding-top: 40px;
     }
   }
@@ -4046,7 +4156,7 @@ const ProfileDiv = styled.div`
     align-items: center;
 
     @media (max-width: 767px) {
-      height: 50px;
+      height: 45px;
     }
 
     @media (min-width: 1024px) {
@@ -4061,22 +4171,62 @@ const ProfileDiv = styled.div`
     justify-content: space-between;
     align-items: center;
 
-    :last-child {
-      margin: 0;
-    }
-
     @media (max-width: 767px) {
-      height: 50px;
+      height: 40px;
     }
 
     @media (min-width: 768px) {
       height: 60px;
-      margin-bottom: 10px;
+      margin-bottom: 0px;
     }
 
     @media (min-width: 1024px) {
-      height: 70px;
+      height: 85px;
       margin-bottom: 10px;
+    }
+  }
+
+  &.profile-contact-container {
+    display: flex;
+    justify-content: space-between;
+
+    @media (max-width: 767px) {
+      flex-direction: row;
+      height: 45px;
+    }
+
+    @media (min-width: 768px) {
+      flex-direction: column;
+      height: 45px;
+    }
+
+    @media (min-width: 1024px) {
+      height: 45px;
+    }
+  }
+
+  &.profile-contact-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &.profile-like-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (max-width: 767px) {
+      height: 43px;
+    }
+
+    @media (min-width: 768px) {
+      height: 45px;
+    }
+
+    @media (min-width: 1024px) {
+      height: 48px;
     }
   }
 `;
@@ -4422,6 +4572,7 @@ const Input = styled.input`
   &::placeholder {
     color: transparent;
   }
+
   &:focus::placeholder {
     color: ${(props) => props.theme.LightGrey};
   }
@@ -4436,6 +4587,10 @@ const Input = styled.input`
 
   &.gender-radio {
     display: none;
+  }
+
+  &.prompt-input {
+    background: red;
   }
 `;
 
@@ -4703,7 +4858,22 @@ const Button = styled.button`
     top: 0;
   }
 
+  &.responsive-logout {
+    @media (max-width: 767px) {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      display: none;
+    }
+
+    @media (min-width: 1024px) {
+      display: block;
+    }
+  }
+
   &.Round {
+  width: auto;
     color: ${(props) => props.theme.Green};
     border: 2px solid ${(props) => props.theme.Green};
     border-radius: 100px;
@@ -5036,6 +5206,29 @@ const SortIcon = styled(GrSort)`
   }
 `;
 
+const OutIcon = styled(IoExitOutline)`
+  color: ${(props) => props.theme.Green};
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  @media (max-width: 767px) {
+    display: block;
+    transform: translate(-35%, 50%);
+  }
+
+  @media (min-width: 768px) {
+    display: block;
+    transform: translate(-50%, 50%);
+  }
+
+  @media (min-width: 1024px) {
+    display: none;
+  }
+`;
+
 const HomeIcon = styled(RiHomeLine)`
   ${StyledHeaderIcon}
 `;
@@ -5062,6 +5255,38 @@ const ProfileIcon = styled(GoPerson)`
   @media (min-width: 768px) {
     width: 23px;
     height: 23px;
+  }
+`;
+
+const PhoneIcon = styled(MdOutlineSmartphone)`
+  ${StyledHeaderIcon};
+  fill: ${(props) => props.theme.LightGrey};
+  margin-right: 3px;
+
+  @media (max-width: 767px) {
+    width: 15px;
+    height: 15px;
+  }
+
+  @media (min-width: 768px) {
+    width: 20px;
+    height: 20px;
+  }
+`;
+
+const BdIcon = styled(LiaBirthdayCakeSolid)`
+  ${StyledHeaderIcon};
+  fill: ${(props) => props.theme.LightGrey};
+  margin-right: 3px;
+
+  @media (max-width: 767px) {
+    width: 15px;
+    height: 15px;
+  }
+
+  @media (min-width: 768px) {
+    width: 20px;
+    height: 20px;
   }
 `;
 
@@ -5197,11 +5422,14 @@ const s = {
   CheckboxAfterIcon,
 
   SortIcon,
+  OutIcon,
   HomeIcon,
   HamburgerIcon,
   EyeIcon,
   SearchIcon,
   ProfileIcon,
+  PhoneIcon,
+  BdIcon,
   FaceBookIcon,
   TiktokIcon,
   InstagramIcon,
