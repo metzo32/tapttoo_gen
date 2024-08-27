@@ -19,6 +19,8 @@ export default function BrandMidTitle() {
           <s.StyledH3 className="SemiTitle">
             Indivesins' Journey into <br />a Sustatinable Future
           </s.StyledH3>
+
+          <s.MoreIcon/>
           <s.StyledP className="section-p margin">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
             dolores voluptatibus eum impedit eligendi quae nesciunt commodi

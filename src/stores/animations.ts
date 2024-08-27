@@ -1,9 +1,34 @@
 import { keyframes } from "styled-components";
 
+export const bounce = keyframes`
+    70% { 
+      transform: translateY(0%); 
+    }
+    80% { 
+      transform: translateY(-30%); 
+    }
+    90% { 
+      transform: translateY(0%); 
+    }
+    95% { 
+      transform: translateY(-14%); 
+    }
+    97% { 
+      transform: translateY(0%); 
+    }
+    99% { 
+      transform: translateY(-6%); 
+    }
+    100% { 
+      transform: translateY(0); 
+    }
+`;
+
 export const drawLetter = keyframes`
   0% {
     stroke-dashoffset: 1642;
      fill: transparent;
+}
 
   80% {
     stroke-dashoffset: 3284;

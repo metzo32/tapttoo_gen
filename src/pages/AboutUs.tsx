@@ -6,6 +6,7 @@ import Description from "../components/Description";
 import GridBrand from "../components/GridBrand";
 import BrandBottomTitle from "../components/BrandTitleBottom";
 import StartFromTop from "../components/StartFromTop";
+import CustomCarousel from "../components/CustomCarousel";
 
 import BrandMidImage from "../assets/images/about_02.jpg";
 import MidImage from "../assets/images/about_02.jpg";
@@ -22,12 +23,15 @@ export default function AboutUs() {
 
   return (
     <>
-      <StartFromTop />
+      {/* <StartFromTop /> */}
       <s.AboutDiv className="wrapper">
         {/* <DrawLetter/> */}
         <BrandTopTitle />
+
         <BrandMidTitle />
-        <s.Image className="BrandMidImage" src={BrandMidImage} alt="photo" />
+
+        <CustomCarousel />
+        {/* <s.Image className="BrandMidImage" src={BrandMidImage} alt="photo" /> */}
 
         <Description
           title={"Harmony of Heritage and Sustainability"}

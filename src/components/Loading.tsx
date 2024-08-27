@@ -1,5 +1,6 @@
 import React from "react";
 import s from "../stores/styling";
+import { PopUpRight } from "./FramerMotions/scrollMotions";
 import { useState, useEffect } from "react";
 import loading01 from "../assets/images/loading01.jpg";
 import loading02 from "../assets/images/loading02.jpg";
@@ -56,7 +57,10 @@ export default function Loading() {
     <s.Loading className="loading-wrapper">
       <s.MaskText className="text-contatiner">
         <s.MaskText className="fake-box">null</s.MaskText>
-        <s.MaskText className="loading-title">Tapttoo</s.MaskText>
+
+
+          <s.MaskText className="loading-title">Tapttoo</s.MaskText>
+
 
         <s.MaskText className="small-text-container">
           <s.MaskText className="small-text-box">

@@ -44,7 +44,7 @@ const LogoutButton: React.FC<LogoutButtonProps> = ({
       />
       {!iconStyle ? (
         <s.Button
-          className={`Round ${className ? className : ""}`}
+          className="Round responsive-logout"
           onClick={handleOpenModal}
         >
           Logout

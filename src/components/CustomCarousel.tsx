@@ -12,7 +12,7 @@ interface SearchPageMainProps {
 const CarouselImage: React.FC<SearchPageMainProps> = ({ title, image }) => {
   return (
     <>
-      <s.Image src={image} alt="image" />
+      <s.Image src={image} alt="image" className="carousel-image"/>
       <s.Carousel className="title-box">
         <s.StyledH3 className="carousel-title">{title}</s.StyledH3>
       </s.Carousel>

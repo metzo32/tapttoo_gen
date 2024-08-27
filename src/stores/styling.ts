@@ -12,6 +12,7 @@
 import styled, { css, createGlobalStyle } from "styled-components";
 import { Route, Link as RouterLink } from "react-router-dom";
 import {
+  bounce,
   drawLetter,
   fadeInRotate,
   openDrop,
@@ -59,6 +60,7 @@ import { MdOutlineArrowUpward } from "react-icons/md"; // 위 화살표
 
 import { IoIosArrowBack } from "react-icons/io"; // 왼쪽 꺽쇠
 import { IoIosArrowForward } from "react-icons/io"; // 오른쪽 꺽쇠
+import { BiSolidDownArrow } from "react-icons/bi"; //아래 삼각형
 
 import { TbExclamationMark } from "react-icons/tb"; //느낌표
 import { GrSort } from "react-icons/gr"; //정렬
@@ -223,6 +225,8 @@ width: 100%;
 
     @media (min-width: 1024px) {
     display: block;
+
+    bottom: 16%;
     }
   }
 
@@ -1024,18 +1028,18 @@ const StyledH3 = styled.h3`
     white-space: normal;
 
     @media (max-width: 394px) {
-      font-size: 18px;
-      line-height: 24px;
+      font-size: 30px;
+      line-height: 30px;
     }
 
     @media (min-width: 395px) {
-      font-size: 25px;
-      line-height: 28px;
+      font-size: 32px;
+      line-height: 32px;
     }
 
     @media (min-width: 555px) {
-      font-size: 32px;
-      line-height: 38px;
+      font-size: 35px;
+      line-height: 35px;
     }
 
     @media (min-width: 768px) {
@@ -1735,15 +1739,16 @@ const MaskText = styled.div`
     line-height: 1em;
     letter-spacing: -2vw;
     text-align- bottom;
-
     margin: 0;
-h
     
     position: absolute;
     bottom: 0;
     left: 50%;
     transform-origin: bottom;
     transform: translate(-50%, 18%);
+
+     mix-blend-mode: lighten;
+     animation: ${bounce} 1s infinite;
   }
   
   &.fake-box {
@@ -2297,8 +2302,20 @@ const Image = styled.img`
     justify-content: center;
   }
 
-  &.test-carousel {
+  &.carousel-image {
+    object-fit: cover;
     width: 100%;
+    @media (max-width: 767px) {
+      aspect-ratio: 3/2;
+    }
+
+    @media (min-width: 768px) {
+      aspect-ratio: 3/2;
+    }
+
+    @media (min-width: 1024px) {
+      aspect-ratio: 5/2;
+    }
   }
 
   &.proflie-label {
@@ -3438,17 +3455,46 @@ const Carousel = styled.div`
   &.carousel-wrapper {
     position: relative;
     height: 100%;
-    aspect-ratio: 4/1;
+
     overflow: hidden;
     margin: 0 auto;
+
+    @media (max-width: 767px) {
+      aspect-ratio: 3/2;
+    }
+
+    @media (min-width: 768px) {
+      aspect-ratio: 3/2;
+    }
+
+    @media (min-width: 1024px) {
+      aspect-ratio: 5/2;
+    }
   }
 
   &.title-box {
-    width: 65%;
+    height: 100%;
     position: absolute;
-    top: 50%;
-    left: 60px;
-    transform: translate(0, -100%);
+    top: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    @media (max-width: 767px) {
+      width: 85%;
+      left: 30px;
+    }
+
+    @media (min-width: 768px) {
+      width: 85%;
+      left: 30px;
+    }
+
+    @media (min-width: 1024px) {
+      width: 65%;
+      left: 30px;
+    }
   }
 
   &.carousel-box {
@@ -3477,17 +3523,15 @@ const Carousel = styled.div`
     }
 
     @media (min-width: 513px) {
-      width: 50px;
-      bottom: 30%;
-      right: 3%;
-    }
-
-    @media (min-width: 768px) {
-      width: 70px;
+      width: 80px;
+      bottom: 22%;
+      right: 4%;
     }
 
     @media (min-width: 1024px) {
       width: 90px;
+      bottom: 32%;
+      right: 3%;
     }
   }
 `;
@@ -4139,8 +4183,8 @@ const ProfileDiv = styled.div`
     }
 
     @media (min-width: 768px) {
-        height: calc(70% - 50px);
-        padding-top: 50px;
+      height: calc(70% - 50px);
+      padding-top: 50px;
     }
 
     @media (min-width: 1024px) {
@@ -4873,7 +4917,7 @@ const Button = styled.button`
   }
 
   &.Round {
-  width: auto;
+    width: auto;
     color: ${(props) => props.theme.Green};
     border: 2px solid ${(props) => props.theme.Green};
     border-radius: 100px;
@@ -5333,6 +5377,13 @@ const TopArrowIcon = styled(MdOutlineArrowUpward)`
   height: 28px;
 `;
 
+const MoreIcon = styled(BiSolidDownArrow)`
+  ${StyledIcon}
+  width: 30px;
+  height: 30px;
+  animation: ${bounce} 2s ease infinite;
+`
+
 const WarnIcon = styled(TbExclamationMark)`
   font-size: 100px;
   color: ${lightTheme.White};
@@ -5442,6 +5493,7 @@ const s = {
   StyledIcon,
   StyledHeaderIcon,
   TopArrowIcon,
+  MoreIcon,
   WarnIcon,
   PlusIcon,
 };

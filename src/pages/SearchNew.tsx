@@ -23,9 +23,9 @@ export default function SearchNew() {
   return (
     <>
       <s.Search className="search-wrapper">
-        <s.Search className="top-container">
+
           <CustomCarousel />
-        </s.Search>
+
         
         <s.Search className="circles-container">
          
