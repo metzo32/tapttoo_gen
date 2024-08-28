@@ -34,7 +34,7 @@ import ArtistData from "./assets/datas/artitst_data";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import Modal from "./components/Modal";
 import GenerateImage from "./pages/GenerateImage";
-import loading from "./pages/testpage"
+import Nothing from "./pages/testpage"
 import Loading from "./components/Loading";
 
 const App: React.FC = () => {
@@ -90,6 +90,7 @@ const App: React.FC = () => {
                 />
                 <Route path="/registerterms" element={<RegisterTerms />} />
                 <Route path="/register" element={<RegisterPage />} />
+                <Route path="/nothing" element={<Nothing />} />
                 
                 <Route path="/careermarketing" element={<CareerMarketing />} />
                 <Route path="/searchnew" element={<SearchNew />} />

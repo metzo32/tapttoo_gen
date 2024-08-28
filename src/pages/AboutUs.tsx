@@ -14,6 +14,8 @@ import BrandLastImage from "../assets/images/about_01.jpg";
 
 import DrawLetter from "../components/DrawLetter";
 
+import { ScrollEvent } from "../components/FramerMotions/scrollMotions";
+
 export default function AboutUs() {
   const navigate = useNavigate();
 
@@ -38,8 +40,10 @@ export default function AboutUs() {
           text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic modi dicta velit, magni corporis quisquam rem quos illum, quibusdam, dolore quae aliquid labore iure a? Debitis, soluta."
         />
 
+        <ScrollEvent>
         <s.Image className="BrandMidImage" src={MidImage} alt="photo" />
-
+        </ScrollEvent>
+        
         <Description
           title={"Designs created by Enthusiastic artitst"}
           text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam a ipsa iste, animi quaerat velit. Nulla est temporibus inventore iure. Nemo tempore, nam quidem fuga commodi enim maiores eos a."

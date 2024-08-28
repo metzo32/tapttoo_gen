@@ -38,7 +38,7 @@ import { lightTheme, darkTheme } from "../stores/colors";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-import { RiHomeLine } from "react-icons/ri"; //홈
+import { RiHome2Line } from "react-icons/ri"; //홈
 import { GrSearch } from "react-icons/gr"; //검색
 import { RxHamburgerMenu } from "react-icons/rx"; //햄버거
 import { IoEyeOutline } from "react-icons/io5";
@@ -413,16 +413,15 @@ const HeaderDiv = styled.div`
     }
   }
 
-  &.header-button-wrapper {
+  &.header-button-wrapper-left {
     width: auto;
     display: flex;
     flex-direction: row;
-    padding-top: 3px;
     justify-content: space-between;
     align-items: center;
 
     @media (max-width: 767px) {
-      width: 50%;
+      width: 75%;
       height: auto;
     }
 
@@ -436,16 +435,23 @@ const HeaderDiv = styled.div`
     }
   }
 
-  &.right {
+  &.header-button-wrapper-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
     @media (max-width: 767px) {
-      width: 120px;
+      width: auto;
     }
 
     @media (min-width: 768px) {
       width: 150px;
+      height: 100%;
     }
 
     @media (min-width: 1024px) {
+      width: 150px;
     }
   }
 `;
@@ -1748,7 +1754,7 @@ const MaskText = styled.div`
     transform: translate(-50%, 18%);
 
      mix-blend-mode: lighten;
-     animation: ${bounce} 1s infinite;
+     animation: ${bounce} 2s ease;
   }
   
   &.fake-box {
@@ -2430,6 +2436,7 @@ const Sticky = styled.div`
 
 const Modal = styled.div`
   user-select: none;
+  font-family: 'NanumSquare';
 
   &.modal-overlay {
     position: fixed;
@@ -3074,9 +3081,8 @@ const ArticleDiv = styled.div`
   height: auto;
   display: flex;
 
-  &.wrapper {
+  &.article-wrapper {
     flex-direction: column;
-    margin-top: 50px;
   }
 
   &.mid-wrapper {
@@ -3092,7 +3098,7 @@ const ArticleDiv = styled.div`
     cursor: pointer;
 
     &:hover .article-grid-image {
-      filter: brightness(0.6);
+      // filter: brightness(0.6);
       transition: filter 0.5s ease 0.5s;
     }
 
@@ -4650,7 +4656,6 @@ const Label = styled.label`
     pointer-events: none;
     transition: 0.3s ease;
     
-    
     @media (max-width: 767px) {
       font-size: 14px;
     }
@@ -4688,6 +4693,7 @@ const Label = styled.label`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    transition: color 0.5s ease;
 
     &:hover {
       color: ${(props) => props.theme.HoverGrey};
@@ -4708,84 +4714,49 @@ const Label = styled.label`
     }
   }
 
-  &.modal-label {
+&.modal-label, &.check-label {
     font-size: 12px;
-    color: ${lightTheme.Grey};
+    color: ${(props) => props.theme.LightGrey};
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    transition: color 0.3s ease;
 
     &:hover {
-      color: ${lightTheme.HoverGrey};
+      color: ${(props) => props.theme.HoverGrey};
 
       .checkbox-icon-checked {
-        @media (max-width: 767px) {
-          color: ${lightTheme.Green};
-        }
-
-        @media (min-width: 768px) {
-          color: ${lightTheme.HoverGreen};
-        }
+        color: ${(props) => props.theme.Green};
       }
     }
 
     .checkbox-icon-checked {
-      color: ${lightTheme.Green};
+      color: ${(props) => props.theme.Green};
     }
-  }
 
-  &.check-label {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    @media (max-width: 767px) {
-      font-size: 12px;
+    &.invalid {
+      color: ${(props) => props.theme.Orange};
+      animation: ${shaking} 0.2s infinite;
     }
 
     @media (min-width: 768px) {
       font-size: 13px;
+
+      &:hover {
+        color: ${(props) => props.theme.HoverGrey};
+
+        .checkbox-icon-checked {
+          color: ${(props) => props.theme.HoverGreen};
+        }
+      }
     }
 
     @media (min-width: 1024px) {
       font-size: 14px;
     }
+}
 
-    &.login {
-      width: 130px;
-    }
-
-
-    @media (max-width: 767px) {
-      &:hover {
-        color: ${(props) => props.theme.HoverGrey};
-  
-        .checkbox-icon-checked {
-          color: ${(props) => props.theme.Green};
-        }
-      }
-    }
-  
-    @media (min-width: 768px) {
-      &:hover {
-        color: ${(props) => props.theme.HoverGrey};
-  
-        .checkbox-icon-checked {
-          color: ${(props) => props.theme.HoverGreen};
-        }
-      }
-
-    .checkbox-icon-checked {
-      color: ${(props) => props.theme.Green};
-    }
-  }
-
-  &.invalid {
-    color: ${(props) => props.theme.Orange};
-    animation: ${shaking} 0.2s infinite;
-  }
 `;
 
 const DarkButton = styled.div`
@@ -4796,6 +4767,14 @@ const DarkButton = styled.div`
 
   position: relative;
   cursor: pointer;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    display: block;
+  }
 
   &.dark-circle {
     border: none;
@@ -4830,7 +4809,7 @@ const DarkButton = styled.div`
 const Button = styled.button`
   background-color: rgba(0, 0, 0, 0);
   height: 40px;
-  color: ${(props) => props.theme.Grey};
+  color: ${(props) => props.theme.LightGrey};
   border: none;
   padding: 10px 20px;
   text-align: center;
@@ -4838,6 +4817,13 @@ const Button = styled.button`
   cursor: pointer;
   border-radius: 5px;
   white-space: nowrap;
+
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: ${(props) => props.theme.HoverGrey};
+    transition: 0.3s ease;
+  }
 
   &.register-back {
     position: absolute;
@@ -4878,9 +4864,16 @@ const Button = styled.button`
   }
 
   &.login-btn {
+    color: ${(props) => props.theme.LightGrey};
     height: 20px;
     margin: 0;
     padding: 0px 20px;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: ${(props) => props.theme.HoverGrey};
+      transition: 0.3s ease;
+    }
   }
 
   &.dropdown-btn {
@@ -4959,7 +4952,7 @@ const Button = styled.button`
     }
 
     @media (max-width: 767px) {
-      height: 50%;
+      height: 30px;
     }
 
     @media (min-width: 768px) {
@@ -5022,6 +5015,60 @@ const Button = styled.button`
     @media (min-width: 768px) {
       transform: translate(-100%, -100%);
     }
+  }
+`;
+
+const GreenButton = styled.button`
+  cursor: pointer;
+
+  height: 32px;
+  padding: 10px 20px 10px 20px;
+  border: 2px solid ${(props) => props.theme.Green};
+  border-radius: 30px;
+
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 14px;
+  color: ${(props) => props.theme.Green};
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  transition: border 0.5s ease, width 0.5s ease, transform 0.5s ease,
+    background-color 0.5s ease, color 0.5s ease;
+  transform-origin: 100% 50%;
+
+  &:hover {
+    background-color: ${(props) => props.theme.HoverGreen};
+    border: 2px solid ${(props) => props.theme.HoverGreen};
+    color: ${(props) => props.theme.Light};
+  }
+
+  &.with-circle {
+    padding: 10px 10px;
+  }
+`;
+
+const GreenButtonCircle = styled.span`
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-color: ${(props) => props.theme.Green};
+  border-radius: 50%;
+  margin-right: 10px;
+  transition: margin 0.5s ease, transform 0.3s ease, background-color 0.5s ease;
+  transform-origin: center;
+
+  ${GreenButton}:hover & {
+    transform: none; /* 부모의 scaleX 효과를 무시 */
+    transform: scale(2);
+    margin-right: 15px;
+    background-color: ${(props) => props.theme.Light};
   }
 `;
 
@@ -5273,8 +5320,20 @@ const OutIcon = styled(IoExitOutline)`
   }
 `;
 
-const HomeIcon = styled(RiHomeLine)`
+const HomeIcon = styled(RiHome2Line)`
   ${StyledHeaderIcon}
+
+  @media (max-width: 767px) {
+    width: 26px;
+    height: 26px;
+    margin-top: 1px;
+  }
+
+  @media (min-width: 768px) {
+    width: 21px;
+    height: 21px;
+    margin-top: 0px;
+  }
 `;
 
 const HamburgerIcon = styled(RxHamburgerMenu)`
@@ -5287,13 +5346,22 @@ const EyeIcon = styled(IoEyeOutline)`
 
 const SearchIcon = styled(GrSearch)`
   ${StyledHeaderIcon}
+
+  @media (max-width: 767px) {
+    margin-top: 2px;
+  }
+
+  @media (min-width: 768px) {
+    margin-top: 0px;
+  }
 `;
 
 const ProfileIcon = styled(GoPerson)`
   ${StyledHeaderIcon}
   @media (max-width: 767px) {
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
+    padding-bottom: 2px;
   }
 
   @media (min-width: 768px) {
@@ -5382,7 +5450,7 @@ const MoreIcon = styled(BiSolidDownArrow)`
   width: 30px;
   height: 30px;
   animation: ${bounce} 2s ease infinite;
-`
+`;
 
 const WarnIcon = styled(TbExclamationMark)`
   font-size: 100px;
@@ -5448,6 +5516,8 @@ const s = {
   SectionContainer,
   SideBar,
   Span,
+  GreenButton,
+  GreenButtonCircle,
   StyledGrid,
   StyledH1,
   StyledH2,

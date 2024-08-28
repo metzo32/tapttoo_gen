@@ -32,8 +32,8 @@ export default function Header() {
     <>
       <s.HeaderDiv className="header-wrapper">
         <SideBar sidebar={sidebar} showSidebar={showSidebar} />
-        <s.HeaderDiv className="header-button-wrapper">
-          <s.Button className="header-button-item" onClick={showSidebar}>
+        <s.HeaderDiv className="header-button-wrapper-left">
+          <s.Button onClick={showSidebar} className="header-button-item">
             <s.HamburgerIcon />
           </s.Button>
 
@@ -45,13 +45,13 @@ export default function Header() {
           </s.Button>
 
           <s.Button
-            className="header-button-item"
             onClick={() => handleNavigation("/article")}
+            className="header-button-item"
           >
             <s.SearchIcon />
           </s.Button>
         </s.HeaderDiv>
-        <s.HeaderDiv className="header-button-wrapper right">
+        <s.HeaderDiv className="header-button-wrapper-right">
           <DarkModeButton />
           <s.Button
             onClick={() => handleProfileNavigation()}

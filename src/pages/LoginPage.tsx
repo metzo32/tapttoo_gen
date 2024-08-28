@@ -5,6 +5,7 @@ import { auth } from "../firebase/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { AuthContext } from "../context/AuthContext";
 import StartFromTop from "../components/StartFromTop";
+import HoverButton from "../components/HoverButton";
 
 import Modal from "../components/Modal";
 import useModal from "../hooks/ModalHook";
@@ -222,9 +223,12 @@ const LoginPage = () => {
                   className="remember-check"
                 />
               </s.LoginDiv>
-              <s.Button type="submit" className="Round">
+              {/* <s.Button type="submit" className="Round">
                 로그인
-              </s.Button>
+              </s.Button> */}
+
+              <HoverButton type="submit" circle={false} text={"로그인"}/>
+
               <s.Button
                 className="login-btn"
                 type="button"

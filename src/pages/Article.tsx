@@ -7,7 +7,7 @@ import WishList from "../components/WishList";
 import SortButtons from "../components/SortButtons";
 import { getRandomImage } from "../assets/datas/getRandomImages";
 import StartFromTop from "../components/StartFromTop";
-import { PopUpBelow } from "../components/FramerMotions/scrollMotions";
+import { PopUpBelow, ScrollEvent } from "../components/FramerMotions/scrollMotions";
 
 const Article: React.FC = () => {
   const [articles, setArticles] = useState<number[]>([0, 1, 2, 3]);
@@ -99,7 +99,7 @@ const Article: React.FC = () => {
   return (
     <>
       <StartFromTop />
-      <s.ArticleDiv className="wrapper">
+      <s.ArticleDiv className="article-wrapper">
 
         <SortButtons sortBefore={sortedData} sortHandle={handleSort} />
 
@@ -111,7 +111,7 @@ const Article: React.FC = () => {
             if (!artist) return null; // artist가 undefined일 경우 null 반환
 
             return (
-              <PopUpBelow delay={0}>
+              <ScrollEvent delay={0.3}>
               <s.ArticleDiv
                 key={artist.id}
                 className="article-cards"
@@ -135,7 +135,7 @@ const Article: React.FC = () => {
                   </s.StyledH1>
                 </s.ArticleDiv>
               </s.ArticleDiv>
-              </PopUpBelow>
+              </ScrollEvent>
             );
           })}
         </s.ArticleDiv>

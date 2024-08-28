@@ -1,159 +1,125 @@
 import { useState, useEffect } from "react";
 import s from "../stores/styling";
+import Modal from "../components/Modal";
 
 interface CalculateAgeProps {
   isAdult: (isValid: boolean | null) => void;
-  handleOpenModal : () => void; //모달 열기. 모달을 열어야할 때 해당 함수 호출
   onBirthdateChange: (year: string, month: string, day: string) => void;
 }
 
-const CalculateAge: React.FC<CalculateAgeProps> = ({ isAdult, handleOpenModal, onBirthdateChange }) => {
-  const [year, setYear] = useState(""); // 원래는 빈 문자열을 쓰다가 null로 바꾸었다. 그렇지 않으면 초기값이 현재 연도의 1월 1일인데, 이미 valid 상태로 선택됨
+const CalculateAge: React.FC<CalculateAgeProps> = ({ isAdult, onBirthdateChange }) => {
+  const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
   const [isValid, setIsValid] = useState<boolean | null>(null);
+  
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalInvalid, setIsModalInvalid] = useState(false);
 
-  //드롭다운 메뉴에 들어갈 연원일을 문자열 형태의 배열로 저장
-  const years = [];
-  for (let i = new Date().getFullYear(); i >= 1900; i--) {
-    years.push(i);
-  }
-
-  const months = [];
-  for (let i = 1; i <= 12; i++) {
-    months.push(i);
-  }
-
-  const days = [];
-  for (let i = 1; i <= 31; i++) {
-    days.push(i);
-  }
+  const years = Array.from({ length: new Date().getFullYear() - 1899 }, (_, i) => new Date().getFullYear() - i);
+  const months = Array.from({ length: 12 }, (_, i) => i + 1);
+  const days = Array.from({ length: 31 }, (_, i) => i + 1);
 
   const yearChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setYear(event.target.value)
-  }
+    setYear(event.target.value);
+    setIsValid(null); // 값이 변경될 때만 유효성 검사를 다시 수행하게 설정
+  };
 
   const monthChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setMonth(event.target.value)
-  }
+    setMonth(event.target.value);
+    setIsValid(null); // 값이 변경될 때만 유효성 검사를 다시 수행하게 설정
+  };
 
   const dayChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setDay(event.target.value)
-  }
+    setDay(event.target.value);
+    setIsValid(null); // 값이 변경될 때만 유효성 검사를 다시 수행하게 설정
+  };
 
   useEffect(() => {
     const validateDate = () => {
-      if (!year || !month || !day) {  // 입력 값이 모두 들어왔는지
-        setIsValid(null); // 검사할 수 없을 때는 null
+      if (!year || !month || !day) {
+        setIsValid(null); 
         isAdult(null);
         return;
       }
 
-      const monthInt = parseInt(month, 10);
-      const dayInt = parseInt(day, 10);
-      const yearInt = parseInt(year, 10);
-
-      const daysInMonth = new Date(yearInt, monthInt, 0).getDate(); // 실제로 유효한 날짜인지 검사 (30, 31일, 28일 및 윤년)
-      if (dayInt > daysInMonth) {
-        setIsValid(false);
-        isAdult(null);
-        return;
-      }
-      
-      
-      // 19세 미만
+      const birthDate = new Date(parseInt(year, 10), parseInt(month, 10) - 1, parseInt(day, 10));
       const today = new Date();
-      const birthDay = new Date(yearInt, monthInt - 1, dayInt)  // 월 객체는 0 ~ 11이므로 사용자가 입력한 월에서 -1
-      let age = today.getFullYear() - birthDay.getFullYear()
-      let monthAge = today.getMonth() - birthDay.getMonth()
-      let dayAge = today.getDate() - birthDay.getDate()
-      
-      if ( monthAge < 0 || (monthAge === 0 && dayAge < 0)) {
-        age--;
-      }
-      
-      if (age < 19) {
-        setIsValid(true)
-        isAdult(false);
-        handleOpenModal()
-        return
-      }
+      const age = today.getFullYear() - birthDate.getFullYear();
+      const isUnder19 = age < 19 || (age === 19 && (today.getMonth() < birthDate.getMonth() || (today.getMonth() === birthDate.getMonth() && today.getDate() < birthDate.getDate())));
 
-      setIsValid(true);
-      isAdult(true);
+      if (isUnder19) {
+        setIsModalOpen(true);
+        setIsValid(false);
+        isAdult(false);
+      } else {
+        setIsValid(true);
+        isAdult(true);
+      }
     };
 
-    validateDate();
-    onBirthdateChange(year, month, day)
-
-  }, [year, month, day]); //입력이 바뀔 때마다 유효성 검사
-
-  const classValid = () => {
     if (isValid === null) {
-      return "";
+      validateDate(); // 날짜가 변경된 경우에만 유효성 검사 수행
     }
-    else if (isValid === true) {
-      return "valid";
-    }
-    else {
-      return "invalid";
-    }
-  }
+    onBirthdateChange(year, month, day);
+  }, [year, month, day]);
 
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    setIsModalInvalid(false);
+  };
+
+  const handleInvalid = () => {
+    setIsModalInvalid(true);
+  };
+
+  const handleCheckboxChange = () => {
+    setIsValid(true); // 체크박스가 체크되면 isValid 상태를 true로 설정
+    setIsModalInvalid(false); // invalid 상태 해제
+  };
 
   return (
-    <s.LoginDiv
-      className={`calandar-container ${classValid()}`}
-    >
-      <s.LoginDiv className="calandar-item-box">
-        <s.Select
-          name={"year"}
-          id={"year"}
-          value={year}
-          onChange={yearChange}
-          required
-        >
-       <s.Option value="" disabled hidden>년</s.Option>
-          {years.map((year) => (
-            <s.Option key={year} value={year}>
-              {year}
-            </s.Option>
-          ))}
-        </s.Select>
+    <>
+      <s.LoginDiv className={`calandar-container ${isValid === false ? 'invalid' : ''}`}>
+        <s.LoginDiv className="calandar-item-box">
+          <s.Select name="year" value={year} onChange={yearChange} required>
+            <s.Option value="" disabled hidden>년</s.Option>
+            {years.map((year) => <s.Option key={year} value={year}>{year}</s.Option>)}
+          </s.Select>
+        </s.LoginDiv>
+        <s.LoginDiv className="calandar-item-box">
+          <s.Select name="month" value={month} onChange={monthChange} required>
+            <s.Option value="" disabled hidden>월</s.Option>
+            {months.map((month) => <s.Option key={month} value={month}>{month}</s.Option>)}
+          </s.Select>
+        </s.LoginDiv>
+        <s.LoginDiv className="calandar-item-box">
+          <s.Select name="day" value={day} onChange={dayChange} required>
+            <s.Option value="" disabled hidden>일</s.Option>
+            {days.map((day) => <s.Option key={day} value={day}>{day}</s.Option>)}
+          </s.Select>
+        </s.LoginDiv>
       </s.LoginDiv>
-      <s.LoginDiv className="calandar-item-box">
-        <s.Select
-          name={"month"}
-          id={"month"}
-          value={month}
-          onChange={monthChange}
-          required
-        >
-          <s.Option value="" disabled hidden>월</s.Option>
-          {months.map((month) => (
-            <s.Option key={month} value={month}>
-              {month}
-            </s.Option>
-          ))}
-        </s.Select>
-      </s.LoginDiv>
-      <s.LoginDiv className="calandar-item-box">
-        <s.Select
-          name={"day"}
-          id={"day"}
-          value={day}
-          onChange={dayChange}
-          required
-        >
-          <s.Option value="" disabled hidden>일</s.Option>
-          {days.map((day) => (
-            <s.Option key={day} value={day}>
-              {day}
-            </s.Option>
-          ))}
-        </s.Select>
-      </s.LoginDiv>
-    </s.LoginDiv>
+
+      <Modal
+        isOpen={isModalOpen}
+        onClose={handleModalClose}
+        onInvalid={handleInvalid}
+        onCheckboxChange={handleCheckboxChange} // 체크박스 상태가 변경될 때 호출되는 함수
+        modalTitle="잠깐!"
+        showCheckbox={true}
+        checkboxText="이해했습니다."
+        modalButtonClose="닫기"
+        addButton={false}
+        isInvalid={isModalInvalid}
+        text={
+          <>
+            <s.StyledP className="modal-text">19세 미만 회원의 경우,</s.StyledP>
+            <s.StyledP className="modal-text">예약 또는 시술이 제한될 수 있습니다.</s.StyledP>
+          </>
+        }
+      />
+    </>
   );
 };
 

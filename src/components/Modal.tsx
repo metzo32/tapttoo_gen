@@ -6,13 +6,16 @@ interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   modalTitle: string;
-  text: ReactNode;
+  text: ReactNode | undefined;
   showCheckbox: boolean;
   checkboxText?: string;
   modalButtonClose: string;
   addButton: boolean;
   modalButtonOption?: string;
   onOptionClick?: () => void;
+  isInvalid?: boolean;
+  onInvalid?: () => void;
+  onCheckboxChange?: () => void; // 추가된 콜백
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -26,34 +29,34 @@ const Modal: React.FC<ModalProps> = ({
   modalButtonOption,
   addButton,
   onOptionClick,
+  isInvalid = false,
+  onInvalid,
+  onCheckboxChange,
 }) => {
   const [understand, setUnderstand] = useState(false);
-  //체크박스 체크 여부 저장
   const [animationClosing, setAnimationClosing] = useState(false);
-  //닫히는 애니메이션울 클래스 추가하는 방식으로 조건부 렌더링
-  const [isInvalid, setIsInvalid] = useState(false);
 
   if (!isOpen) return null;
 
-  const handleUnderstandChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setUnderstand((prevUnderstand) => !prevUnderstand); //보통 prev라고 쓰지만, 알아보기 쉽게 바꾸어 썼다.
-    setIsInvalid(false);
+  const handleUnderstandChange = () => {
+    setUnderstand(!understand);
+    if (!understand && onCheckboxChange) {
+      onCheckboxChange(); // 체크박스가 체크되면 콜백 호출
+    }
   };
 
   const handleModalClose = () => {
-    if (!showCheckbox || understand) {
-      // 체크박스가 없는 포맷이거나 understand에 체크가 돼있을 때
-      setAnimationClosing(true); // 모달 닫음으로 처리
-      setTimeout(() => {
-        setAnimationClosing(false);
-        setIsInvalid(false);
-        onClose();
-      }, 800); //애니메이션 duration과 같게 쓴다.
-    } else {
-      setIsInvalid(true);
+    if (showCheckbox && !understand) {
+      if (onInvalid) onInvalid();
+      return;
     }
+
+    setAnimationClosing(true);
+    setTimeout(() => {
+      setAnimationClosing(false);
+      setUnderstand(false); // 체크박스 상태 초기화
+      onClose();
+    }, 800);
   };
 
   const portalElement = document.getElementById("portal");
@@ -62,9 +65,7 @@ const Modal: React.FC<ModalProps> = ({
   return ReactDOM.createPortal(
     <>
       <s.Modal className={`modal-overlay ${animationClosing ? "closing" : ""}`}>
-        <s.Modal
-          className={`modal-wrapper ${animationClosing ? "closing" : ""}`}
-        >
+        <s.Modal className={`modal-wrapper ${animationClosing ? "closing" : ""}`}>
           <s.Modal className="circle">
             <s.WarnIcon />
           </s.Modal>
@@ -74,9 +75,7 @@ const Modal: React.FC<ModalProps> = ({
             <s.Echo className="circle02" />
             <s.Echo className="circle03" />
           </s.Echo>
-          <s.Modal
-            className={`modal-container ${showCheckbox ? "with-checkbox" : ""}`}
-          >
+          <s.Modal className={`modal-container ${showCheckbox ? "with-checkbox" : ""}`}>
             <s.StyledH1 className="warning">{modalTitle}</s.StyledH1>
             <s.ModalText>{text}</s.ModalText>
             {showCheckbox && (
@@ -101,9 +100,7 @@ const Modal: React.FC<ModalProps> = ({
                 </s.Label>
               </s.Modal>
             )}
-            <s.Modal
-              className={`modal-button-box ${addButton ? "two-buttons" : ""}`}
-            >
+            <s.Modal className={`modal-button-box ${addButton ? "two-buttons" : ""}`}>
               <s.Button className="Round modal" onClick={handleModalClose}>
                 {modalButtonClose}
               </s.Button>

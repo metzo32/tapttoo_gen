@@ -13,9 +13,10 @@ import CalculateAge from "../components/CalculateAge";
 import GenderSelect from "../components/GenderSelect";
 import countrycode from "../assets/datas/country_code";
 
-import Modal from "../components/Modal";
+import HoverButton from "../components/HoverButton";
 import useModal from "../hooks/ModalHook";
 import WishList from "../components/WishList";
+import Modal from "../components/Modal";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ const RegisterPage = () => {
   const [step, setStep] = useState<number>(1);
 
   const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
-  const [modalMessage, setModalMessage] = useState<React.ReactNode>(""); // 모달에 표시될 메시지 상태
+  const [modalMessage, setModalMessage] = useState<React.ReactNode>("");
 
   const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -59,7 +60,6 @@ const RegisterPage = () => {
       console.log("User registered:", user);
 
       try {
-        //firestore에 사용자 입력값 저장
         await setDoc(doc(db, "users", user.uid), {
           email: registerEmail,
           fullname: registerFullname,
@@ -81,7 +81,7 @@ const RegisterPage = () => {
 
       navigate("/profile");
     } catch (error) {
-      const typedError = error as { code: string }; // error를 명시적으로 타입 단언
+      const typedError = error as { code: string };
       console.error("Error signing in:", typedError);
       const errorCode = typedError.code;
 
@@ -99,7 +99,7 @@ const RegisterPage = () => {
           setModalMessage("회원가입 중 알 수 없는 오류가 발생했습니다.");
       }
 
-      handleOpenModal(); // 모달 열기
+      handleOpenModal();
     }
   };
 
@@ -154,13 +154,10 @@ const RegisterPage = () => {
 
   const handleAgeValidation = (isValid: boolean | null) => {
     if (!birthYear || !birthMonth || !birthDay) {
-      return; // 모든 날짜 정보가 입력되지 않았다면 아무것도 하지 않음
+      return;
     }
 
     setIsValidAge(!isValid);
-    if (!isValid) {
-      handleOpenModal(); // 모달 열기
-    }
   };
 
   const handleNextStep = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -213,21 +210,11 @@ const RegisterPage = () => {
         <Modal
           isOpen={isModalOpen}
           onClose={handleCloseModal}
-          modalTitle={"잠깐!"}
-          showCheckbox={true}
-          checkboxText={"이해했습니다."}
+          modalTitle={"회원가입 오류"}
+          showCheckbox={false}
           modalButtonClose={"닫기"}
           addButton={false}
-          text={
-            <>
-              <s.StyledP className="modal-text">
-                19세 미만 회원의 경우,
-              </s.StyledP>
-              <s.StyledP className="modal-text">
-                예약 또는 시술이 제한될 수 있습니다.
-              </s.StyledP>
-            </>
-          }
+          text={modalMessage}
         />
 
         <s.Form className="login" onSubmit={handleSignUp}>
@@ -295,7 +282,7 @@ const RegisterPage = () => {
             </s.LoginDiv>
           )}
 
-          {step === 2 && (
+          {step === 1 && (
             <s.LoginDiv className="container step02">
               <s.Button className="register-back" onClick={handlePrevStep}>
                 <s.LeftIcon />
@@ -329,7 +316,6 @@ const RegisterPage = () => {
                 <s.LoginDiv className="item-box register">
                   <CalculateAge
                     isAdult={handleAgeValidation}
-                    handleOpenModal={handleOpenModal}
                     onBirthdateChange={handleBirthdateChange}
                   />
 
@@ -375,9 +361,13 @@ const RegisterPage = () => {
                 </s.LoginDiv>
               </s.LoginDiv>
               <s.LoginDiv className="button-wrapper">
-                <s.Button type="submit" className="Round" value="submit">
-                  가입하기
-                </s.Button>
+                <HoverButton
+                  type="submit"
+                  value="submit"
+                  circle={false}
+                  text="가입하기"
+                />
+
                 <s.Button
                   type="button"
                   onClick={() => handleNavigation("/login")}
