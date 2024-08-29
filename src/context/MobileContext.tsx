@@ -3,13 +3,17 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 const MobileContext = createContext<boolean | undefined>(undefined);
 
 export const MobileProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 768);
 
   useEffect(() => {
-    const mobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(
-      navigator.userAgent
-    );
-    setIsMobile(mobile);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 767); // 767px 이하를 모바일로 간주
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return (

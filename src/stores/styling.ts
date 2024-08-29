@@ -991,21 +991,18 @@ const StyledH3 = styled.h3`
 
   &.sidebar-logo {
     margin: 0 auto;
-    margin-top: 30px;
+    font-size: 43px;
 
     @media (max-width: 767px) {
-      font-size: 35px;
-      margin-bottom: 20px;
+      margin-bottom: 28px;
     }
 
     @media (min-width: 768px) {
-      font-size: 38px;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
 
     @media (min-width: 1024px) {
-      font-size: 38px;
-      margin-top: 25px;
+      margin-bottom: 12px;
     }
   }
 
@@ -2191,13 +2188,25 @@ const StyledUl = styled.ul`
     }
 
     &.nav-menu-items {
-        display: flex;
-        justify-content: flex-start;
-        width: 200px;
-        height: 100%;
-        border: 1px solid blue;
-    }
+      width: 100%;
+      height: auto;
+      display: flex;
+      justify-content: flex-start;
+      margin-left: 38px;
 
+      @media (max-width: 767px) {
+        margin-bottom: 20px;   
+      }
+
+      @media (min-width: 768px) {
+        margin-bottom: 30px;   
+      }
+
+      @media (min-width: 1024px) {
+        margin-bottom: 40px;   
+      }
+    }
+      
     &.article-ul {
       display: flex;
       padding: 0;
@@ -3690,6 +3699,7 @@ const SideBar = styled.div`
 
 const NavBar = styled.nav`
   background-color: ${(props) => props.theme.HoverGrey};
+  width: 100%;
   height: 100%;
 
   display: flex;
@@ -3704,7 +3714,9 @@ const NavBar = styled.nav`
     transition: ease 0.3s;
     opacity: 0;
     visibility: hidden;
-    border: 1px solid red;
+
+    display: flex;
+    flex-direction: column;
 
     &.active {
       left: 0;
@@ -3712,6 +3724,21 @@ const NavBar = styled.nav`
       opacity: 1;
       visibility: visible;
       pointer-events: auto;
+    }
+
+    @media (max-width: 767px) {
+      height: calc(100% - 80px);
+      padding: 40px 0px;
+    }
+
+    @media (min-width: 768px) {
+      height: calc(100% - 60px);
+      padding: 30px 0px;
+    }
+
+    @media (min-width: 1024px) {
+      height: calc(100% - 60px);
+      padding: 30px 0px;
     }
   }
 `;
@@ -3738,7 +3765,6 @@ const StyledLink = styled(RouterLink)`
   &.menu-texts {
     text-decoration: none;
     color: ${(props) => props.theme.Grey};
-    margin-left: 35px;
     white-space: nowrap;
 
     &:hover {
@@ -3759,7 +3785,7 @@ const StyledLink = styled(RouterLink)`
   }
 
   &.close-arrow {
-    margin-left: 145px;
+    margin: 20px 10px 20px 126px;
   }
 `;
 
