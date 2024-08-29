@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import s from "../stores/styling";
+import HoverButton from "./HoverButton";
 
 export default function BrandBottomTitle() {
   const navigate = useNavigate();
@@ -21,9 +22,11 @@ export default function BrandBottomTitle() {
         Temporibus corrupti numquam in excepturi dolores inventore debitis
         perspiciatis odit.
       </s.StyledP>
-      <s.Button className="Round" onClick={() => handleNavigation("/your_custom_tattoo")}>
-        나만의 도안 만들기
-      </s.Button>
+      <HoverButton
+        onClick={() => handleNavigation("/your_custom_tattoo")}
+        circle={true}
+        text="나만의 도안 만들어보기"
+      />
     </s.AboutDiv>
   );
 }

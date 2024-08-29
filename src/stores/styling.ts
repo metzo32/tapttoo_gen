@@ -12,6 +12,7 @@
 import styled, { css, createGlobalStyle } from "styled-components";
 import { Route, Link as RouterLink } from "react-router-dom";
 import {
+  moveArrow,
   bounce,
   drawLetter,
   fadeInRotate,
@@ -57,6 +58,7 @@ import { PiMoonBold } from "react-icons/pi"; //달
 
 import { FiArrowDownRight } from "react-icons/fi"; //대각선 화살표
 import { MdOutlineArrowUpward } from "react-icons/md"; // 위 화살표
+import { FaArrowRight } from "react-icons/fa6"; // 오른쪽 화살표
 
 import { IoIosArrowBack } from "react-icons/io"; // 왼쪽 꺽쇠
 import { IoIosArrowForward } from "react-icons/io"; // 오른쪽 꺽쇠
@@ -2193,6 +2195,7 @@ const StyledUl = styled.ul`
         justify-content: flex-start;
         width: 200px;
         height: 100%;
+        border: 1px solid blue;
     }
 
     &.article-ul {
@@ -2339,6 +2342,8 @@ const Image = styled.img`
   &.search-circle-profile {
     border-radius: 50%;
     object-fit: cover;
+    cursor: pointer;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
 
     @media (max-width: 767px) {
       width: 150px;
@@ -2436,7 +2441,7 @@ const Sticky = styled.div`
 
 const Modal = styled.div`
   user-select: none;
-  font-family: 'NanumSquare';
+  font-family: "NanumSquare";
 
   &.modal-overlay {
     position: fixed;
@@ -3699,6 +3704,7 @@ const NavBar = styled.nav`
     transition: ease 0.3s;
     opacity: 0;
     visibility: hidden;
+    border: 1px solid red;
 
     &.active {
       left: 0;
@@ -4361,24 +4367,26 @@ const LoginDiv = styled.div`
 
     &.login-page-box {
       height: 25%;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
 
     &.step01 {
       @media (max-width: 767px) {
         height: 40%;
+        margin-bottom: 20px;
       }
 
       @media (min-width: 768px) {
         width: 80%;
         height: 40%;
+        margin-bottom: 60px;
       }
 
       @media (min-width: 1024px) {
         width: 80%;
         height: 40%;
         margin-top: 50px;
-        margin-bottom: 50px;
+        margin-bottom: 70px;
       }
     }
 
@@ -4612,7 +4620,7 @@ const Input = styled.input`
     transition: background-color 5000s ease-in-out 0s;
     -webkit-transition: background-color 9999s ease-out;
     -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
-    -webkit-text-fill-color: #fff !important;
+    -webkit-text-fill-color: ${(props) => props.theme.Grey} !important;
   }
 
   &.input-hide {
@@ -4655,7 +4663,7 @@ const Label = styled.label`
     transform: translateY(-30%);
     pointer-events: none;
     transition: 0.3s ease;
-    
+
     @media (max-width: 767px) {
       font-size: 14px;
     }
@@ -4666,19 +4674,19 @@ const Label = styled.label`
 
     ${Input}:focus + &,
       &.active {
-        top: -20px;
-        transform: translateY(0%);
-        color: ${(props) => props.theme.Grey};
-      }
+      top: -20px;
+      transform: translateY(0%);
+      color: ${(props) => props.theme.Grey};
+    }
 
-      &.active.valid {
-        color: ${(props) => props.theme.Green};
-      }
+    &.active.valid {
+      color: ${(props) => props.theme.Green};
+    }
 
-      &.active.invalid {
-        color: ${(props) => props.theme.Orange};
-        animation: ${shaking} 0.2s infinite;
-      }
+    &.active.invalid {
+      color: ${(props) => props.theme.Orange};
+      animation: ${shaking} 0.2s infinite;
+    }
   }
 
   &.remember {
@@ -4714,7 +4722,8 @@ const Label = styled.label`
     }
   }
 
-&.modal-label, &.check-label {
+  &.modal-label,
+  &.check-label {
     font-size: 12px;
     color: ${(props) => props.theme.LightGrey};
     cursor: pointer;
@@ -4755,8 +4764,7 @@ const Label = styled.label`
     @media (min-width: 1024px) {
       font-size: 14px;
     }
-}
-
+  }
 `;
 
 const DarkButton = styled.div`
@@ -4767,14 +4775,6 @@ const DarkButton = styled.div`
 
   position: relative;
   cursor: pointer;
-
-  @media (max-width: 767px) {
-    display: none;
-  }
-
-  @media (min-width: 768px) {
-    display: block;
-  }
 
   &.dark-circle {
     border: none;
@@ -4822,7 +4822,6 @@ const Button = styled.button`
 
   &:hover {
     color: ${(props) => props.theme.HoverGrey};
-    transition: 0.3s ease;
   }
 
   &.register-back {
@@ -4843,6 +4842,12 @@ const Button = styled.button`
     @media (min-width: 1024px) {
       top: 30px;
       left: 25px;
+    }
+
+    &:hover .back-button {
+      stroke: ${(props) => lightTheme.HoverGrey};
+      fill: ${(props) => lightTheme.HoverGrey};
+      color: ${(props) => lightTheme.HoverGrey};
     }
   }
 
@@ -5021,8 +5026,7 @@ const Button = styled.button`
 const GreenButton = styled.button`
   cursor: pointer;
 
-  height: 32px;
-  padding: 10px 20px 10px 20px;
+  height: 38px;
   border: 2px solid ${(props) => props.theme.Green};
   border-radius: 30px;
 
@@ -5050,17 +5054,29 @@ const GreenButton = styled.button`
   }
 
   &.with-circle {
-    padding: 10px 10px;
+    padding: 10px 15px;
+    @media (max-width: 767px) {
+      padding: 10px 15px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    padding: 10px 20px;
+  }
+
+  @media (min-width: 768px) {
+    padding: 10px 20px 10px 20px;
   }
 `;
 
 const GreenButtonCircle = styled.span`
-  display: block;
   width: 10px;
   height: 10px;
   background-color: ${(props) => props.theme.Green};
   border-radius: 50%;
   margin-right: 10px;
+  overflow: hidden;
+
   transition: margin 0.5s ease, transform 0.3s ease, background-color 0.5s ease;
   transform-origin: center;
 
@@ -5069,6 +5085,16 @@ const GreenButtonCircle = styled.span`
     transform: scale(2);
     margin-right: 15px;
     background-color: ${(props) => props.theme.Light};
+  }
+
+  @media (max-width: 767px) {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -5169,6 +5195,7 @@ const StyledIcon = css`
     border-radius: 100px;
     border: 1px solid ${(props) => props.theme.Grey};
     padding: 5px;
+    transition: border 0.3s ease, fill 0.5s ease;
 
     &:hover {
       fill: ${(props) => props.theme.HoverGrey};
@@ -5213,19 +5240,10 @@ const LeftIcon = styled(IoIosArrowBack)`
   ${StyledIcon};
   width: 26px;
   height: 26px;
+  transition: fill 0.3s ease;
 
   &.carousel-arrow {
-    stroke: ${(props) => lightTheme.Light};
     fill: ${(props) => lightTheme.Light};
-    color: ${(props) => lightTheme.Light};
-    @media (max-width: 767px) {
-    }
-
-    @media (min-width: 768px) {
-    }
-
-    @media (min-width: 1024px) {
-    }
   }
 `;
 
@@ -5236,17 +5254,21 @@ const RightIcon = styled(IoIosArrowForward)`
   height: 26px;
 
   &.carousel-arrow {
-    stroke: ${(props) => lightTheme.Light};
     fill: ${(props) => lightTheme.Light};
-    color: ${(props) => lightTheme.Light};
-    @media (max-width: 767px) {
-    }
+  }
+`;
 
-    @media (min-width: 768px) {
-    }
+const ButtonArrow = styled(FaArrowRight)`
+  width: 10px;
+  height: 10px;
+  fill: ${(props) => lightTheme.HoverGreen};
+  opacity: 0;
 
-    @media (min-width: 1024px) {
-    }
+  ${GreenButton}:hover &,
+  ${GreenButton}:focus & {
+    animation: ${moveArrow} 0.6s ease forwards;
+
+    opacity: 1;
   }
 `;
 
@@ -5266,6 +5288,7 @@ const CheckboxAfterIcon = styled(CheckboxAfter)`
 const StyledHeaderIcon = css`
   fill: ${(props) => props.theme.Grey};
   color: ${(props) => props.theme.Grey};
+  transition: color 0.3s ease, fill 0.5s ease;
 
   &:hover {
     fill: ${(props) => props.theme.HoverGrey};
@@ -5538,6 +5561,7 @@ const s = {
 
   LeftIcon,
   RightIcon,
+  ButtonArrow,
 
   CheckboxBeforeIcon,
   CheckboxAfterIcon,

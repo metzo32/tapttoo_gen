@@ -3,11 +3,13 @@ import { useNavigate } from "react-router-dom";
 import s from "../stores/styling";
 import SideBar from "./SideBar";
 import { AuthContext } from "../context/AuthContext";
+import { useIsMobile } from "../context/MobileContext";
 
 import DarkModeButton from "./DarkModeButton";
 
 export default function Header() {
   const navigate = useNavigate();
+  const isMobile = useIsMobile()
 
   const { currentlyLoggedIn } = useContext(AuthContext);
   const [sidebar, setSidebar] = useState(false);
@@ -52,7 +54,7 @@ export default function Header() {
           </s.Button>
         </s.HeaderDiv>
         <s.HeaderDiv className="header-button-wrapper-right">
-          <DarkModeButton />
+          {!isMobile && <DarkModeButton />}
           <s.Button
             onClick={() => handleProfileNavigation()}
             className="header-button-item"

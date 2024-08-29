@@ -1,5 +1,14 @@
 import { keyframes } from "styled-components";
 
+export const moveArrow = keyframes`
+  0% {
+    transform: translateX(-15px);
+  }
+  100% {
+    transform: translateX(-1px);
+  }
+`;
+
 export const bounce = keyframes`
     70% { 
       transform: translateY(0%); 

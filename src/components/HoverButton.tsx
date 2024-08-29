@@ -2,7 +2,7 @@ import React from "react";
 import s from "../stores/styling";
 
 interface ButtonProps {
-  type? : "button" | "submit" | "reset";
+  type?: "button" | "submit" | "reset";
   value?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   circle: boolean;
@@ -11,8 +11,17 @@ interface ButtonProps {
 
 const HoverButton = ({ type, onClick, circle, text, value }: ButtonProps) => {
   return (
-    <s.GreenButton onClick={onClick} type={type} value={value} className={circle ? "with-circle" : "" }>
-      {circle && <s.GreenButtonCircle/>}
+    <s.GreenButton
+      onClick={onClick}
+      type={type}
+      value={value}
+      className={circle ? "with-circle" : ""}
+    >
+      {circle && (
+        <s.GreenButtonCircle>
+          <s.ButtonArrow/>
+        </s.GreenButtonCircle>
+      )}
       {text}
     </s.GreenButton>
   );
