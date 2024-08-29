@@ -65,7 +65,9 @@ const Modal: React.FC<ModalProps> = ({
   return ReactDOM.createPortal(
     <>
       <s.Modal className={`modal-overlay ${animationClosing ? "closing" : ""}`}>
-        <s.Modal className={`modal-wrapper ${animationClosing ? "closing" : ""}`}>
+        <s.Modal
+          className={`modal-wrapper ${animationClosing ? "closing" : ""}`}
+        >
           <s.Modal className="circle">
             <s.WarnIcon />
           </s.Modal>
@@ -75,7 +77,9 @@ const Modal: React.FC<ModalProps> = ({
             <s.Echo className="circle02" />
             <s.Echo className="circle03" />
           </s.Echo>
-          <s.Modal className={`modal-container ${showCheckbox ? "with-checkbox" : ""}`}>
+          <s.Modal
+            className={`modal-container ${showCheckbox ? "with-checkbox" : ""}`}
+          >
             <s.StyledH1 className="warning">{modalTitle}</s.StyledH1>
             <s.ModalText>{text}</s.ModalText>
             {showCheckbox && (
@@ -100,7 +104,9 @@ const Modal: React.FC<ModalProps> = ({
                 </s.Label>
               </s.Modal>
             )}
-            <s.Modal className={`modal-button-box ${addButton ? "two-buttons" : ""}`}>
+            <s.Modal
+              className={`modal-button-box ${addButton ? "two-buttons" : ""}`}
+            >
               <s.Button className="Round modal" onClick={handleModalClose}>
                 {modalButtonClose}
               </s.Button>

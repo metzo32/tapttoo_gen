@@ -263,14 +263,14 @@ const RegisterPage = () => {
               </s.LoginDiv>
 
               <s.LoginDiv className="button-wrapper">
-                <s.Button
+
+                <HoverButton
                   type="button"
-                  className="Round"
                   onClick={handleNextStep}
                   value="next"
-                >
-                  다음
-                </s.Button>
+                  circle={true}
+                  text="다음"
+                />
 
                 <s.Button
                   type="button"
@@ -282,7 +282,7 @@ const RegisterPage = () => {
             </s.LoginDiv>
           )}
 
-          {step === 1 && (
+          {step === 2 && (
             <s.LoginDiv className="container step02">
               <s.Button className="register-back" onClick={handlePrevStep}>
                 <s.LeftIcon />
