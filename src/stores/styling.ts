@@ -992,18 +992,6 @@ const StyledH3 = styled.h3`
   &.sidebar-logo {
     margin: 0 auto;
     font-size: 43px;
-
-    @media (max-width: 767px) {
-      margin-bottom: 28px;
-    }
-
-    @media (min-width: 768px) {
-      margin-bottom: 15px;
-    }
-
-    @media (min-width: 1024px) {
-      margin-bottom: 12px;
-    }
   }
 
   &.profile-nickname {
@@ -2188,7 +2176,6 @@ const StyledUl = styled.ul`
     }
 
     &.nav-menu-items {
-      width: 100%;
       height: auto;
       display: flex;
       justify-content: flex-start;
@@ -3681,19 +3668,10 @@ const SideBar = styled.div`
   &.sidebar-box {
     width: 100%;
     height: auto;
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: flex-start;
-  }
-
-  &.sidebar-item {
-    width: 100%;
-    height: auto;
-    margin-bottom: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
   }
 `;
 
@@ -5079,19 +5057,31 @@ const GreenButton = styled.button`
     color: ${(props) => props.theme.Light};
   }
 
-  &.with-circle {
-    padding: 10px 15px;
-    @media (max-width: 767px) {
-      padding: 10px 15px;
-    }
-  }
-
   @media (max-width: 767px) {
     padding: 10px 20px;
   }
 
   @media (min-width: 768px) {
     padding: 10px 20px 10px 20px;
+  }
+
+  &.with-circle {
+    padding: 10px 15px;
+
+    @media (max-width: 767px) {
+      padding: 10px 15px;
+    }
+  }
+
+  &.always-light {
+    border: 2px solid ${lightTheme.Green};
+    color: ${lightTheme.Green};
+
+    &:hover {
+      background-color: ${lightTheme.HoverGreen};
+      border: 2px solid ${lightTheme.HoverGreen};
+      color: ${lightTheme.Light};
+    }
   }
 `;
 
@@ -5287,7 +5277,7 @@ const RightIcon = styled(IoIosArrowForward)`
 const ButtonArrow = styled(FaArrowRight)`
   width: 10px;
   height: 10px;
-  fill: ${(props) => lightTheme.HoverGreen};
+  fill: ${(props) => props.theme.HoverGreen};
   opacity: 0;
 
   ${GreenButton}:hover &,

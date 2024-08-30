@@ -73,7 +73,7 @@ export default function SearchNew() {
             <s.StyledH3 className="search-generate">
               당신만을 위한 유니크한 디자인을&nbsp;
               <br />
-              만나보세요."
+              만나보세요.
             </s.StyledH3>
           </s.Search>
 

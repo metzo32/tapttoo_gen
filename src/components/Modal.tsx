@@ -1,6 +1,7 @@
 import { useState, ReactNode } from "react";
 import ReactDOM from "react-dom";
 import s from "../stores/styling";
+import HoverButton from "./HoverButton";
 
 interface ModalProps {
   isOpen: boolean;
@@ -107,14 +108,20 @@ const Modal: React.FC<ModalProps> = ({
             <s.Modal
               className={`modal-button-box ${addButton ? "two-buttons" : ""}`}
             >
-              <s.Button className="Round modal" onClick={handleModalClose}>
-                {modalButtonClose}
-              </s.Button>
+              <HoverButton
+                onClick={handleModalClose}
+                circle={false}
+                text={modalButtonClose}
+                ignoreDark={true}
+              />
 
               {addButton && (
-                <s.Button className="Round modal" onClick={onOptionClick}>
-                  {modalButtonOption}
-                </s.Button>
+                <HoverButton
+                  onClick={onOptionClick}
+                  circle={false}
+                  text={modalButtonOption}
+                  ignoreDark={true}
+                />
               )}
             </s.Modal>
           </s.Modal>

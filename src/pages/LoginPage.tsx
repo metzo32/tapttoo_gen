@@ -106,6 +106,18 @@ const LoginPage = () => {
       handleOpenModal(); // 모달 열기
       setCurrentlyLoggedIn(false);
       setIsLoggedIn(false);
+
+      // label에 invalid 추가
+      const emailLabel = document.querySelector(`label[for="useremail"]`);
+      const passwordLabel = document.querySelector(`label[for="password"]`);
+      if (emailLabel) {
+        emailLabel.classList.remove("valid");
+        emailLabel.classList.add("invalid");
+      }
+      if (passwordLabel) {
+        passwordLabel.classList.remove("valid");
+        passwordLabel.classList.add("invalid");
+      }
     }
   };
 
@@ -184,6 +196,7 @@ const LoginPage = () => {
                 />
                 <s.Label
                   className={`login-info ${signInEmail ? "active" : ""}`}
+                  htmlFor="useremail"
                 >
                   이메일
                 </s.Label>
@@ -200,7 +213,10 @@ const LoginPage = () => {
                   required
                   autoComplete="current-password"
                 />
-                <s.Label className={`login-info ${signInPw ? "active" : ""}`}>
+                <s.Label
+                  className={`login-info ${signInPw ? "active" : ""}`}
+                  htmlFor="password"
+                >
                   비밀번호
                 </s.Label>
               </s.LoginDiv>
@@ -223,11 +239,8 @@ const LoginPage = () => {
                   className="remember-check"
                 />
               </s.LoginDiv>
-              {/* <s.Button type="submit" className="Round">
-                로그인
-              </s.Button> */}
 
-              <HoverButton type="submit" circle={false} text={"로그인"}/>
+              <HoverButton type="submit" circle={false} text={"로그인"} />
 
               <s.Button
                 className="login-btn"

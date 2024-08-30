@@ -22,52 +22,53 @@ const SideBar: React.FC<SideBarProps> = ({ sidebar, showSidebar }) => {
       {sidebar && <s.Overlay onClick={showSidebar} />}
       <s.SideBar className="sidebar-wrapper">
         <s.NavBar className={`nav-menu ${sidebar ? "active" : ""}`}>
-          
           <s.StyledH3 className="sidebar-logo">Tapttoo</s.StyledH3>
 
-          <s.StyledUl className="nav-menu-items" onClick={showSidebar}>
-            {group1.map((item, index) => (
-              <s.StyledLi key={index} className={item.className}>
-                <s.StyledLink to={item.path} className="menu-texts">
-                  <span>{item.title}</span>
-                </s.StyledLink>
-              </s.StyledLi>
-            ))}
-          </s.StyledUl>
+          <s.SideBar className="sidebar-box">
+            <s.StyledUl className="nav-menu-items" onClick={showSidebar}>
+              {group1.map((item, index) => (
+                <s.StyledLi key={index} className={item.className}>
+                  <s.StyledLink to={item.path} className="menu-texts">
+                    <span>{item.title}</span>
+                  </s.StyledLink>
+                </s.StyledLi>
+              ))}
+            </s.StyledUl>
 
-          <s.StyledUl className="nav-menu-items" onClick={showSidebar}>
-            {group2.map((item, index) => (
-              <s.StyledLi key={index} className={item.className}>
-                <s.StyledLink to={item.path} className="menu-texts">
-                  <span>{item.title}</span>
-                </s.StyledLink>
-              </s.StyledLi>
-            ))}
-          </s.StyledUl>
+            <s.StyledUl className="nav-menu-items" onClick={showSidebar}>
+              {group2.map((item, index) => (
+                <s.StyledLi key={index} className={item.className}>
+                  <s.StyledLink to={item.path} className="menu-texts">
+                    <span>{item.title}</span>
+                  </s.StyledLink>
+                </s.StyledLi>
+              ))}
+            </s.StyledUl>
 
-          <s.StyledUl className="nav-menu-items" onClick={showSidebar}>
-            {group3.map((item, index) => (
-              <s.StyledLi key={index} className={item.className}>
-                <s.StyledLink to={item.path} className="menu-texts">
-                  <span>{item.title}</span>
-                </s.StyledLink>
-              </s.StyledLi>
-            ))}
-          </s.StyledUl>
+            <s.StyledUl className="nav-menu-items" onClick={showSidebar}>
+              {group3.map((item, index) => (
+                <s.StyledLi key={index} className={item.className}>
+                  <s.StyledLink to={item.path} className="menu-texts">
+                    <span>{item.title}</span>
+                  </s.StyledLink>
+                </s.StyledLi>
+              ))}
+            </s.StyledUl>
 
-          <s.StyledUl className="nav-menu-items" onClick={showSidebar}>
-            {group4.map((item, index) => (
-              <s.StyledLi key={index} className={item.className}>
-                <s.StyledLink to={item.path} className="menu-texts">
-                  <span>{item.title}</span>
-                </s.StyledLink>
-              </s.StyledLi>
-            ))}
-          </s.StyledUl>
+            <s.StyledUl className="nav-menu-items" onClick={showSidebar}>
+              {group4.map((item, index) => (
+                <s.StyledLi key={index} className={item.className}>
+                  <s.StyledLink to={item.path} className="menu-texts">
+                    <span>{item.title}</span>
+                  </s.StyledLink>
+                </s.StyledLi>
+              ))}
+            </s.StyledUl>
 
-          <s.StyledUl className="nav-menu-items">
-          {isMobile && <DarkModeButton />}
-          </s.StyledUl>
+            <s.StyledUl className="nav-menu-items">
+              {isMobile && <DarkModeButton />}
+            </s.StyledUl>
+          </s.SideBar>
         </s.NavBar>
       </s.SideBar>
     </>
