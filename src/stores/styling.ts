@@ -12,6 +12,7 @@
 import styled, { css, createGlobalStyle } from "styled-components";
 import { Route, Link as RouterLink } from "react-router-dom";
 import {
+  loadingSlide,
   moveArrow,
   bounce,
   drawLetter,
@@ -1723,7 +1724,7 @@ const MaskText = styled.div`
   }
 
   &.loading-title {
-    width: 140%;
+    width: 200%;
     background-color: ${lightTheme.Light};
 
     color: #000;
@@ -1738,10 +1739,10 @@ const MaskText = styled.div`
     bottom: 0;
     left: 50%;
     transform-origin: bottom;
-    transform: translate(-50%, 18%);
+    transform: translateX(-50%) translateY(18%); 
 
      mix-blend-mode: lighten;
-     animation: ${bounce} 2s ease;
+     animation: ${loadingSlide} 1.5s ease;
   }
   
   &.fake-box {
@@ -2947,6 +2948,7 @@ const Search = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
   }
 
   &.event-container {
@@ -4292,7 +4294,7 @@ const ProfileDiv = styled.div`
 `;
 
 const LoginDiv = styled.div`
-  &.wrapper {
+  &.login-wrapper {
     width: 100%;
     height: auto;
     display: flex;
@@ -4317,6 +4319,7 @@ const LoginDiv = styled.div`
     flex-direction: column;
     justify-content: center;
     position: relative;
+    transition: transform 0.4s ease;
 
       @media (max-width: 767px) {
         width: 250px;
@@ -4339,7 +4342,6 @@ const LoginDiv = styled.div`
 
     &:hover {
       transform: scale(1.02);
-      transition: 0.4s ease;
     }
   }
 
@@ -4659,14 +4661,18 @@ const Input = styled.input`
 const Label = styled.label`
   color: ${(props) => props.theme.Grey};
   letter-spacing: -0.1px;
+  cursor: pointer;
 
   &.login-info {
     position: absolute;
     top: 10px;
     left: 0px;
     transform: translateY(-30%);
-    pointer-events: none;
     transition: 0.3s ease;
+
+    &:hover {
+      color: ${(props) => props.theme.HoverGrey};
+    }
 
     @media (max-width: 767px) {
       font-size: 14px;
@@ -5064,8 +5070,7 @@ const GreenButton = styled.button`
   @media (min-width: 768px) {
     padding: 10px 20px 10px 20px;
   }
-
-  &.with-circle {
+  ya &.with-circle {
     padding: 10px 15px;
 
     @media (max-width: 767px) {

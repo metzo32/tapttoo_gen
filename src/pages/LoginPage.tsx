@@ -169,7 +169,7 @@ const LoginPage = () => {
   return (
     <>
       <StartFromTop />
-      <s.LoginDiv className="wrapper">
+      <s.LoginDiv className="login-wrapper">
         <Modal
           isOpen={isModalOpen}
           onClose={handleCloseModal}

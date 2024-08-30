@@ -1,5 +1,17 @@
 import { keyframes } from "styled-components";
 
+export const loadingSlide = keyframes` 
+  0% {
+    transform: translateX(-30%) translateY(18%);
+  }
+  86% {
+    transform: translateX(-53%) translateY(18%);
+  }
+  100% {
+    transform: translateX(-50%) translateY(18%);
+  }
+`;
+
 export const moveArrow = keyframes`
   0% {
     transform: translateX(-15px);

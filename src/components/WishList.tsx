@@ -10,33 +10,34 @@ interface WishListProps {
 }
 
 const WishList: React.FC<WishListProps> = ({ artistId, isWishlisted, onToggleWishlist }) => {
-  const [wishButton, setWishButton] = useState<boolean>(false);
+  const [wishButton, setWishButton] = useState<boolean>(isWishlisted);
   const [hovered, setHovered] = useState(false); 
 
+  // useEffect(() => {
+  //   const fetchWishlistStatus = async () => {
+  //     const user = auth.currentUser;
+  //     if (!user) {
+  //       console.error("로그인이 필요합니다.");
+  //       return;
+  //     }
 
-  useEffect(() => {
-    const fetchWishlistStatus = async () => {
-      const user = auth.currentUser;
-      if (!user) {
-        console.error("로그인이 필요합니다.");
-        return;
-      }
+  //     const userRef = doc(db, "users", user.uid);
 
-      const userRef = doc(db, "users", user.uid);
+  //     try {
+  //       const userDoc = await getDoc(userRef);
+  //       const currentWishlist = userDoc.data()?.wishList || [];
+  //       const isAlreadyWishlisted = currentWishlist.includes(artistId);
 
-      try {
-        const userDoc = await getDoc(userRef);
-        const currentWishlist = userDoc.data()?.wishList || [];
-        const isAlreadyWishlisted = currentWishlist.includes(artistId);
+  //       setWishButton(isAlreadyWishlisted); // DB에 있는지 여부에 따라 초기값 설정
 
-        setWishButton(isAlreadyWishlisted); // DB에 있는지 여부에 따라 초기값 설정
-      } catch (error) {
-        console.error("위시리스트 상태를 가져오는 중 오류 발생:", error);
-      }
-    };
+  //     } catch (error) {
+  //       console.error("위시리스트 상태를 가져오는 중 오류 발생:", error);
+  //     }
+  //   };
+  //   fetchWishlistStatus();
+  // }, [artistId]);
 
-    fetchWishlistStatus();
-  }, [artistId]);
+
 
   useEffect(() => {
     setHovered(false); // 상태 변경 시 hover 상태 초기화
@@ -63,26 +64,25 @@ const WishList: React.FC<WishListProps> = ({ artistId, isWishlisted, onToggleWis
         updatedWishlist = currentWishlist.filter(
           (id: number) => id !== artistId
         );
-      } else {
-        // 중복 없이 배열 앞에 추가
-        updatedWishlist = [artistId, ...currentWishlist];
+      } 
+      
+      else {
+        updatedWishlist = [artistId, ...currentWishlist];  // 중복 없이 배열 앞에 추가
 
-        // 최대 크기를 넘으면 마지막 요소를 제거
         if (updatedWishlist.length > maxWishlistSize) {
-          updatedWishlist = updatedWishlist.slice(0, maxWishlistSize);
+          updatedWishlist = updatedWishlist.slice(0, maxWishlistSize); // 최대 크기를 넘으면 마지막 요소를 제거
         }
       }
-
       await updateDoc(userRef, { wishList: updatedWishlist });
 
       setWishButton(!wishButton); // 상태 업데이트
       onToggleWishlist(); // 부모 컴포넌트에서 상태를 업데이트하도록 콜백 실행
+      console.log(currentWishlist)
     } 
     catch (error) {
       console.error("위시리스트 업데이트 중 오류 발생:", error);
     }
   };
-
 
   const handleMouseClick = ( event: React.MouseEvent<HTMLDivElement, MouseEvent> ) => {
     event.stopPropagation();
