@@ -1,19 +1,25 @@
 import mainImage from "../assets/images/main.jpg";
 import s from "../stores/styling";
-import { motion, useInView, useAnimation } from "framer-motion";
-import { PopUpBelow, PopUpRight } from "./FramerMotions/scrollMotions";
+import {
+  PopUpBelow,
+  PopUpRight,
+  EachTextPopUp,
+} from "./FramerMotions/scrollMotions";
 
 export default function BrandTopTitle() {
   return (
     <>
       <s.AboutDiv className="title-container">
-        <PopUpRight delay={0.6}>
-          <s.StyledH1 className="brand-title">
-            We are Visionary
-            <br />
-            Craftsmen
-          </s.StyledH1>
-        </PopUpRight>
+
+        <EachTextPopUp text="test message is with you">
+          <></>
+        </EachTextPopUp>
+
+        <s.StyledH1 className="brand-title">
+          We are Visionary
+          <br />
+          Craftsmen
+        </s.StyledH1>
 
         <PopUpBelow delay={0.8}>
           <s.StyledP className="about-first-title">
@@ -24,11 +30,11 @@ export default function BrandTopTitle() {
           </s.StyledP>
         </PopUpBelow>
 
-        <PopUpBelow  delay={1.2}>
+        <PopUpBelow delay={1.2}>
           <s.MainImage src={mainImage} alt="photo" />
         </PopUpBelow>
 
-        <PopUpBelow  delay={0.5}>
+        <PopUpBelow delay={0.5}>
           <s.StyledH2 className="gradient-title">
             Lorem ipsum dolor sit, amet consectetur ad assumenda est quas
             possimus adipisicing. <br />
@@ -36,7 +42,6 @@ export default function BrandTopTitle() {
             reiciendis fuga a exercitationem.
           </s.StyledH2>
         </PopUpBelow>
-
       </s.AboutDiv>
     </>
   );

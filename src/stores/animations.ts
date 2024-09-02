@@ -45,6 +45,32 @@ export const bounce = keyframes`
     }
 `;
 
+export const reverseBounce = keyframes`
+  70% { 
+      transform: translateY(0%); 
+    }
+    80% { 
+      transform: translateY(30%); 
+    }
+    90% { 
+      transform: translateY(0%); 
+    }
+    95% { 
+      transform: translateY(14%); 
+    }
+    97% { 
+      transform: translateY(0%); 
+    }
+    99% { 
+      transform: translateY(6%); 
+    }
+    100% { 
+      transform: translateY(0); 
+    }
+`;
+
+
+
 export const drawLetter = keyframes`
   0% {
     stroke-dashoffset: 1642;
@@ -93,6 +119,32 @@ export const closeDrop = keyframes`
   100% {
     transform: translateY(20px);
     opacity: 0;
+  }
+`;
+
+export const openPop = keyframes`
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+    max-height: 0;
+  }
+  100% {
+    transform: translateY(10px);
+    opacity: 1;
+    max-height: 600px;
+  }
+`;
+
+export const closePop = keyframes`
+  0% {
+    transform: translateY(10px);
+    opacity: 1;
+    max-height: 600px;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0;
+    max-height: 0;
   }
 `;
 

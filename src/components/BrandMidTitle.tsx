@@ -1,7 +1,12 @@
 import React from "react";
 import s from "../stores/styling";
+import BrandDropDescription from "./BrandDropDescription";
 
 export default function BrandMidTitle() {
+
+  
+
+
   return (
     <>
       <s.AboutDiv className="mid-title-wrapper ">
@@ -15,22 +20,18 @@ export default function BrandMidTitle() {
           </s.StyledUl>
         </s.AboutDiv>
 
-        <s.AboutDiv className="mid-description">
-          <s.StyledH3 className="SemiTitle">
-            Indivesins' Journey into <br />a Sustatinable Future
-          </s.StyledH3>
-
-          <s.MoreIcon/>
-          <s.StyledP className="section-p margin">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-            dolores voluptatibus eum impedit eligendi quae nesciunt commodi
-            totam hic consectetur, deleniti soluta dolorem? Excepturi enim
-            aliquid pariatur dolore? Sapiente! Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Eveniet labore asperiores voluptatibus
-            ea cum aperiam rem sunt veniam. Voluptate sed ipsum laborum eveniet
-            veritatis debitis itaque, rem voluptatum et.
-          </s.StyledP>
-        </s.AboutDiv>
+        <BrandDropDescription
+          title={<>Tapttoo's Journey into a Sustatinable Future</>}
+          text={
+            <>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+              dolores voluptatibus eum impedit eligendi quae nesciunt commodi
+              totam hic consectetur, deleniti soluta dolorem? Excepturi enim
+              aliquid pariatur dolore? Sapiente! Lorem ipsum dolor sit amet
+              consectetur adipisicing elit.
+            </>
+          }
+        />
       </s.AboutDiv>
     </>
   );

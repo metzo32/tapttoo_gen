@@ -92,28 +92,38 @@ export default function SearchEventProfile() {
           <s.Search className="event-wrapper" key={profile.id}>
             <s.Search className="event-container">
               <s.Search className="event-title-box">
-                <s.StyledH4 className="event-title">
-                  {customTitles[index]}
-                </s.StyledH4>
+                <PopUpBelow>
+                  <s.StyledH4 className="event-title">
+                    {customTitles[index]}
+                  </s.StyledH4>
+                </PopUpBelow>
               </s.Search>
 
-              <s.Image
-                src={profile.randomImage}
-                alt={profile.nickname}
-                className="search-circle-profile"
-                onMouseMove={handleMouseMove(index)}
-                onMouseLeave={handleMouseLeave(index)}
-                ref={(el) => (imgRefs.current[index] = el)}
-              />
+              <PopUpBelow delay={index * 0.2}>
+                <s.Image
+                  src={profile.randomImage}
+                  alt={profile.nickname}
+                  className="search-circle-profile"
+                  onMouseMove={handleMouseMove(index)}
+                  onMouseLeave={handleMouseLeave(index)}
+                  ref={(el) => (imgRefs.current[index] = el)}
+                />
+              </PopUpBelow>
 
               <s.Search className="event-text-box">
-                <s.StyledH3 className="name">{profile.nickname}</s.StyledH3>
-                <s.StyledP className="event-address">
-                  {profile.street_address}, {profile.city}
-                </s.StyledP>
+                <PopUpBelow delay={index * 0.2}>
+                  <s.StyledH3 className="name">{profile.nickname}</s.StyledH3>
+                </PopUpBelow>
+                <PopUpBelow delay={index * 0.2}>
+                  <s.StyledP className="event-address">
+                    {profile.street_address}, {profile.city}
+                  </s.StyledP>
+                </PopUpBelow>
               </s.Search>
             </s.Search>
-            <s.Line className="horizontal dark" />
+            <LinearDraw delay={index * 0.2}>
+              <s.Line className="horizontal dark" />
+            </LinearDraw>
           </s.Search>
         ))}
       </s.Search>

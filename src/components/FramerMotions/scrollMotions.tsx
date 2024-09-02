@@ -1,11 +1,84 @@
-import { useState, useEffect, useRef } from "react";
-import { motion, useInView, useAnimation, useScroll } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
+import {
+  useInView,
+  useAnimation,
+  motion,
+  useScroll,
+  stagger,
+} from "framer-motion";
+import styled from "styled-components";
 
 interface Props {
-  children: JSX.Element;
+  children?: JSX.Element;
   duration?: number;
-  delay?: number;
+  delay?: number | undefined;
+  variants?: {
+    hidden: { opacity?: number; x?: number; y?: number };
+    visible: { opacity?: number; x?: number; y?: number };
+  };
+  text?: string;
 }
+
+const AnimatedComponent = ({
+  children,
+  duration = 0.5,
+  delay = 0,
+  variants,
+}: Props) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true }); // 뷰포트 진입할 때마다 애니메이션 실행
+  const mainControls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      mainControls.start("visible");
+    } else {
+      mainControls.start("hidden");
+    }
+  }, [isInView, mainControls]);
+
+  return (
+    <div ref={ref}>
+      <motion.div
+        className="title-container"
+        variants={variants}
+        initial="hidden"
+        animate={mainControls}
+        transition={{ duration: duration, delay: delay }}
+      >
+        {children}
+      </motion.div>
+    </div>
+  );
+};
+
+export default AnimatedComponent;
+
+export const PopUpBelow = ({ children, duration, delay }: Props) => {
+  const variants = {
+    hidden: { opacity: 0, y: 75 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  return (
+    <AnimatedComponent duration={duration} delay={delay} variants={variants}>
+      {children}
+    </AnimatedComponent>
+  );
+};
+
+export const PopUpRight = ({ children, duration, delay }: Props) => {
+  const variants = {
+    hidden: { opacity: 0, x: 100 },
+    visible: { opacity: 1, x: 0 },
+  };
+
+  return (
+    <AnimatedComponent duration={duration} delay={delay} variants={variants}>
+      {children}
+    </AnimatedComponent>
+  );
+};
 
 export const ScrollEvent = ({ children }: Props) => {
   const [isSticky, setIsSticky] = useState(false);
@@ -48,9 +121,13 @@ export const ScrollEvent = ({ children }: Props) => {
   );
 };
 
-export const LinearDraw = ({ children, duration = 0.5, delay = 0 }: Props) => {
+export const LinearDraw = ({
+  children,
+  duration = 0.8,
+  delay = 0.3,
+}: Props) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false });
+  const isInView = useInView(ref, { once: true });
   const mainControls = useAnimation();
 
   useEffect(() => {
@@ -65,7 +142,7 @@ export const LinearDraw = ({ children, duration = 0.5, delay = 0 }: Props) => {
     <motion.div
       ref={ref}
       className="title-container"
-      style={{ position: "absolute", left: 0, top: 0 }}  // 애니메이션 동안 넘치는 부분을 숨기기 위해 overflow 설정
+      style={{ position: "absolute", left: 0, top: 0 }}
       variants={{
         hidden: { opacity: 0, width: "0%" }, // hidden 상태에서 너비 0%
         visible: { opacity: 1, width: "100%" }, // visible 상태에서 너비 100%
@@ -79,69 +156,43 @@ export const LinearDraw = ({ children, duration = 0.5, delay = 0 }: Props) => {
   );
 };
 
+const ScreenOnlySpan = styled.span`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+`;
 
-export const PopUpBelow = ({ children, duration = 0.5, delay = 0 }: Props) => {
+export const EachTextPopUp = ({ duration, delay, text }: Props) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const inView = useInView(ref, { amount: 0.5 });
 
-  const mainControls = useAnimation();
-
-  useEffect(() => {
-    if (isInView) {
-      mainControls.start("visible");
-    } else {
-      mainControls.start("hidden");
-    }
-  }, [isInView, mainControls]);
+  const variants = {
+    hidden: { opacity: 0, y: 75 },
+    visible: { opacity: 1, y: 0 },
+  };
 
   return (
-    <div ref={ref}>
-      <motion.div
-        className="title-container"
-        variants={{
-          hidden: { opacity: 0, y: 75 },
-          visible: { opacity: 1, y: 0 },
-        }}
+    <>
+      <ScreenOnlySpan>{text}</ScreenOnlySpan>
+      <motion.span
+        ref={ref}
         initial="hidden"
-        animate={mainControls}
-        // animate="visible"
-        transition={{ duration: duration, delay: delay }}
+        animate={inView ? "visible" : "hidden"}
+        transition={{ staggerChildren: 0.1 }} //각 애니메이션의 딜레이를 부모 요소의 transition에서 설정. 부모, 자식 모두 initial과 animate 있어야함
+        aria-hidden
       >
-        {children}
-      </motion.div>
-    </div>
-  );
-};
-
-export const PopUpRight = ({ children, delay }: Props) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
-  const mainControls = useAnimation();
-
-  useEffect(() => {
-    if (isInView) {
-      mainControls.start("visible");
-    } else {
-      mainControls.start("hidden");
-    }
-  }, [isInView, mainControls]);
-
-  return (
-    <div ref={ref}>
-      <motion.div
-        className="title-container"
-        variants={{
-          hidden: { opacity: 0, x: 100 },
-          visible: { opacity: 1, x: 0 },
-        }}
-        initial="hidden"
-        animate={mainControls}
-        // animate="visible"
-        transition={{ duration: 0.3, delay: delay }}
-      >
-        {children}
-      </motion.div>
-    </div>
+        {text?.split("").map((char) => (
+          <motion.span className="inline-block" variants={variants}>
+            {char}
+          </motion.span>
+        ))}
+      </motion.span>
+    </>
   );
 };

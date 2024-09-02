@@ -2,13 +2,13 @@ import s from "../stores/styling";
 import { useNavigate } from "react-router-dom";
 import BrandTopTitle from "../components/BrandTopTitle";
 import BrandMidTitle from "../components/BrandMidTitle";
-import Description from "../components/Description";
+import BrandDropDescription from "../components/BrandDropDescription";
 import GridBrand from "../components/GridBrand";
 import BrandBottomTitle from "../components/BrandTitleBottom";
 import StartFromTop from "../components/StartFromTop";
 import CustomCarousel from "../components/CustomCarousel";
+import HoverButton from "../components/HoverButton";
 
-import BrandMidImage from "../assets/images/about_02.jpg";
 import MidImage from "../assets/images/about_02.jpg";
 import BrandLastImage from "../assets/images/about_01.jpg";
 
@@ -33,37 +33,55 @@ export default function AboutUs() {
         <BrandMidTitle />
 
         <CustomCarousel />
-        {/* <s.Image className="BrandMidImage" src={BrandMidImage} alt="photo" /> */}
 
-        <Description
+        <BrandDropDescription
           title={"Harmony of Heritage and Sustainability"}
-          text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic modi dicta velit, magni corporis quisquam rem quos illum, quibusdam, dolore quae aliquid labore iure a? Debitis, soluta."
+          text={
+            <>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic modi
+              dicta velit, magni corporis quisquam rem quos illum, quibusdam,
+              dolore quae aliquid labore iure a? Debitis, soluta.
+            </>
+          }
         />
 
         <ScrollEvent>
-        <s.Image className="BrandMidImage" src={MidImage} alt="photo" />
+          <s.Image className="BrandMidImage" src={MidImage} alt="photo" />
         </ScrollEvent>
-        
-        <Description
+
+        <BrandDropDescription
           title={"Designs created by Enthusiastic artitst"}
-          text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam a ipsa iste, animi quaerat velit. Nulla est temporibus inventore iure. Nemo tempore, nam quidem fuga commodi enim maiores eos a."
+          text={
+            <>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam a
+              ipsa iste, animi quaerat velit. Nulla est temporibus inventore
+              iure. Nemo tempore, nam quidem fuga commodi enim maiores eos a.
+            </>
+          }
         />
 
         <s.AboutDiv className="about-button-box">
-          <s.Button
+          <HoverButton
             onClick={() => handleNavigation("/article")}
-            className="Round"
-          >
-            바로 둘러보기
-          </s.Button>
+            circle={true}
+            text="바로 둘러보기"
+          />
         </s.AboutDiv>
 
         <GridBrand />
 
-        <Description
+        <BrandDropDescription
           title={"Explore our other Collaborative works"}
-          text="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia amet dicta saepe cum vel sunt officia delectus adipisci recusandae cupiditate, neque eaque aperiam. A aut tempore dolore dolorum deserunt veniam!"
+          text={
+            <>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia
+              amet dicta saepe cum vel sunt officia delectus adipisci recusandae
+              cupiditate, neque eaque aperiam. A aut tempore dolore dolorum
+              deserunt veniam!
+            </>
+          }
         />
+
         <s.Image className="BrandMidImage" src={BrandLastImage} alt="photo" />
         <BrandBottomTitle />
       </s.AboutDiv>

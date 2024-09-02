@@ -15,10 +15,13 @@ import {
   loadingSlide,
   moveArrow,
   bounce,
+  reverseBounce,
   drawLetter,
   fadeInRotate,
   openDrop,
   closeDrop,
+  openPop,
+  closePop,
   infiniteSlideLeft,
   animateIn,
   animateOut,
@@ -60,10 +63,10 @@ import { PiMoonBold } from "react-icons/pi"; //달
 import { FiArrowDownRight } from "react-icons/fi"; //대각선 화살표
 import { MdOutlineArrowUpward } from "react-icons/md"; // 위 화살표
 import { FaArrowRight } from "react-icons/fa6"; // 오른쪽 화살표
+import { BiSolidDownArrow } from "react-icons/bi"; //아래 삼각형
 
 import { IoIosArrowBack } from "react-icons/io"; // 왼쪽 꺽쇠
 import { IoIosArrowForward } from "react-icons/io"; // 오른쪽 꺽쇠
-import { BiSolidDownArrow } from "react-icons/bi"; //아래 삼각형
 
 import { TbExclamationMark } from "react-icons/tb"; //느낌표
 import { GrSort } from "react-icons/gr"; //정렬
@@ -483,34 +486,18 @@ const AboutDiv = styled.div`
   }
 
   &.mid-description {
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 
+    &:first-child {
+      margin-right: 20px;
+    }
+
     @media (max-width: 767px) {
       width: 100%;
       margin-top: 60px;
-    }
-
-    @media (min-width: 768px) {
-      width: 100%;
-    }
-
-    @media (min-width: 1024px) {
-      width: 50%;
-    }
-  }
-
-  &.description {
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin: 40px 0px 40px 4px;
-
-    @media (max-width: 767px) {
-      width: 100%;
     }
 
     @media (min-width: 768px) {
@@ -1354,29 +1341,21 @@ const StyledP = styled.p`
   }
 
   &.section-p {
-    @media (max-width: 767px) {
+    display: block;
+    margin-bottom: 10px;
+    padding-left: 5px;
+    padding-bottom: 10px;
+
+    &.open-drop-more {
+      animation: ${openPop} 0.3s forwards;
     }
 
-    @media (min-width: 768px) {
-    }
-
-    @media (min-width: 1024px) {
-    }
-
-    &.margin {
-      @media (max-width: 767px) {
-        margin-top: 20px;
-      }
-
-      @media (min-width: 768px) {
-        margin-top: 10px;
-      }
-
-      @media (min-width: 1024px) {
-        margin-top: 40px;
-      }
+    &.close-drop-more {
+      animation: ${closePop} 0.3s forwards;
     }
   }
+
+
 
   &.event-address {
     @media (max-width: 767px) {
@@ -2981,7 +2960,6 @@ const Search = styled.div`
   }
 
   &.event-image-box {
-    border: 1px solid blue;
     @media (max-width: 767px) {
       width: 90px;
       height: 90px;
@@ -4532,7 +4510,7 @@ const LoginDiv = styled.div`
     }
 
     &.login {
-      height: 20%;
+      height: 25%;
       margin-top: 40px;
     }
   }
@@ -4737,6 +4715,7 @@ const Label = styled.label`
     font-size: 12px;
     color: ${(props) => props.theme.LightGrey};
     cursor: pointer;
+    padding: 10px 0px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -4818,7 +4797,6 @@ const DarkButton = styled.div`
 
 const Button = styled.button`
   background-color: rgba(0, 0, 0, 0);
-  height: 40px;
   color: ${(props) => props.theme.LightGrey};
   border: none;
   padding: 10px 20px;
@@ -4832,6 +4810,29 @@ const Button = styled.button`
 
   &:hover {
     color: ${(props) => props.theme.HoverGrey};
+  }
+
+  &.more {
+    width: 75px;
+    font-size: 20px;
+    color: ${(props) => props.theme.Green};
+    margin-top: 10px;
+    padding: 5px;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+      &:hover {
+    color: ${(props) => props.theme.HoverGreen};
+  }
+
+  &:hover .none {
+    fill: ${(props) => props.theme.HoverGreen};
+  }
+
+  &:hover .rotated {
+    fill: ${(props) => props.theme.HoverGreen};
   }
 
   &.register-back {
@@ -4878,19 +4879,6 @@ const Button = styled.button`
     }
   }
 
-  &.login-btn {
-    color: ${(props) => props.theme.LightGrey};
-    height: 20px;
-    margin: 0;
-    padding: 0px 20px;
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: ${(props) => props.theme.HoverGrey};
-      transition: 0.3s ease;
-    }
-  }
-
   &.dropdown-btn {
     color: ${(props) => props.theme.Green};
     font-size: 16px;
@@ -4908,54 +4896,6 @@ const Button = styled.button`
     position: absolute;
     left: 0;
     top: 0;
-  }
-
-  &.responsive-logout {
-    @media (max-width: 767px) {
-      display: none;
-    }
-
-    @media (min-width: 768px) {
-      display: none;
-    }
-
-    @media (min-width: 1024px) {
-      display: block;
-    }
-  }
-
-  &.Round {
-    width: auto;
-    color: ${(props) => props.theme.Green};
-    border: 2px solid ${(props) => props.theme.Green};
-    border-radius: 100px;
-    padding: 8px 20px 8px 20px;
-
-    &:hover {
-      color: ${(props) => props.theme.White};
-      background-color: ${(props) => props.theme.HoverGreen};
-      border-color: ${(props) => props.theme.HoverGreen};
-      transition: 0.3s ease;
-    }
-
-    &.modal {
-      color: ${lightTheme.Green};
-
-      &:hover {
-        color: ${lightTheme.White};
-        background-color: ${lightTheme.HoverGreen};
-        border-color: ${lightTheme.HoverGreen};
-        transition: 0.3s ease;
-      }
-    }
-
-    &.reserve {
-      margin-top: 10px;
-    }
-  }
-
-  &:hover {
-    color: ${(props) => props.theme.HoverGrey};
   }
 
   &.header-button-item {
@@ -5490,10 +5430,16 @@ const TopArrowIcon = styled(MdOutlineArrowUpward)`
 `;
 
 const MoreIcon = styled(BiSolidDownArrow)`
-  ${StyledIcon}
   width: 30px;
   height: 30px;
+  fill: ${(props) => props.theme.Green};
   animation: ${bounce} 2s ease infinite;
+  transition: fill 0.3s ease;
+  transform-origin: 60% 50%;
+
+  &.rotated {
+    animation: ${reverseBounce} 2s ease infinite;
+  }
 `;
 
 const WarnIcon = styled(TbExclamationMark)`
