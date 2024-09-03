@@ -19,10 +19,10 @@ export default function BrandDropDescription({ title, text }: Props) {
 
   return (
     <s.AboutDiv className="mid-description">
-      <s.StyledH3 className="SemiTitle">{title}</s.StyledH3>
+      <s.StyledH3 className="SemiTitlㅛㅁ구e">{title}</s.StyledH3>
 
       <s.Button className="more" onClick={toggleMore}>
-        {openMore ? "더보기" : "접기"}
+        {openMore ? "간략히" : "더보기"}
         <motion.div
           className="block"
           animate={{

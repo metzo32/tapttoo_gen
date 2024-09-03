@@ -82,6 +82,7 @@ const CalculateAge: React.FC<CalculateAgeProps> = ({
   const handleModalClose = () => {
     setIsModalOpen(false);
     setIsModalInvalid(false);
+    setIsValid(true); // 모달이 닫힐 때 유효성을 true로 설정
   };
 
   const handleInvalid = () => {
@@ -96,7 +97,9 @@ const CalculateAge: React.FC<CalculateAgeProps> = ({
   return (
     <>
       <s.LoginDiv
-        className={`calandar-container ${isValid === false ? "invalid" : ""}`}
+        className={`calandar-container ${
+          isValid === true ? "valid" : ""
+        } ${isValid === false ? "invalid" : ""}`}
       >
         <s.LoginDiv className="calandar-item-box">
           <s.Select name="year" value={year} onChange={yearChange} required>

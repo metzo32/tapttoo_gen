@@ -5,6 +5,7 @@ import { AuthContext } from "../context/AuthContext";
 import s from "../stores/styling";
 import useModal from "../hooks/ModalHook";
 import Modal from "../components/Modal";
+import HoverButton from "./HoverButton";
 
 interface LogoutButtonProps {
   className?: string;
@@ -42,13 +43,14 @@ const LogoutButton: React.FC<LogoutButtonProps> = ({
         modalButtonOption={"로그아웃"}
         onOptionClick={handleLogout}
       />
+
       {!iconStyle ? (
-        <s.Button
-          className="Round responsive-logout"
+        <HoverButton
+          className="modal-logout"
           onClick={handleOpenModal}
-        >
-          Logout
-        </s.Button>
+          circle={true}
+          text="로그아웃"
+        />
       ) : (
         <s.OutIcon onClick={handleOpenModal} />
       )}

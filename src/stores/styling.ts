@@ -263,6 +263,10 @@ width: 100%;
     background-color: ${(props) => props.theme.Grey};
   }
 
+  &.red {
+   background-color: red;
+  }
+
   &.margin-h {
     margin: 30px 0px;
   }
@@ -493,6 +497,7 @@ const AboutDiv = styled.div`
 
     &:first-child {
       margin-right: 20px;
+      margin-top: 0px;
     }
 
     @media (max-width: 767px) {
@@ -521,21 +526,21 @@ const AboutDiv = styled.div`
   &.mid-title-wrapper {
     width: 100%;
     display: flex;
+    border: 1px solid red;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     position: relative;
     z-index: 0;
     padding-left: 5px;
 
     @media (max-width: 511px) {
-      flex-direction: column;
     }
 
     @media (min-width: 512px) {
     }
 
     @media (min-width: 768px) {
-      height: 650px;
+      height: 550px;
     }
 
     @media (min-width: 1024px) {
@@ -1316,7 +1321,6 @@ const StyledP = styled.p`
       margin-bottom: 50px;
     }
   }
-  }
 
   &.about-last-title {
     color: ${(props) => props.theme.Green};
@@ -1341,10 +1345,9 @@ const StyledP = styled.p`
   }
 
   &.section-p {
-    display: block;
-    margin-bottom: 10px;
-    padding-left: 5px;
-    padding-bottom: 10px;
+    height: 90px;
+    display: inline-block;
+    padding: 0px 0px 10px 5px;
 
     &.open-drop-more {
       animation: ${openPop} 0.3s forwards;
@@ -1354,8 +1357,6 @@ const StyledP = styled.p`
       animation: ${closePop} 0.3s forwards;
     }
   }
-
-
 
   &.event-address {
     @media (max-width: 767px) {
@@ -1473,6 +1474,18 @@ const StyledP = styled.p`
     font-size: 16px;
     line-height: 22px;
     text-align: center;
+
+    @media (max-width: 767px) {
+      font-size: 12px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 14px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 16px;
+    }
   }
 
   &.small {
@@ -4212,11 +4225,10 @@ const ProfileDiv = styled.div`
     align-items: center;
 
     @media (max-width: 767px) {
-      height: 40px;
     }
 
     @media (min-width: 768px) {
-      height: 60px;
+      height: 70px;
       margin-bottom: 0px;
     }
 
@@ -4231,17 +4243,21 @@ const ProfileDiv = styled.div`
     justify-content: space-between;
 
     @media (max-width: 767px) {
-      flex-direction: row;
+      width: auto;
       height: 45px;
+      flex-direction: column;
     }
 
     @media (min-width: 768px) {
-      flex-direction: column;
+      width: auto;
       height: 45px;
+      flex-direction: column;
     }
 
     @media (min-width: 1024px) {
+      width: 280px;
       height: 45px;
+      flex-direction: row;
     }
   }
 
@@ -4710,10 +4726,10 @@ const Label = styled.label`
     }
   }
 
-  &.modal-label,
+  // 성별체크
   &.check-label {
     font-size: 12px;
-    color: ${(props) => props.theme.LightGrey};
+    color: ${(props) => props.theme.Grey};
     cursor: pointer;
     padding: 10px 0px;
     display: flex;
@@ -4746,6 +4762,50 @@ const Label = styled.label`
 
         .checkbox-icon-checked {
           color: ${(props) => props.theme.HoverGreen};
+        }
+      }
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 14px;
+    }
+  }
+
+  &.modal-label {
+    font-size: 12px;
+    color: ${(props) => props.theme.LightGrey};
+    cursor: pointer;
+    padding: 10px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: ${lightTheme.Grey};
+
+      .checkbox-icon-checked {
+        color: ${(props) => props.theme.Green};
+      }
+    }
+
+    .checkbox-icon-checked {
+      color: ${(props) => props.theme.Green};
+    }
+
+    &.invalid {
+      color: ${(props) => props.theme.Orange};
+      animation: ${shaking} 0.2s infinite;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 13px;
+
+      &:hover {
+        color: ${lightTheme.HoverGrey};
+
+        .checkbox-icon-checked {
+          color: ${lightTheme.HoverGreen};
         }
       }
     }
@@ -4813,26 +4873,40 @@ const Button = styled.button`
   }
 
   &.more {
-    width: 75px;
-    font-size: 20px;
-    color: ${(props) => props.theme.Green};
+    color: ${(props) => props.theme.LightGrey};
     margin-top: 10px;
     padding: 5px;
 
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
 
-      &:hover {
-    color: ${(props) => props.theme.HoverGreen};
-  }
+    @media (max-width: 767px) {
+      font-size: 16px;
+      width: 70px;
+    }
 
-  &:hover .none {
-    fill: ${(props) => props.theme.HoverGreen};
-  }
+    @media (min-width: 768px) {
+      font-size: 20px;
+      width: 90px;
+    }
 
-  &:hover .rotated {
-    fill: ${(props) => props.theme.HoverGreen};
+    @media (min-width: 1024px) {
+      font-size: 20px;
+      width: 90px;
+    }
+
+    &:hover {
+      color: ${(props) => props.theme.Grey};
+    }
+
+    &:hover .none {
+      fill: ${(props) => props.theme.Grey};
+    }
+
+    &:hover .rotated {
+      fill: ${(props) => props.theme.Grey};
+    }
   }
 
   &.register-back {
@@ -4920,14 +4994,14 @@ const Button = styled.button`
 
   &.carousel-btn-left {
     position: absolute;
-    bottom: 5%;
+    bottom: 3%;
     left: 0;
     z-index: 1;
   }
 
   &.carousel-btn-right {
     position: absolute;
-    bottom: 5%;
+    bottom: 3%;
     right: 0;
     z-index: 1;
   }
@@ -4981,7 +5055,6 @@ const GreenButton = styled.button`
   border-radius: 30px;
 
   background-color: rgba(0, 0, 0, 0);
-  font-size: 14px;
   color: ${(props) => props.theme.Green};
   font-weight: 500;
   text-align: center;
@@ -5005,12 +5078,15 @@ const GreenButton = styled.button`
 
   @media (max-width: 767px) {
     padding: 10px 20px;
+    font-size: 12px;
   }
 
   @media (min-width: 768px) {
     padding: 10px 20px 10px 20px;
+    font-size: 14px;
   }
-  ya &.with-circle {
+
+  &.with-circle {
     padding: 10px 15px;
 
     @media (max-width: 767px) {
@@ -5026,6 +5102,20 @@ const GreenButton = styled.button`
       background-color: ${lightTheme.HoverGreen};
       border: 2px solid ${lightTheme.HoverGreen};
       color: ${lightTheme.Light};
+    }
+  }
+
+  &.modal-logout {
+    @media (max-width: 767px) {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      display: none;
+    }
+
+    @media (min-width: 1024px) {
+      display: flex;
     }
   }
 `;
@@ -5355,9 +5445,8 @@ const ProfileIcon = styled(GoPerson)`
 `;
 
 const PhoneIcon = styled(MdOutlineSmartphone)`
-  ${StyledHeaderIcon};
   fill: ${(props) => props.theme.LightGrey};
-  margin-right: 3px;
+  margin-right: 2px;
 
   @media (max-width: 767px) {
     width: 15px;
@@ -5368,10 +5457,10 @@ const PhoneIcon = styled(MdOutlineSmartphone)`
     width: 20px;
     height: 20px;
   }
+    
 `;
 
 const BdIcon = styled(LiaBirthdayCakeSolid)`
-  ${StyledHeaderIcon};
   fill: ${(props) => props.theme.LightGrey};
   margin-right: 3px;
 
@@ -5430,12 +5519,23 @@ const TopArrowIcon = styled(MdOutlineArrowUpward)`
 `;
 
 const MoreIcon = styled(BiSolidDownArrow)`
-  width: 30px;
-  height: 30px;
-  fill: ${(props) => props.theme.Green};
+  fill: ${(props) => props.theme.LightGrey};
   animation: ${bounce} 2s ease infinite;
   transition: fill 0.3s ease;
   transform-origin: 60% 50%;
+
+  @media (max-width: 767px) {
+    width: 16px;
+    height: 16px;
+  }
+
+  @media (min-width: 768px) {
+  }
+
+  @media (min-width: 1024px) {
+    width: 24px;
+    height: 24px;
+  }
 
   &.rotated {
     animation: ${reverseBounce} 2s ease infinite;

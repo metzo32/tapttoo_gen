@@ -82,12 +82,6 @@ export default function SearchEventProfile() {
       </PopUpBelow>
 
       <s.Search className="line-box">
-        <s.Search className="event-wrapper">
-          <LinearDraw>
-            <s.Line className="horizontal dark" />
-          </LinearDraw>
-        </s.Search>
-
         {eventData.map((profile, index) => (
           <s.Search className="event-wrapper" key={profile.id}>
             <s.Search className="event-container">
@@ -126,6 +120,13 @@ export default function SearchEventProfile() {
             </LinearDraw>
           </s.Search>
         ))}
+
+        <s.Search className="event-wrapper">
+          <LinearDraw delay={eventData.length * 0.1}>
+            <s.Line className="horizontal dark" />
+          </LinearDraw>
+        </s.Search>
+
       </s.Search>
     </s.Search>
   );

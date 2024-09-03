@@ -80,6 +80,8 @@ export default function Profile() {
               </s.ProfileDiv>
 
               <LogoutButton iconStyle={false} />
+
+              
             </s.ProfileDiv>
           </s.ProfileDiv>
         </s.ProfileDiv>

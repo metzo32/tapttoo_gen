@@ -87,16 +87,16 @@ const RegisterPage = () => {
 
       switch (errorCode) {
         case "auth/email-already-in-use":
-          setModalMessage("이미 사용 중인 이메일입니다.");
+          setModalMessage(<s.StyledP className="modal-text">이미 사용 중인 이메일입니다.</s.StyledP>);
           break;
         case "auth/invalid-email":
-          setModalMessage("유효하지 않은 이메일 주소입니다.");
+          setModalMessage(<s.StyledP className="modal-text">유효하지 않은 이메일 주소입니다.</s.StyledP>);
           break;
         case "auth/operation-not-allowed":
-          setModalMessage("회원가입이 현재 허용되지 않습니다.");
+          setModalMessage(<s.StyledP className="modal-text">회원가입이 현재 허용되지 않습니다.</s.StyledP>);
           break;
         default:
-          setModalMessage("회원가입 중 알 수 없는 오류가 발생했습니다.");
+          setModalMessage(<s.StyledP className="modal-text">회원가입 중 알 수 없는 오류가 발생했습니다.</s.StyledP>);
       }
 
       handleOpenModal();
