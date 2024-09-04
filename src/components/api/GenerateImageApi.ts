@@ -11,7 +11,8 @@ const GenerateImageApi = async (prompt: string, color: boolean): Promise<string>
   };
 
   const data = {
-    prompt: `${prompt} without background, thin lined architect sketch, ${color ? 'colorful' : 'black and white'}`,
+    // prompt: `${prompt} without background, thin lined architect sketch, ${color ? 'colorful' : 'black and white'}`,
+    prompt: `${prompt} A traditional mandala design with a focus on spiritual and geometric harmony. ${color ? 'colorful poster' : 'black and white'}`,
     n: 1,
     size: '512x512',
     response_format: 'url',

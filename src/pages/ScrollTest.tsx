@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import styled, { keyframes } from "styled-components";
 import s from "../stores/styling";
-import image from "../assets/images/artistregister-background.jpg";
+import image from "../assets/images/gen-background.jpg"
 
 export default function ScrollTest() {
   const { ref: pizzaRef, inView: enterView } = useInView({
