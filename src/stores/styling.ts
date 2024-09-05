@@ -12,6 +12,7 @@
 import styled, { css, createGlobalStyle } from "styled-components";
 import { Route, Link as RouterLink } from "react-router-dom";
 import {
+  fadeInUp,
   WaterAnimation,
   loadingSlide,
   moveArrow,
@@ -26,6 +27,7 @@ import {
   infiniteSlideLeft,
   animateIn,
   animateOut,
+  ButtonFadeIn,
   FadeIn,
   FadeOut,
   slideUp,
@@ -84,6 +86,7 @@ import { ReactComponent as CheckboxAfter } from "../assets/icons/checkbox-active
 import { ReactComponent as Logo } from "../assets/icons/v.svg";
 import { ReactComponent as HeartLine } from "../assets/icons/heart_outlined.svg";
 import { ReactComponent as HeartFull } from "../assets/icons/heart_full.svg";
+import { PopUpBelow } from "../components/FramerMotions/scrollMotions";
 
 const Engraved = styled.div`
   background-color: #999;
@@ -1049,8 +1052,8 @@ const StyledH3 = styled.h3`
     letter-spacing: -1px;
 
     @media (max-width: 767px) {
-      font-size: 18px;
-      line-height: 25px;
+      font-size: 16px;
+      line-height: 20px;
     }
 
     @media (min-width: 768px) {
@@ -2147,6 +2150,7 @@ const DotMask = styled.div`
 
   @media (min-width: 480px) {
     --bgSize: 15px;
+    --stop2: 130%;
   }
 
   @media (min-width: 768px) {
@@ -3712,19 +3716,41 @@ const GenDiv = styled.div`
 
     border-radius: 50%;
 
-    width: 512px;
-    height: 512px;
+    width: 80%;
+    max-width: 512px;
+    aspect-ratio: 1/1;
     margin: 0 auto;
     overflow: hidden;
 
+    opacity: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     position: relative;
+
+    // animation: ${fadeInUp} 0.5s forwards;
+    // animation-delay: 1s;
   }
 
   &.gen-input-container {
-    width: 30%;
     height: auto;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: row;
+
+    @media (max-width: 767px) {
+      width: 80%;
+    }
+
+    @media (min-width: 768px) {
+      width: 50%;
+    }
+
+    @media (min-width: 1024px) {
+      width: 30%;
+    }
   }
 
   &.gen-title-wrapper {
@@ -5225,6 +5251,26 @@ const Button = styled.button`
       transform: translate(-100%, -100%);
     }
   }
+
+  &.water-btn {
+    color: ${darkTheme.Grey};
+    font-size: 24px;
+    position: absolute;
+    z-index: 1;
+    visibility: hidden;
+
+    animation: ${ButtonFadeIn} 0.3s forwards;
+    animation-delay: 8s;
+
+    &:hover {
+      color: ${lightTheme.White};
+      transition: color 0.3 ease;
+    }
+
+    &.hide-water-btn {
+      animation: ${FadeOut} 0.5s forwards;
+    }
+  }
 `;
 
 const GreenButton = styled.button`
@@ -5403,9 +5449,11 @@ const Water = styled(water)`
   height: calc(736px * 1.2);
   position: absolute;
 
+  animation: ${WaterAnimation} 9s forwards;
 
-
-   animation: ${WaterAnimation} 10s forwards;
+  &.hide-water {
+    animation: ${FadeOut} 0.5s forwards;
+  }
 `;
 
 const StyledCircularProgressbar = styled(CircularProgressbar)`

@@ -2,7 +2,7 @@ import { keyframes } from "styled-components";
 
 export const WaterAnimation = keyframes`
   0% {
-    bottom: -170%;
+    bottom: -180%;
     left: -95%;
   }
   100% {
@@ -11,7 +11,7 @@ export const WaterAnimation = keyframes`
   }
 `;
 
-export const loadingSlide = keyframes` 
+export const loadingSlide = keyframes`
   0% {
     transform: translateX(-30%) translateY(18%);
   }
@@ -166,6 +166,17 @@ export const infiniteSlideLeft = keyframes`
   }
 `;
 
+export const fadeInUp = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(100px); 
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); 
+  }
+`;
+
 export const animateIn = keyframes`
   from {
     transform: translateY(150px);
@@ -185,6 +196,17 @@ export const animateOut = keyframes`
   to {
     transform: translateY(150px);
     opacity: 0;
+  }
+`;
+
+export const ButtonFadeIn = keyframes`
+  from {
+    opacity: 0;
+    visibility: visible;
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
   }
 `;
 

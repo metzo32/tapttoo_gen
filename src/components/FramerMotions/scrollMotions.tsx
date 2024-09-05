@@ -7,6 +7,7 @@ import {
   stagger,
 } from "framer-motion";
 import styled from "styled-components";
+import s from "../../stores/styling";
 
 interface Props {
   children?: JSX.Element;
@@ -197,31 +198,53 @@ export const EachTextPopUp = ({ duration, delay, text }: Props) => {
   );
 };
 
+export const CircleAnimation = ({ children }: Props) => {
+  const [look, setLook] = useState(false); // 원 상태를 관리하는 상태
 
-
-export const CircleAnimation = () => {
-  const [isCircle, setIsCircle] = useState(false); // 원 상태를 관리하는 상태
+  const MotionGenDiv = motion(s.GenDiv);
 
   const handleButtonClick = () => {
-    setIsCircle(!isCircle); // 클릭 시 상태 변경
+    setLook(!look); // 클릭 시 상태 변경
   };
 
   return (
-    <div>
-      <motion.div
-        style={{
-          width: 100,
-          height: 100,
-          backgroundColor: "skyblue",
-        }}
+    <>
+      <MotionGenDiv
+        className="gen-image-box"
         animate={{
-          borderRadius: isCircle ? "50%" : "0%", // 원 상태에 따라 애니메이션
+          borderRadius: look ? "0%" : "50%", // 원 상태에 따라 애니메이션
         }}
         transition={{ duration: 0.5 }} // 애니메이션 지속 시간
-      />
-      <button onClick={handleButtonClick}>
-        {isCircle ? "사각형으로" : "원으로"} 변환
-      </button>
-    </div>
+      >
+        {children}
+        <s.Button className="water-btn" onClick={handleButtonClick}>
+          확인하기
+        </s.Button>
+      </MotionGenDiv>
+    </>
+  );
+};
+
+
+export const MyComponent = ({ children }: Props) => {
+  const [isAnimated, setIsAnimated] = useState(false);
+  const MotionGenDiv = motion(s.GenDiv);
+
+  const toggleAnimation = () => {
+    setIsAnimated(!isAnimated);
+  };
+
+  return (
+    <>
+      <MotionGenDiv
+        className="gen-image-box"
+        animate={{
+          borderRadius: isAnimated ? ["0%", "50%"] : ["50%", "0%"],
+        }}
+      >
+        {children}
+      </MotionGenDiv>
+      <button onClick={toggleAnimation}>Animate Border Radius</button>
+    </>
   );
 };

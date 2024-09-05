@@ -1,15 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import GenerateImageApi from "../components/api/GenerateImageApi";
 import s from "../stores/styling";
 import bgImage from "../assets/images/tattoo_50.jpg";
 import HoverButton from "../components/HoverButton";
-import { CircleAnimation } from "../components/FramerMotions/scrollMotions";
+import {
+  CircleAnimation,
+  MyComponent,
+  PopUpBelow,
+} from "../components/FramerMotions/scrollMotions";
 
 const GenerateImage: React.FC = () => {
   const [prompt, setPrompt] = useState<string>("");
   const [color, setColor] = useState<boolean>(false);
   const [imageUrl, setImageUrl] = useState<string>("");
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showButton, setShowButton] = useState(false); // 버튼 상태를 관리하는 상태
+  const [check, setCheck] = useState(false);
+
+  useEffect(() => {
+    if (isSubmitted) {
+      const timer = setTimeout(() => {
+        setShowButton(true);
+      }, 8000);
+      return () => clearTimeout(timer);
+    }
+  }, [isSubmitted, showButton]); //의존성 배열. showButton이 나타난 후에는 애니메이션 실행되지 않음
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,13 +43,17 @@ const GenerateImage: React.FC = () => {
     setIsSubmitted(true);
   };
 
+  const handleCheck = () => {
+    setCheck(true);
+  };
+
   return (
     <s.GenDiv className="gen-wrapper">
       <s.GenDiv className="gen-bg-wrapper">
         <s.Image className="gen-bg" src={bgImage} alt="photo" />
 
         <s.DotMask className="base">
-          <s.DotMask className="angled"/>
+          <s.DotMask className="angled" />
         </s.DotMask>
       </s.GenDiv>
 
@@ -64,14 +83,17 @@ const GenerateImage: React.FC = () => {
           Aspernatur, maxime.
         </s.StyledP>
 
-        <s.Form onSubmit={handleSubmit} className={`img-gen-form ${isSubmitted ? "submit-hidden" : ""}`}>
+        <s.Form
+          onSubmit={handleSubmit}
+          className={`img-gen-form ${isSubmitted ? "submit-hidden" : ""}`}
+        >
           <s.GenDiv className="gen-input-container">
             <s.Input
               className="prompt-input"
               type="text"
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
-              placeholder="Type your idea in a word"
+              placeholder="Type your idea"
               required
             />
             <s.Label className="check-label">
@@ -90,13 +112,30 @@ const GenerateImage: React.FC = () => {
             </s.Label>
           </s.GenDiv>
 
-          <HoverButton type="submit" circle={true} text="디자인 생성하기" onClick={handleButtonClick}/>
+          <HoverButton
+            type="submit"
+            circle={true}
+            text="디자인 생성하기"
+            onClick={handleButtonClick}
+          />
         </s.Form>
-        <CircleAnimation/>
-        <s.GenDiv className="gen-image-box">
-          {imageUrl && <img src={imageUrl} alt="Generated" />}
-            <s.Water/>
-        </s.GenDiv>
+
+        {isSubmitted && (
+          <PopUpBelow>
+            <CircleAnimation>
+              <>
+                {imageUrl && <img src={imageUrl} alt="Generated" />}
+                {/* <s.Water /> */}
+
+                {showButton && (
+                  <s.Button className="water-btn" onClick={handleCheck}>
+                    확인하기
+                  </s.Button>
+                )}
+              </>
+            </CircleAnimation>
+          </PopUpBelow>
+        )}
       </s.GenDiv>
     </s.GenDiv>
   );
