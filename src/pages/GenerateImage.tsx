@@ -3,11 +3,13 @@ import GenerateImageApi from "../components/api/GenerateImageApi";
 import s from "../stores/styling";
 import bgImage from "../assets/images/tattoo_50.jpg";
 import HoverButton from "../components/HoverButton";
+import { CircleAnimation } from "../components/FramerMotions/scrollMotions";
 
 const GenerateImage: React.FC = () => {
   const [prompt, setPrompt] = useState<string>("");
   const [color, setColor] = useState<boolean>(false);
   const [imageUrl, setImageUrl] = useState<string>("");
+  const [isSubmitted, setIsSubmitted] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,13 +21,20 @@ const GenerateImage: React.FC = () => {
     }
   };
 
+  const handleButtonClick = () => {
+    if (prompt.trim().length === 0) {
+      return; // 아무것도 입력되지 않으면
+    }
+    setIsSubmitted(true);
+  };
+
   return (
     <s.GenDiv className="gen-wrapper">
       <s.GenDiv className="gen-bg-wrapper">
         <s.Image className="gen-bg" src={bgImage} alt="photo" />
 
         <s.DotMask className="base">
-          <s.DotMask className="angled"></s.DotMask>
+          <s.DotMask className="angled"/>
         </s.DotMask>
       </s.GenDiv>
 
@@ -55,7 +64,7 @@ const GenerateImage: React.FC = () => {
           Aspernatur, maxime.
         </s.StyledP>
 
-        <s.Form onSubmit={handleSubmit} className="img-gen-form">
+        <s.Form onSubmit={handleSubmit} className={`img-gen-form ${isSubmitted ? "submit-hidden" : ""}`}>
           <s.GenDiv className="gen-input-container">
             <s.Input
               className="prompt-input"
@@ -81,12 +90,12 @@ const GenerateImage: React.FC = () => {
             </s.Label>
           </s.GenDiv>
 
-          <HoverButton type="submit" circle={true} text="디자인 생성하기" />
+          <HoverButton type="submit" circle={true} text="디자인 생성하기" onClick={handleButtonClick}/>
         </s.Form>
-
+        <CircleAnimation/>
         <s.GenDiv className="gen-image-box">
           {imageUrl && <img src={imageUrl} alt="Generated" />}
-          플레이스홀더
+            <s.Water/>
         </s.GenDiv>
       </s.GenDiv>
     </s.GenDiv>

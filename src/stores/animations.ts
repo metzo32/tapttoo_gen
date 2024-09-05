@@ -1,5 +1,16 @@
 import { keyframes } from "styled-components";
 
+export const WaterAnimation = keyframes`
+  0% {
+    bottom: -170%;
+    left: -95%;
+  }
+  100% {
+    bottom: -50%;
+    left: -815%;
+  }
+`;
+
 export const loadingSlide = keyframes` 
   0% {
     transform: translateX(-30%) translateY(18%);
@@ -68,8 +79,6 @@ export const reverseBounce = keyframes`
       transform: translateY(0); 
     }
 `;
-
-
 
 export const drawLetter = keyframes`
   0% {

@@ -196,3 +196,32 @@ export const EachTextPopUp = ({ duration, delay, text }: Props) => {
     </>
   );
 };
+
+
+
+export const CircleAnimation = () => {
+  const [isCircle, setIsCircle] = useState(false); // 원 상태를 관리하는 상태
+
+  const handleButtonClick = () => {
+    setIsCircle(!isCircle); // 클릭 시 상태 변경
+  };
+
+  return (
+    <div>
+      <motion.div
+        style={{
+          width: 100,
+          height: 100,
+          backgroundColor: "skyblue",
+        }}
+        animate={{
+          borderRadius: isCircle ? "50%" : "0%", // 원 상태에 따라 애니메이션
+        }}
+        transition={{ duration: 0.5 }} // 애니메이션 지속 시간
+      />
+      <button onClick={handleButtonClick}>
+        {isCircle ? "사각형으로" : "원으로"} 변환
+      </button>
+    </div>
+  );
+};

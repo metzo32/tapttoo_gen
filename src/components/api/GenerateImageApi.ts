@@ -20,7 +20,6 @@ const GenerateImageApi = async (prompt: string, color: boolean): Promise<string>
 
   try {
     const response = await axios.post(url, data, { headers });
-    console.log(prompt)
     return response.data.data[0].url;
   } catch (error) {
     console.error('Error generating image:', error);

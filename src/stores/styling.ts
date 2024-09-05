@@ -12,6 +12,7 @@
 import styled, { css, createGlobalStyle } from "styled-components";
 import { Route, Link as RouterLink } from "react-router-dom";
 import {
+  WaterAnimation,
   loadingSlide,
   moveArrow,
   bounce,
@@ -42,6 +43,8 @@ import { lightTheme, darkTheme } from "../stores/colors";
 
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+
+import { ReactComponent as water } from "../assets/icons/water.svg";
 
 import { RiHome2Line } from "react-icons/ri"; //홈
 import { GrSearch } from "react-icons/gr"; //검색
@@ -2144,7 +2147,6 @@ const DotMask = styled.div`
 
   @media (min-width: 480px) {
     --bgSize: 15px;
-    --stop2: 170%;
   }
 
   @media (min-width: 768px) {
@@ -3708,9 +3710,14 @@ const GenDiv = styled.div`
   &.gen-image-box {
     border: 1px solid white;
 
+    border-radius: 50%;
+
     width: 512px;
     height: 512px;
     margin: 0 auto;
+    overflow: hidden;
+
+    position: relative;
   }
 
   &.gen-input-container {
@@ -4256,6 +4263,10 @@ const Form = styled.form`
     flex-direction: column;
     justify-content: center;
     margin: 50px 0px;
+
+    &.submit-hidden {
+      animation: ${closePop} 0.5s forwards;
+    }
   }
 `;
 
@@ -4399,12 +4410,10 @@ const ProfileDiv = styled.div`
     }
 
     @media (min-width: 768px) {
-      height: 70px;
       margin-bottom: 0px;
     }
 
     @media (min-width: 1024px) {
-      height: 85px;
       margin-bottom: 10px;
     }
   }
@@ -5389,6 +5398,16 @@ const GridImage = styled.img`
   }
 `;
 
+const Water = styled(water)`
+  width: calc(4196px * 1.2);
+  height: calc(736px * 1.2);
+  position: absolute;
+
+
+
+   animation: ${WaterAnimation} 10s forwards;
+`;
+
 const StyledCircularProgressbar = styled(CircularProgressbar)`
   .CircularProgressbar-path {
     stroke-width: 3;
@@ -5800,6 +5819,8 @@ const s = {
   Username,
   DotMask,
   DrawIcon,
+
+  Water,
 
   StyledCircularProgressbar,
 
