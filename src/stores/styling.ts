@@ -603,7 +603,7 @@ const BrandTitleWrapper = styled.div`
 const StyledH1 = styled.h1`
   color: ${(props) => props.theme.Green};
   font-size: 155px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 140px;
   margin: 0px;
   transform: scaleX(1);
@@ -4932,10 +4932,10 @@ const Label = styled.label`
     }
   }
 
-  // 성별체크
   &.check-label {
     font-size: 12px;
     color: ${(props) => props.theme.Grey};
+
     cursor: pointer;
     padding: 10px 0px;
     display: flex;
@@ -4968,6 +4968,45 @@ const Label = styled.label`
 
         .checkbox-icon-checked {
           color: ${(props) => props.theme.HoverGreen};
+        }
+      }
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 14px;
+    }
+  }
+
+  &.steady-dark {
+    font-size: 12px;
+    color: ${darkTheme.Grey};
+    cursor: pointer;
+    padding: 10px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: ${darkTheme.HoverGrey};
+
+      .checkbox-icon-checked {
+        color: ${darkTheme.Green};
+      }
+    }
+
+    .checkbox-icon-checked {
+      color: ${darkTheme.Green};
+    }
+
+    @media (min-width: 768px) {
+      font-size: 13px;
+
+      &:hover {
+        color: ${darkTheme.HoverGrey};
+
+        .checkbox-icon-checked {
+          color: ${darkTheme.HoverGreen};
         }
       }
     }

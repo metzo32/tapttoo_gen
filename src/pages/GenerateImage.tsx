@@ -91,7 +91,8 @@ const GenerateImage: React.FC = () => {
               placeholder="Type your idea"
               required
             />
-            <s.Label className="check-label">
+
+            <s.Label className="steady-dark">
               <s.Input
                 type="checkbox"
                 checked={color}

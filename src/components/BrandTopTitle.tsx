@@ -16,9 +16,9 @@ export default function BrandTopTitle() {
         </EachTextPopUp>
 
         <s.StyledH1 className="brand-title">
-          We are Visionary
+          Express yourself
           <br />
-          Craftsmen
+          in new way
         </s.StyledH1>
 
         <PopUpBelow delay={0.8}>
