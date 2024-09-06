@@ -5260,7 +5260,7 @@ const Button = styled.button`
     visibility: hidden;
 
     animation: ${ButtonFadeIn} 0.3s forwards;
-    animation-delay: 8s;
+    // animation-delay: 8s;
 
     &:hover {
       color: ${lightTheme.White};

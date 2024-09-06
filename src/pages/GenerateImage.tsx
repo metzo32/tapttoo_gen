@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import GenerateImageApi from "../components/api/GenerateImageApi";
 import s from "../stores/styling";
 import bgImage from "../assets/images/tattoo_50.jpg";
 import HoverButton from "../components/HoverButton";
 import {
   CircleAnimation,
-  MyComponent,
   PopUpBelow,
 } from "../components/FramerMotions/scrollMotions";
+
+import Water from "../components/loading_water/Water";
 
 const GenerateImage: React.FC = () => {
   const [prompt, setPrompt] = useState<string>("");
@@ -17,17 +18,9 @@ const GenerateImage: React.FC = () => {
   const [showButton, setShowButton] = useState(false); // 버튼 상태를 관리하는 상태
   const [check, setCheck] = useState(false);
 
-  useEffect(() => {
-    if (isSubmitted) {
-      const timer = setTimeout(() => {
-        setShowButton(true);
-      }, 8000);
-      return () => clearTimeout(timer);
-    }
-  }, [isSubmitted, showButton]); //의존성 배열. showButton이 나타난 후에는 애니메이션 실행되지 않음
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitted) return;
     try {
       const url = await GenerateImageApi(prompt, color);
       setImageUrl(url);
@@ -46,6 +39,8 @@ const GenerateImage: React.FC = () => {
   const handleCheck = () => {
     setCheck(true);
   };
+
+  const keepFrame = useMemo(() => {}, [isSubmitted]);
 
   return (
     <s.GenDiv className="gen-wrapper">
@@ -125,13 +120,10 @@ const GenerateImage: React.FC = () => {
             <CircleAnimation>
               <>
                 {imageUrl && <img src={imageUrl} alt="Generated" />}
-                {/* <s.Water /> */}
-
-                {showButton && (
-                  <s.Button className="water-btn" onClick={handleCheck}>
-                    확인하기
-                  </s.Button>
-                )}
+                <Water />
+                <s.Button className="water-btn" onClick={handleCheck}>
+                  확인하기
+                </s.Button>
               </>
             </CircleAnimation>
           </PopUpBelow>

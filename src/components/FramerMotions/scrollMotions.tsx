@@ -214,7 +214,11 @@ export const CircleAnimation = ({ children }: Props) => {
         animate={{
           borderRadius: look ? "0%" : "50%", // 원 상태에 따라 애니메이션
         }}
-        transition={{ duration: 0.5 }} // 애니메이션 지속 시간
+        transition={{
+          duration: 0.5,
+          ease: [0.25, 0.1, 0.25, 1], 
+        }}
+        
       >
         {children}
         <s.Button className="water-btn" onClick={handleButtonClick}>
@@ -225,26 +229,3 @@ export const CircleAnimation = ({ children }: Props) => {
   );
 };
 
-
-export const MyComponent = ({ children }: Props) => {
-  const [isAnimated, setIsAnimated] = useState(false);
-  const MotionGenDiv = motion(s.GenDiv);
-
-  const toggleAnimation = () => {
-    setIsAnimated(!isAnimated);
-  };
-
-  return (
-    <>
-      <MotionGenDiv
-        className="gen-image-box"
-        animate={{
-          borderRadius: isAnimated ? ["0%", "50%"] : ["50%", "0%"],
-        }}
-      >
-        {children}
-      </MotionGenDiv>
-      <button onClick={toggleAnimation}>Animate Border Radius</button>
-    </>
-  );
-};
