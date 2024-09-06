@@ -8,6 +8,7 @@ import {
 } from "framer-motion";
 import styled from "styled-components";
 import s from "../../stores/styling";
+import { StyledMotionDiv } from "../../stores/styling";
 
 interface Props {
   children?: JSX.Element;
@@ -199,9 +200,11 @@ export const EachTextPopUp = ({ duration, delay, text }: Props) => {
 };
 
 export const CircleAnimation = ({ children }: Props) => {
-  const [look, setLook] = useState(false); // 원 상태를 관리하는 상태
 
-  const MotionGenDiv = motion(s.GenDiv);
+
+
+  
+  const [look, setLook] = useState(false); // 원 상태를 관리하는 상태
 
   const handleButtonClick = () => {
     setLook(!look); // 클릭 시 상태 변경
@@ -209,23 +212,24 @@ export const CircleAnimation = ({ children }: Props) => {
 
   return (
     <>
-      <MotionGenDiv
-        className="gen-image-box"
+      <StyledMotionDiv
+        className="testcase"
         animate={{
           borderRadius: look ? "0%" : "50%", // 원 상태에 따라 애니메이션
         }}
         transition={{
           duration: 0.5,
-          ease: [0.25, 0.1, 0.25, 1], 
+          ease: [0.25, 0.1, 0.25, 1],
         }}
-        
       >
         {children}
-        <s.Button className="water-btn" onClick={handleButtonClick}>
+        <s.Button
+          className="water-btn"
+          onClick={handleButtonClick}
+        >
           확인하기
         </s.Button>
-      </MotionGenDiv>
+      </StyledMotionDiv>
     </>
   );
 };
-

@@ -11,6 +11,7 @@
 
 import styled, { css, createGlobalStyle } from "styled-components";
 import { Route, Link as RouterLink } from "react-router-dom";
+import { motion } from "framer-motion";
 import {
   fadeInUp,
   WaterAnimation,
@@ -1065,6 +1066,10 @@ const StyledH3 = styled.h3`
       font-size: 30px;
       line-height: 40px;
     }
+
+    &.steady-dark-title {
+      color: ${darkTheme.Green};
+    }
   }
 
   &.profile-nickname {
@@ -1372,6 +1377,10 @@ const StyledP = styled.p`
   @media (min-width: 1024px) {
     font-size: 22px;
     line-height: 28px;
+  }
+
+  &.steady-dark-p {
+    color: ${darkTheme.Grey};
   }
 
   &.about-first-title {
@@ -4500,7 +4509,7 @@ const LoginDiv = styled.div`
     display: flex;
 
     @media (max-width: 767px) {
-      margin: 45px 0px 240px 0px;
+      margin: 45px 0px 350px 0px;
     } 
 
     @media (min-width: 768px) {
@@ -5277,7 +5286,9 @@ const Button = styled.button`
     }
 
     @media (max-width: 767px) {
-      transform: translate(-20%, -175%);
+      width: 50px;
+      height: 50px;
+      transform: translate(-20%, -200%);
 
       &:hover {
         color: ${lightTheme.Light};
@@ -5382,6 +5393,10 @@ const GreenButton = styled.button`
     @media (min-width: 1024px) {
       display: flex;
     }
+  }
+
+  &.center {
+    justify-content: center;
   }
 `;
 
@@ -5492,6 +5507,31 @@ const Water = styled(water)`
 
   &.hide-water {
     animation: ${FadeOut} 0.5s forwards;
+  }
+`;
+
+export const StyledMotionDiv = styled(motion.div)`
+  &.testcase {
+    border: 1px solid white;
+
+    border-radius: 50%;
+
+    width: 80%;
+    max-width: 512px;
+    aspect-ratio: 1/1;
+    margin: 0 auto;
+    overflow: hidden;
+
+    opacity: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    // animation: ${fadeInUp} 0.5s forwards;
+    // animation-delay: 1s;
   }
 `;
 
@@ -5648,8 +5688,8 @@ const SortIcon = styled(GrSort)`
   fill: ${lightTheme.Light};
   color: ${lightTheme.Light};
   @media (max-width: 767px) {
-    width: 27px;
-    height: 27px;
+    width: 20px;
+    height: 20px;
   }
 
   @media (min-width: 768px) {
@@ -5800,8 +5840,21 @@ const YoutubeIcon = styled(FaYoutube)`
 const TopArrowIcon = styled(MdOutlineArrowUpward)`
   ${StyledIcon}
   fill: ${lightTheme.Light};
-  width: 28px;
-  height: 28px;
+
+  @media (max-width: 767px) {
+    width: 22px;
+    height: 22px;
+  }
+
+  @media (min-width: 768px) {
+    width: 28px;
+    height: 28px;
+  }
+
+  @media (min-width: 1024px) {
+    width: 28px;
+    height: 28px;
+  }
 `;
 
 const MoreIcon = styled(BiSolidDownArrow)`
@@ -5908,6 +5961,7 @@ const s = {
   DrawIcon,
 
   Water,
+  StyledMotionDiv,
 
   StyledCircularProgressbar,
 

@@ -1,6 +1,7 @@
 import s from "../stores/styling";
 import { ArtistDataProps } from "../assets/datas/artitst_data";
 import ArtistSkillComponent from "../components/ArtistSkillComponent";
+import HoverButton from "../components/HoverButton";
 
 interface ArtistDetailPageProps {
   artist: ArtistDataProps;
@@ -83,12 +84,12 @@ const ArtistProfile: React.FC<ArtistDetailPageProps> = ({ artist }) => {
                 <s.Line className="horizontal dark" />
               </s.Portfolio>
 
-              <s.Button
-                className="Round reserve"
+              <HoverButton
+                circle={false}
+                text=" 작가에게 문의하기"
                 onClick={() => handleNavigation()}
-              >
-                작가에게 문의하기
-              </s.Button>
+                className="center"
+              />
             </s.Portfolio>
           </s.Portfolio>
         </s.Portfolio>
@@ -113,9 +114,7 @@ const ArtistProfile: React.FC<ArtistDetailPageProps> = ({ artist }) => {
             <s.Line className="vertical dark display-narrow" />
 
             <s.Portfolio className="mid-box-right centered">
-                <s.StyledH4 className="profile-sns">
-                  Have a Look
-                </s.StyledH4>
+              <s.StyledH4 className="profile-sns">Have a Look</s.StyledH4>
               <s.Portfolio className="sns-box">
                 <a
                   href="https://www.facebook.com"
