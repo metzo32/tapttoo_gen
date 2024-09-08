@@ -1,8 +1,8 @@
-import searchMainImage1 from "../../assets/images/carousel_searchmain_01.png";
-import searchMainImage2 from "../../assets/images/carousel_searchmain_02.png";
-import searchMainImage3 from "../../assets/images/carousel_searchmain_03.png";
-import searchMainImage4 from "../../assets/images/carousel_searchmain_04.png";
-import searchMainImage5 from "../../assets/images/carousel_searchmain_05.png";
+import searchMainImage1 from "../../assets/images/carousel_searchmain_01.jpg";
+import searchMainImage2 from "../../assets/images/carousel_searchmain_02.jpg";
+import searchMainImage3 from "../../assets/images/carousel_searchmain_03.jpg";
+import searchMainImage4 from "../../assets/images/carousel_searchmain_04.jpg";
+import searchMainImage5 from "../../assets/images/carousel_searchmain_05.jpg";
 
 interface CarouselDataProps {
     title: string;

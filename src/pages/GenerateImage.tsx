@@ -40,10 +40,6 @@ const GenerateImage: React.FC = () => {
     setCheck(true);
   };
 
-  const keepFrame = useMemo(() => {
-
-    
-  }, [isSubmitted]);
 
   return (
     <s.GenDiv className="gen-wrapper">

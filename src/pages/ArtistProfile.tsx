@@ -2,6 +2,10 @@ import s from "../stores/styling";
 import { ArtistDataProps } from "../assets/datas/artitst_data";
 import ArtistSkillComponent from "../components/ArtistSkillComponent";
 import HoverButton from "../components/HoverButton";
+import {
+  PopUpBelow,
+  LinearDraw,
+} from "../components/FramerMotions/scrollMotions";
 
 interface ArtistDetailPageProps {
   artist: ArtistDataProps;
@@ -48,57 +52,64 @@ const ArtistProfile: React.FC<ArtistDetailPageProps> = ({ artist }) => {
             </s.Portfolio>
 
             <s.Portfolio className="mid-box-right">
-              <s.Portfolio className="header-profile">
-                <s.Portfolio className="header-profile-box">
-                  <s.StyledP className="small">Works</s.StyledP>
-                  <s.StyledP className="small">100+</s.StyledP>
-                </s.Portfolio>
-                <s.Line className="horizontal dark" />
-              </s.Portfolio>
+              {[
+                { label: "Works", value: "100+" },
+                {
+                  label: "Region",
+                  value: `${artist.street_address}, ${artist.city}`,
+                  onClick: handleCopy,
+                },
+                {
+                  label: "Email",
+                  value: artist.email,
+                  href: `mailto:${artist.email}`,
+                },
+              ].map(({ label, value, onClick, href }, idx) => (
+                <PopUpBelow delay={0.2 * (idx + 1)} key={label}>
+                  <s.Portfolio className="header-profile">
+                    <s.Portfolio className="header-profile-box">
+                      <s.StyledP className="small">{label}</s.StyledP>
+                      {href ? (
+                        <s.Atag
+                          href={href}
+                          title={`${label} 보내기`}
+                          className="artist-contact"
+                        >
+                          {value}
+                        </s.Atag>
+                      ) : (
+                        <s.Atag onClick={onClick} className="artist-contact">
+                          {value}
+                        </s.Atag>
+                      )}
+                    </s.Portfolio>
+                    <s.Line className="horizontal dark" />
+                  </s.Portfolio>
+                </PopUpBelow>
+              ))}
 
-              <s.Portfolio className="header-profile">
-                <s.Portfolio className="header-profile-box">
-                  <s.StyledP className="small">Region</s.StyledP>
-                  <s.Atag
-                    className="artist-contact"
-                    title="주소 복사하기"
-                    onClick={handleCopy}
-                  >
-                    {artist.street_address}, {artist.city}
-                  </s.Atag>
+              <PopUpBelow delay={0.8}>
+                <s.Portfolio className="ask-btn-box">
+                  <HoverButton
+                    circle={false}
+                    text=" 작가에게 문의하기"
+                    onClick={handleNavigation}
+                    className="center"
+                  />
                 </s.Portfolio>
-                <s.Line className="horizontal dark" />
-              </s.Portfolio>
-
-              <s.Portfolio className="header-profile">
-                <s.Portfolio className="header-profile-box">
-                  <s.StyledP className="small">Email</s.StyledP>
-                  <s.Atag
-                    href="mailto:{artist.email}"
-                    title="메일 보내기"
-                    className="artist-contact"
-                  >
-                    {artist.email}
-                  </s.Atag>
-                </s.Portfolio>
-                <s.Line className="horizontal dark" />
-              </s.Portfolio>
-
-              <HoverButton
-                circle={false}
-                text=" 작가에게 문의하기"
-                onClick={() => handleNavigation()}
-                className="center"
-              />
+              </PopUpBelow>
             </s.Portfolio>
           </s.Portfolio>
         </s.Portfolio>
 
-        <s.Image
-          src={artist.randomImage}
-          alt="image"
-          className="artist-page-profile"
-        />
+        <s.Portfolio className="profile-image-container">
+          <s.Image
+            src={artist.randomImage}
+            alt="image"
+            className="artist-page-profile"
+          />
+          <s.StyledH3 className="profile-portfolio">PORTFOLIO</s.StyledH3>
+        </s.Portfolio>
 
         <s.Portfolio className="mid-wrapper">
           <s.Portfolio className="header-container">

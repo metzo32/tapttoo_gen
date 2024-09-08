@@ -6,8 +6,17 @@ import s from "../stores/styling";
 import LogoutButton from "../components/Logout";
 import profileBanner from "../assets/images/profile-banner.jpg";
 import StartFromTop from "../components/StartFromTop";
+import UploadProfilePicture from "../components/UploadProfilePhoto";
 
-export default function Profile() {
+interface WishProps {
+  artistNickname?: string;
+  artistRandomImage?: string;
+}
+
+const Profile: React.FC<WishProps> = ({
+  artistNickname,
+  artistRandomImage,
+}) => {
   const { currentlyLoggedIn } = useContext(AuthContext);
   const [userData, setUserData] = useState<any>(null);
 
@@ -26,17 +35,33 @@ export default function Profile() {
     fetchUserData();
   }, []);
 
+  const handleCardRedirect = (nickname: string) => {
+    const url = `/profile_artist_${nickname}`;
+    if (url) {
+      window.location.href = url;
+    } else {
+      console.error("URL 찾을 수 없음");
+    }
+  };
+
   return (
     <>
       <StartFromTop />
-      <s.ProfileDiv className="wrapper">
-        <s.ProfileDiv className="profile-wrapper">
-          <s.Image className="proflie-label" src={profileBanner} alt="photo" />
-          <s.ProfileDiv className="profile-section">
-            <LogoutButton iconStyle={true} />
-            <s.ProfileDiv className="user-image">
-              <s.PlusIcon />
-            </s.ProfileDiv>
+
+      <s.ProfileDiv className="profile-wrapper">
+        <s.Image className="profile-label" src={profileBanner} alt="photo" />
+
+        <s.ProfileDiv className="profile-section">
+          <LogoutButton iconStyle={true} />
+
+          {/* userData가 null이 아닐 때만 UploadProfilePicture 컴포넌트 렌더링 */}
+          {userData ? (
+            <UploadProfilePicture userDataProp={userData.email} />
+          ) : (
+            <p>Loading profile...</p>
+          )}
+
+          <s.ProfileDiv className="profile-padding-wrapper">
             <s.ProfileDiv className="profile-text-container">
               <s.ProfileDiv className="profile-name-box">
                 <s.StyledH2 className="profile-name">
@@ -47,7 +72,7 @@ export default function Profile() {
                 </s.StyledH3>
               </s.ProfileDiv>
 
-              <s.ProfileDiv className="profile-text-box">
+              <s.ProfileDiv className="profile-name-box">
                 <s.StyledH4 className="profile-details">
                   {userData ? userData.email : "Loading..."}
                 </s.StyledH4>
@@ -71,22 +96,41 @@ export default function Profile() {
                   </s.ProfileDiv>
                 </s.ProfileDiv>
               </s.ProfileDiv>
+            </s.ProfileDiv>
 
+            <s.ProfileDiv className="profile-like-container">
               <s.ProfileDiv className="profile-like-box">
                 <s.StyledH4 className="profile-likes">
-                  {userData ? userData.wishList.length : "Loading..."}
+                  {userData ? userData.wishList?.length : "Loading..."}
                 </s.StyledH4>
                 <s.StyledH4 className="profile-details">Likes</s.StyledH4>
               </s.ProfileDiv>
 
-              <LogoutButton iconStyle={false} />
-
-              
+              <s.ProfileDiv className="profile-like-info">
+                {userData && userData.wishList && userData.wishList.length > 0
+                  ? userData.wishList.map((wish: any, index: number) => (
+                      <s.ProfileDiv key={index} className="likes-card">
+                        <s.Image
+                          className="profile-likes-card"
+                          src={wish.randomImage}
+                          alt={wish.nickname}
+                          onClick={() => handleCardRedirect(wish.nickname)}
+                        />
+                        <s.StyledH4 className="profile-like-name">
+                          {wish.nickname}
+                        </s.StyledH4>
+                      </s.ProfileDiv>
+                    ))
+                  : null}
+              </s.ProfileDiv>
             </s.ProfileDiv>
+
+            <LogoutButton iconStyle={false} />
           </s.ProfileDiv>
         </s.ProfileDiv>
-        {/* {userData ? <CurrentUserData userData={userData} /> : <p>Loading...</p>} */}
       </s.ProfileDiv>
     </>
   );
-}
+};
+
+export default Profile;

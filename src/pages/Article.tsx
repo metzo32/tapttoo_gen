@@ -95,14 +95,12 @@ const Article: React.FC = () => {
     );
   };
 
-
   return (
     <>
       <StartFromTop />
       <s.ArticleDiv className="article-wrapper">
 
         <SortButtons sortBefore={sortedData} sortHandle={handleSort} />
-
 
         <s.ArticleDiv className="mid-wrapper">
           {articles.map((index) => {
@@ -112,29 +110,32 @@ const Article: React.FC = () => {
 
             return (
               <ScrollEvent delay={0.3}>
-              <s.ArticleDiv
-                key={artist.id}
-                className="article-cards"
-                onClick={() => handleCardRedirect(artist.nickname)}
-              >
-                <WishList
-                  artistId={artist.id}
-                  isWishlisted={!!artist.isWishlisted} // isWishlisted를 불리언 값으로 변환하여 전달
-                  onToggleWishlist={() => toggleWishlist(artist.id)}
-                />
-                <s.ArticleDiv className="article-grid-image">
-                  <s.Image
-                    src={artist.randomImage}
-                    alt={`${artist.nickname}`}
-                    className="article-random-image"
+                <s.ArticleDiv
+                  key={artist.id}
+                  className="article-cards"
+                  onClick={() => handleCardRedirect(artist.nickname)}
+                >
+                  {/* WishList 컴포넌트에 artistNickname과 artistRandomImage를 props로 전달 */}
+                  <WishList
+                    artistId={artist.id}
+                    isWishlisted={!!artist.isWishlisted} // isWishlisted를 불리언 값으로 변환하여 전달
+                    onToggleWishlist={() => toggleWishlist(artist.id)}
+                    artistNickname={artist.nickname}  //artist.nickname 전달 
+                    artistRandomImage={artist.randomImage}  //artist.randomImage 전달 
                   />
+                  <s.ArticleDiv className="article-grid-image">
+                    <s.Image
+                      src={artist.randomImage}
+                      alt={`${artist.nickname}`}
+                      className="article-random-image"
+                    />
+                  </s.ArticleDiv>
+                  <s.ArticleDiv className="article-text-container">
+                    <s.StyledH1 className="article-name">
+                      {artist.nickname}
+                    </s.StyledH1>
+                  </s.ArticleDiv>
                 </s.ArticleDiv>
-                <s.ArticleDiv className="article-text-container">
-                  <s.StyledH1 className="article-name">
-                    {artist.nickname}
-                  </s.StyledH1>
-                </s.ArticleDiv>
-              </s.ArticleDiv>
               </ScrollEvent>
             );
           })}
