@@ -19,6 +19,7 @@ const Profile: React.FC<WishProps> = ({
 }) => {
   const { currentlyLoggedIn } = useContext(AuthContext);
   const [userData, setUserData] = useState<any>(null);
+  const [photoURL, setPhotoURL] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -26,12 +27,20 @@ const Profile: React.FC<WishProps> = ({
         const userDocRef = doc(db, "users", auth.currentUser.uid);
         const userDoc = await getDoc(userDocRef);
         if (userDoc.exists()) {
-          setUserData(userDoc.data());
-        } else {
+          const data = userDoc.data();
+          setUserData(data);
+
+          // photoURL이 존재하면 설정
+          if (data.photoURL) {
+            setPhotoURL(data.photoURL);
+          }
+        } 
+        else {
           console.log("No such document!");
         }
       }
     };
+
     fetchUserData();
   }, []);
 
@@ -63,7 +72,7 @@ const Profile: React.FC<WishProps> = ({
 
           <s.ProfileDiv className="profile-padding-wrapper">
             <s.ProfileDiv className="profile-text-container">
-              <s.ProfileDiv className="profile-name-box">
+              <s.ProfileDiv className="profile-element-box">
                 <s.StyledH2 className="profile-name">
                   {userData ? userData.fullname : "Loading..."}
                 </s.StyledH2>
@@ -72,8 +81,8 @@ const Profile: React.FC<WishProps> = ({
                 </s.StyledH3>
               </s.ProfileDiv>
 
-              <s.ProfileDiv className="profile-name-box">
-                <s.StyledH4 className="profile-details">
+              <s.ProfileDiv className="profile-element-box">
+                <s.StyledH4 className="profile-details margin">
                   {userData ? userData.email : "Loading..."}
                 </s.StyledH4>
 
@@ -99,17 +108,22 @@ const Profile: React.FC<WishProps> = ({
             </s.ProfileDiv>
 
             <s.ProfileDiv className="profile-like-container">
-              <s.ProfileDiv className="profile-like-box">
-                <s.StyledH4 className="profile-likes">
+              <s.ProfileDiv className="profile-element-box">
+                <s.StyledH4 className="liked">
                   {userData ? userData.wishList?.length : "Loading..."}
                 </s.StyledH4>
                 <s.StyledH4 className="profile-details">Likes</s.StyledH4>
               </s.ProfileDiv>
 
+            </s.ProfileDiv>
+            
               <s.ProfileDiv className="profile-like-info">
                 {userData && userData.wishList && userData.wishList.length > 0
                   ? userData.wishList.map((wish: any, index: number) => (
                       <s.ProfileDiv key={index} className="likes-card">
+                        <s.Button className="delete">
+                          <s.RemoveIcon/>
+                        </s.Button>
                         <s.Image
                           className="profile-likes-card"
                           src={wish.randomImage}
@@ -123,7 +137,6 @@ const Profile: React.FC<WishProps> = ({
                     ))
                   : null}
               </s.ProfileDiv>
-            </s.ProfileDiv>
 
             <LogoutButton iconStyle={false} />
           </s.ProfileDiv>

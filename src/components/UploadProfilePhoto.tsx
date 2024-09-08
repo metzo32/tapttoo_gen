@@ -58,7 +58,20 @@ const UploadProfilePicture = ({ userDataProp }: PhotoProps) => {
   };
 
   return (
-    <s.ProfileDiv className="user-image">
+    <s.ProfileDiv className="user-image-wrapper">
+      <s.ProfileDiv className="user-image-container">
+      {file && !photoURL && (
+        <img
+          src={URL.createObjectURL(file)}
+          alt="Selected Profile"
+          style={{ width: "100%", height: "auto" }}
+        />
+      )}
+
+      {photoURL && (
+        <img src={photoURL} alt="Uploaded Profile" style={{ width: "100%", height: "auto" }} />
+      )}
+      <s.PlusIcon />
       <s.Input className="photo-add" type="file" onChange={handleFileChange}/>
         {/* <s.Button onClick={handleUpload} disabled={uploading}>
         <s.PlusIcon />
@@ -69,6 +82,7 @@ const UploadProfilePicture = ({ userDataProp }: PhotoProps) => {
         {uploading ? "Uploading..." : "Upload Photo"}
       </button>
       {photoURL && <img src={photoURL} alt="Uploaded Profile" />} */}
+    </s.ProfileDiv>
     </s.ProfileDiv>
   );
 };

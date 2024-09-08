@@ -53,6 +53,7 @@ import { RiHome2Line } from "react-icons/ri"; //홈
 import { GrSearch } from "react-icons/gr"; //검색
 import { RxHamburgerMenu } from "react-icons/rx"; //햄버거
 import { IoEyeOutline } from "react-icons/io5";
+import { GoX } from "react-icons/go"; // x표시
 
 import { GoPerson } from "react-icons/go";
 import { RiMailLine } from "react-icons/ri"; //메일
@@ -376,6 +377,188 @@ const Atag = styled.a`
     @media (min-width: 1024px) {
       font-size: 16px;
       margin-top: 6px;
+    }
+  }
+`;
+
+const Image = styled.img`
+  width: 100%;
+  height: 100%;
+
+  &.article-random-image {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &.gen-bg {
+    width: 100%;
+    height: auto;
+
+    mask-image: linear-gradient(
+      180deg,
+      rgba(38, 38, 38, 1) 70%,
+      rgba(28, 28, 28, 0) 100%
+    );
+  }
+
+  &.loading-image {
+    width: 100vw;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &.BrandMidImage {
+    height: auto;
+    object-fit: cover;
+  }
+
+  &.long-img {
+    width: 100%;
+    aspect-ratio: 4/1;
+    overflow: hidden;
+    object-fit: cover;
+
+    position: relative;
+  }
+
+  &.artist-bg {
+    width: 100%;
+    opacity: 0.6;
+  }
+
+  &.article-fetched-img {
+    overflow: hidden;
+    margin: 0;
+  }
+
+  &.card-image {
+    object-fit: cover;
+    overflow: hidden;
+  }
+
+  &.new-artist-img {
+    width: calc(100% / 3);
+    margin: 0;
+    object-fit: cover;
+  }
+
+  &.test {
+    height: 1500px;
+    object-fit: cover;
+    margin-top: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &.carousel-image {
+    object-fit: cover;
+    width: 100%;
+    @media (max-width: 767px) {
+      aspect-ratio: 3/2;
+    }
+
+    @media (min-width: 768px) {
+      aspect-ratio: 3/2;
+    }
+
+    @media (min-width: 1024px) {
+      aspect-ratio: 5/2;
+    }
+  }
+
+  &.profile-label {
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+    mask-image: linear-gradient(rgb(0 0 0), rgb(0 0 0 / 0));
+  }
+
+  &.artist-page-main {
+    width: 100%;
+    object-fit: cover;
+    overflow: hidden;
+  }
+
+  &.search-circle-profile {
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+
+    @media (max-width: 767px) {
+      width: 120px;
+      aspect-ratio: 1/1;
+    }
+
+    @media (min-width: 768px) {
+      width: 180px;
+      aspect-ratio: 1/1;
+    }
+
+    @media (min-width: 1024px) {
+      width: 200px;
+      aspect-ratio: 1/1;
+    }
+  }
+
+  &.search-square {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    overflow: hidden;
+
+    &.hover-event {
+      transition: filter 0.3s ease;
+
+      &:hover {
+        filter: brightness(0.5);
+      }
+    }
+  }
+
+  &.search-wide {
+    width: 100%;
+  }
+
+  &.artist-page-profile {
+    width: calc(100% + 40px);
+    aspect-ratio: 4/1;
+    margin-left: -20px;
+    object-fit: cover;
+    filter: brightness(0.5);
+
+    @media (max-width: 767px) {
+      aspect-ratio: 3/1;
+    }
+
+    @media (min-width: 768px) {
+      aspect-ratio: 3/1;
+    }
+
+    @media (min-width: 1024px) {
+      aspect-ratio: 4/1;
+    }
+  }
+
+  &.artist-page-portfolio {
+    width: calc(100% + 40px);
+    margin-left: -20px;
+  }
+
+  &.profile-likes-card {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+
+    &:hover {
+      transform: scale(1.1);
+      transition: transform 0.3s ease, filter 0.3s ease;
+      filter: brightness(0.5);
     }
   }
 `;
@@ -1087,6 +1270,7 @@ const StyledH3 = styled.h3`
 
     @media (min-width: 1024px) {
       font-size: 22px;
+      margin-top: 10px;
     }
   }
 
@@ -1283,39 +1467,48 @@ const StyledH4 = styled.h4`
   &.profile-details {
     color: ${(props) => props.theme.LightGrey};
     letter-spacing: 0px;
-    line-height: 18px;
+    margin-bottom: 0px;
 
     @media (max-width: 767px) {
       font-size: 12px;
-      margin-bottom: 0px;
+      line-height: 12px;
     }
 
     @media (min-width: 768px) {
       font-size: 15px;
-      margin-bottom: 2px;
+      line-height: 15px;
     }
 
     @media (min-width: 1024px) {
       font-size: 18px;
-      margin-bottom: 0px;
+      line-height: 18px;
+    }
+
+    &.margin {
+      margin-bottom: 10px;
     }
   }
 
-  &.profile-likes {
-    color: ${(props) => props.theme.Grey};
+  &.liked {
+    color: ${(props) => props.theme.LightGrey};
     letter-spacing: 0px;
-    line-height: 18px;
 
     @media (max-width: 767px) {
-      font-size: 18px;
+      font-size: 20px;
+      line-height: 20px;
+      margin-bottom: 0px;
     }
 
     @media (min-width: 768px) {
-      font-size: 20px;
+      font-size: 26px;
+      line-height: 26px;
+      margin-bottom: 5px;
     }
 
     @media (min-width: 1024px) {
-      font-size: 24px;
+      font-size: 30px;
+      line-height: 30px;
+      margin-bottom: 5px;
     }
   }
 
@@ -1367,11 +1560,30 @@ const StyledH4 = styled.h4`
   }
 
   &.profile-like-name {
-    height: 20px;
-    font-size: 16px;
-    line-height: 18px;
-    color: ${(props) => props.theme.Grey};
-    margin-top: 15px;
+    color: ${(props) => props.theme.LightGrey};
+    margin-top: 10%;
+
+    transition: color 0.3s ease, transform 0.3s ease;
+
+    ${Image}:hover ~ & {
+      color: ${(props) => props.theme.Grey};
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 767px) {
+      font-size: 8px;
+      line-height: 10px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 14px;
+      line-height: 16px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 16px;
+      line-height: 18px;
+    }
   }
 `;
 
@@ -2411,188 +2623,6 @@ const ArticleCard = styled.div`
   position: relative;
   width: calc(100% - 2px);
   height: calc(100vh - 50px - 2px);
-`;
-
-const Image = styled.img`
-  width: 100%;
-  height: 100%;
-
-  &.article-random-image {
-    object-fit: cover;
-    object-position: center;
-  }
-
-  &.gen-bg {
-    width: 100%;
-    height: auto;
-
-    mask-image: linear-gradient(
-      180deg,
-      rgba(38, 38, 38, 1) 70%,
-      rgba(28, 28, 28, 0) 100%
-    );
-  }
-
-  &.loading-image {
-    width: 100vw;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-
-  &.BrandMidImage {
-    height: auto;
-    object-fit: cover;
-  }
-
-  &.long-img {
-    width: 100%;
-    aspect-ratio: 4/1;
-    overflow: hidden;
-    object-fit: cover;
-
-    position: relative;
-  }
-
-  &.artist-bg {
-    width: 100%;
-    opacity: 0.6;
-  }
-
-  &.article-fetched-img {
-    overflow: hidden;
-    margin: 0;
-  }
-
-  &.card-image {
-    object-fit: cover;
-    overflow: hidden;
-  }
-
-  &.new-artist-img {
-    width: calc(100% / 3);
-    margin: 0;
-    object-fit: cover;
-  }
-
-  &.test {
-    height: 1500px;
-    object-fit: cover;
-    margin-top: 1000px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  &.carousel-image {
-    object-fit: cover;
-    width: 100%;
-    @media (max-width: 767px) {
-      aspect-ratio: 3/2;
-    }
-
-    @media (min-width: 768px) {
-      aspect-ratio: 3/2;
-    }
-
-    @media (min-width: 1024px) {
-      aspect-ratio: 5/2;
-    }
-  }
-
-  &.profile-label {
-    width: 100%;
-    height: 50%;
-    object-fit: cover;
-    mask-image: linear-gradient(rgb(0 0 0), rgb(0 0 0 / 0));
-  }
-
-  &.artist-page-main {
-    width: 100%;
-    object-fit: cover;
-    overflow: hidden;
-  }
-
-  &.search-circle-profile {
-    border-radius: 50%;
-    object-fit: cover;
-    cursor: pointer;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
-
-    @media (max-width: 767px) {
-      width: 120px;
-      aspect-ratio: 1/1;
-    }
-
-    @media (min-width: 768px) {
-      width: 180px;
-      aspect-ratio: 1/1;
-    }
-
-    @media (min-width: 1024px) {
-      width: 200px;
-      aspect-ratio: 1/1;
-    }
-  }
-
-  &.search-square {
-    width: 100%;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-    overflow: hidden;
-
-    &.hover-event {
-      transition: filter 0.3s ease;
-
-      &:hover {
-        filter: brightness(0.5);
-      }
-    }
-  }
-
-  &.search-wide {
-    width: 100%;
-  }
-
-  &.artist-page-profile {
-    width: calc(100% + 40px);
-    aspect-ratio: 4/1;
-    margin-left: -20px;
-    object-fit: cover;
-    filter: brightness(0.5);
-
-    @media (max-width: 767px) {
-      aspect-ratio: 3/1;
-    }
-
-    @media (min-width: 768px) {
-      aspect-ratio: 3/1;
-    }
-
-    @media (min-width: 1024px) {
-      aspect-ratio: 4/1;
-    }
-  }
-
-  &.artist-page-portfolio {
-    width: calc(100% + 40px);
-    margin-left: -20px;
-  }
-
-  &.profile-likes-card {
-    width: 100%;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-
-    &:hover {
-      transform: scale(1.1);
-      transition: transform 0.3s ease, filter 0.3s ease;
-      filter: brightness(0.5);
-    }
-  }
 `;
 
 const Sticky = styled.div`
@@ -4412,36 +4442,73 @@ const ProfileDiv = styled.div`
 
   &.profile-padding-wrapper {
     width: 100%;
-    height: 500px;
-    margin-top: 150px;
-    margin-bottom: 100px;
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
+    @media (max-width: 767px) {
+      height: auto;
+      margin-top: 80px;
+      margin-bottom: 60px;
+    }
+
+    @media (min-width: 768px) {
+      height: auto;
+      margin-top: 100px;
+      margin-bottom: 80px;
+    }
+
+    @media (min-width: 1024px) {
+      height: auto;
+      margin-top: 150px;
+      margin-bottom: 100px;
+    }
   }
 
   &.profile-text-container {
     width: 60%;
-    height: 35%;
     margin: 0 auto;
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
+    @media (max-width: 767px) {
+      height: 30%;
+    }
+
+    @media (min-width: 768px) {
+      height: 50%;
+    }
+
+    @media (min-width: 1024px) {
+      height: 30%;
+    }
   }
 
-  &.profile-name-box {
+  &.profile-element-box {
     display: flex;
-    height: 35%;
+    height: calc(1.5 * auto);
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 10px;
 
-    &:nth-child(even) {
-      height: 30%;
+    &:nth-child(2) {
+      @media (max-width: 767px) {
+        margin-bottom: 20px;
+      }
+
+      @media (min-width: 768px) {
+        margin-bottom: 30px;
+      }
+
+      @media (min-width: 1024px) {
+        margin-bottom: 50px;
+      }
     }
   }
 
@@ -4481,6 +4548,18 @@ const ProfileDiv = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
+    @media (max-width: 767px) {
+      height: auto;
+    }
+
+    @media (min-width: 768px) {
+      height: 40%;
+    }
+
+    @media (min-width: 1024px) {
+      height: 40%;
+    }
   }
 
   &.profile-like-box {
@@ -4493,27 +4572,53 @@ const ProfileDiv = styled.div`
 
   &.profile-like-info {
     width: 100%;
-    gap: 20px;
+    gap: 5%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 767px) {
+      margin-bottom: 0px;
+    }
+
+    @media (min-width: 768px) {
+      margin-bottom: 0px;
+    }
+
+    @media (min-width: 1024px) {
+      margin-bottom: 60px;
+    }
   }
 
   &.likes-card {
-    width: 10%;
     height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+
+    position: relative;
+
+    @media (max-width: 767px) {
+      width: 35px;
+    }
+
+    @media (min-width: 768px) {
+      width: 70px;
+    }
+
+    @media (min-width: 1024px) {
+      width: 100px;
+    }
   }
 
-  &.user-image {
+  &.user-image-wrapper {
     aspect-ratio: 1/1;
     border-radius: 50%;
     background-color: ${(props) => props.theme.Light};
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
 
     display: flex;
     justify-content: center;
@@ -4523,17 +4628,40 @@ const ProfileDiv = styled.div`
     top: 0;
     left: 50%;
     transform: translate(-50%, -50%);
+    transition: transform 0.3s ease, filter 0.3s ease;
 
     @media (max-width: 767px) {
       width: 40%;
+      max-width: 140px;
     }
 
     @media (min-width: 768px) {
       width: 30%;
+      max-width: 170px;
     }
 
     @media (min-width: 1024px) {
       width: 20%;
+    }
+
+    &:hover {
+      filter: brightness(1.1);
+      transform: translate(-50%, -50%) scale(1.1);
+      transform-origin: center;
+    }
+  }
+
+  &.user-image-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 50%;
+
+    &:hover * {
+      color: ${(props) => props.theme.Grey};
     }
   }
 `;
@@ -4890,7 +5018,7 @@ const Input = styled.input`
     display: none;
   }
 
-  &.remember-check {
+  &.remember-check {user-image
     display: none;
   }
 
@@ -4903,10 +5031,18 @@ const Input = styled.input`
   }
 
   &.photo-add {
-    border: 1px solid red;
+    border-radius: 50%;
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     opacity: 0;
+
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 `;
 
@@ -5167,6 +5303,41 @@ const Button = styled.button`
 
   &:hover {
     color: ${(props) => props.theme.HoverGrey};
+  }
+
+  &.delete {
+    background-color: ${(props) => props.theme.Light};
+    border-radius: 50%;
+    padding: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    border: 1px solid ${(props) => props.theme.Orange};
+    z-index: 1;
+
+    @media (max-width: 767px) {
+      width: 20px;
+      height: 20px;
+      top: -7px;
+      right: -9px;
+    }
+
+    @media (min-width: 768px) {
+      width: 24px;
+      height: 24px;
+      top: -4px;
+      right: -6px;
+    }
+
+    @media (min-width: 1024px) {
+      width: 30px;
+      height: 30px;
+      top: 0;
+      right: 0;
+    }
   }
 
   &.more {
@@ -5931,7 +6102,13 @@ const WarnIcon = styled(TbExclamationMark)`
 
 const PlusIcon = styled(GoPlusCircle)`
   font-size: 40px;
-  color: ${lightTheme.LightGrey};
+  color: ${(props) => props.theme.LightGrey};
+  transition: color 0.3s ease;
+`;
+
+const RemoveIcon = styled(GoX)`
+  font-size: 20px;
+  color: ${(props) => props.theme.Orange};
 `;
 
 const s = {
@@ -6043,6 +6220,7 @@ const s = {
   MoreIcon,
   WarnIcon,
   PlusIcon,
+  RemoveIcon,
 };
 
 export default s;
