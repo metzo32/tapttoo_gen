@@ -57,44 +57,45 @@ const WishList: React.FC<WishListProps> = ({
       console.error("로그인이 필요합니다.");
       return;
     }
-
+  
     const userRef = doc(db, "users", user.uid);
     const maxWishlistSize = 100; // 최대 위시리스트 크기 설정
-
+  
     try {
       const userDoc = await getDoc(userRef);
       const currentWishlist = userDoc.data()?.wishList || [];
-
+  
       let updatedWishlist;
-
+  
       if (wishButton) {
-        // 이미 위시리스트에 포함되어 있으면 제거
+        // 이미 위시리스트에 포함되어 있으면 id를 기준으로 필터링하여 제거
         updatedWishlist = currentWishlist.filter(
-          (id: number) => id !== artistId
+          (item: { id: number }) => item.id !== artistId
         );
       } else {
-        // 새로운 위시리스트 아이템 생성
+        // 새로운 위시리스트 아이템 추가
         const newWishlistItem = {
           id: artistId,
           nickname: artistNickname, // 여기서 전달받은 nickname 사용
           randomImage: artistRandomImage, // 여기서 전달받은 randomImage 사용
         };
-
+  
         updatedWishlist = [newWishlistItem, ...currentWishlist];
-
+  
         if (updatedWishlist.length > maxWishlistSize) {
           updatedWishlist = updatedWishlist.slice(0, maxWishlistSize);
         }
       }
-
+  
       await updateDoc(userRef, { wishList: updatedWishlist });
-
+  
       setWishButton(!wishButton);
       onToggleWishlist();
     } catch (error) {
       console.error("위시리스트 업데이트 중 오류 발생:", error);
     }
   };
+  
 
   const handleMouseClick = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>

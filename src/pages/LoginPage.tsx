@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import s from "../stores/styling";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase/firebaseConfig";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from "firebase/auth";
 import { AuthContext } from "../context/AuthContext";
 import StartFromTop from "../components/StartFromTop";
 import HoverButton from "../components/HoverButton";
@@ -31,6 +31,8 @@ const LoginPage = () => {
 
   const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+     await setPersistence(auth, browserSessionPersistence);
 
     try {
       const userCredential = await signInWithEmailAndPassword(

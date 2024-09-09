@@ -13,13 +13,11 @@ interface WishProps {
   artistRandomImage?: string;
 }
 
-const Profile: React.FC<WishProps> = ({
-  artistNickname,
-  artistRandomImage,
-}) => {
+const Profile: React.FC<WishProps> = ({ artistNickname, artistRandomImage }) => {
   const { currentlyLoggedIn } = useContext(AuthContext);
   const [userData, setUserData] = useState<any>(null);
   const [photoURL, setPhotoURL] = useState<string | null>(null);
+  const [visibleCount, setVisibleCount] = useState(5); // 처음에 5개만 보여주기
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -30,12 +28,10 @@ const Profile: React.FC<WishProps> = ({
           const data = userDoc.data();
           setUserData(data);
 
-          // photoURL이 존재하면 설정
           if (data.photoURL) {
             setPhotoURL(data.photoURL);
           }
-        } 
-        else {
+        } else {
           console.log("No such document!");
         }
       }
@@ -53,6 +49,19 @@ const Profile: React.FC<WishProps> = ({
     }
   };
 
+  const loadMore = () => {
+    setVisibleCount((prevCount) => prevCount + 5); // 더보기 버튼을 누르면 5개씩 더 보여줌
+  };
+
+  const groupedWishlist = [];
+  for (let i = 0; i < visibleCount && i < userData?.wishList?.length; i += 5) {
+    groupedWishlist.push(userData.wishList.slice(i, i + 5)); // 5개씩 묶음
+  }
+
+  const removeWish = () => {
+
+  }
+
   return (
     <>
       <StartFromTop />
@@ -63,7 +72,6 @@ const Profile: React.FC<WishProps> = ({
         <s.ProfileDiv className="profile-section">
           <LogoutButton iconStyle={true} />
 
-          {/* userData가 null이 아닐 때만 UploadProfilePicture 컴포넌트 렌더링 */}
           {userData ? (
             <UploadProfilePicture userDataProp={userData.email} />
           ) : (
@@ -114,29 +122,33 @@ const Profile: React.FC<WishProps> = ({
                 </s.StyledH4>
                 <s.StyledH4 className="profile-details">Likes</s.StyledH4>
               </s.ProfileDiv>
-
             </s.ProfileDiv>
-            
-              <s.ProfileDiv className="profile-like-info">
-                {userData && userData.wishList && userData.wishList.length > 0
-                  ? userData.wishList.map((wish: any, index: number) => (
-                      <s.ProfileDiv key={index} className="likes-card">
-                        <s.Button className="delete">
-                          <s.RemoveIcon/>
-                        </s.Button>
-                        <s.Image
-                          className="profile-likes-card"
-                          src={wish.randomImage}
-                          alt={wish.nickname}
-                          onClick={() => handleCardRedirect(wish.nickname)}
-                        />
-                        <s.StyledH4 className="profile-like-name">
-                          {wish.nickname}
-                        </s.StyledH4>
-                      </s.ProfileDiv>
-                    ))
-                  : null}
+
+            {/* 그룹화된 아이템들을 각각의 div에 나누어 렌더링 */}
+            {groupedWishlist.map((group, groupIndex) => (
+              <s.ProfileDiv key={groupIndex} className="profile-like-info">
+                {group.map((wish: any, index: number) => (
+                  <s.ProfileDiv key={index} className="likes-card">
+                    <s.Button className="delete" onClick={removeWish}>
+                      <s.RemoveIcon />
+                    </s.Button>
+                    <s.Image
+                      className="profile-likes-card"
+                      src={wish.randomImage}
+                      alt={wish.nickname}
+                      onClick={() => handleCardRedirect(wish.nickname)}
+                    />
+                    <s.StyledH4 className="profile-like-name">
+                      {wish.nickname}
+                    </s.StyledH4>
+                  </s.ProfileDiv>
+                ))}
               </s.ProfileDiv>
+            ))}
+
+            {visibleCount < userData?.wishList?.length && (
+              <button onClick={loadMore}>더보기</button>
+            )}
 
             <LogoutButton iconStyle={false} />
           </s.ProfileDiv>

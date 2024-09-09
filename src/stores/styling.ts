@@ -1101,19 +1101,22 @@ const StyledH2 = styled.h2`
       @media (max-width: 767px) {
         font-size: 40px;
         line-height: 45px;
-        margin: 40px 0px;
+        padding: 40px 0px;
+        margin: 0;
       }
 
       @media (min-width: 768px) {
         font-size: 90px;
         line-height: 90px;
-        margin: 60px 0px;
+        padding: 60px 0px;
+        margin: 0;
       }
 
       @media (min-width: 1024px) {
         font-size: 130px;
         line-height: 130px;
-        margin: 80px 0px;
+        padding: 80px 0px;
+        margin: 0;
       }
     }
   }
@@ -4571,7 +4574,9 @@ const ProfileDiv = styled.div`
   }
 
   &.profile-like-info {
-    width: 100%;
+    width: auto;
+    max-width: 100%;
+
     gap: 5%;
     display: flex;
     flex-direction: row;
@@ -4587,11 +4592,26 @@ const ProfileDiv = styled.div`
     }
 
     @media (min-width: 1024px) {
-      margin-bottom: 60px;
+      margin-bottom: 20px;
+    }
+
+    &:last-child {
+      @media (max-width: 767px) {
+        margin-bottom: 0px;
+      }
+
+      @media (min-width: 768px) {
+        margin-bottom: 0px;
+      }
+
+      @media (min-width: 1024px) {
+        margin-bottom: 60px;
+      }
     }
   }
 
   &.likes-card {
+    width: 13%;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -4600,17 +4620,8 @@ const ProfileDiv = styled.div`
 
     position: relative;
 
-    @media (max-width: 767px) {
-      width: 35px;
-    }
-
-    @media (min-width: 768px) {
-      width: 70px;
-    }
-
-    @media (min-width: 1024px) {
-      width: 100px;
-    }
+    scroll-snap-align: start; /* 스크롤 시 카드가 정렬되도록 */
+    flex: 0 0 auto;
   }
 
   &.user-image-wrapper {
@@ -5018,7 +5029,7 @@ const Input = styled.input`
     display: none;
   }
 
-  &.remember-check {user-image
+  &.remember-check {
     display: none;
   }
 
@@ -5319,24 +5330,24 @@ const Button = styled.button`
     z-index: 1;
 
     @media (max-width: 767px) {
-      width: 20px;
-      height: 20px;
-      top: -7px;
-      right: -9px;
+      width: 18px;
+      height: 18px;
+      top: 0px;
+      right: -5px;
     }
 
     @media (min-width: 768px) {
       width: 24px;
       height: 24px;
-      top: -4px;
-      right: -6px;
+      top: -0px;
+      right: -4px;
     }
 
     @media (min-width: 1024px) {
       width: 30px;
       height: 30px;
       top: 0;
-      right: 0;
+      right: -5px;
     }
   }
 
