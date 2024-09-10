@@ -10,7 +10,7 @@
 // }
 
 import styled, { css, createGlobalStyle } from "styled-components";
-import { Route, Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   fadeInUp,
@@ -922,10 +922,11 @@ const StyledH1 = styled.h1`
     text-align: center;
     line-height: 110px;
     text-align: right;
+    text-transform: uppercase;
     white-space: nowrap;
     position: absolute;
+    right: 20px;
     bottom: 0;
-    right: 0;
 
     @media (max-width: 767px) {
       display: none;
@@ -1490,10 +1491,14 @@ const StyledH4 = styled.h4`
     &.margin {
       margin-bottom: 10px;
     }
+
+    &.bold {
+      color: ${(props) => props.theme.Grey};
+    }
   }
 
   &.liked {
-    color: ${(props) => props.theme.LightGrey};
+    color: ${(props) => props.theme.Grey};
     letter-spacing: 0px;
 
     @media (max-width: 767px) {
@@ -3314,7 +3319,7 @@ const ArticleDiv = styled.div`
     flex-direction: column;
   }
 
-  &.mid-wrapper {
+  &.article-mid-wrapper {
     display: flex;
     flex-direction: column;
   }
@@ -3326,8 +3331,15 @@ const ArticleDiv = styled.div`
     overflow: hidden;
     cursor: pointer;
 
+    scroll-snap-align: center;
+
+    border: 1px solid blue;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     &:hover .article-grid-image {
-      // filter: brightness(0.6);
       transition: filter 0.5s ease 0.5s;
     }
 
@@ -3396,8 +3408,8 @@ const ArticleDiv = styled.div`
     }
 
     @media (min-width: 768px) {
-      width: 30px;
-      height: 30px;
+      width: 50px;
+      height: 50px;
       top: 10px;
       right: 10px;
     }
@@ -3405,6 +3417,9 @@ const ArticleDiv = styled.div`
     @media (min-width: 1024px) {
       width: 50px;
       height: 50px;
+      top: auto;
+      bottom: 100px;
+      right: 12px;
     }
   }
 `;
@@ -4393,7 +4408,7 @@ const ProfileDiv = styled.div`
     position: relative;
 
     @media (max-width: 767px) {
-      margin-bottom: 50%;
+      margin-bottom: 25%;
     }
 
     @media (min-width: 768px) {
@@ -4406,8 +4421,6 @@ const ProfileDiv = styled.div`
   }
 
   &.profile-section {
-    width: 60%;
-
     border-radius: 30px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
     background-color: ${(props) => props.theme.Light};
@@ -4418,33 +4431,32 @@ const ProfileDiv = styled.div`
     align-items: center;
 
     position: absolute;
-    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
     @media (max-width: 767px) {
-      width: 70%;
-      // aspect-ratio: 3/4;
+      width: 85%;
+      top: 40%;
     }
 
     @media (min-width: 768px) {
+      top: 50%;
       width: 60%;
-      // aspect-ratio: 4/3;
     }
 
     @media (min-width: 1024px) {
       width: 60%;
-      // aspect-ratio: 4/3;
     }
 
     @media (min-width: 1440px) {
       width: 60%;
-      height: auto;
+      height: 700px;
     }
   }
 
   &.profile-padding-wrapper {
     width: 100%;
+    overflow-y: auto; /* 세로 스크롤만 활성화 */
 
     display: flex;
     flex-direction: column;
@@ -4465,8 +4477,8 @@ const ProfileDiv = styled.div`
 
     @media (min-width: 1024px) {
       height: auto;
-      margin-top: 150px;
-      margin-bottom: 100px;
+      margin-top: 120px;
+      margin-bottom: 80px;
     }
   }
 
@@ -4478,18 +4490,6 @@ const ProfileDiv = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-
-    @media (max-width: 767px) {
-      height: 30%;
-    }
-
-    @media (min-width: 768px) {
-      height: 50%;
-    }
-
-    @media (min-width: 1024px) {
-      height: 30%;
-    }
   }
 
   &.profile-element-box {
@@ -4498,21 +4498,7 @@ const ProfileDiv = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
-
-    &:nth-child(2) {
-      @media (max-width: 767px) {
-        margin-bottom: 20px;
-      }
-
-      @media (min-width: 768px) {
-        margin-bottom: 30px;
-      }
-
-      @media (min-width: 1024px) {
-        margin-bottom: 50px;
-      }
-    }
+    margin-bottom: 30px;
   }
 
   &.profile-contact-container {
@@ -4544,27 +4530,6 @@ const ProfileDiv = styled.div`
     padding: 0;
   }
 
-  &.profile-like-container {
-    width: 100%;
-    height: 40%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-
-    @media (max-width: 767px) {
-      height: auto;
-    }
-
-    @media (min-width: 768px) {
-      height: 40%;
-    }
-
-    @media (min-width: 1024px) {
-      height: 40%;
-    }
-  }
-
   &.profile-like-box {
     display: flex;
     height: 24%;
@@ -4577,7 +4542,6 @@ const ProfileDiv = styled.div`
     width: auto;
     max-width: 100%;
 
-    gap: 5%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -4585,14 +4549,17 @@ const ProfileDiv = styled.div`
 
     @media (max-width: 767px) {
       margin-bottom: 0px;
+      gap: 3%;
     }
 
     @media (min-width: 768px) {
       margin-bottom: 0px;
+      gap: 5%;
     }
 
     @media (min-width: 1024px) {
       margin-bottom: 20px;
+      gap: 5%;
     }
 
     &:last-child {
@@ -4622,6 +4589,18 @@ const ProfileDiv = styled.div`
 
     scroll-snap-align: start; /* 스크롤 시 카드가 정렬되도록 */
     flex: 0 0 auto;
+
+    @media (max-width: 767px) {
+      width: 15%;
+    }
+
+    @media (min-width: 768px) {
+      width: 13%;
+    }
+
+    @media (min-width: 1024px) {
+      width: 13%;
+    }
   }
 
   &.user-image-wrapper {
@@ -5388,6 +5367,11 @@ const Button = styled.button`
     }
   }
 
+  &.outlined {
+    border: 1px solid ${(props) => props.theme.LightGrey};
+    padding: 5px;
+  }
+
   &.register-back {
     position: absolute;
     margin: 0;
@@ -5927,9 +5911,11 @@ const OutIcon = styled(IoExitOutline)`
   color: ${(props) => props.theme.Green};
   width: 30px;
   height: 30px;
+  cursor: pointer;
   position: absolute;
   top: 0;
   right: 0;
+  transition: color 0.3s ease;
 
   @media (max-width: 767px) {
     display: block;
@@ -5942,7 +5928,12 @@ const OutIcon = styled(IoExitOutline)`
   }
 
   @media (min-width: 1024px) {
-    display: none;
+    display: block;
+    transform: translate(-50%, 50%);
+  }
+
+  &:hover {
+    color: ${(props) => props.theme.HoverGreen};
   }
 `;
 
@@ -6112,7 +6103,10 @@ const WarnIcon = styled(TbExclamationMark)`
 `;
 
 const PlusIcon = styled(GoPlusCircle)`
-  font-size: 40px;
+  // font-size: 40px;
+  width: 20%;
+  height: 20%;
+
   color: ${(props) => props.theme.LightGrey};
   transition: color 0.3s ease;
 `;

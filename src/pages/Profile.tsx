@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { auth, db } from "../firebase/firebaseConfig";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import s from "../stores/styling";
 import LogoutButton from "../components/Logout";
 import profileBanner from "../assets/images/profile-banner.jpg";
@@ -36,7 +36,6 @@ const Profile: React.FC<WishProps> = ({ artistNickname, artistRandomImage }) => 
         }
       }
     };
-
     fetchUserData();
   }, []);
 
@@ -58,9 +57,31 @@ const Profile: React.FC<WishProps> = ({ artistNickname, artistRandomImage }) => 
     groupedWishlist.push(userData.wishList.slice(i, i + 5)); // 5개씩 묶음
   }
 
-  const removeWish = () => {
+  const removeWish = async (artistId: number) => {
+    if (!auth.currentUser) {
+      console.error("로그인이 필요합니다.");
+      return;
+    }
 
-  }
+    const userRef = doc(db, "users", auth.currentUser.uid);
+    const currentWishlist = userData.wishList || [];
+
+    const updatedWishlist = currentWishlist.filter((wish: any) => wish.id !== artistId);
+
+    try {
+      // Firestore에 위시리스트 업데이트
+      await updateDoc(userRef, { wishList: updatedWishlist });
+
+      // 로컬 상태 업데이트
+      setUserData((prevUserData: any) => ({
+        ...prevUserData,
+        wishList: updatedWishlist,
+      }));
+    } catch (error) {
+      console.error("위시리스트 업데이트 중 오류 발생:", error);
+    }
+  };
+
 
   return (
     <>
@@ -115,21 +136,21 @@ const Profile: React.FC<WishProps> = ({ artistNickname, artistRandomImage }) => 
               </s.ProfileDiv>
             </s.ProfileDiv>
 
-            <s.ProfileDiv className="profile-like-container">
+
               <s.ProfileDiv className="profile-element-box">
                 <s.StyledH4 className="liked">
                   {userData ? userData.wishList?.length : "Loading..."}
                 </s.StyledH4>
-                <s.StyledH4 className="profile-details">Likes</s.StyledH4>
+                <s.StyledH4 className="profile-details bold">Likes</s.StyledH4>
               </s.ProfileDiv>
-            </s.ProfileDiv>
+
 
             {/* 그룹화된 아이템들을 각각의 div에 나누어 렌더링 */}
             {groupedWishlist.map((group, groupIndex) => (
               <s.ProfileDiv key={groupIndex} className="profile-like-info">
                 {group.map((wish: any, index: number) => (
                   <s.ProfileDiv key={index} className="likes-card">
-                    <s.Button className="delete" onClick={removeWish}>
+                    <s.Button className="delete" onClick={() => removeWish(wish.id)}>
                       <s.RemoveIcon />
                     </s.Button>
                     <s.Image
@@ -147,7 +168,7 @@ const Profile: React.FC<WishProps> = ({ artistNickname, artistRandomImage }) => 
             ))}
 
             {visibleCount < userData?.wishList?.length && (
-              <button onClick={loadMore}>더보기</button>
+              <s.Button onClick={loadMore} className="outlined">더보기</s.Button>
             )}
 
             <LogoutButton iconStyle={false} />

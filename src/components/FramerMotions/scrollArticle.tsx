@@ -1,12 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
-import {
-  useTransform,
-  useScroll,
-  useMotionValueEvent,
-} from "framer-motion";
-import useWindowSize from "../hooks/WindowSizeHook";
-import Article from "./Article";
+import { useTransform, useScroll, useMotionValueEvent } from "framer-motion";
+import useWindowSize from "../../hooks/WindowSizeHook";
 
 interface SnapParentProps {
   children: React.ReactNode;
@@ -19,8 +14,9 @@ const StyledSnapParent = styled.div`
   overflow-y: scroll;
   height: 100vh;
   position: relative;
-`;
 
+  border: "1px solid red";
+`;
 
 const SnapParent = React.forwardRef<HTMLDivElement, SnapParentProps>(
   ({ children, ...props }, ref) => (
@@ -30,7 +26,7 @@ const SnapParent = React.forwardRef<HTMLDivElement, SnapParentProps>(
   )
 );
 
-export const Container = ({ children }: { children: React.ReactNode }) => {
+export const ScrollArticle = ({ children }: { children: React.ReactNode }) => {
   const windowSize = useWindowSize();
   const ref = useRef(null);
 
@@ -61,23 +57,5 @@ export const Container = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {}, [scrollY, scrollYProgress]);
 
-  return (
-    <SnapParent
-      ref={ref}
-      style={{
-        position: "absolute",
-        border: "1px solid red",
-      }}
-    >
-      {children}
-    </SnapParent>
-  );
+  return <SnapParent ref={ref}>{children}</SnapParent>;
 };
-
-export default function TestPage() {
-  return (
-    <Container>
-      <Article />
-    </Container>
-  );
-}

@@ -44,16 +44,7 @@ const LogoutButton: React.FC<LogoutButtonProps> = ({
         onOptionClick={handleLogout}
       />
 
-      {!iconStyle ? (
-        <HoverButton
-          className="modal-logout"
-          onClick={handleOpenModal}
-          circle={true}
-          text="로그아웃"
-        />
-      ) : (
-        <s.OutIcon onClick={handleOpenModal} />
-      )}
+      <s.OutIcon onClick={handleOpenModal} />
     </>
   );
 };
