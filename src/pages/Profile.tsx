@@ -7,6 +7,7 @@ import LogoutButton from "../components/Logout";
 import profileBanner from "../assets/images/profile-banner.jpg";
 import StartFromTop from "../components/StartFromTop";
 import UploadProfilePicture from "../components/UploadProfilePhoto";
+import { PopUpBelow } from "../components/FramerMotions/scrollMotions";
 
 interface WishProps {
   artistNickname?: string;
@@ -91,7 +92,7 @@ const Profile: React.FC<WishProps> = ({ artistNickname, artistRandomImage }) => 
         <s.Image className="profile-label" src={profileBanner} alt="photo" />
 
         <s.ProfileDiv className="profile-section">
-          <LogoutButton iconStyle={true} />
+          <LogoutButton/>
 
           {userData ? (
             <UploadProfilePicture userDataProp={userData.email} />
@@ -145,8 +146,8 @@ const Profile: React.FC<WishProps> = ({ artistNickname, artistRandomImage }) => 
               </s.ProfileDiv>
 
 
-            {/* 그룹화된 아이템들을 각각의 div에 나누어 렌더링 */}
             {groupedWishlist.map((group, groupIndex) => (
+              <PopUpBelow key ={groupIndex}>
               <s.ProfileDiv key={groupIndex} className="profile-like-info">
                 {group.map((wish: any, index: number) => (
                   <s.ProfileDiv key={index} className="likes-card">
@@ -165,13 +166,14 @@ const Profile: React.FC<WishProps> = ({ artistNickname, artistRandomImage }) => 
                   </s.ProfileDiv>
                 ))}
               </s.ProfileDiv>
+              </PopUpBelow>
             ))}
 
             {visibleCount < userData?.wishList?.length && (
               <s.Button onClick={loadMore} className="outlined">더보기</s.Button>
             )}
 
-            <LogoutButton iconStyle={false} />
+
           </s.ProfileDiv>
         </s.ProfileDiv>
       </s.ProfileDiv>

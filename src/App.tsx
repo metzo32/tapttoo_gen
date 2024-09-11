@@ -59,6 +59,7 @@ const App: React.FC = () => {
   if (isLoading) {
     return <Loading />; // 로딩 화면에 헤더와 푸터가 보이지 않도록 설정
   }
+  
   return (
     <>
       <AuthContext.Provider value={{ currentlyLoggedIn, setCurrentlyLoggedIn }}>
@@ -104,7 +105,8 @@ const App: React.FC = () => {
                   />
                 ))}
               </Routes>
-              <Footer/>
+              
+              <FooterRender/>
             </Router>
           </s.Div>
           </MobileProvider>
@@ -112,6 +114,12 @@ const App: React.FC = () => {
       </AuthContext.Provider>
     </>
   );
+};
+
+const FooterRender= () => {
+  const location = useLocation(); 
+
+  return location.pathname !== "/article" ? <Footer /> : null;
 };
 
 

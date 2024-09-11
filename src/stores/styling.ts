@@ -3332,16 +3332,9 @@ const ArticleDiv = styled.div`
     cursor: pointer;
 
     scroll-snap-align: center;
-
-    border: 1px solid blue;
-    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    &:hover .article-grid-image {
-      transition: filter 0.5s ease 0.5s;
-    }
 
     &:hover .article-name {
       font-size: 100px;
@@ -3352,9 +3345,8 @@ const ArticleDiv = styled.div`
 
     @media (max-width: 767px) {
       width: 100vw;
-      aspect-ratio: 1/1;
+      height: 100vw;
 
-      &:hover .article-grid-image,
       &:hover .article-name {
         filter: none;
         font-size: inherit;
@@ -3366,17 +3358,13 @@ const ArticleDiv = styled.div`
 
     @media (min-width: 768px) and (max-width: 1023px) {
       width: 100vw;
-      aspect-ratio: 16/9;
+      height: 100vw;
     }
 
     @media (min-width: 1024px) {
       width: 100vw;
       aspect-ratio: 16/9;
     }
-  }
-
-  &.article-grid-image {
-    overflow: hidden;
   }
 
   &.article-text-container {
@@ -3410,8 +3398,8 @@ const ArticleDiv = styled.div`
     @media (min-width: 768px) {
       width: 50px;
       height: 50px;
-      top: 10px;
-      right: 10px;
+      bottom: 100px;
+      right: 12px;
     }
 
     @media (min-width: 1024px) {
@@ -3441,7 +3429,7 @@ const Portfolio = styled.div`
     }
 
     @media (min-width: 1024px) {
-      margin-bottom: 20px;
+      margin-bottom: 0px;
     }
   }
 
@@ -4456,7 +4444,7 @@ const ProfileDiv = styled.div`
 
   &.profile-padding-wrapper {
     width: 100%;
-    overflow-y: auto; /* 세로 스크롤만 활성화 */
+    overflow-y: scroll;
 
     display: flex;
     flex-direction: column;
@@ -4564,15 +4552,15 @@ const ProfileDiv = styled.div`
 
     &:last-child {
       @media (max-width: 767px) {
-        margin-bottom: 0px;
+        margin-bottom: 20px;
       }
 
       @media (min-width: 768px) {
-        margin-bottom: 0px;
+        margin-bottom: 20px;
       }
 
       @media (min-width: 1024px) {
-        margin-bottom: 60px;
+        margin-bottom: 40px;
       }
     }
   }
@@ -5307,6 +5295,11 @@ const Button = styled.button`
     position: absolute;
     border: 1px solid ${(props) => props.theme.Orange};
     z-index: 1;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: ${(props) => props.theme.LightGrey};
+    }
 
     @media (max-width: 767px) {
       width: 18px;
@@ -5369,7 +5362,23 @@ const Button = styled.button`
 
   &.outlined {
     border: 1px solid ${(props) => props.theme.LightGrey};
-    padding: 5px;
+    padding: 5px 10px;
+
+    &:hover {
+      border: 1px solid ${(props) => props.theme.Grey};
+    }
+
+    @media (max-width: 767px) {
+      font-size: 10px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 12px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 14px;
+    }
   }
 
   &.register-back {
@@ -5400,6 +5409,8 @@ const Button = styled.button`
   }
 
   &.footer-btn {
+    color: ${(props) => props.theme.Grey};
+
     @media (max-width: 767px) {
       font-size: 12px;
       margin: 0;
@@ -5413,6 +5424,10 @@ const Button = styled.button`
     }
 
     @media (min-width: 1024px) {
+    }
+
+    &:hover {
+      color: ${(props) => props.theme.HoverGrey};
     }
   }
 
@@ -5913,22 +5928,26 @@ const OutIcon = styled(IoExitOutline)`
   height: 30px;
   cursor: pointer;
   position: absolute;
-  top: 0;
-  right: 0;
   transition: color 0.3s ease;
 
   @media (max-width: 767px) {
     display: block;
+    top: 10px;
+    right: 10px;
     transform: translate(-35%, 50%);
   }
 
   @media (min-width: 768px) {
     display: block;
+    top: 10px;
+    right: 10px;
     transform: translate(-50%, 50%);
   }
 
   @media (min-width: 1024px) {
     display: block;
+    top: 10px;
+    right: 10px;
     transform: translate(-50%, 50%);
   }
 

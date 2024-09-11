@@ -5,16 +5,13 @@ import { AuthContext } from "../context/AuthContext";
 import s from "../stores/styling";
 import useModal from "../hooks/ModalHook";
 import Modal from "../components/Modal";
-import HoverButton from "./HoverButton";
 
 interface LogoutButtonProps {
   className?: string;
-  iconStyle: boolean;
 }
 
 const LogoutButton: React.FC<LogoutButtonProps> = ({
   className,
-  iconStyle,
 }) => {
   const { setCurrentlyLoggedIn } = useContext(AuthContext);
   const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();

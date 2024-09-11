@@ -21,11 +21,15 @@ const GenerateImage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (isSubmitted) return;
+  
+    console.log("Image request initiated..."); // 이미지 요청 시작 로그
+  
     try {
-      const url = await GenerateImageApi(prompt, color);
+      const url = await GenerateImageApi(`${prompt}?t=${new Date().getTime()}`, color); // 캐시 무효화
+      console.log("Image successfully generated:", url); // 이미지 생성 성공 로그
       setImageUrl(url);
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Image generation failed:", error); // 이미지 생성 실패 로그
     }
   };
 
@@ -40,10 +44,47 @@ const GenerateImage: React.FC = () => {
     setCheck(true);
   };
 
-
   return (
     <s.GenDiv className="gen-wrapper">
       <s.GenDiv className="gen-bg-wrapper">
+        <s.Image className="gen-bg" src={bgImage} alt="photo" />
+
+        <s.DotMask className="base">
+          <s.DotMask className="angled" />
+        </s.DotMask>
+      </s.GenDiv>
+
+      <s.GenDiv className="gen-title-wrapper">
+        <s.StyledH2 className="gen-top-title">Exclusive Design</s.StyledH2>
+        <s.StyledH1 className="gen-title">
+          Create <br />
+          your own
+        </s.StyledH1>
+
+        <s.GenDiv className="gen-semi-title-container">
+          <s.GenDiv className="gen-column">
+            <s.StyledH3 className="gen-semi-title steady-dark-title">
+              Since 2024
+            </s.StyledH3>
+            <s.StyledH3 className="gen-semi-title steady-dark-title">
+              Whenever you need
+            </s.StyledH3>
+          </s.GenDiv>
+          <s.GenDiv className="gen-column">
+            <s.StyledH3 className="gen-semi-title steady-dark-title">
+              Specific ideas
+            </s.StyledH3>
+            <s.StyledH3 className="gen-semi-title steady-dark-title">
+              Just for you
+            </s.StyledH3>
+          </s.GenDiv>
+        </s.GenDiv>
+        <s.StyledP className="steady-dark-p">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sunt
+          deleniti, non sit labore ullam, id quia voluptates qui nostrum alias
+          incidunt odit praesentium accusantium reiciendis officiis aliquam?
+          Aspernatur, maxime.
+        </s.StyledP>
         <s.Form
           onSubmit={handleSubmit}
           className={`img-gen-form ${isSubmitted ? "submit-hidden" : ""}`}
@@ -88,17 +129,14 @@ const GenerateImage: React.FC = () => {
               <>
                 {imageUrl && <img src={imageUrl} alt="Generated" />}
                 <Water />
-                <s.Button className="water-btn" onClick={handleCheck}>
+                {/* <s.Button className="water-btn" onClick={handleCheck}>
                   확인하기
-                </s.Button>
+                </s.Button> */}
               </>
             </CircleAnimation>
           </PopUpBelow>
         )}
 
-        <CircleAnimation>
-          <>{imageUrl && <img src={imageUrl} alt="Generated" />}</>
-        </CircleAnimation>
       </s.GenDiv>
     </s.GenDiv>
   );

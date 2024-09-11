@@ -226,9 +226,9 @@ export const CircleAnimation = ({ children }: Props) => {
         }}
       >
         {children}
-        <s.Button className="water-btn" onClick={handleButtonClick}>
+        {/* <s.Button className="water-btn" onClick={handleButtonClick}>
           확인하기
-        </s.Button>
+        </s.Button> */}
       </StyledMotionDiv>
     </>
   );
