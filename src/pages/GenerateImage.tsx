@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState } from "react";
 import GenerateImageApi from "../components/api/GenerateImageApi";
 import s from "../stores/styling";
 import bgImage from "../assets/images/tattoo_50.jpg";
@@ -7,7 +7,6 @@ import {
   CircleAnimation,
   PopUpBelow,
 } from "../components/FramerMotions/scrollMotions";
-
 import Water from "../components/loading_water/Water";
 
 const GenerateImage: React.FC = () => {
@@ -15,34 +14,58 @@ const GenerateImage: React.FC = () => {
   const [color, setColor] = useState<boolean>(false);
   const [imageUrl, setImageUrl] = useState<string>("");
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [showButton, setShowButton] = useState(false); // 버튼 상태를 관리하는 상태
   const [check, setCheck] = useState(false);
+  const [waterAnimationDone, setWaterAnimationDone] = useState(false);
+  const [fadeOutTriggered, setFadeOutTriggered] = useState(false);
+  const [look, setLook] = useState(false); 
+  const [scaleFrame, setScaleFrame] = useState(1); 
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (isSubmitted) return;
-  
-    console.log("Image request initiated..."); // 이미지 요청 시작 로그
-  
+  const handleSubmit = async (e: React.FormEvent | React.MouseEvent) => {
+    e.preventDefault(); // 기본 동작을 막기
+
+    if (isSubmitted) return; // 이미 제출된 경우 리턴
+
+    console.log("Image request initiated...");
+
     try {
-      const url = await GenerateImageApi(`${prompt}?t=${new Date().getTime()}`, color); // 캐시 무효화
-      console.log("Image successfully generated:", url); // 이미지 생성 성공 로그
+      const url = await GenerateImageApi(
+        `${prompt}?t=${new Date().getTime()}`,
+        color
+      ); // 캐시 무효화
+      console.log("Image successfully generated:", url);
       setImageUrl(url);
     } catch (error) {
-      console.error("Image generation failed:", error); // 이미지 생성 실패 로그
+      console.error("Image generation failed:", error);
     }
   };
 
-  const handleButtonClick = () => {
+  const handleButtonClick = (e: React.MouseEvent) => {
+    e.preventDefault();
     if (prompt.trim().length === 0) {
-      return; // 아무것도 입력되지 않으면
+      return; // 입력값이 없을 때 리턴
     }
-    setIsSubmitted(true);
+    handleSubmit(e); 
+    setIsSubmitted(true); 
+
+    // Water 애니메이션이 끝난 후 확인하기 버튼 표시
+    setTimeout(() => {
+      setWaterAnimationDone(true);
+    }, 12000);
   };
 
   const handleCheck = () => {
     setCheck(true);
+    console.log("확인하기");
+    setFadeOutTriggered(true); 
+
+    setLook(!look);
+    // 버튼을 눌렀을 때 프레임을 0.8만큼 줄였다가 1로 복원
+    setScaleFrame(1.05);
+    setTimeout(() => {
+      setScaleFrame(1); // 0.3초 후 원래 크기로 복원
+    }, 300);
   };
+
 
   return (
     <s.GenDiv className="gen-wrapper">
@@ -85,8 +108,10 @@ const GenerateImage: React.FC = () => {
           incidunt odit praesentium accusantium reiciendis officiis aliquam?
           Aspernatur, maxime.
         </s.StyledP>
+
+        <s.GenDiv className={"fadeout-box"}>안녕</s.GenDiv>
+
         <s.Form
-          onSubmit={handleSubmit}
           className={`img-gen-form ${isSubmitted ? "submit-hidden" : ""}`}
         >
           <s.GenDiv className="gen-input-container">
@@ -125,18 +150,28 @@ const GenerateImage: React.FC = () => {
 
         {isSubmitted && (
           <PopUpBelow>
-            <CircleAnimation>
-              <>
-                {imageUrl && <img src={imageUrl} alt="Generated" />}
-                <Water />
-                {/* <s.Button className="water-btn" onClick={handleCheck}>
-                  확인하기
-                </s.Button> */}
-              </>
-            </CircleAnimation>
+            <>
+            <CircleAnimation look={look} scaleFrame={scaleFrame} onClick={handleCheck}>
+                <>
+                  {isSubmitted && (
+                    <s.GenDiv
+                      className={`water-box ${check ? "fadeout-box" : ""}`}
+                    >
+                      {waterAnimationDone && !check && (
+                        <s.Button className="water-btn" onClick={handleCheck}>
+                          확인하기
+                        </s.Button>
+                      )}
+                      <Water />
+                    </s.GenDiv>
+                  )}
+
+                  {imageUrl && <s.Image src={imageUrl} alt="Generated" />}
+                </>
+              </CircleAnimation>
+            </>
           </PopUpBelow>
         )}
-
       </s.GenDiv>
     </s.GenDiv>
   );

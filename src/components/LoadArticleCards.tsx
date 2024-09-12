@@ -101,9 +101,9 @@ const LoadArticleCards: React.FC = () => {
     <>
       <StartFromTop />
       <s.ArticleDiv className="article-wrapper">
-{/* 
-        <SortButtons sortBefore={sortedData} sortHandle={handleSort} /> */}
-        <ScrollToTopButton/>
+        
+        <SortButtons sortBefore={sortedData} sortHandle={handleSort} />
+
         <s.ArticleDiv className="article-mid-wrapper">
           {articles.map((index) => {
             const artist = sortedData[index];
@@ -133,7 +133,7 @@ const LoadArticleCards: React.FC = () => {
               </s.ArticleDiv>
             );
           })}
-          {/* 로더 요소 */}
+
           <s.ArticleDiv ref={loaderRef} className="loader">
             Loading more...
           </s.ArticleDiv>

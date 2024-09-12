@@ -2,12 +2,12 @@ import { keyframes } from "styled-components";
 
 export const WaterAnimation = keyframes`
   0% {
-    bottom: -180%;
-    left: -95%;
+    top: 100%;
+    left: -50%;
   }
   100% {
-    bottom: -50%;
-    left: -815%;
+    top: -20%;
+    left: -655%;
   }
 `;
 

@@ -7,8 +7,8 @@ import {
   stagger,
 } from "framer-motion";
 import styled from "styled-components";
-import s from "../../stores/styling";
-import { StyledMotionDiv } from "../../stores/styling";
+
+import { GenImageCircle } from "../../stores/styling";
 
 interface Props {
   children?: JSX.Element;
@@ -198,23 +198,20 @@ export const EachTextPopUp = ({ duration, delay, text }: Props) => {
   );
 };
 
-export const CircleAnimation = ({ children }: Props) => {
-  const [look, setLook] = useState(false); // 원 상태를 관리하는 상태
-  const [scaleFrame, setScaleFrame] = useState(1); // 프레임 크기 상태
+interface CircleAnimationProps {
+  children: JSX.Element;
+  look: boolean;
+  scaleFrame: number;
+  onClick: () => void;
+}
 
-  const handleButtonClick = () => {
-    setLook(!look); // 클릭 시 모양 변경
-    // 버튼을 눌렀을 때 프레임을 0.8만큼 줄였다가 1로 복원
-    setScaleFrame(1.05);
-    setTimeout(() => {
-      setScaleFrame(1); // 0.3초 후 원래 크기로 복원
-    }, 300);
-  };
+export const CircleAnimation: React.FC<CircleAnimationProps> = ({children, look, scaleFrame, onClick}) => {
+
 
   return (
     <>
-      <StyledMotionDiv
-        className="testcase"
+      <GenImageCircle
+        className="circle-wrapper"
         initial={{ scale: 0.1 }} // 초기 scale 값을 설정
         animate={{
           scale: scaleFrame, // 프레임 크기 애니메이션 추가
@@ -226,11 +223,7 @@ export const CircleAnimation = ({ children }: Props) => {
         }}
       >
         {children}
-        {/* <s.Button className="water-btn" onClick={handleButtonClick}>
-          확인하기
-        </s.Button> */}
-      </StyledMotionDiv>
+      </GenImageCircle>
     </>
   );
 };
-

@@ -3804,29 +3804,6 @@ const GenDiv = styled.div`
     position: relative;
   }
 
-  &.gen-image-box {
-    border: 1px solid white;
-
-    border-radius: 50%;
-
-    width: 80%;
-    max-width: 512px;
-    aspect-ratio: 1/1;
-    margin: 0 auto;
-    overflow: hidden;
-
-    opacity: 1;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    position: relative;
-
-    // animation: ${fadeInUp} 0.5s forwards;
-    // animation-delay: 1s;
-  }
-
   &.gen-input-container {
     height: auto;
     margin-bottom: 20px;
@@ -3857,10 +3834,6 @@ const GenDiv = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
-    // position: absolute;
-    // left: 0;
-    // z-index: 3;
 
     @media (max-width: 767px) {
       top: 240px;
@@ -3894,6 +3867,20 @@ const GenDiv = styled.div`
       justify-content: space-between;
       align-items: flex-end;
     }
+  }
+
+  &.water-box {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &.fadeout-box {
+    animation: ${FadeOut} 1s forwards;
   }
 `;
 
@@ -5530,19 +5517,17 @@ const Button = styled.button`
     color: ${darkTheme.Grey};
     font-size: 24px;
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 1;
     visibility: hidden;
 
     animation: ${ButtonFadeIn} 0.3s forwards;
-    // animation-delay: 8s;
 
     &:hover {
       color: ${lightTheme.White};
       transition: color 0.3 ease;
-    }
-
-    &.hide-water-btn {
-      animation: ${FadeOut} 0.5s forwards;
     }
   }
 `;
@@ -5723,19 +5708,19 @@ const GridImage = styled.img`
 `;
 
 const Water = styled(water)`
-  width: calc(4196px * 1.2);
-  height: calc(736px * 1.2);
+  // width: calc(4180px * 1.2);
+  // height: calc(760px * 1.2);
+  width: 816%;
+  height: 148%;
   position: absolute;
+  top: 0%;
+  left 0%;
 
-  animation: ${WaterAnimation} 9s forwards;
-
-  &.hide-water {
-    animation: ${FadeOut} 0.5s forwards;
-  }
+  animation: ${WaterAnimation} 12s forwards;
 `;
 
-export const StyledMotionDiv = styled(motion.div)`
-  &.testcase {
+export const GenImageCircle = styled(motion.div)`
+  &.circle-wrapper {
     border: 1px solid white;
 
     border-radius: 50%;
@@ -5753,9 +5738,6 @@ export const StyledMotionDiv = styled(motion.div)`
     align-items: center;
 
     position: relative;
-
-    // animation: ${fadeInUp} 0.5s forwards;
-    // animation-delay: 1s;
   }
 `;
 
@@ -6205,7 +6187,7 @@ const s = {
   DrawIcon,
 
   Water,
-  StyledMotionDiv,
+  GenImageCircle,
 
   StyledCircularProgressbar,
 

@@ -19,7 +19,7 @@ export default function BrandDropDescription({ title, text }: Props) {
 
   return (
     <s.AboutDiv className="mid-description">
-      <s.StyledH3 className="SemiTitlㅛㅁ구e">{title}</s.StyledH3>
+      <s.StyledH3>{title}</s.StyledH3>
 
       <s.Button className="more" onClick={toggleMore}>
         {openMore ? "간략히" : "더보기"}
