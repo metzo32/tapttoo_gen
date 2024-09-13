@@ -473,6 +473,11 @@ const Image = styled.img`
     height: 50%;
     object-fit: cover;
     mask-image: linear-gradient(rgb(0 0 0), rgb(0 0 0 / 0));
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
   }
 
   &.artist-page-main {
@@ -4071,10 +4076,10 @@ const Footer = styled.div`
     background-color: transparent;
     padding: 0px 10px;
 
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: 10;
+    // position: absolute;
+    // bottom: 0;
+    // left: 0;
+    // z-index: 10;
 
     display: flex;
     flex-direction: column;
@@ -4378,26 +4383,11 @@ const Form = styled.form`
 
 const ProfileDiv = styled.div`
   &.profile-wrapper {
-    border: 1px solid red;
     width: 100vw;
-    height: 100%;
+    height: auto;
     display: block;
     position: relative;
-
-    @media (max-width: 767px) {
-      min-height: 100vh; /* 화면 높이 만큼 최소 높이를 설정 */
-      height: auto;
-      margin-bottom: 25%;
-    }
-
-    @media (min-width: 768px) {
-      height: 120vh;
-      margin-bottom: 20px;
-    }
-
-    @media (min-width: 1024px) {
-      margin-bottom: 20px;
-    }
+    z-index: 1;
   }
 
   &.profile-section {
@@ -4410,37 +4400,32 @@ const ProfileDiv = styled.div`
     justify-content: center;
     align-items: center;
 
-    position: absolute;
-
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: 85%;
+    margin: 0 auto;
+    margin-top: 10%;
+    margin-bottom: 10%;
 
     @media (max-width: 767px) {
       width: 85%;
-      top: 0;
-      transform: translate(-50%, 25%);
     }
 
     @media (min-width: 768px) {
       width: 60%;
-      top: 40%;
-      transform: translate(-50%, -50%);
     }
 
     @media (min-width: 1024px) {
       width: 60%;
-      top: 43%;
     }
 
     @media (min-width: 1440px) {
       width: 60%;
       height: 700px;
-      top: 43%;
     }
   }
 
   &.profile-padding-wrapper {
     width: 100%;
+    height: auto;
     overflow-y: scroll;
 
     display: flex;
@@ -4449,20 +4434,17 @@ const ProfileDiv = styled.div`
     align-items: center;
 
     @media (max-width: 767px) {
-      height: auto;
-      margin-top: 80px;
+      margin-top: 60px;
       margin-bottom: 60px;
     }
 
     @media (min-width: 768px) {
-      height: auto;
-      margin-top: 100px;
+      margin-top: 80px;
       margin-bottom: 80px;
     }
 
     @media (min-width: 1024px) {
-      height: auto;
-      margin-top: 120px;
+      margin-top: 80px;
       margin-bottom: 80px;
     }
   }
@@ -4600,7 +4582,8 @@ const ProfileDiv = styled.div`
   }
 
   &.user-image-wrapper {
-    aspect-ratio: 1/1;
+    aspect-ratio: 1 / 1; /* 가로 세로 비율 1:1 */
+    width: 100%; /* 너비를 기준으로 세로가 자동으로 설정됩니다 */
     border-radius: 50%;
     background-color: ${(props) => props.theme.Light};
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
@@ -4610,10 +4593,10 @@ const ProfileDiv = styled.div`
     justify-content: center;
     align-items: center;
 
-    position: absolute;
+    position: relative;
     top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    left: 0;
+    transform: translate(0%, -50%);
     transition: transform 0.3s ease, filter 0.3s ease;
 
     @media (max-width: 767px) {
@@ -4632,7 +4615,7 @@ const ProfileDiv = styled.div`
 
     &:hover {
       filter: brightness(1.1);
-      transform: translate(-50%, -50%) scale(1.1);
+      transform: translate(0%, -50%) scale(1.1);
       transform-origin: center;
     }
   }
@@ -5931,28 +5914,26 @@ const OutIcon = styled(IoExitOutline)`
   width: 30px;
   height: 30px;
   cursor: pointer;
-  position: absolute;
   transition: color 0.3s ease;
 
+  position: relative;
+  top: 0%;
+  right: -43%;
+  transform: translate(0%, 60%);
+
   @media (max-width: 767px) {
-    display: block;
-    top: 10px;
-    right: 10px;
-    transform: translate(-35%, 50%);
+    right: -43%;
+    transform: translate(0%, 60%);
   }
 
   @media (min-width: 768px) {
-    display: block;
-    top: 10px;
-    right: 10px;
-    transform: translate(-50%, 50%);
+    right: -43%;
+    transform: translate(0%, 60%);
   }
 
   @media (min-width: 1024px) {
-    display: block;
-    top: 10px;
-    right: 10px;
-    transform: translate(-50%, 50%);
+    right: -44%;
+    transform: translate(0%, 90%);
   }
 
   &:hover {

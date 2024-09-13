@@ -91,18 +91,16 @@ const Profile: React.FC<WishProps> = ({ artistNickname, artistRandomImage }) => 
     <>
       <StartFromTop />
 
-      <s.ProfileDiv className="profile-wrapper">
         <s.Image className="profile-label" src={profileBanner} alt="photo" />
-
-
+      <s.ProfileDiv className="profile-wrapper">
         <s.ProfileDiv className="profile-section">
           <LogoutButton/>
 
-          {userData ? (
+          {/* {userData ? (
             <UploadProfilePhoto />
           ) : (
             <p>Loading profile...</p>
-          )}
+          )} */}
 
           <s.ProfileDiv className="profile-padding-wrapper">
             <s.ProfileDiv className="profile-text-container">
