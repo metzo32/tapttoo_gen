@@ -6,7 +6,7 @@ import s from "../stores/styling";
 import LogoutButton from "../components/Logout";
 import profileBanner from "../assets/images/profile-banner.jpg";
 import StartFromTop from "../components/StartFromTop";
-import UploadProfilePicture from "../components/UploadProfilePhoto";
+import UploadProfilePhoto from "../components/UploadProfilePhoto";
 import { PopUpBelow } from "../components/FramerMotions/scrollMotions";
 
 interface WishProps {
@@ -28,10 +28,8 @@ const Profile: React.FC<WishProps> = ({ artistNickname, artistRandomImage }) => 
         if (userDoc.exists()) {
           const data = userDoc.data();
           setUserData(data);
+          setPhotoURL(data.photoURL);
 
-          if (data.photoURL) {
-            setPhotoURL(data.photoURL);
-          }
         } else {
           console.log("No such document!");
         }
@@ -39,6 +37,11 @@ const Profile: React.FC<WishProps> = ({ artistNickname, artistRandomImage }) => 
     };
     fetchUserData();
   }, []);
+  
+  const handlePhotoUpload = (newPhotoURL: string) => {
+    setPhotoURL(newPhotoURL);  // 업로드 후 새로운 사진 URL을 상태에 반영
+  };
+
 
   const handleCardRedirect = (nickname: string) => {
     const url = `/profile_artist_${nickname}`;
@@ -91,11 +94,12 @@ const Profile: React.FC<WishProps> = ({ artistNickname, artistRandomImage }) => 
       <s.ProfileDiv className="profile-wrapper">
         <s.Image className="profile-label" src={profileBanner} alt="photo" />
 
+
         <s.ProfileDiv className="profile-section">
           <LogoutButton/>
 
           {userData ? (
-            <UploadProfilePicture userDataProp={userData.email} />
+            <UploadProfilePhoto />
           ) : (
             <p>Loading profile...</p>
           )}

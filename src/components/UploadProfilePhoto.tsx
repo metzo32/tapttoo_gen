@@ -1,90 +1,101 @@
-import { useState, useEffect } from "react";
+// src/components/UploadProfilePhoto.tsx
+import React, { useState, useEffect } from "react";
 import s from "../stores/styling";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { doc, updateDoc } from "firebase/firestore";
-import { storage, db } from "../firebase/firebaseConfig";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { doc, updateDoc, getDoc } from "firebase/firestore";
+import { auth, db } from "../firebase/firebaseConfig";
 
+const UploadProfilePhoto: React.FC = () => {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [photoURL, setPhotoURL] = useState<string | null>(null); // photoURL 상태 추가
+  const [isUploading, setIsUploading] = useState(false);
 
-interface PhotoProps {
-  userDataProp: string | null; // userData는 null일 수 있음 + 부모 컴포넌트에서 userData를 받았고, 그 중 email만 여기 전달
-}
-
-const UploadProfilePicture = ({ userDataProp }: PhotoProps) => {
-  const [file, setFile] = useState<File | null>(null);
-  const [photoURL, setPhotoURL] = useState<string | null>(null);
-  const [uploading, setUploading] = useState<boolean>(false);
-
-
-  useEffect(() => {
-    if (userDataProp) {
-      console.log("Received user email: ", userDataProp);
-    } else {
-      console.log("No user email found.");
-    }
-  }, [userDataProp]);
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setFile(e.target.files[0]);
+  // Firestore에서 사용자 사진 URL 가져오기
+  const getUserPhotoURL = async (): Promise<void> => {
+    const user = auth.currentUser;
+    if (user) {
+      const userDocRef = doc(db, "users", user.uid);
+      const userDoc = await getDoc(userDocRef);
+      if (userDoc.exists()) {
+        const data = userDoc.data();
+        if (data.photoURL) {
+          setPhotoURL(data.photoURL);  // Firestore에서 가져온 URL로 상태 업데이트
+        }
+      }
     }
   };
 
-  const handleUpload = async () => {
-    if (file && userDataProp) {
-      setUploading(true);
-      const storageRef = ref(storage, `profile_pictures/${file.name}`);
-      try {
-        // Firebase Storage에 업로드 (실제 파일)
-        await uploadBytes(storageRef, file);
-        // 업로드된 파일의 URL 가져오기
-        const url = await getDownloadURL(storageRef);
-        setPhotoURL(url);
+  // 페이지 진입 시 Firestore에서 기존의 프로필 사진 URL 가져오기
+  useEffect(() => {
+    getUserPhotoURL();
+  }, []);
 
-        // Firestore에 URL 저장 (외부 접근 및 다운로드 가능)
-        const userDoc = doc(db, "users", userDataProp);
-        await updateDoc(userDoc, {
-          photoURL: url,
-        });
-      } catch (error) {
-        console.error("Upload failed", error);
-        alert("사진 업로드에 실패했습니다.");
-      } finally {
-        setUploading(false);
+  // 사진 업로드 처리 함수
+  const uploadPhoto = async (file: File) => {
+    const storage = getStorage();
+    const storageRef = ref(storage, `profile_pictures/${file.name}`);
+    setIsUploading(true);
+
+    try {
+      // 파일 업로드
+      await uploadBytes(storageRef, file);
+
+      // 업로드 후 다운로드 URL 가져오기
+      const photoURL = await getDownloadURL(storageRef);
+
+      // Firestore에 사용자 프로필에 photoURL 저장
+      const user = auth.currentUser;
+      if (user) {
+        const userDocRef = doc(db, "users", user.uid);
+        await updateDoc(userDocRef, { photoURL });
       }
-    } else {
-      // userData 또는 email이 null일 때
-      alert("로그인이 필요합니다.");
+
+      setPhotoURL(photoURL);  // 업로드된 URL을 상태에 저장
+    } catch (error) {
+      console.error("파일 업로드 실패:", error);
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
+  // 파일 선택 시 즉시 업로드
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setSelectedFile(file);
+      await uploadPhoto(file);  // 파일 선택 시 즉시 업로드
     }
   };
 
   return (
     <s.ProfileDiv className="user-image-wrapper">
       <s.ProfileDiv className="user-image-container">
-      {file && !photoURL && (
-        <img
-          src={URL.createObjectURL(file)}
-          alt="Selected Profile"
-          style={{ width: "100%", height: "auto" }}
-        />
-      )}
+        {/* 선택된 파일이 있고 아직 업로드된 URL이 없을 때 임시로 파일을 보여줌 */}
+        {selectedFile && !photoURL && (
+          <img
+            src={URL.createObjectURL(selectedFile)}
+            alt="Selected Profile"
+            style={{ width: "100%", height: "auto" }}
+          />
+        )}
 
-      {photoURL && (
-        <img src={photoURL} alt="Uploaded Profile" style={{ width: "100%", height: "auto" }} />
-      )}
-      <s.PlusIcon />
-      <s.Input className="photo-add" type="file" onChange={handleFileChange}/>
-        {/* <s.Button onClick={handleUpload} disabled={uploading}>
-        <s.PlusIcon />
-        </s.Button> */}
-{/* 
-      <input type="file" onChange={handleFileChange} />
-      <button onClick={handleUpload} disabled={uploading}>
-        {uploading ? "Uploading..." : "Upload Photo"}
-      </button>
-      {photoURL && <img src={photoURL} alt="Uploaded Profile" />} */}
-    </s.ProfileDiv>
+        {/* 업로드된 URL이 있으면 그 사진을 보여줌 */}
+        {photoURL && (
+          <img src={photoURL} alt="Uploaded Profile" style={{ width: "100%", height: "auto" }} />
+        )}
+
+        {/* 파일 선택을 위한 Input 영역. PlusIcon을 클릭하면 파일 선택 창이 열림 */}
+        <s.PlusIcon onClick={() => document.getElementById('fileInput')?.click()} />
+        <s.Input
+          id="fileInput"
+          className="photo-add"
+          type="file"
+          onChange={handleFileChange}
+          style={{ display: 'none' }} // 숨김 처리하여 PlusIcon이 파일 선택 버튼처럼 작동
+        />
+      </s.ProfileDiv>
     </s.ProfileDiv>
   );
 };
 
-export default UploadProfilePicture;
+export default UploadProfilePhoto;

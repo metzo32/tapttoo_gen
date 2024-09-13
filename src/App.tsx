@@ -10,7 +10,7 @@ import {
 
 import { AuthContext } from "./context/AuthContext";
 import ProtectedRouteHoc from "./components/ProtectedRouteHoc";
-import CustomThemeProvider from "./context/\bCustomThemeProvider";
+import CustomThemeProvider from "./context/CustomThemeProvider";
 import { MobileProvider } from "./context/MobileContext";
 
 import Header from "./components/Header";

@@ -1579,7 +1579,7 @@ const StyledH4 = styled.h4`
     }
 
     @media (max-width: 767px) {
-      font-size: 8px;
+      font-size: 12px;
       line-height: 10px;
     }
 
@@ -4378,15 +4378,20 @@ const Form = styled.form`
 
 const ProfileDiv = styled.div`
   &.profile-wrapper {
+    border: 1px solid red;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
+    display: block;
     position: relative;
 
     @media (max-width: 767px) {
+      min-height: 100vh; /* 화면 높이 만큼 최소 높이를 설정 */
+      height: auto;
       margin-bottom: 25%;
     }
 
     @media (min-width: 768px) {
+      height: 120vh;
       margin-bottom: 20px;
     }
 
@@ -4406,26 +4411,31 @@ const ProfileDiv = styled.div`
     align-items: center;
 
     position: absolute;
+
     left: 50%;
     transform: translate(-50%, -50%);
 
     @media (max-width: 767px) {
       width: 85%;
-      top: 40%;
+      top: 0;
+      transform: translate(-50%, 25%);
     }
 
     @media (min-width: 768px) {
-      top: 50%;
       width: 60%;
+      top: 40%;
+      transform: translate(-50%, -50%);
     }
 
     @media (min-width: 1024px) {
       width: 60%;
+      top: 43%;
     }
 
     @media (min-width: 1440px) {
       width: 60%;
       height: 700px;
+      top: 43%;
     }
   }
 
@@ -4473,7 +4483,18 @@ const ProfileDiv = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+
+    @media (max-width: 767px) {
+      margin-bottom: 20px;
+    }
+
+    @media (min-width: 768px) {
+      margin-bottom: 30px;
+    }
+
+    @media (min-width: 1024px) {
+      margin-bottom: 30px;
+    }
   }
 
   &.profile-contact-container {
@@ -4624,6 +4645,7 @@ const ProfileDiv = styled.div`
     justify-content: center;
     position: relative;
     border-radius: 50%;
+    cursor: pointer;
 
     &:hover * {
       color: ${(props) => props.theme.Grey};
@@ -5710,7 +5732,7 @@ const GridImage = styled.img`
 const Water = styled(water)`
   // width: calc(4180px * 1.2);
   // height: calc(760px * 1.2);
-  width: 816%;
+  width: 900%;
   height: 148%;
   position: absolute;
   top: 0%;

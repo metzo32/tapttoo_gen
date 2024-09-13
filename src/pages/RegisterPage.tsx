@@ -61,6 +61,7 @@ const RegisterPage = () => {
 
       try {
         await setDoc(doc(db, "users", user.uid), {
+          photoURL: null,
           email: registerEmail,
           fullname: registerFullname,
           nickname: registerNickname,
