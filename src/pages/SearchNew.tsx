@@ -28,15 +28,17 @@ export default function SearchNew() {
         {/* <MagneticBox /> */}
         <CustomCarousel />
 
-        <s.Search className="circles-container"></s.Search>
+        <SearchEventProfile />
 
-        <SearchCard
-          imageMain={search_img01}
-          imageSub={search_img02}
-          desMain="Moriati features in a fashion story by the lake for Tarra new shot"
-          desSub="Lorem ipsum dolor sit amet consectetur hic itaque facilis accusamus? Consectetur, magnam illum. Quae, quod."
-        />
-        <s.Search className="top-container">
+        <s.Search className="top-container column">
+          <s.Line className="infinite" />
+          <InfiniteText text="TAPTTOO EXCLUSIVE 2024" repeat={1000} />
+          <s.Line className="infinite" />
+        </s.Search>
+      </s.Search>
+
+      <s.Search className="top-container">
+          
           <s.Search className="sub-container extra-margin">
             <s.Search className="today-container">
               <s.StyledH3 className="search-title">
@@ -65,7 +67,8 @@ export default function SearchNew() {
           </s.Search>
         </s.Search>
 
-        <s.Search className="search-container center">
+
+      <s.Search className="search-container center">
           <s.Search className="search-gen-titles">
             <s.StyledH3 className="search-generate">
               " 당신의 이야기를 예술로. "
@@ -82,24 +85,8 @@ export default function SearchNew() {
             circle={true}
             text="나만의 도안 만들어보기"
           />
-
-
         </s.Search>
 
-        {/* <CircularProgressbar/> */}
-
-        <SearchEventProfile />
-
-        <s.Search className="top-container column">
-          <s.Line className="infinite" />
-          <InfiniteText text="TAPTTOO EXCLUSIVE 2024" repeat={1000} />
-          <s.Line className="infinite" />
-        </s.Search>
-      </s.Search>
-
-      <s.Search className="top-container sub-container extra-margin">
-        <s.Image className="search-wide" src="" alt="image" />
-      </s.Search>
 
       <s.Search className="top-container sub-container extra-margin">
         <s.Search>
@@ -118,8 +105,7 @@ export default function SearchNew() {
           </s.Search>
         </s.Search>
       </s.Search>
-      <s.Search className="top-container">4</s.Search>
-      <s.Search className="top-container">4</s.Search>
+
     </>
   );
 }

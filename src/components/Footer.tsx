@@ -1,7 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import s from "../stores/styling";
 
-export default function Footer() {
+interface FooterProps {
+  wrapperClassName?: string;
+}
+
+const Footer: React.FC<FooterProps> = ({ wrapperClassName }) => {
   const navigate = useNavigate();
 
   const handleNavigation = (path: string) => {
@@ -9,7 +13,7 @@ export default function Footer() {
   };
 
   return (
-    <s.Footer className="footer-wrapper">
+    <s.Footer className={wrapperClassName}>
       <s.Footer className="footer-container">
         <s.Footer className="brand-wrapper">
           <s.BrandLogo />
@@ -89,4 +93,5 @@ export default function Footer() {
       </s.Footer>
     </s.Footer>
   );
-}
+};
+export default Footer;

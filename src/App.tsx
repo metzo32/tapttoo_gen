@@ -34,7 +34,7 @@ import ArtistData from "./assets/datas/artitst_data";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import Modal from "./components/Modal";
 import GenerateImage from "./pages/GenerateImage";
-import Testpage from "./pages/testpage"
+import Testpage from "./pages/testpage";
 import Loading from "./components/Loading";
 
 const App: React.FC = () => {
@@ -59,56 +59,62 @@ const App: React.FC = () => {
   if (isLoading) {
     return <Loading />; // 로딩 화면에 헤더와 푸터가 보이지 않도록 설정
   }
-  
+
   return (
     <>
       <AuthContext.Provider value={{ currentlyLoggedIn, setCurrentlyLoggedIn }}>
         <CustomThemeProvider>
-        <MobileProvider>
-          <s.GlobalStyle/>
-          <s.Div className="App">
-            <Router>
-              <Header />
-              <ScrollToTopButton/>
-              <Routes>
-                <Route path="/" element={<SearchNew />} />
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/aboutus" element={<AboutUs />} />
-                <Route path="/article" element={<Article />} />
-                <Route path="/loading" element={<Loading />} />
+          <MobileProvider>
+            <s.GlobalStyle />
+            <s.Div className="App">
+              <Router>
+                <Header />
+                <ScrollToTopButton />
+                <Routes>
+                  <Route path="/" element={<SearchNew />} />
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="/aboutus" element={<AboutUs />} />
+                  <Route path="/article" element={<Article />} />
+                  <Route path="/loading" element={<Loading />} />
 
-                <Route path="/search" element={<SearchPage />} />
-                <Route path="/career" element={<Career />} />
-                <Route path="/contact" element={<Contact />} />
-                {/* <Route path="/joinartist" element={<ArtistRegister />} /> */}
-                <Route
-                  path="/profile"
-                  element={
-                    <ProtectedRouteHoc>
-                      <Profile />
-                    </ProtectedRouteHoc>
-                  }
-                />
-                <Route path="/registerterms" element={<RegisterTerms />} />
-                <Route path="/register" element={<RegisterPage />} />
-                <Route path="/nothing" element={<Testpage/>} />
-                
-                <Route path="/careermarketing" element={<CareerMarketing />} />
-                <Route path="/searchnew" element={<SearchNew />} />
-                <Route path="/your_custom_tattoo" element={<GenerateImage />} />
-                <Route path="/scroll" element={<ScrollTest />} />
-                {ArtistData.map((artist) => (
+                  <Route path="/search" element={<SearchPage />} />
+                  <Route path="/career" element={<Career />} />
+                  <Route path="/contact" element={<Contact />} />
+                  {/* <Route path="/joinartist" element={<ArtistRegister />} /> */}
                   <Route
-                    key={artist.id}
-                    path={`/profile_artist_${artist.nickname}`}
-                    element={<ArtistProfile artist={artist} />}
+                    path="/profile"
+                    element={
+                      <ProtectedRouteHoc>
+                        <Profile />
+                      </ProtectedRouteHoc>
+                    }
                   />
-                ))}
-              </Routes>
-              
-              <FooterRender/>
-            </Router>
-          </s.Div>
+                  <Route path="/registerterms" element={<RegisterTerms />} />
+                  <Route path="/register" element={<RegisterPage />} />
+                  <Route path="/nothing" element={<Testpage />} />
+
+                  <Route
+                    path="/careermarketing"
+                    element={<CareerMarketing />}
+                  />
+                  <Route path="/searchnew" element={<SearchNew />} />
+                  <Route
+                    path="/your_custom_tattoo"
+                    element={<GenerateImage />}
+                  />
+                  <Route path="/scroll" element={<ScrollTest />} />
+                  {ArtistData.map((artist) => (
+                    <Route
+                      key={artist.id}
+                      path={`/profile_artist_${artist.nickname}`}
+                      element={<ArtistProfile artist={artist} />}
+                    />
+                  ))}
+                </Routes>
+
+                <FooterRender />
+              </Router>
+            </s.Div>
           </MobileProvider>
         </CustomThemeProvider>
       </AuthContext.Provider>
@@ -116,11 +122,18 @@ const App: React.FC = () => {
   );
 };
 
-const FooterRender= () => {
-  const location = useLocation(); 
+const FooterRender = () => {
+  const location = useLocation();
 
-  return location.pathname !== "/article" ? <Footer /> : null;
+  const renderFooter = location.pathname !== "/article";
+  const footerStyleException =
+    location.pathname === "/your_custom_tattoo"
+      ? "footer-wrapper-exception"
+      : "footer-wrapper";
+
+  return renderFooter ? (
+    <Footer wrapperClassName={footerStyleException} />
+  ) : null;
 };
-
 
 export default App;

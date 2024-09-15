@@ -6,7 +6,6 @@ import s from "../stores/styling";
 import LogoutButton from "../components/Logout";
 import profileBanner from "../assets/images/profile-banner.jpg";
 import StartFromTop from "../components/StartFromTop";
-import UploadProfilePhoto from "../components/UploadProfilePhoto";
 import { PopUpBelow } from "../components/FramerMotions/scrollMotions";
 
 interface WishProps {
@@ -37,11 +36,6 @@ const Profile: React.FC<WishProps> = ({ artistNickname, artistRandomImage }) => 
     };
     fetchUserData();
   }, []);
-  
-  const handlePhotoUpload = (newPhotoURL: string) => {
-    setPhotoURL(newPhotoURL);  // 업로드 후 새로운 사진 URL을 상태에 반영
-  };
-
 
   const handleCardRedirect = (nickname: string) => {
     const url = `/profile_artist_${nickname}`;
@@ -95,13 +89,7 @@ const Profile: React.FC<WishProps> = ({ artistNickname, artistRandomImage }) => 
       <s.ProfileDiv className="profile-wrapper">
         <s.ProfileDiv className="profile-section">
           <LogoutButton/>
-
-          {/* {userData ? (
-            <UploadProfilePhoto />
-          ) : (
-            <p>Loading profile...</p>
-          )} */}
-
+          
           <s.ProfileDiv className="profile-padding-wrapper">
             <s.ProfileDiv className="profile-text-container">
               <s.ProfileDiv className="profile-element-box">

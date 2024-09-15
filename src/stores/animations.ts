@@ -1,5 +1,19 @@
 import { keyframes } from "styled-components";
 
+export const CounterMove = keyframes`
+  0% {
+    top: 50%;
+  }
+  50% {
+    top: 50%;
+    opacity: 1;
+  }
+  100% {
+    top: 43%;
+    opacity: 0.5;
+  }
+`;
+
 export const WaterAnimation = keyframes`
   0% {
     top: 100%;

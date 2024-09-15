@@ -40,7 +40,7 @@ const WishList: React.FC<WishListProps> = ({
   
         setWishButton(isAlreadyWishlisted); // DB에 있는지 여부에 따라 초기값 설정
       } catch (error) {
-        console.error("위시리스트 상태를 가져오는 중 오류 발생:", error);
+        console.error("위시리스트 임포트 에러:", error);
       }
     };
     fetchWishlistStatus();

@@ -13,6 +13,7 @@ import styled, { css, createGlobalStyle } from "styled-components";
 import { Link as RouterLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
+  CounterMove,
   fadeInUp,
   WaterAnimation,
   loadingSlide,
@@ -1598,6 +1599,19 @@ const StyledH4 = styled.h4`
       line-height: 18px;
     }
   }
+
+  &.loading-counter {
+    color: ${lightTheme.Light};
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+
+  &.move-counter {
+    animation: ${CounterMove} 2s forwards;
+  }
 `;
 
 const StyledP = styled.p`
@@ -2212,18 +2226,13 @@ const Accordion = styled.div`
     display: flex;
     flex-direction: row;
     margin: 0 auto;
+    cursor: pointer;
 
     @media (max-width: 767px) {
       height: 40px;
       position: absolute;
       top: 0px;
       left: 28px;
-    }
-
-    @media (min-width: 768px) {
-    }
-
-    @media (min-width: 1024px) {
     }
 
     &:hover .accordion-number {
@@ -2255,7 +2264,7 @@ const Accordion = styled.div`
 
   &.cardbox-open {
     width: calc(100% - 40px);
-    height: 850px;
+    height: 780px;
     max-height: 850px;
     margin: 0 auto;
 
@@ -3796,7 +3805,7 @@ const GenDiv = styled.div`
   &.gen-wrapper {
     width: 100%;
     height: 2000px;
-    background-color: ${lightTheme.HoverGrey};
+    background-color: black;
     display: block;
     overflow: hidden;
 
@@ -3886,6 +3895,17 @@ const GenDiv = styled.div`
 
   &.fadeout-box {
     animation: ${FadeOut} 1s forwards;
+  }
+
+  &.gen-button-container {
+    width: 30vw;
+    max-width: 512px;
+    min-width: 200px;
+    margin: 0 auto;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 `;
 
@@ -4076,10 +4096,31 @@ const Footer = styled.div`
     background-color: transparent;
     padding: 0px 10px;
 
-    // position: absolute;
-    // bottom: 0;
-    // left: 0;
-    // z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    overflow: hidden;
+
+    @media (max-width: 767px) {
+      height: auto;
+      margin-bottom: 130px;
+    }
+
+    @media (min-width: 768px) {
+      margin: 0;
+    }
+  }
+
+  &.footer-wrapper-exception {
+    width: calc(100% - 20px);
+    height: 70px;
+    background-color: transparent;
+    padding: 0px 10px;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
 
     display: flex;
     flex-direction: column;
@@ -4419,14 +4460,12 @@ const ProfileDiv = styled.div`
 
     @media (min-width: 1440px) {
       width: 60%;
-      height: 700px;
     }
   }
 
   &.profile-padding-wrapper {
     width: 100%;
     height: auto;
-    overflow-y: scroll;
 
     display: flex;
     flex-direction: column;
@@ -4434,8 +4473,8 @@ const ProfileDiv = styled.div`
     align-items: center;
 
     @media (max-width: 767px) {
-      margin-top: 60px;
-      margin-bottom: 60px;
+      margin-top: 40px;
+      margin-bottom: 40px;
     }
 
     @media (min-width: 768px) {
@@ -4452,6 +4491,7 @@ const ProfileDiv = styled.div`
   &.profile-text-container {
     width: 60%;
     margin: 0 auto;
+    margin-bottom: 20px;
 
     display: flex;
     flex-direction: column;
