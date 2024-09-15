@@ -46,6 +46,7 @@ const AnimatedComponent = ({
         initial="hidden"
         animate={mainControls}
         transition={{ duration: duration, delay: delay }}
+        style={{display: "flex"}}
       >
         {children}
       </motion.div>

@@ -2161,8 +2161,8 @@ const CareerItem = styled.div`
 
 const Accordion = styled.div`
   &.accordion-wrapper {
-    margin-top: 50px;
     width: 100%;
+    margin-top: 350px;
   }
 
   &.acc {
@@ -2284,9 +2284,10 @@ const CareerDetail = styled.div`
   height: 100vh;
   margin: 0 auto;
 
-  &.wrapper {
+  &.career-detail-wrapper {
     height: auto;
     margin-top: 50px;
+    margin-bottom: 350px;
   }
 
   &.img-container {

@@ -5,7 +5,7 @@ import Accordion from "../components/CareerAccordion";
 export default function Career() {
   return (
     <>
-      <s.CareerDetail className="wrapper">
+      <s.CareerDetail className="career-detail-wrapper">
         <s.StyledH1 className="career-detail-title">
           WE'RE NOT NEW HERE, <br />
           BUT WE'RE CONSTANTLY EVOLVING
@@ -16,16 +16,6 @@ export default function Career() {
 
         <Accordion />
 
-        <s.CareerDetail className="mid-title-container">
-          <s.StyledH1 className="career-detail-title">
-            If you are going through hell,
-            <br />
-            keep going.
-          </s.StyledH1>
-        </s.CareerDetail>
-        <s.CareerDetail className="img-container">
-          <s.Image src={businessbg} alt="photo" className="" />
-        </s.CareerDetail>
       </s.CareerDetail>
     </>
   );

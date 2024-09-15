@@ -100,75 +100,95 @@ const GenerateImage: React.FC = () => {
         </s.GenDiv>
 
         <s.GenDiv className="gen-title-wrapper">
-          <s.StyledH2 className="gen-top-title">Exclusive Design</s.StyledH2>
-          <s.StyledH1 className="gen-title">
-            Create <br />
-            your own
-          </s.StyledH1>
+          <PopUpBelow>
+            <s.StyledH2 className="gen-top-title">Exclusive Design</s.StyledH2>
+          </PopUpBelow>
+          <PopUpBelow delay={0.4}>
+            <s.StyledH1 className="gen-title">
+              Create <br />
+              your own
+            </s.StyledH1>
+          </PopUpBelow>
 
           <s.GenDiv className="gen-semi-title-container">
             <s.GenDiv className="gen-column">
-              <s.StyledH3 className="gen-semi-title steady-dark-title">
-                Since 2024
-              </s.StyledH3>
-              <s.StyledH3 className="gen-semi-title steady-dark-title">
-                Whenever you need
-              </s.StyledH3>
+              <PopUpBelow>
+                <s.StyledH3 className="gen-semi-title steady-dark-title">
+                  Since 2024
+                </s.StyledH3>
+              </PopUpBelow>
+
+              <PopUpBelow>
+                <s.StyledH3 className="gen-semi-title steady-dark-title">
+                  Whenever you need
+                </s.StyledH3>
+              </PopUpBelow>
             </s.GenDiv>
+
             <s.GenDiv className="gen-column">
-              <s.StyledH3 className="gen-semi-title steady-dark-title">
-                Specific ideas
-              </s.StyledH3>
-              <s.StyledH3 className="gen-semi-title steady-dark-title">
-                Just for you
-              </s.StyledH3>
+              <PopUpBelow>
+                <s.StyledH3 className="gen-semi-title steady-dark-title">
+                  Specific ideas
+                </s.StyledH3>
+              </PopUpBelow>
+
+              <PopUpBelow>
+                <s.StyledH3 className="gen-semi-title steady-dark-title">
+                  Just for you
+                </s.StyledH3>
+              </PopUpBelow>
             </s.GenDiv>
           </s.GenDiv>
-          <s.StyledP className="steady-dark-p">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sunt
-            deleniti, non sit labore ullam, id quia voluptates qui nostrum alias
-            incidunt odit praesentium accusantium reiciendis officiis aliquam?
-            Aspernatur, maxime.
-          </s.StyledP>
+
+          <PopUpBelow>
+            <s.StyledP className="steady-dark-p">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
+              sunt deleniti, non sit labore ullam, id quia voluptates qui
+              nostrum alias incidunt odit praesentium accusantium reiciendis
+              officiis aliquam? Aspernatur, maxime.
+            </s.StyledP>
+          </PopUpBelow>
 
           <s.GenDiv className={"fadeout-box"}>안녕</s.GenDiv>
 
-          <s.Form
-            className={`img-gen-form ${isSubmitted ? "submit-hidden" : ""}`}
-          >
-            <s.GenDiv className="gen-input-container">
-              <s.Input
-                className="prompt-input"
-                type="text"
-                value={prompt}
-                onChange={(e) => setPrompt(e.target.value)}
-                placeholder="Type your idea"
-                required
-              />
-
-              <s.Label className="steady-dark">
+          <PopUpBelow>
+            <s.Form
+              className={`img-gen-form ${isSubmitted ? "submit-hidden" : ""}`}
+            >
+              <s.GenDiv className="gen-input-container">
                 <s.Input
-                  type="checkbox"
-                  checked={color}
-                  onChange={(e) => setColor(e.target.checked)}
-                  className="input-hide"
+                  className="prompt-input"
+                  type="text"
+                  value={prompt}
+                  onChange={(e) => setPrompt(e.target.value)}
+                  placeholder="Type your idea"
+                  required
                 />
-                {color ? (
-                  <s.CheckboxAfterIcon className="checkbox-icon-checked large" />
-                ) : (
-                  <s.CheckboxBeforeIcon className="checkbox-icon large" />
-                )}
-                Color
-              </s.Label>
-            </s.GenDiv>
 
-            <HoverButton
-              type="submit"
-              circle={true}
-              text="디자인 생성하기"
-              onClick={handleButtonClick}
-            />
-          </s.Form>
+                <s.Label className="steady-dark">
+                  <s.Input
+                    type="checkbox"
+                    checked={color}
+                    onChange={(e) => setColor(e.target.checked)}
+                    className="input-hide"
+                  />
+                  {color ? (
+                    <s.CheckboxAfterIcon className="checkbox-icon-checked large" />
+                  ) : (
+                    <s.CheckboxBeforeIcon className="checkbox-icon large" />
+                  )}
+                  Color
+                </s.Label>
+              </s.GenDiv>
+
+              <HoverButton
+                type="submit"
+                circle={true}
+                text="디자인 생성하기"
+                onClick={handleButtonClick}
+              />
+            </s.Form>
+          </PopUpBelow>
 
           {isSubmitted && (
             <PopUpBelow>
