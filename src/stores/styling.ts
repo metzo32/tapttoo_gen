@@ -416,11 +416,19 @@ const Image = styled.img`
 
   &.long-img {
     width: 100%;
-    aspect-ratio: 4/1;
     overflow: hidden;
     object-fit: cover;
 
-    position: relative;
+    @media (max-width: 767px) {
+      aspect-ratio: 2/1;
+    }
+
+    @media (min-width: 768px) {
+      aspect-ratio: 4/1;
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 
   &.artist-bg {
@@ -667,7 +675,7 @@ const AboutDiv = styled.div`
   display: flex;
   overflow: hidden;
 
-  &.wrapper {
+  &.about-wrapper {
     width: 100%;
     height: auto;
     position: relative;
@@ -691,11 +699,6 @@ const AboutDiv = styled.div`
     flex-direction: column;
     justify-content: flex-start;
 
-    &:first-child {
-      margin-right: 20px;
-      margin-top: 0px;
-    }
-
     @media (max-width: 767px) {
       width: 100%;
       margin-top: 60px;
@@ -707,6 +710,7 @@ const AboutDiv = styled.div`
 
     @media (min-width: 1024px) {
       width: 50%;
+      margin-top: 300px;
     }
   }
 
@@ -722,7 +726,6 @@ const AboutDiv = styled.div`
   &.mid-title-wrapper {
     width: 100%;
     display: flex;
-    border: 1px solid red;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
@@ -749,8 +752,7 @@ const AboutDiv = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 60px;
-    margin-bottom: 200px;
+    margin: 300px 0px;
   }
 
   &.column-display {
@@ -1607,6 +1609,15 @@ const StyledH4 = styled.h4`
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
+
+    @media (max-width: 767px) {
+    }
+
+    @media (min-width: 768px) {
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 
   &.move-counter {
@@ -1641,6 +1652,7 @@ const StyledP = styled.p`
 
   &.about-first-title {
     text-align: center;
+    margin: 0 auto;
 
     @media (max-width: 405px) {
       margin-bottom: 25px;
@@ -2659,7 +2671,6 @@ const Sticky = styled.div`
   }
 
   &.sticky {
-    border: 1px solid blue;
     box-sizing: border-box;
     width: 100%;
     height: 100vh;
@@ -3888,7 +3899,6 @@ const GenDiv = styled.div`
     width: 100%;
     height: 100%;
     position: absolute;
-    border: 1px solid red;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -4276,8 +4286,20 @@ const Contact = styled.div`
   &.contact-wrapper {
     width: 100%;
     height: auto;
-    margin: 50px 0px;
-  }
+
+    @media (max-width: 767px) {
+    margin: 0;
+    }
+
+    @media (min-width: 768px) {
+        margin: 50px 0px;
+
+    }
+
+    @media (min-width: 1024px) {
+    }
+
+   }
 
   &.contact-container {
     width: calc(100% - 20px);
@@ -4318,37 +4340,60 @@ const Contact = styled.div`
   }
 
   &.card-container {
+    border: 2px solid ${(props) => props.theme.Grey};
     height: 100%;
     display: flex;
-    flex-direction: row;
+    padding: 30px 30px;
     margin-top: 20px;
+    
+    @media (max-width: 767px) {
+      flex-direction: column;
+    }
+
+    @media (min-width: 768px) {
+      flex-direction: row-reverse;
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 
-  &.card-box-left {
-    width: 50%;
-    height: calc(50% - 20px);
-    position: relative;
-  }
+  &.contact-card-box {
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
 
-  &.card-box-right {
-    width: 50%;
-    height: 100%;
+    @media (max-width: 767px) {
+      width: 100%;
+      height: 50%;
+      max-height: 400px;
+    }
+
+    @media (min-width: 768px) {
+      width: 50%;
+      height: 100%;
+    }
+
+    @media (min-width: 1024px) {
+
+    }
+
+    &:first-child {
+
+    }
   }
 
   &.maps {
-    height: 100%;
-  }
+  width: 100%;
+  height: 100%;
+    }
 
   &.contact-info-box {
-    height: 50px;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-
-    position: absolute;
-    left: 0;
-    bottom: -250px;
   }
 `;
 
@@ -5484,19 +5529,25 @@ const Button = styled.button`
   }
 
   &.header-button-item {
-    padding: 0;
     width: 55px;
+    padding: 0;
+    font-size: 12px;
 
     &:last-child {
       margin: 0;
     }
 
     @media (max-width: 767px) {
-      height: 30px;
+      height: 42px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
     }
 
     @media (min-width: 768px) {
       height: 100%;
+      display: block;
     }
 
     @media (min-width: 1024px) {
@@ -5561,7 +5612,6 @@ const Button = styled.button`
 
   &.water-btn {
     color: ${darkTheme.Grey};
-    font-size: 24px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -5574,6 +5624,18 @@ const Button = styled.button`
     &:hover {
       color: ${lightTheme.White};
       transition: color 0.3 ease;
+    }
+
+    @media (max-width: 767px) {
+      font-size: 18px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 20px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 24px;
     }
   }
 `;

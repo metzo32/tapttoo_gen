@@ -10,7 +10,7 @@ export const CounterMove = keyframes`
   }
   100% {
     top: 43%;
-    opacity: 0.5;
+    opacity: 0.3;
   }
 `;
 

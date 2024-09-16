@@ -4,6 +4,7 @@ import s from "../stores/styling";
 import SideBar from "./SideBar";
 import { AuthContext } from "../context/AuthContext";
 import { useIsMobile } from "../context/MobileContext";
+import useWindowSize from "../hooks/WindowSizeHook";
 
 import DarkModeButton from "./DarkModeButton";
 
@@ -13,6 +14,8 @@ export default function Header() {
 
   const { currentlyLoggedIn } = useContext(AuthContext);
   const [sidebar, setSidebar] = useState(false);
+
+  const {width} = useWindowSize()
 
   const handleProfileNavigation = () => {
     if (currentlyLoggedIn) {
@@ -37,6 +40,7 @@ export default function Header() {
         <s.HeaderDiv className="header-button-wrapper-left">
           <s.Button onClick={showSidebar} className="header-button-item">
             <s.HamburgerIcon />
+            {width && width <= 767 ? "메뉴" : null}
           </s.Button>
 
           <s.Button
@@ -44,6 +48,7 @@ export default function Header() {
             className="header-button-item"
           >
             <s.HomeIcon />
+            {width && width <= 767 ? "홈" : null}
           </s.Button>
 
           <s.Button
@@ -51,6 +56,7 @@ export default function Header() {
             className="header-button-item"
           >
             <s.SearchIcon />
+            {width && width <= 767 ? "둘러보기" : null}
           </s.Button>
         </s.HeaderDiv>
         <s.HeaderDiv className="header-button-wrapper-right">
@@ -60,6 +66,7 @@ export default function Header() {
             className="header-button-item"
           >
             <s.ProfileIcon />
+            {width && width <= 767 ? "마이" : null}
           </s.Button>
         </s.HeaderDiv>
       </s.HeaderDiv>

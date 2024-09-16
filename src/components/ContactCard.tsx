@@ -1,7 +1,5 @@
 import React from "react";
 import s from "../stores/styling";
-// import FetchMap from "./unused/FetchMap_old";
-// import FetchMap from "../components/FetchMap";
 import FetchGoogleMap from "./FetchGoogleMap";
 
 interface ContactCardProps {
@@ -28,9 +26,14 @@ const ContactCard: React.FC<ContactCardProps> = ({
   return (
     <s.Contact className="card-wrapper">
       <s.StyledH2 className="contact-card-title">{region}</s.StyledH2>
+
       <s.Contact className="card-container">
-        <s.Contact className="card-box-left">
-          <s.Line className="horizontal dark" />
+        <s.Contact className="contact-card-box">
+          <s.Contact className="maps">
+            <FetchGoogleMap id={id} lat={lat} lng={lng} zoom={zoom} />
+          </s.Contact>
+        </s.Contact>
+        <s.Contact className="contact-card-box">
           <s.Contact className="contact-info-box">
             <s.StyledP className="contact-info">{address}</s.StyledP>
             <s.Atag href={`tel:${phonenumber}`}>
@@ -38,15 +41,7 @@ const ContactCard: React.FC<ContactCardProps> = ({
             </s.Atag>
           </s.Contact>
         </s.Contact>
-
-        <s.Contact className="card-box-right">
-          <s.Contact className="maps">
-            <FetchGoogleMap id={id} lat={lat} lng={lng} zoom={zoom} />
-            {/* <FetchMap id={id} latitude={latitude} longitude={longitude} /> */}
-          </s.Contact>
-        </s.Contact>
       </s.Contact>
-      <s.Line className="horizontal dark" />
     </s.Contact>
   );
 };

@@ -23,68 +23,64 @@ export default function AboutUs() {
     navigate(path);
   };
 
+  const componentsWithDelay = [ //배열로 만들어 각각 인덱스를 생성하고, map 함수로 딜레이 부여
+    <BrandTopTitle />,
+    <BrandMidTitle />,
+    <CustomCarousel />,
+    <BrandDropDescription
+      title={"Harmony of Heritage and Sustainability"}
+      text={
+        <>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic modi
+          dicta velit, magni corporis quisquam rem quos illum, quibusdam, dolore
+          quae aliquid labore iure a? Debitis, soluta.
+        </>
+      }
+    />,
+    <ScrollEvent>
+      <s.Image className="BrandMidImage" src={MidImage} alt="photo" />
+    </ScrollEvent>,
+    <BrandDropDescription
+      title={"Designs created by Enthusiastic artists"}
+      text={
+        <>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam a ipsa
+          iste, animi quaerat velit. Nulla est temporibus inventore iure. Nemo
+          tempore, nam quidem fuga commodi enim maiores eos a.
+        </>
+      }
+    />,
+    <s.AboutDiv className="about-button-box">
+      <HoverButton
+        onClick={() => handleNavigation("/article")}
+        circle={true}
+        text="바로 둘러보기"
+      />
+    </s.AboutDiv>,
+    <GridBrand />,
+    <BrandDropDescription
+      title={"Explore our other Collaborative works"}
+      text={
+        <>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia
+          amet dicta saepe cum vel sunt officia delectus adipisci recusandae
+          cupiditate, neque eaque aperiam. A aut tempore dolore dolorum deserunt
+          veniam!
+        </>
+      }
+    />,
+    <s.Image className="BrandMidImage" src={BrandLastImage} alt="photo" />,
+    <BrandBottomTitle />,
+  ];
+
   return (
-    <>
-      {/* <StartFromTop /> */}
-      <s.AboutDiv className="wrapper">
-        {/* <DrawLetter/> */}
-        <BrandTopTitle />
-
-        <BrandMidTitle />
-
-        <CustomCarousel />
-
-        <BrandDropDescription
-          title={"Harmony of Heritage and Sustainability"}
-          text={
-            <>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic modi
-              dicta velit, magni corporis quisquam rem quos illum, quibusdam,
-              dolore quae aliquid labore iure a? Debitis, soluta.
-            </>
-          }
-        />
-
-        <ScrollEvent>
-          <s.Image className="BrandMidImage" src={MidImage} alt="photo" />
+    <s.AboutDiv className="about-wrapper">
+      <StartFromTop/>
+      {componentsWithDelay.map((component, index) => (
+        <ScrollEvent key={index} delay={index * 0.8}>
+          {component}
         </ScrollEvent>
-
-        <BrandDropDescription
-          title={"Designs created by Enthusiastic artitst"}
-          text={
-            <>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam a
-              ipsa iste, animi quaerat velit. Nulla est temporibus inventore
-              iure. Nemo tempore, nam quidem fuga commodi enim maiores eos a.
-            </>
-          }
-        />
-
-        <s.AboutDiv className="about-button-box">
-          <HoverButton
-            onClick={() => handleNavigation("/article")}
-            circle={true}
-            text="바로 둘러보기"
-          />
-        </s.AboutDiv>
-
-        <GridBrand />
-
-        <BrandDropDescription
-          title={"Explore our other Collaborative works"}
-          text={
-            <>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia
-              amet dicta saepe cum vel sunt officia delectus adipisci recusandae
-              cupiditate, neque eaque aperiam. A aut tempore dolore dolorum
-              deserunt veniam!
-            </>
-          }
-        />
-
-        <s.Image className="BrandMidImage" src={BrandLastImage} alt="photo" />
-        <BrandBottomTitle />
-      </s.AboutDiv>
-    </>
+      ))}
+    </s.AboutDiv>
   );
 }

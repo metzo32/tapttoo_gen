@@ -55,7 +55,6 @@ const GenerateImage: React.FC = () => {
 
   const handleCheck = () => {
     setCheck(true);
-    console.log("확인하기");
     setFadeOutTriggered(true);
 
     setLook(!look);

@@ -34,7 +34,6 @@ export default function Contact() {
             </s.Atag>
           </s.Contact>
 
-          <s.Line className="horizontal dark margin-h" />
 
           <ContactCard
             region="SEOUL"
