@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import s from "../stores/styling";
 import ArtistData from "../assets/datas/artitst_data";
 import { PopUpBelow, LinearDraw } from "./FramerMotions/scrollMotions";
@@ -69,7 +69,6 @@ export default function SearchEventProfile() {
         animationFrameIds.current[index] = 0;
       }
     };
-
     animate();
   };
 

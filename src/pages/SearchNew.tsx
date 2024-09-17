@@ -1,18 +1,14 @@
-import React from "react";
 import s from "../stores/styling";
 import CustomCarousel from "../components/CustomCarousel";
 import { useNavigate } from "react-router-dom";
 
 import SearchEventProfile from "../components/SearchEventProfile";
 
-import SearchCard from "../components/SearchCard";
 import InfiniteText from "../components/InfiniteText";
 import CircularText from "../components/CircularText";
 import MagneticBox from "../components/MagneticBox";
 import HoverButton from "../components/HoverButton";
 
-import search_img01 from "../assets/images/search_img01.jpg";
-import search_img02 from "../assets/images/search_img02.jpg";
 import search_today01 from "../assets/images/search_today01.jpg";
 
 export default function SearchNew() {

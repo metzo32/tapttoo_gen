@@ -2,8 +2,44 @@ import s from "../stores/styling";
 import ContactImage from "../assets/images/contactimage02.jpg";
 import ContactCard from "../components/ContactCard";
 import StartFromTop from "../components/StartFromTop";
+import { PopUpBelow } from "../components/FramerMotions/scrollMotions";
 
 export default function Contact() {
+  const cardsWithAnimation = [
+    <ContactCard
+      region="SEOUL"
+      address="12, Eulji-ro, Jung-gu, Seoul, Republic of Korea"
+      countrycode={82}
+      phonenumber="010 1234 5678"
+      id="card-seoul"
+      lat={37.5663}
+      lng={126.9779}
+      zoom={16}
+    />,
+
+    <ContactCard
+      region="BUSAN"
+      address="1001 Jungang-daero, Yeonje-gu, Busan, Republic of Korea"
+      countrycode={82}
+      phonenumber="010 1234 1234"
+      id="card-busan"
+      lat={35.1798}
+      lng={129.0742}
+      zoom={16}
+    />,
+
+    <ContactCard
+      region="OSLO"
+      address="Jernbanetorget 1, 0154 Oslo, Norway"
+      countrycode={47}
+      phonenumber="815 00 888"
+      id="card-oslo"
+      lat={59.911491}
+      lng={10.757933}
+      zoom={16}
+    />,
+  ];
+
   return (
     <>
       <StartFromTop />
@@ -34,39 +70,12 @@ export default function Contact() {
             </s.Atag>
           </s.Contact>
 
+          {cardsWithAnimation.map((component, index) => (
+            <PopUpBelow key={index} delay={index * 0.6}>
+              {component}
+            </PopUpBelow>
+          ))}
 
-          <ContactCard
-            region="SEOUL"
-            address="12, Eulji-ro, Jung-gu, Seoul, Republic of Korea"
-            countrycode={82}
-            phonenumber="010 1234 5678"
-            id="card-seoul"
-            lat={37.5663}
-            lng={126.9779}
-            zoom={16}
-          />
-
-          <ContactCard
-            region="BUSAN"
-            address="1001 Jungang-daero, Yeonje-gu, Busan, Republic of Korea"
-            countrycode={82}
-            phonenumber="010 1234 1234"
-            id="card-busan"
-            lat={35.1798}
-            lng={129.0742}
-            zoom={16}
-          />
-
-          <ContactCard
-            region="OSLO"
-            address="Jernbanetorget 1, 0154 Oslo, Norway"
-            countrycode={47}
-            phonenumber="815 00 888"
-            id="card-oslo"
-            lat={59.911491}
-            lng={10.757933}
-            zoom={16}
-          />
         </s.Contact>
       </s.Contact>
     </>

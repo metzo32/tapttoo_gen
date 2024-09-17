@@ -14,7 +14,7 @@ import BrandLastImage from "../assets/images/about_01.jpg";
 
 import DrawLetter from "../components/DrawLetter";
 
-import { ScrollEvent } from "../components/FramerMotions/scrollMotions";
+import { PopUpBelow } from "../components/FramerMotions/scrollMotions";
 
 export default function AboutUs() {
   const navigate = useNavigate();
@@ -37,9 +37,9 @@ export default function AboutUs() {
         </>
       }
     />,
-    <ScrollEvent>
+    <PopUpBelow>
       <s.Image className="BrandMidImage" src={MidImage} alt="photo" />
-    </ScrollEvent>,
+    </PopUpBelow>,
     <BrandDropDescription
       title={"Designs created by Enthusiastic artists"}
       text={
@@ -77,9 +77,9 @@ export default function AboutUs() {
     <s.AboutDiv className="about-wrapper">
       <StartFromTop/>
       {componentsWithDelay.map((component, index) => (
-        <ScrollEvent key={index} delay={index * 0.8}>
+        <PopUpBelow key={index} delay={index * 0.2}>
           {component}
-        </ScrollEvent>
+        </PopUpBelow>
       ))}
     </s.AboutDiv>
   );

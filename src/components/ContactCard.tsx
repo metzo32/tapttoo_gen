@@ -25,7 +25,9 @@ const ContactCard: React.FC<ContactCardProps> = ({
 }) => {
   return (
     <s.Contact className="card-wrapper">
-      <s.StyledH2 className="contact-card-title">{region}</s.StyledH2>
+      <s.StyledH2 className="contact-card-title">
+        {region}
+      </s.StyledH2>
 
       <s.Contact className="card-container">
         <s.Contact className="contact-card-box">

@@ -88,8 +88,9 @@ const Profile: React.FC<WishProps> = ({ artistNickname, artistRandomImage }) => 
         <s.Image className="profile-label" src={profileBanner} alt="photo" />
       <s.ProfileDiv className="profile-wrapper">
         <s.ProfileDiv className="profile-section">
-          <LogoutButton/>
           
+          <LogoutButton/>
+
           <s.ProfileDiv className="profile-padding-wrapper">
             <s.ProfileDiv className="profile-text-container">
               <s.ProfileDiv className="profile-element-box">

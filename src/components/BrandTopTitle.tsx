@@ -10,10 +10,10 @@ export default function BrandTopTitle() {
   return (
     <>
       <s.AboutDiv className="title-container">
-
+{/* 
         <EachTextPopUp text="test message is with you">
           <></>
-        </EachTextPopUp>
+        </EachTextPopUp> */}
 
         <s.StyledH1 className="brand-title">
           Express yourself

@@ -2978,7 +2978,6 @@ const Search = styled.div`
   &.search-wrapper {
     width: 100%;
     height: auto;
-    margin-top: 50px;
     overflow: hidden;
 
     display: flex;
@@ -3031,9 +3030,11 @@ const Search = styled.div`
   }
 
   &.sub-container {
+  border: 1px solid blue;
     width: calc(100% - 160px);
-    height: auto;
+    height: 756px;
     display: flex;
+
 
     @media (max-width: 767px) {
       width: calc(100% - 40px);
@@ -3978,7 +3979,7 @@ const SideBar = styled.div`
   &.sidebar-box {
     width: 100%;
     height: auto;
-    margin-top: 30px;
+    margin-top: 60px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -4288,18 +4289,16 @@ const Contact = styled.div`
     height: auto;
 
     @media (max-width: 767px) {
-    margin: 0;
+      margin: 0;
     }
 
     @media (min-width: 768px) {
-        margin: 50px 0px;
-
+      margin: 50px 0px;
     }
 
     @media (min-width: 1024px) {
     }
-
-   }
+  }
 
   &.contact-container {
     width: calc(100% - 20px);
@@ -4322,12 +4321,9 @@ const Contact = styled.div`
   }
 
   &.icon-text-box {
-
     :hover: {
-        color: red;
+      color: red;
     }
-}
-    
   }
 
   &.card-wrapper {
@@ -4336,7 +4332,11 @@ const Contact = styled.div`
     display: flex;
     flex-direction: column;
 
-    margin-bottom: 100px;
+    margin-top: 200px;
+
+    &:last-child {
+      margin-bottom: 100px;
+    }
   }
 
   &.card-container {
@@ -4344,8 +4344,7 @@ const Contact = styled.div`
     height: 100%;
     display: flex;
     padding: 30px 30px;
-    margin-top: 20px;
-    
+
     @media (max-width: 767px) {
       flex-direction: column;
     }
@@ -4375,18 +4374,16 @@ const Contact = styled.div`
     }
 
     @media (min-width: 1024px) {
-
     }
 
     &:first-child {
-
     }
   }
 
   &.maps {
-  width: 100%;
-  height: 100%;
-    }
+    width: 100%;
+    height: 100%;
+  }
 
   &.contact-info-box {
     height: auto;
@@ -4733,11 +4730,11 @@ const LoginDiv = styled.div`
     } 
 
     @media (min-width: 768px) {
-      margin: 80px 0px;
+      margin: 150px 0px;
     }
 
     @media (min-width: 1024px) {
-      margin: 80px 0px 130px 0px;
+      margin: 140px 0px 180px 0px;
     }
   }
 

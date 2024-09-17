@@ -28,7 +28,7 @@ const AnimatedComponent = ({
   variants,
 }: Props) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true }); // 뷰포트 진입할 때마다 애니메이션 실행
+  const isInView = useInView(ref, { once: true, amount: 0.5 }); // 뷰포트 진입할 때마다 애니메이션 실행
   const mainControls = useAnimation();
 
   useEffect(() => {
@@ -82,6 +82,7 @@ export const PopUpRight = ({ children, duration, delay }: Props) => {
   );
 };
 
+//article페이지 스냅 스크롤링
 export const ScrollEvent = ({ children }: Props) => {
   const [isSticky, setIsSticky] = useState(false);
   const ref = useRef(null);
