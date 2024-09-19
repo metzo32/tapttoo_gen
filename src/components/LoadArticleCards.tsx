@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import s from "../stores/styling";
 import { auth, db } from "../firebase/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
@@ -20,7 +20,7 @@ const LoadArticleCards: React.FC = () => {
   const loaderRef = useRef<HTMLDivElement | null>(null); // 로더 요소를 참조할 ref 생성
   const count = 4; // 한 번에 추가할 카드 수
 
-  // 무한 스크롤: 더 많은 데이터를 추가하는 함수
+  // 무한 스크롤
   const addArticles = () => {
     const newArticles = Array.from({ length: count }, (_, i) => articles.length + i);
     setArticles((prevArticles) => [...prevArticles, ...newArticles]);
@@ -103,8 +103,9 @@ const LoadArticleCards: React.FC = () => {
       <s.ArticleDiv className="article-wrapper">
         
         <SortButtons sortBefore={sortedData} sortHandle={handleSort} />
+        <ScrollToTopButton/>
 
-        <s.ArticleDiv className="article-mid-wrapper">
+        <s.ArticleDiv className="article-card-wrapper">
           {articles.map((index) => {
             const artist = sortedData[index];
             if (!artist) return null;

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import s from "../stores/styling";
 import { ArtistDataProps } from "../assets/datas/artitst_data";
-import { handleScrollToTop } from "./HandleScrollToTop";
-import { PopUpBelow } from "./FramerMotions/scrollMotions";
 
 interface SortButtonsProps {
   sortBefore: ArtistDataProps[];
@@ -58,6 +56,12 @@ export default function SortButtons({
     }
   };
 
+  //메뉴 닫기
+  const handleCloseMenu = () => {
+    setIsDropped(false);
+    setTimeout(() => setShowDropLeft(false), 300);
+  };
+
   // 스크롤 이벤트
   const scrollEvent = () => {
     if (window.scrollY > 500) {
@@ -89,48 +93,41 @@ export default function SortButtons({
             : "close-drop-left"
         }`}
       >
-        <PopUpBelow delay={0.5}>
-          <s.StyledLi className="dropdown-li">
-            <s.Button className="dropdown-btn" onClick={handleSortAlphabet}>
-              오름차순
-            </s.Button>
-          </s.StyledLi>
-        </PopUpBelow>
-
-        <PopUpBelow delay={0.8}>
-          <s.StyledLi className="dropdown-li">
-            <s.Button
-              className="dropdown-btn"
-              onClick={handleSortAlphabetReverse}
-            >
-              내림차순
-            </s.Button>
-          </s.StyledLi>
-        </PopUpBelow>
-
-        <PopUpBelow delay={1.1}>
-          <s.StyledLi className="dropdown-li">
-            <s.Button className="dropdown-btn" onClick={handleSortNew}>
-              신규순
-            </s.Button>
-          </s.StyledLi>
-        </PopUpBelow>
-
-        <PopUpBelow delay={1.4}>
-          <s.StyledLi className="dropdown-li">
-            <s.Button className="dropdown-btn" onClick={handleSortOld}>
-              오래된순
-            </s.Button>
-          </s.StyledLi>
-        </PopUpBelow>
+        <s.StyledLi className="dropdown-li">
+          <s.Button className="dropdown-btn" onClick={handleSortAlphabet}>
+            오름차순
+          </s.Button>
+        </s.StyledLi>
+        <s.StyledLi className="dropdown-li">
+          <s.Button
+            className="dropdown-btn"
+            onClick={handleSortAlphabetReverse}
+          >
+            내림차순
+          </s.Button>
+        </s.StyledLi>
+        <s.StyledLi className="dropdown-li">
+          <s.Button className="dropdown-btn" onClick={handleSortNew}>
+            신규순
+          </s.Button>
+        </s.StyledLi>
+        <s.StyledLi className="dropdown-li">
+          <s.Button className="dropdown-btn" onClick={handleSortOld}>
+            오래된순
+          </s.Button>
+        </s.StyledLi>
+        <s.Button className="sort-menu-close" onClick={handleCloseMenu}>
+          <s.RemoveIcon />
+        </s.Button>
       </s.StyledUl>
 
-      <s.Button className="scroll-top-btn">
-        {isScrolled ? (
+      <s.Button className="sort-btn" onClick={handleDropLeft}>
+        <s.SortIcon />
+        {/* {isScrolled ? (
           <s.TopArrowIcon onClick={handleScrollToTop} />
         ) : (
           <s.SortIcon onClick={handleDropLeft} />
-        )}
+        )} */}
       </s.Button>
     </>
   );

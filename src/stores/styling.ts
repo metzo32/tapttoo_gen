@@ -2529,8 +2529,7 @@ const StyledUl = styled.ul`
     }
 
     &.dropdown-box {
-      width: 120px;
-      height: 200px;
+
       background-color:  ${(props) => props.theme.Light};
       border-radius: 10px;
       padding: 20px 0;
@@ -2547,15 +2546,23 @@ const StyledUl = styled.ul`
       z-index: 9999;
 
       @media (max-width: 767px) {
-        right: 12px;
+        width: 95px;
+        height: 175px;
+        left: 12px;
         bottom: 180px;
         transform: translate(-20%, -150%);
       }
 
       @media (min-width: 768px) {
-        right: 35px;
+            width: 120px;
+      height: 200px;
+        left: 35px;
         bottom: 160px;
         transform: translate(-100%, -100%);
+      }
+
+      @media (min-width: 1024px) {
+
       }
 
       &.open-drop-left {
@@ -2726,7 +2733,7 @@ const Modal = styled.div`
     animation: ${slideUp} 0.2s ease-in-out;
 
     &.closing {
-      animation: ${slideDown} 0.5s forwards;
+      animation: ${slideDown} 0.2s forwards;
     }
 
     @media (max-width: 767px) {
@@ -3030,11 +3037,10 @@ const Search = styled.div`
   }
 
   &.sub-container {
-  border: 1px solid blue;
+    border: 1px solid blue;
     width: calc(100% - 160px);
     height: 756px;
     display: flex;
-
 
     @media (max-width: 767px) {
       width: calc(100% - 40px);
@@ -3346,7 +3352,7 @@ const ArticleDiv = styled.div`
     flex-direction: column;
   }
 
-  &.article-mid-wrapper {
+  &.article-card-wrapper {
     display: flex;
     flex-direction: column;
   }
@@ -4510,6 +4516,7 @@ const ProfileDiv = styled.div`
   &.profile-padding-wrapper {
     width: 100%;
     height: auto;
+    position: relative;
 
     display: flex;
     flex-direction: column;
@@ -4535,8 +4542,7 @@ const ProfileDiv = styled.div`
   &.profile-text-container {
     width: 60%;
     margin: 0 auto;
-    margin-bottom: 20px;
-    border: 1px solid red;
+    margin: 20px 0px;
 
     display: flex;
     flex-direction: column;
@@ -5510,7 +5516,6 @@ const Button = styled.button`
 
   &.dropdown-btn {
     color: ${(props) => props.theme.Green};
-    font-size: 16px;
     font-weight: 400;
     margin: 0;
     padding: 0px 20px;
@@ -5519,6 +5524,18 @@ const Button = styled.button`
       color: ${(props) => props.theme.HoverGreen};
       transition: 0.3s ease;
     }
+      
+    @media (max-width: 767px) {
+      font-size: 14px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 16px;
+    }
+
+    @media (min-width: 1024px) {
+    }
+
   }
 
   &.left {
@@ -5568,8 +5585,8 @@ const Button = styled.button`
   }
 
   &.scroll-top-btn {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     color: ${lightTheme.Light};
     background-color: ${lightTheme.Green};
     border-radius: 50%;
@@ -5593,8 +5610,6 @@ const Button = styled.button`
     }
 
     @media (max-width: 767px) {
-      width: 50px;
-      height: 50px;
       transform: translate(-20%, -200%);
 
       &:hover {
@@ -5607,6 +5622,66 @@ const Button = styled.button`
     @media (min-width: 768px) {
       transform: translate(-100%, -100%);
     }
+  }
+
+  &.sort-btn {
+    width: 50px;
+    height: 50px;
+    color: ${lightTheme.Light};
+    background-color: ${lightTheme.Green};
+    border-radius: 50%;ß
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+    padding: 0;
+    pointer-events: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    z-index: 9999;
+
+    &:hover {
+      color: ${lightTheme.Light};
+      background-color: ${lightTheme.HoverGreen};
+      transition: 0.3s ease;
+    }
+
+    @media (max-width: 767px) {
+      bottom: 0;
+      left: 25px;
+      transform: translate(-20%, -200%);
+
+      &:hover {
+        color: ${lightTheme.Light};
+        background-color: ${lightTheme.Green};
+        transition: none;
+      }
+    }
+
+    @media (min-width: 768px) {
+      bottom: 0;
+      left: 100px;
+      transform: translate(-100%, -100%);
+    }
+  }
+
+  &.sort-menu-close {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid ${(props) => props.theme.Orange};
+    background-color: ${(props) => props.theme.Light};
+    padding: 0;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    top: -10px;
+    right: -10px;
   }
 
   &.water-btn {
@@ -6017,25 +6092,23 @@ const OutIcon = styled(IoExitOutline)`
   height: 30px;
   cursor: pointer;
   transition: color 0.3s ease;
-
-  position: relative;
   top: 0%;
-  right: -43%;
-  transform: translate(0%, 60%);
+
+  position: absolute;
 
   @media (max-width: 767px) {
-    right: -43%;
-    transform: translate(0%, 60%);
+    top: -5%;
+    right: 4%;
   }
 
   @media (min-width: 768px) {
-    right: -43%;
-    transform: translate(0%, 60%);
+    top: -13%;
+    right: 4%;
   }
 
   @media (min-width: 1024px) {
-    right: -44%;
-    transform: translate(0%, 90%);
+    top: -9%;
+    right: 4%;
   }
 
   &:hover {

@@ -57,7 +57,7 @@ const Modal: React.FC<ModalProps> = ({
       setAnimationClosing(false);
       setUnderstand(false); // 체크박스 상태 초기화
       onClose();
-    }, 800);
+    }, 200);
   };
 
   const portalElement = document.getElementById("portal");

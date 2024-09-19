@@ -46,7 +46,7 @@ const AnimatedComponent = ({
         initial="hidden"
         animate={mainControls}
         transition={{ duration: duration, delay: delay }}
-        style={{display: "flex"}}
+        // style={{display: "flex"}}
       >
         {children}
       </motion.div>
@@ -69,10 +69,10 @@ export const PopUpBelow = ({ children, duration, delay }: Props) => {
   );
 };
 
-export const PopUpRight = ({ children, duration, delay }: Props) => {
+export const CloseDown = ({ children, duration, delay }: Props) => {
   const variants = {
-    hidden: { opacity: 0, x: 100 },
-    visible: { opacity: 1, x: 0 },
+    hidden: { opacity: 0, y: 0},
+    visible: { opacity: 1, y: -75},
   };
 
   return (

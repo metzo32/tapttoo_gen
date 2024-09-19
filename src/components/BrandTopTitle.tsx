@@ -2,7 +2,7 @@ import mainImage from "../assets/images/main.jpg";
 import s from "../stores/styling";
 import {
   PopUpBelow,
-  PopUpRight,
+  CloseDown,
   EachTextPopUp,
 } from "./FramerMotions/scrollMotions";
 

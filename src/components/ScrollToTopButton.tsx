@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import s from "../stores/styling";
-import { handleScrollToTop } from "./HandleScrollToTop"
 
 const ScrollToTopButton: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -19,6 +18,13 @@ const ScrollToTopButton: React.FC = () => {
       window.removeEventListener("scroll", toggleVisibility);
     };
   }, []);
+
+const handleScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <>
