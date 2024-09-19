@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { auth, db } from "../firebase/firebaseConfig";
+import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import s from "../stores/styling";
 import LogoutButton from "../components/Logout";
@@ -19,23 +20,55 @@ const Profile: React.FC<WishProps> = ({ artistNickname, artistRandomImage }) => 
   const [photoURL, setPhotoURL] = useState<string | null>(null);
   const [visibleCount, setVisibleCount] = useState(5); // 처음에 5개만 보여주기
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      if (auth.currentUser) {
-        const userDocRef = doc(db, "users", auth.currentUser.uid);
-        const userDoc = await getDoc(userDocRef);
-        if (userDoc.exists()) {
-          const data = userDoc.data();
-          setUserData(data);
-          setPhotoURL(data.photoURL);
+  
+//기존 코드
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     if (auth.currentUser) {
+  //       const userDocRef = doc(db, "users", auth.currentUser.uid);
+  //       const userDoc = await getDoc(userDocRef);
+  //       if (userDoc.exists()) {
+  //         const data = userDoc.data();
+  //         setUserData(data);
+  //         setPhotoURL(data.photoURL);
 
-        } else {
-          console.log("No such document!");
-        }
-      }
-    };
-    fetchUserData();
-  }, []);
+  //       } else {
+  //         console.log("No such document!");
+  //       }
+  //     }
+  //   };
+  //   fetchUserData();
+  // }, []);
+
+
+useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // 유저가 로그인되어 있을 때만 데이터를 가져옴
+      fetchUserData(user.uid);
+    } else {
+      setUserData(null); // 유저가 없다면 null로 설정
+    }
+  });
+
+  return () => unsubscribe(); // 컴포넌트 언마운트 시 구독 해제
+}, []);
+
+const fetchUserData = async (uid: string) => {
+  try {
+    const userDocRef = doc(db, "users", uid);
+    const userDoc = await getDoc(userDocRef);
+    if (userDoc.exists()) {
+      const data = userDoc.data();
+      setUserData(data);
+      setPhotoURL(data.photoURL);
+    } else {
+      console.log("No such document!");
+    }
+  } catch (error) {
+    console.error("유저 데이터를 가져오는 중 오류 발생:", error);
+  }
+};
 
   const handleCardRedirect = (nickname: string) => {
     const url = `/profile_artist_${nickname}`;
@@ -95,33 +128,33 @@ const Profile: React.FC<WishProps> = ({ artistNickname, artistRandomImage }) => 
             <s.ProfileDiv className="profile-text-container">
               <s.ProfileDiv className="profile-element-box">
                 <s.StyledH2 className="profile-name">
-                  {userData ? userData.fullname : "Loading..."}
+                  {userData ? userData.fullname : ""}
                 </s.StyledH2>
                 <s.StyledH3 className="profile-nickname">
-                  {userData ? userData.nickname : "Loading..."}
+                  {userData ? userData.nickname : ""}
                 </s.StyledH3>
               </s.ProfileDiv>
 
               <s.ProfileDiv className="profile-element-box">
                 <s.StyledH4 className="profile-details margin">
-                  {userData ? userData.email : "Loading..."}
+                  {userData ? userData.email : ""}
                 </s.StyledH4>
 
                 <s.ProfileDiv className="profile-contact-container">
                   <s.ProfileDiv className="profile-contact-box">
                     <s.PhoneIcon />
                     <s.StyledH4 className="profile-details">
-                      +{userData ? userData.countryCode : "Loading..."}{" "}
-                      {userData ? userData.phonenumber : "Loading..."}
+                      +{userData ? userData.countryCode : ""}
+                      {userData ? userData.phonenumber : ""}
                     </s.StyledH4>
                   </s.ProfileDiv>
 
                   <s.ProfileDiv className="profile-contact-box">
                     <s.BdIcon />
                     <s.StyledH4 className="profile-details">
-                      {userData ? userData.birthYear : "Loading..."}.
-                      {userData ? userData.birthMonth : "Loading..."}.
-                      {userData ? userData.birthDay : "Loading..."}
+                      {userData ? userData.birthYear : ""}.
+                      {userData ? userData.birthMonth : ""}.
+                      {userData ? userData.birthDay : ""}
                     </s.StyledH4>
                   </s.ProfileDiv>
                 </s.ProfileDiv>
@@ -131,7 +164,7 @@ const Profile: React.FC<WishProps> = ({ artistNickname, artistRandomImage }) => 
 
               <s.ProfileDiv className="profile-element-box">
                 <s.StyledH4 className="liked">
-                  {userData ? userData.wishList?.length : "Loading..."}
+                  {userData ? userData.wishList?.length : ""}
                 </s.StyledH4>
                 <s.StyledH4 className="profile-details bold">Likes</s.StyledH4>
               </s.ProfileDiv>

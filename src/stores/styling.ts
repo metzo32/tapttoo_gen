@@ -4503,6 +4503,7 @@ const ProfileDiv = styled.div`
 
     @media (min-width: 1440px) {
       width: 60%;
+      min-height: 600px;
     }
   }
 
@@ -4535,6 +4536,7 @@ const ProfileDiv = styled.div`
     width: 60%;
     margin: 0 auto;
     margin-bottom: 20px;
+    border: 1px solid red;
 
     display: flex;
     flex-direction: column;

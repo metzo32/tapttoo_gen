@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { auth, db } from "../firebase/firebaseConfig";
 
 interface WishListProps {
-  artistId: number; // 아티스트 ID를 전달받기 위한 prop
+  artistId: number;
   artistNickname: string;
   artistRandomImage: string;
   isWishlisted: boolean;
@@ -22,34 +22,26 @@ const WishList: React.FC<WishListProps> = ({
   const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
-    const fetchWishlistStatus = async () => {
-      const user = auth.currentUser;
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (!user) {
-        console.error("로그인이 필요합니다.");
-        return;
+        setWishButton(false); // 로그아웃 시 상태 초기화
+      } else {
+        const userRef = doc(db, "users", user.uid);
+        try {
+          const userDoc = await getDoc(userRef);
+          const currentWishlist = userDoc.data()?.wishList || [];
+          const isAlreadyWishlisted = currentWishlist.some( //배열 중 하나라도 만족하면 true
+            (item: { id: number }) => item.id === artistId
+          );
+          setWishButton(isAlreadyWishlisted);
+        } catch (error) {
+          console.error("위시리스트 임포트 에러:", error);
+        }
       }
+    });
   
-      const userRef = doc(db, "users", user.uid);
-  
-      try {
-        const userDoc = await getDoc(userRef);
-        const currentWishlist = userDoc.data()?.wishList || [];
-        const isAlreadyWishlisted = currentWishlist.some(
-          (item: { id: number }) => item.id === artistId
-        );
-  
-        setWishButton(isAlreadyWishlisted); // DB에 있는지 여부에 따라 초기값 설정
-      } catch (error) {
-        console.error("위시리스트 임포트 에러:", error);
-      }
-    };
-    fetchWishlistStatus();
+    return () => unsubscribe(); // 컴포넌트 언마운트 시 unsubscribe
   }, [artistId]);
-  
-
-  useEffect(() => {
-    setHovered(false); // 상태 변경 시 hover 상태 초기화
-  }, [isWishlisted]);
 
   const handleWishlistToggle = async () => {
     const user = auth.currentUser;
@@ -57,45 +49,45 @@ const WishList: React.FC<WishListProps> = ({
       console.error("로그인이 필요합니다.");
       return;
     }
-  
+
     const userRef = doc(db, "users", user.uid);
-    const maxWishlistSize = 100; // 최대 위시리스트 크기 설정
-  
+    const maxWishlistSize = 100;
+
     try {
       const userDoc = await getDoc(userRef);
       const currentWishlist = userDoc.data()?.wishList || [];
-  
+
       let updatedWishlist;
-  
+
       if (wishButton) {
-        // 이미 위시리스트에 포함되어 있으면 id를 기준으로 필터링하여 제거
         updatedWishlist = currentWishlist.filter(
           (item: { id: number }) => item.id !== artistId
         );
       } else {
-        // 새로운 위시리스트 아이템 추가
         const newWishlistItem = {
           id: artistId,
-          nickname: artistNickname, // 여기서 전달받은 nickname 사용
-          randomImage: artistRandomImage, // 여기서 전달받은 randomImage 사용
+          nickname: artistNickname,
+          randomImage: artistRandomImage,
         };
-  
+
         updatedWishlist = [newWishlistItem, ...currentWishlist];
-  
+
         if (updatedWishlist.length > maxWishlistSize) {
           updatedWishlist = updatedWishlist.slice(0, maxWishlistSize);
         }
       }
-  
+
       await updateDoc(userRef, { wishList: updatedWishlist });
-  
       setWishButton(!wishButton);
       onToggleWishlist();
     } catch (error) {
       console.error("위시리스트 업데이트 중 오류 발생:", error);
     }
   };
-  
+
+  useEffect(() => {
+    setHovered(false); // 상태 변경 시 hover 상태 초기화
+  }, [isWishlisted]);
 
   const handleMouseClick = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>

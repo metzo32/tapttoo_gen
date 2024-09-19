@@ -1,4 +1,5 @@
 import React from "react";
+import { auth } from "../firebase/firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
@@ -17,11 +18,25 @@ const LogoutButton: React.FC<LogoutButtonProps> = ({
   const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    setCurrentlyLoggedIn(false); // 로그아웃 처리
-    handleCloseModal(); // 모달 닫기
-    navigate("/"); // 로그아웃 후 홈으로 이동
+  const handleLogout = async () => {
+    try {
+      await auth.signOut(); // Firebase 로그아웃 처리
+      setCurrentlyLoggedIn(false); // 로그아웃 후 로컬 상태 업데이트
+      navigate("/"); // 로그아웃 후 홈으로 이동
+      handleCloseModal(); // 모달 닫기
+    } catch (error) {
+      console.error("로그아웃 중 오류 발생:", error);
+    }
   };
+
+  // const handleLogout = () => {
+  //   setCurrentlyLoggedIn(false); // 로그아웃 처리
+  //   handleCloseModal(); // 모달 닫기
+  //   navigate("/"); // 로그아웃 후 홈으로 이동
+  // };
+  
+  
+  
 
   return (
     <>
