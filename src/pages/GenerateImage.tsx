@@ -1,7 +1,19 @@
 import React, { useState, useEffect } from "react";
 import GenerateImageApi from "../components/api/GenerateImageApi";
-import s from "../stores/styling";
-import HoverButton from "../components/HoverButton";
+import {
+  Div,
+  H1,
+  H2,
+  H3,
+  Button,
+  P,
+  Label,
+  Input,
+  Form,
+  CheckboxBeforeIcon,
+  CheckboxAfterIcon,
+} from "./GenerateImage.styles";
+import HoverButton from "../components/HoverButton/HoverButton";
 import {
   CircleAnimation,
   PopUpBelow,
@@ -10,7 +22,7 @@ import Water from "../components/loading_water/Water";
 import StartFromTop from "../components/StartFromTop";
 import LoadCounter from "../components/loading_water/LoadCounter";
 
-const GenerateImage = () => {
+export default function GenerateImage() {
   const [prompt, setPrompt] = useState<string>("");
   const [color, setColor] = useState<boolean>(false);
   const [imageUrl, setImageUrl] = useState<string>("");
@@ -88,73 +100,61 @@ const GenerateImage = () => {
   return (
     <>
       <StartFromTop />
-      <s.GenDiv className="gen-wrapper">
-        <s.GenDiv className="gen-bg-wrapper">
-          {/* <s.Image className="gen-bg" src={bgImage} alt="photo" /> */}
-
-          {/* <s.DotMask className="base">
-            <s.DotMask className="angled" />
-          </s.DotMask> */}
-        </s.GenDiv>
-
-        <s.GenDiv className="gen-title-wrapper">
+      <Div className="wrapper">
+        <Div className="gen-title-wrapper">
           <PopUpBelow>
-            <s.StyledH2 className="gen-top-title">Exclusive Design</s.StyledH2>
+            <H2>Exclusive Design</H2>
           </PopUpBelow>
           <PopUpBelow delay={0.4}>
-            <s.StyledH1 className="gen-title">
+            <H1>
               Create <br />
               your own
-            </s.StyledH1>
+            </H1>
           </PopUpBelow>
 
-          <s.GenDiv className="gen-semi-title-container">
-            <s.GenDiv className="gen-column">
+          <Div className="gen-semi-title-container">
+            <Div className="gen-column">
               <PopUpBelow>
-                <s.StyledH3 className="gen-semi-title steady-dark-title">
-                  Since 2024
-                </s.StyledH3>
+                <H3 className="gen-semi-title steady-dark-title">Since 2024</H3>
               </PopUpBelow>
 
               <PopUpBelow>
-                <s.StyledH3 className="gen-semi-title steady-dark-title">
+                <H3 className="gen-semi-title steady-dark-title">
                   Whenever you need
-                </s.StyledH3>
+                </H3>
               </PopUpBelow>
-            </s.GenDiv>
+            </Div>
 
-            <s.GenDiv className="gen-column">
+            <Div className="gen-column">
               <PopUpBelow>
-                <s.StyledH3 className="gen-semi-title steady-dark-title">
+                <H3 className="gen-semi-title steady-dark-title">
                   Specific ideas
-                </s.StyledH3>
+                </H3>
               </PopUpBelow>
 
               <PopUpBelow>
-                <s.StyledH3 className="gen-semi-title steady-dark-title">
+                <H3 className="gen-semi-title steady-dark-title">
                   Just for you
-                </s.StyledH3>
+                </H3>
               </PopUpBelow>
-            </s.GenDiv>
-          </s.GenDiv>
+            </Div>
+          </Div>
 
           <PopUpBelow>
-            <s.StyledP>
+            <P>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
               sunt deleniti, non sit labore ullam, id quia voluptates qui
               nostrum alias incidunt odit praesentium accusantium reiciendis
               officiis aliquam? Aspernatur, maxime.
-            </s.StyledP>
+            </P>
           </PopUpBelow>
 
-          <s.GenDiv className={"fadeout-box"}>안녕</s.GenDiv>
-
           <PopUpBelow>
-            <s.Form
+            <Form
               className={`img-gen-form ${isSubmitted ? "submit-hidden" : ""}`}
             >
-              <s.GenDiv className="gen-input-container">
-                <s.Input
+              <Div className="gen-input-container">
+                <Input
                   className="prompt-input"
                   type="text"
                   value={prompt}
@@ -163,21 +163,21 @@ const GenerateImage = () => {
                   required
                 />
 
-                <s.Label className="colorCheck">
-                  <s.Input
+                <Label className="colorCheck">
+                  <Input
                     type="checkbox"
                     checked={color}
                     onChange={(e) => setColor(e.target.checked)}
                     className="input-hide"
                   />
                   {color ? (
-                    <s.CheckboxAfterIcon className="checkbox-icon-checked large" />
+                    <CheckboxAfterIcon className="checkbox-icon-checked" />
                   ) : (
-                    <s.CheckboxBeforeIcon className="checkbox-icon large" />
+                    <CheckboxBeforeIcon className="checkbox-icon" />
                   )}
                   Color
-                </s.Label>
-              </s.GenDiv>
+                </Label>
+              </Div>
 
               <HoverButton
                 type="submit"
@@ -185,7 +185,7 @@ const GenerateImage = () => {
                 text="디자인 생성하기"
                 onClick={handleButtonClick}
               />
-            </s.Form>
+            </Form>
           </PopUpBelow>
 
           {isSubmitted && (
@@ -198,20 +198,20 @@ const GenerateImage = () => {
                 >
                   <>
                     {isSubmitted && (
-                      <s.GenDiv
+                      <Div
                         className={`water-box ${check ? "fadeout-box" : ""}`}
                       >
                         <LoadCounter />
                         {waterAnimationDone && !check && (
-                          <s.Button className="water-btn" onClick={handleCheck}>
+                          <Button className="water-btn" onClick={handleCheck}>
                             확인하기
-                          </s.Button>
+                          </Button>
                         )}
                         <Water />
-                      </s.GenDiv>
+                      </Div>
                     )}
 
-                    {imageUrl && <s.Image src={imageUrl} alt="Generated" />}
+                    {imageUrl && <img src={imageUrl} alt="Generated" />}
                   </>
                 </CircleAnimation>
               </>
@@ -220,7 +220,7 @@ const GenerateImage = () => {
 
           {check && showButtons && (
             <PopUpBelow>
-              <s.GenDiv className="gen-button-container">
+              <Div className="gen-button-container">
                 <HoverButton
                   type="button"
                   circle={false}
@@ -233,13 +233,11 @@ const GenerateImage = () => {
                   text="다시 하기"
                   onClick={handleRefresh}
                 />
-              </s.GenDiv>
+              </Div>
             </PopUpBelow>
           )}
-        </s.GenDiv>
-      </s.GenDiv>
+        </Div>
+      </Div>
     </>
   );
-};
-
-export default GenerateImage;
+}

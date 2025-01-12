@@ -20,9 +20,7 @@ const SideBar = ({ sidebar, showSidebar }: SideBarProps) => {
             <s.StyledUl className="nav-menu-items" onClick={showSidebar}>
               {SideBarData.map((item, index) => (
                 <s.StyledLi key={index} className={item.className}>
-                  <s.StyledLink to={item.path} className="menu-texts">
                     <span>{item.title}</span>
-                  </s.StyledLink>
                 </s.StyledLi>
               ))}
             </s.StyledUl>

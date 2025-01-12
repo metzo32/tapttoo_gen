@@ -2,7 +2,7 @@ import s from "../stores/styling";
 import { useEffect } from "react";
 import useThemeContext from "../hooks/ThemeHook";
 
-const DarkModeButton: React.FC = () => {
+const DarkModeButton = () => {
   const { isDark, setIsDark } = useThemeContext();
 
   useEffect(() => {
