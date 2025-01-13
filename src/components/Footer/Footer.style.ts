@@ -14,21 +14,18 @@ export const H4 = styled.h4`
   color: ${(props) => props.theme.Grey};
   font-size: 24px;
   font-weight: 600;
-  letter-spacing: -1px;
   line-height: 20px;
   margin-left: 5px;
+
+  @media (max-width: 767px) {
+    margin-left: 0px;
+  }
 `;
 
 export const P = styled.p`
   color: ${(props) => props.theme.Grey};
   font-size: 16px;
   width: auto;
-
-  @media (max-width: 767px) {
-  }
-
-  @media (min-width: 768px) {
-  }
 `;
 
 export const Div = styled.div`
@@ -37,7 +34,6 @@ export const Div = styled.div`
 
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     overflow: hidden;
 
     @media (max-width: 767px) {
@@ -104,6 +100,7 @@ export const Div = styled.div`
 
     @media (max-width: 767px) {
       flex-direction: column;
+      gap: 5px;
     }
 
     @media (min-width: 768px) {
@@ -124,7 +121,7 @@ export const Div = styled.div`
     justify-content: space-between;
 
     @media (max-width: 767px) {
-    width: 200px;
+      width: 200px;
     }
 
     @media (min-width: 768px) {
@@ -167,6 +164,7 @@ export const Icon = css`
   border: 1px solid ${(props) => props.theme.Grey};
   padding: 5px;
   transition: border 0.3s ease, fill 0.5s ease;
+  cursor: pointer;
 
   &:hover {
     fill: ${(props) => props.theme.HoverGrey};

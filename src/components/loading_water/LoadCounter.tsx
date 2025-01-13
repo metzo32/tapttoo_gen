@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import s from "../../stores/styling";
+import { H4 } from "./LoadCounter.style";
 
 const easeInOut = (t: number) => {
     return t < 0.5
@@ -37,10 +37,10 @@ const LoadCounter: React.FC = () => {
   }, []);
 
   return (
-    <s.StyledH4
-      className={`loading-counter ${isComplete ? "move-counter" : ""}`}> {/* 조건부로 클래스 추가 */}
+    <H4
+      className={isComplete ? "move-counter" : ""}> 
       {count}%
-    </s.StyledH4>
+    </H4>
   );
 };
 

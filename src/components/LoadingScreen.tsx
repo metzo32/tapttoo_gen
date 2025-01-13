@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import s from '../stores/styling';
 
 interface LoadingScreenProps {
     onLoadComplete: () => void;

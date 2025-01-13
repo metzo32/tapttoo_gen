@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import GenerateImageApi from "../components/api/GenerateImageApi";
 import {
   Div,
@@ -34,6 +34,8 @@ export default function GenerateImage() {
   const [scaleFrame, setScaleFrame] = useState(1);
   const [showButtons, setShowButtons] = useState(false);
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const handleSubmit = async (e: React.FormEvent | React.MouseEvent) => {
     e.preventDefault(); // 기본 동작 막기
 
@@ -50,10 +52,14 @@ export default function GenerateImage() {
     }
   };
 
-  const handleButtonClick = (e: React.MouseEvent) => {
+  const handleCreate = (e: React.MouseEvent) => {
     e.preventDefault();
     if (prompt.trim().length === 0) {
-      return; // 입력값이 없을 때 리턴
+      alert("키워드를 입력해주세요.")
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+      return
     }
     handleSubmit(e);
     setIsSubmitted(true);
@@ -97,6 +103,12 @@ export default function GenerateImage() {
     window.location.reload();
   };
 
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
+
   return (
     <>
       <StartFromTop />
@@ -105,7 +117,7 @@ export default function GenerateImage() {
           <PopUpBelow>
             <H2>Exclusive Design</H2>
           </PopUpBelow>
-          <PopUpBelow delay={0.4}>
+          <PopUpBelow delay={0.2}>
             <H1>
               Create <br />
               your own
@@ -114,11 +126,11 @@ export default function GenerateImage() {
 
           <Div className="gen-semi-title-container">
             <Div className="gen-column">
-              <PopUpBelow>
+              <PopUpBelow delay={0.4}>
                 <H3 className="gen-semi-title steady-dark-title">Since 2024</H3>
               </PopUpBelow>
 
-              <PopUpBelow>
+              <PopUpBelow delay={0.4}>
                 <H3 className="gen-semi-title steady-dark-title">
                   Whenever you need
                 </H3>
@@ -126,13 +138,13 @@ export default function GenerateImage() {
             </Div>
 
             <Div className="gen-column">
-              <PopUpBelow>
+              <PopUpBelow delay={0.6}>
                 <H3 className="gen-semi-title steady-dark-title">
                   Specific ideas
                 </H3>
               </PopUpBelow>
 
-              <PopUpBelow>
+              <PopUpBelow delay={0.6}>
                 <H3 className="gen-semi-title steady-dark-title">
                   Just for you
                 </H3>
@@ -140,7 +152,7 @@ export default function GenerateImage() {
             </Div>
           </Div>
 
-          <PopUpBelow>
+          <PopUpBelow delay={0.8}>
             <P>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
               sunt deleniti, non sit labore ullam, id quia voluptates qui
@@ -149,12 +161,13 @@ export default function GenerateImage() {
             </P>
           </PopUpBelow>
 
-          <PopUpBelow>
+          <PopUpBelow delay={1.0}>
             <Form
               className={`img-gen-form ${isSubmitted ? "submit-hidden" : ""}`}
             >
               <Div className="gen-input-container">
                 <Input
+                  ref={inputRef}
                   className="prompt-input"
                   type="text"
                   value={prompt}
@@ -183,7 +196,7 @@ export default function GenerateImage() {
                 type="submit"
                 circle={true}
                 text="디자인 생성하기"
-                onClick={handleButtonClick}
+                onClick={handleCreate}
               />
             </Form>
           </PopUpBelow>

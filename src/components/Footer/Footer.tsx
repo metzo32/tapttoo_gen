@@ -13,7 +13,6 @@ export default function Footer() {
     <Div className="wrapper">
       <Div className="container">
         <Div className="brand-wrapper">
-          {/* <BrandLogo /> */}
           <H4>Tapttoo</H4>
         </Div>
 
@@ -53,7 +52,6 @@ export default function Footer() {
         <Div className="footer-box-left">
           <P>{"\u00A9"} 2024 Tapttoo All Rights Reserved</P>
         </Div>
-
 
         <Div className="footer-box-right">
           <P>Terms of Use</P>

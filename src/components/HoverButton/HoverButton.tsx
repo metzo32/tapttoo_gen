@@ -1,5 +1,5 @@
 import {
-  GreenButton,
+  Button,
   GreenButtonCircle,
   ButtonArrow,
 } from "./HoverButton.style";
@@ -11,7 +11,6 @@ interface ButtonProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement> | (() => void);
   circle: boolean;
   text: React.ReactNode;
-  ignoreDark?: boolean;
 }
 
 const HoverButton = ({
@@ -21,16 +20,13 @@ const HoverButton = ({
   onClick,
   circle,
   text,
-  ignoreDark,
 }: ButtonProps) => {
   return (
-    <GreenButton
-      onSubmit={onClick}
+    <Button
+      onClick={onClick}
       type={type}
       value={value}
-      className={`${circle ? "with-circle" : ""} ${
-        ignoreDark ? "always-light" : ""
-      } ${className}`}
+      className={`${circle ? "with-circle" : ""} ${className}`}
     >
       {circle && (
         <GreenButtonCircle>
@@ -38,7 +34,7 @@ const HoverButton = ({
         </GreenButtonCircle>
       )}
       {text}
-    </GreenButton>
+    </Button>
   );
 };
 

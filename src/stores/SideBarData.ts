@@ -1,18 +1,18 @@
 export const SideBarData = [
     {
-        title: 'Home',
+        title: '목록1',
         className: 'sidebar-text'
     },
     {
-        title: 'Search',
+        title: '목록2',
         className: 'sidebar-text'
     },
     {
-        title: 'Exclusive',
+        title: '목록3',
         className: 'sidebar-text'
     },
     {
-        title: 'Likes',
+        title: '목록4',
         className: 'sidebar-text'
     },
 ]

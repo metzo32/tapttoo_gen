@@ -36,6 +36,7 @@ time, mark, audio, video {
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
+    cursor: default;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -43,7 +44,13 @@ footer, header, hgroup, menu, nav, section {
     display: block;
 }
 body {
+    margin: 0;
+    height: 100%;
     line-height: 1;
+    ::selection {
+      background-color: #FC6B00; 
+      color: #ffffff;
+    }
 }
 ol, ul {
     list-style: none;
@@ -64,6 +71,9 @@ table {
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 0;
+}
+button {
+  border: none;
 }
 
 .App {

@@ -19,6 +19,7 @@ export const Div = styled.div`
     }
 
     @media (min-width: 1024px) {
+    padding: 170px 150px;
     }
   }
 
@@ -164,21 +165,21 @@ export const H1 = styled.h1`
   text-transform: uppercase;
 
   @media (max-width: 767px) {
-    font-size: 4rem;
-    line-height: 60px;
-    letter-spacing: -4px;
+    font-size: 72px;
+    line-height: 70px;
+    letter-spacing: -3px;
   }
 
   @media (min-width: 768px) {
-    font-size: 7rem;
+    font-size: 100px;
     line-height: 100px;
-    letter-spacing: -6px;
+    letter-spacing: -4px;
   }
 
   @media (min-width: 1024px) {
-    font-size: 8rem;
+    font-size: 130px;
     line-height: 120px;
-    letter-spacing: -10px;
+    letter-spacing: -5px;
   }
 `;
 
@@ -258,6 +259,11 @@ export const Label = styled.label`
   gap: 5px;
   color: ${(props) => props.theme.Grey};
   cursor: pointer;
+  user-select: none;
+
+  &:hover {
+      color: ${(props) => props.theme.HoverGrey};
+  }
 `;
 
 export const Input = styled.input`

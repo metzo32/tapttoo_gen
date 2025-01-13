@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import s from "../stores/styling";
+import { Overlay, Button, TopArrowIcon } from "./ScrollToTopButton.style";
 
-const ScrollToTopButton: React.FC = () => {
+const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const toggleVisibility = () => {
@@ -29,11 +29,11 @@ const handleScrollToTop = () => {
   return (
     <>
       {isVisible && (
-        <s.Overlay className="scroll-top-box">
-          <s.Button onClick={handleScrollToTop} className="scroll-top-btn">
-            <s.TopArrowIcon />
-          </s.Button>
-        </s.Overlay>
+        <Overlay className="scroll-top-box">
+          <Button onClick={handleScrollToTop} className="scroll-top-btn">
+            <TopArrowIcon />
+          </Button>
+        </Overlay>
       )}
     </>
   );

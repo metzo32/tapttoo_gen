@@ -1,6 +1,6 @@
-import s from "../stores/styling";
+import { DarkButton, Sun, Moon } from "./DarkModeButton.style";
 import { useEffect } from "react";
-import useThemeContext from "../hooks/ThemeHook";
+import useThemeContext from "../../hooks/ThemeHook";
 
 const DarkModeButton = () => {
   const { isDark, setIsDark } = useThemeContext();
@@ -22,13 +22,13 @@ const DarkModeButton = () => {
 
   return (
     <>
-      <s.DarkButton onClick={toggleDark}>
-        <s.DarkButton
+      <DarkButton onClick={toggleDark}>
+        <DarkButton
           className={`dark-circle ${isDark ? "dark-mode" : "light-mode"}`}
         />
-        <s.Sun className={`${isDark ? "" : "off"}`} />
-        <s.Moon className={`${isDark ? "off" : ""}`} />
-      </s.DarkButton>
+        <Sun className={`${isDark ? "" : "off"}`} />
+        <Moon className={`${isDark ? "off" : ""}`} />
+      </DarkButton>
     </>
   );
 };
