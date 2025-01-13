@@ -1,4 +1,4 @@
-import { Div, H3, NavBar, Overlay, Ul, Li } from "./SideBar.style";
+import { Div, H3, NavBar, Overlay, Ul, Button } from "./SideBar.style";
 import { SideBarData } from "../../stores/SideBarData";
 import DarkModeButton from "../DarkModeButton/DarkModeButton";
 
@@ -16,13 +16,13 @@ const SideBar = ({ sidebar, showSidebar }: SideBarProps) => {
           <H3>Tapttoo</H3>
           <Ul className="nav-menu-items">
             {SideBarData.map((item, index) => (
-              <Li key={index} onClick={showSidebar}>
-                <span>{item.title}</span>
-              </Li>
+              <li key={index} onClick={showSidebar}>
+                <Button>{item.title}</Button>
+              </li>
             ))}
-            <Li>
+            <li>
               <DarkModeButton />
-            </Li>
+            </li>
           </Ul>
         </NavBar>
       </Div>

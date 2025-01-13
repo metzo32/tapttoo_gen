@@ -55,11 +55,11 @@ export default function GenerateImage() {
   const handleCreate = (e: React.MouseEvent) => {
     e.preventDefault();
     if (prompt.trim().length === 0) {
-      alert("키워드를 입력해주세요.")
+      alert("키워드를 입력해주세요.");
       if (inputRef.current) {
         inputRef.current.focus();
       }
-      return
+      return;
     }
     handleSubmit(e);
     setIsSubmitted(true);
@@ -202,33 +202,27 @@ export default function GenerateImage() {
           </PopUpBelow>
 
           {isSubmitted && (
-            <PopUpBelow>
-              <>
-                <CircleAnimation
-                  look={look}
-                  scaleFrame={scaleFrame}
-                  onClick={handleCheck}
-                >
-                  <>
-                    {isSubmitted && (
-                      <Div
-                        className={`water-box ${check ? "fadeout-box" : ""}`}
-                      >
-                        <LoadCounter />
-                        {waterAnimationDone && !check && (
-                          <Button className="water-btn" onClick={handleCheck}>
-                            확인하기
-                          </Button>
-                        )}
-                        <Water />
-                      </Div>
-                    )}
+              <CircleAnimation
+                look={look}
+                scaleFrame={scaleFrame}
+                onClick={handleCheck}
+              >
+                <>
+                  {isSubmitted && (
+                    <Div className={`water-box ${check ? "fadeout-box" : ""}`}>
+                      <LoadCounter />
+                      {waterAnimationDone && !check && (
+                        <Button className="water-btn" onClick={handleCheck}>
+                          확인하기
+                        </Button>
+                      )}
+                      <Water />
+                    </Div>
+                  )}
 
-                    {imageUrl && <img src={imageUrl} alt="Generated" />}
-                  </>
-                </CircleAnimation>
-              </>
-            </PopUpBelow>
+                  {imageUrl && <img src={imageUrl} alt="Generated" />}
+                </>
+              </CircleAnimation>
           )}
 
           {check && showButtons && (

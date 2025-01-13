@@ -77,6 +77,17 @@ export const Ul = styled.ul`
   gap: 30px;
   margin-top: 20px;
   color: ${(props) => props.theme.Grey};
+`;
+
+export const Button = styled.button`
+  padding: 0;
+  background-color: transparent;
+  color: ${(props) => props.theme.Grey};
+  cursor: pointer;
+
+  &:hover {
+    color: ${(props) => props.theme.HoverGrey};
+  }
 
   @media (max-width: 767px) {
     font-size: 16px;
@@ -84,13 +95,5 @@ export const Ul = styled.ul`
 
   @media (min-width: 768px) {
     font-size: 18px;
-  }
-`;
-
-export const Li = styled.li`
-  cursor: pointer;
-
-  &:hover {
-    color: ${(props) => props.theme.HoverGrey};
   }
 `;
