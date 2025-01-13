@@ -23,9 +23,9 @@ import StartFromTop from "../components/StartFromTop";
 import LoadCounter from "../components/loading_water/LoadCounter";
 
 export default function GenerateImage() {
-  const [prompt, setPrompt] = useState<string>("");
-  const [color, setColor] = useState<boolean>(false);
-  const [imageUrl, setImageUrl] = useState<string>("");
+  const [prompt, setPrompt] = useState("");
+  const [color, setColor] = useState(false);
+  const [imageUrl, setImageUrl] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [check, setCheck] = useState(false);
   const [waterAnimationDone, setWaterAnimationDone] = useState(false);
