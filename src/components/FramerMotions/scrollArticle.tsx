@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import { useTransform, useScroll, useMotionValueEvent } from "framer-motion";
-import useWindowSize from "../../hooks/WindowSizeHook";
+import useWindowSize from "../../hooks/useWindowSize";
 
 interface SnapParentProps {
   children: React.ReactNode;

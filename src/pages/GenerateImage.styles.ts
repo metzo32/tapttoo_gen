@@ -184,13 +184,11 @@ export const H1 = styled.h1`
 `;
 
 export const H2 = styled.h2`
-    font-family: "Arimo", sans-serif;
     color: ${(props) => props.theme.Grey};
     font-weight: 700;
     text-align: left;
     letter-spacing: -2px;
     opacity: 0.5;
-    color: grey;
     text-transform: uppercase;
     white-space: nowrap;
 

@@ -9,7 +9,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-      <App />
-      <div id="portal"></div>
+    <App />
+    <div id="portal"></div>
   </React.StrictMode>
 );

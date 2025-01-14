@@ -5,7 +5,7 @@ const useThemeContext = (): ThemeContextType => {
   const context = useContext(ThemeContext);
 
   if (!context) {
-    throw new Error("ThemeContext is not provided");
+    throw new Error("Theme Context is not provided");
   }
 
   return context;

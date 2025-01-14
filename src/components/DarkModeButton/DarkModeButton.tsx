@@ -1,6 +1,6 @@
 import { DarkButton, Sun, Moon } from "./DarkModeButton.style";
 import { useEffect } from "react";
-import useThemeContext from "../../hooks/ThemeHook";
+import useThemeContext from "../../hooks/useThemeContext";
 
 const DarkModeButton = () => {
   const { isDark, setIsDark } = useThemeContext();

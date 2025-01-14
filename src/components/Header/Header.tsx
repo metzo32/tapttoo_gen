@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Div, Button, HomeIcon, HamburgerIcon, SearchIcon } from "./Header.style";
 import SideBar from "../Sidebar/SideBar";
-import useWindowSize from "../../hooks/WindowSizeHook";
+import useWindowSize from "../../hooks/useWindowSize";
 
 export default function Header() {
   const [sidebar, setSidebar] = useState(false);

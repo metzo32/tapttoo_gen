@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import GenerateImageApi from "../components/api/GenerateImageApi";
+import fetchImageGen from "../components/fetch/fetchImageGen";
 import {
   Div,
   H1,
@@ -42,7 +42,7 @@ export default function GenerateImage() {
     if (isSubmitted) return; // 이미 제출된 경우 리턴
 
     try {
-      const url = await GenerateImageApi(
+      const url = await fetchImageGen(
         `${prompt}?t=${new Date().getTime()}`,
         color
       ); // 캐시 무효화
