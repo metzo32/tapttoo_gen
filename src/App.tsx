@@ -1,7 +1,6 @@
 import "./App.css";
 import styled, { createGlobalStyle } from "styled-components";
-
-import CustomThemeProvider from "./context/CustomThemeProvider";
+import ThemeProvider from "./context/ThemeProvider";
 import { MobileProvider } from "./context/MobileContext";
 
 import Header from "./components/Header/Header";
@@ -28,7 +27,7 @@ const Wrapper = styled.div`
 const App = () => {
   return (
     <>
-      <CustomThemeProvider>
+      <ThemeProvider>
         <MobileProvider>
           <GlobalStyle />
           <Wrapper>
@@ -38,7 +37,7 @@ const App = () => {
             <Footer />
           </Wrapper>
         </MobileProvider>
-      </CustomThemeProvider>
+      </ThemeProvider>
     </>
   );
 };

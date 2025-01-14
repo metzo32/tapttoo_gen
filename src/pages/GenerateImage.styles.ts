@@ -11,15 +11,15 @@ export const Div = styled.div`
     overflow: hidden;
 
     @media (max-width: 767px) {
-        padding: 80px 30px;
+      padding: 80px 30px;
     }
 
     @media (min-width: 768px) {
-        padding: 170px 100px;
+      padding: 170px 100px;
     }
 
     @media (min-width: 1024px) {
-    padding: 170px 150px;
+      padding: 170px 150px;
     }
   }
 
@@ -184,29 +184,28 @@ export const H1 = styled.h1`
 `;
 
 export const H2 = styled.h2`
-    color: ${(props) => props.theme.Grey};
-    font-weight: 700;
-    text-align: left;
-    letter-spacing: -2px;
-    opacity: 0.5;
-    text-transform: uppercase;
-    white-space: nowrap;
+  color: ${(props) => props.theme.Grey};
+  font-weight: 700;
+  text-align: left;
+  letter-spacing: -2px;
+  text-transform: uppercase;
+  white-space: nowrap;
 
-    -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
 
-    @media (max-width: 767px) {
-      font-size: 28px;
-      letter-spacing: -1px;
+  @media (max-width: 767px) {
+    font-size: 28px;
+    letter-spacing: -1px;
 
-      -webkit-text-stroke: 1px ${(props) => props.theme.Grey};;
-    }
+    -webkit-text-stroke: 1px ${(props) => props.theme.Grey};
+  }
 
-    @media (min-width: 768px) {
-      font-size: 48px;
-      letter-spacing: 0px;
+  @media (min-width: 768px) {
+    font-size: 48px;
+    letter-spacing: 0px;
 
-      -webkit-text-stroke: 2px ${(props) => props.theme.Grey};;
-    }
+    -webkit-text-stroke: 2px ${(props) => props.theme.Grey};
+  }
 `;
 
 export const H3 = styled.h3`
@@ -234,18 +233,20 @@ export const P = styled.p`
   font-size: 24px;
 
   @media (max-width: 767px) {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 24px;
+    margin-top: 20px;
   }
 
   @media (min-width: 768px) {
     font-size: 20px;
     line-height: 28px;
+    margin-top: 50px;
   }
 
   @media (min-width: 1024px) {
-    font-size: 24px;
-    line-height: 30px;
+    font-size: 20px;
+    line-height: 28px;
   }
 `;
 
@@ -260,7 +261,7 @@ export const Label = styled.label`
   user-select: none;
 
   &:hover {
-      color: ${(props) => props.theme.HoverGrey};
+    color: ${(props) => props.theme.HoverGrey};
   }
 `;
 

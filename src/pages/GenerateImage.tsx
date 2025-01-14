@@ -154,10 +154,9 @@ export default function GenerateImage() {
 
           <PopUpBelow delay={0.8}>
             <P>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-              sunt deleniti, non sit labore ullam, id quia voluptates qui
-              nostrum alias incidunt odit praesentium accusantium reiciendis
-              officiis aliquam? Aspernatur, maxime.
+              세상에 하나 뿐인 타투 디자인 만들기.
+              <br/>
+              좋아하는 낱말을 작성하면 Tapttoo가 추상화하여 멋진 도안으로 제작해드립니다.
             </P>
           </PopUpBelow>
 
@@ -172,7 +171,7 @@ export default function GenerateImage() {
                   type="text"
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
-                  placeholder="Type your idea"
+                  placeholder="키워드를 입력해주세요"
                   required
                 />
 
