@@ -95,14 +95,13 @@ interface CircleAnimationProps {
   children: JSX.Element;
   look: boolean;
   scaleFrame: number;
-  onClick: () => void;
+  // onClick: () => void;
 }
 
 export const CircleAnimation: React.FC<CircleAnimationProps> = ({
   children,
   look,
   scaleFrame,
-  onClick,
 }) => {
   return (
     <>
@@ -117,7 +116,6 @@ export const CircleAnimation: React.FC<CircleAnimationProps> = ({
           duration: 0.3, // 애니메이션 시간 설정
           ease: [0.25, 0.1, 0.25, 1], // 부드러운 애니메이션
         }}
-        onClick={onClick}
       >
         {children}
       </GenImageCircle>

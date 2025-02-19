@@ -204,7 +204,7 @@ export default function GenerateImage() {
               <CircleAnimation
                 look={look}
                 scaleFrame={scaleFrame}
-                onClick={handleCheck}
+                // onClick={handleCheck}
               >
                 <>
                   {isSubmitted && (
