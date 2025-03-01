@@ -63,6 +63,10 @@ export default function GenerateImage() {
     }
     handleSubmit(e);
     setIsSubmitted(true);
+    window.scrollTo({
+      top: 650,
+      behavior: "smooth",
+    })
 
     // Water 애니메이션이 끝난 후 확인하기 버튼 표시
     setTimeout(() => {
@@ -204,7 +208,6 @@ export default function GenerateImage() {
               <CircleAnimation
                 look={look}
                 scaleFrame={scaleFrame}
-                // onClick={handleCheck}
               >
                 <>
                   {isSubmitted && (
