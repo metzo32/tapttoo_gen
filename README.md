@@ -1,16 +1,26 @@
 # Tapttoo
 ## 커스텀 타투 도안 제작 서비스
 
+
+
 ## 프로젝트 개요
 
 사용자가 원하는 키워드를 입력하면 추상화하여 세상에 하나 뿐인 타투 도안으로 만들어주는 서비스입니다.
 
+
+
 ---
+
+
 
 ### 사용 툴 및 라이브러리
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white) ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white) ![Styled-Components](https://img.shields.io/badge/Styled--Components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white) ![React Router](https://img.shields.io/badge/React%20Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white) ![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white) ![Framer Motion](https://img.shields.io/badge/Framer%20Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
 
+
+
 ---
+
+
 
 ### 주요 기능
 
