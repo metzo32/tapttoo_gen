@@ -2,6 +2,8 @@
 ### 커스텀 타투 도안 제작 서비스
 
 
+---
+
 
 ### 프로젝트 개요
 
@@ -10,15 +12,14 @@
 https://tapttoo.netlify.app/
 
 
-
+---
 
 
 ### 사용 툴 및 라이브러리
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white) ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white) ![Styled-Components](https://img.shields.io/badge/Styled--Components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white) ![React Router](https://img.shields.io/badge/React%20Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white) ![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white) ![Framer Motion](https://img.shields.io/badge/Framer%20Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
 
 
-
-
+---
 
 
 ### 주요 기능
@@ -29,3 +30,11 @@ https://tapttoo.netlify.app/
 + 저장 및 리셋 기능
 + 불가피하게 발생하는 10초 딜레이 동안 프로그레스 애니메이션 재생
 + 사이드바 및 Darkmode/Lightmode 토글
+
+
+
+---
+
+시연 영상
+
+![시연](./public/demo_gif/tapttoo_demo.gif)
